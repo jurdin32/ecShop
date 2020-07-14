@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% block contenido %}
+{% load productostags %}
 <section class="banner_area">
             <div class="banner_tittle">
                 <h3>Brand: {{ producto.tienda.nombre }}</h3>
@@ -21,63 +22,73 @@
                     <div class="col-md-6">
                         <div class="product_detail_image">
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="product1">
-                                    <img src="/static/img/product/detail-product/detail_product1.jpg" alt="">
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="product2">
-                                    <img src="/static/img/product/detail-product/detail_product2.jpg" alt="">
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="product3">
-                                    <img src="/static/img/product/detail-product/detail_product1.jpg" alt="">
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="product4">
-                                    <img src="/static/img/product/detail-product/detail_product2.jpg" alt="">
-                                </div>
+                                {% for foto in fotosProductos %}
+                                    {% if forloop.counter == 1 %}
+                                        <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}">
+                                            <img src="/media/{{ foto.imagen }}" alt="">
+                                        </div>
+                                    {% else %}
+                                        <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}">
+                                            <img src="/media/{{ foto.imagen }}" alt="">
+                                        </div>
+                                    {% endif %}
+
+                                {% endfor %}
                             </div>
                         </div>
+                        <br>
                         <div class="product_detail_list">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#product1" aria-controls="product1" role="tab" data-toggle="tab">
-                                    <img src="/static/img/product/detail-product/detail_product1.jpg" style="width: 142px" alt=""></a></li>
-                                <li role="presentation"><a href="#product2" aria-controls="product2" role="tab" data-toggle="tab">
-                                    <img src="/static/img/product/detail-product/detail_product2.jpg" style="width: 142px" alt=""></a></li>
-                                <li role="presentation"><a href="#product3" aria-controls="product3" role="tab" data-toggle="tab">
-                                    <img src="/static/img/product/detail-product/detail_product1.jpg" style="width: 142px"  alt=""></a></li>
-                                <li role="presentation"><a href="#product4" aria-controls="product4" role="tab" data-toggle="tab">
-                                    <img src="/static/img/product/detail-product/detail_product2.jpg" style="width: 142px"  alt=""></a></li>
+                                {% for foto in fotosProductos %}
+                                    {% if forloop.counter == 1 %}
+                                        <li role="presentation" class="active">
+                                    {% else %}
+                                        <li role="presentation">
+                                    {% endif %}
 
-
+                                    <a href="#prod{{ foto.id }}" aria-controls="prod{{ foto.id }}" role="tab" data-toggle="tab">
+                                        <img src="/media/{{ foto.imagen }}" style="width: 142px" alt="">
+                                    </a>
+                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="product_detail_content">
-                            <a class="in_stock" href="#">In Stock</a>
-                            <h3>Upland Leader 500  26”</h3>
+                            {% if stock > 0%}
+                                <a class="in_stock">{{ stock }}</a>
+                            {% else %}
+                                 <a class="in_stock" style="background-color: red; color: white">Sin Stok</a>
+                            {% endif %}
+
+                            <h3>{{ producto.nombre }}</h3>
                             <nav>
                                 <ul class="product_details_rating">
-                                    <li><a href="#"><i class="lnr lnr-star"></i></a></li>
-                                    <li><a href="#"><i class="lnr lnr-star"></i></a></li>
-                                    <li><a href="#"><i class="lnr lnr-star"></i></a></li>
-                                    <li><a href="#"><i class="lnr lnr-star"></i></a></li>
-                                    <li><a href="#"><i class="lnr lnr-star"></i></a></li>
+                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
                                 </ul>
                             </nav>
-                            <a class="review_btn" href="#">Add your review</a>
-                            <p>We are one of the most respected and established companies in the world of bicycles.
-Our mission is to create good quality bicycles with the most competitive prices in the market. We constantly strive to produce bicycles that incorporate the latest trends on design, components and durability.</p>
-                            <p>Our success is due to the attention that we dedicate to every aspect of our product. We want you to be an Upland customer for life. We will give you always the best service, and we are commited to fulfill your required quality standards.</p>
-                            <del>$599</del>
-                            <h4>$400</h4>
+                            <a class="review_btn" href="#">Mi Calificación</a>
+                            <p>{{ producto.descripcion }}</p>
+                        {% if producto.adds %}
+                            <del>$ {{ producto.precio }}</del>
+                            <h4>$ {% descuento producto.id %}</h4>
+                        {% else %}
+                            <h4>$ {{ producto.precio }}</h4>
+                        {% endif %}
                             <div class="quantity_area">
-                                <h5>Quantity</h5>
+                                <h5>Cantidad</h5>
                                 <div class="custom">
                                     <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="glyphicon glyphicon-chevron-down"></i></button>
                                 </div>
-                                <a class="add_to_cart" href="#"><i class="lnr lnr-cart"></i> Add To Cart</a>
-                                <a class="heart_btn" href="#"><i class="lnr lnr-heart"></i></a>
+                                <a class="add_to_cart" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart</a>
+                                <a class="heart_btn" href="#"><i class="glyphicon glyphicon-heart"></i></a>
                             </div>
                         </div>
                     </div>
@@ -93,9 +104,9 @@ Our mission is to create good quality bicycles with the most competitive prices 
                     <div class="col-md-4">
                         <div class="detail_description_list">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Product Details</a></li>
-                                <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments & Reviews</a></li>
-                                <li role="presentation"><a href="#shiping" aria-controls="shiping" role="tab" data-toggle="tab">Delivery & Shipping</a></li>
+                                <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detalles Generales del Producto</a></li>
+                                <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Detalles Tecnicos</a></li>
+                                <li role="presentation"><a href="#shiping" aria-controls="shiping" role="tab" data-toggle="tab">Garantía</a></li>
                             </ul>
                         </div>
                     </div>
@@ -103,22 +114,16 @@ Our mission is to create good quality bicycles with the most competitive prices 
                         <div class="detail_description_content">
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="detail">
-                                    <h4>Upland Leader 500  26”</h4>
-                                    <p>Entrepreneurs these days work hard to take their business to the next level. Now, they are frequently using Internet as an important medium for advertising. To create brand awareness and to reach universal markets, online advertising is now excessively used. In India alone, over 41,000 advertisers have advertised on Internet, which means around 46 million advertisers. This makes India a sizeable target market for Internet advertisers.</p>
-                                    <p>Due to rise in competition, online advertisement agency or online advertising companies are hired. They help in promotion and well planned advertising. This also proves that advertising is the major part of promotional blend and also is crucial for achieving success. </p>
-                                    <p>t is always a good idea to start the advertising campaign with best planning and proper coordination of advertising agency and advertising company. It is acknowledgeable that online advertising is valuable since it reaches out more and is best for the advertisers. Any person of any social segment can view online advertisements. Another main positive feature of online advertising is that this type of advertising is not </p>
+                                    <h4>{{ producto.nombre }}</h4>
+                                    <p>{{ producto.detalles_generales }}</p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="comments">
-                                    <h4>Upland Leader 500  26”</h4>
-                                    <p>Entrepreneurs these days work hard to take their business to the next level. Now, they are frequently using Internet as an important medium for advertising. To create brand awareness and to reach universal markets, online advertising is now excessively used. In India alone, over 41,000 advertisers have advertised on Internet, which means around 46 million advertisers. This makes India a sizeable target market for Internet advertisers.</p>
-                                    <p>Due to rise in competition, online advertisement agency or online advertising companies are hired. They help in promotion and well planned advertising. This also proves that advertising is the major part of promotional blend and also is crucial for achieving success. </p>
-                                    <p>t is always a good idea to start the advertising campaign with best planning and proper coordination of advertising agency and advertising company. It is acknowledgeable that online advertising is valuable since it reaches out more and is best for the advertisers. </p>
+                                    <h4>{{ producto.nombre }}</h4>
+                                    <p>{{ producto.detalles_tecnicos }}</p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="shiping">
-                                    <h4>Upland Leader 500  26”</h4>
-                                    <p>Entrepreneurs these days work hard to take their business to the next level. Now, they are frequently using Internet as an important medium for advertising. To create brand awareness and to reach universal markets, online advertising is now excessively used. In India alone, over 41,000 advertisers have advertised on Internet, which means around 46 million advertisers. This makes India a sizeable target market for Internet advertisers.</p>
-                                    <p>Due to rise in competition, online advertisement agency or online advertising companies are hired. They help in promotion and well planned advertising. This also proves that advertising is the major part of promotional blend and also is crucial for achieving success. </p>
-                                    <p>t is always a good idea to start the advertising campaign with best planning and proper coordination of advertising agency and advertising company. It is acknowledgeable that online advertising is valuable since it reaches out more and is best for the advertisers. Any person of any social segment can view online advertisements. Another main positive feature of online advertising is that this type of advertising is not </p>
+                                    <h4>{{ producto.nombre }}</h4>
+                                    <p>{{ producto.garantia_y_mas }}</p>
                                 </div>
                             </div>
                         </div>

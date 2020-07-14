@@ -1,0 +1,268 @@
+
+.fc-unthemed th,
+.fc-unthemed td,
+.fc-unthemed thead,
+.fc-unthemed tbody,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-row,
+.fc-unthemed .fc-content,
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-list-heading td {
+  border-color: $border-color;
+}
+
+.fc-state-default {
+  box-shadow: none;
+}
+
+.fc-unthemed th.fc-day-header {
+  padding: 0.70rem 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.fc-unthemed .fc-day-grid td:not(.fc-axis) {
+  padding: 0.5rem 0.5rem;
+}
+
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fc-unthemed .fc-toolbar .fc-button {
+  background: $canvas-color;
+  border: 1px solid $border-color;
+  text-shadow: none !important;
+}
+
+.fc-unthemed .fc-toolbar .fc-button {
+  outline: none !important;
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  font-size: .9rem;
+}
+
+
+.fc-unthemed .fc-toolbar .fc-button.fc-state-disabled {
+  background: $canvas-color;
+  color: $gray-dark;
+}
+
+.fc-unthemed .fc-toolbar .fc-button:focus,
+.fc-unthemed .fc-toolbar .fc-button:active,
+.fc-unthemed .fc-toolbar .fc-button.fc-state-active {
+  border: 0;
+  background: $purple-color-dark;
+  color: $white;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.fc-unthemed .fc-toolbar h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 0.70rem;
+}
+
+.fc-icon-left-single-arrow:after,
+.fc-icon-right-single-arrow:after {
+  font-weight: normal;
+}
+
+.fc-event, .fc-event-dot {
+  background-color: #eef2f5;
+}
+
+.fc-event {
+  border: 1px solid #eef2f5;
+}
+
+.d-fc-event-primary {
+  background: $purple-color-dark;
+  border: none;
+  .fc-title{
+    color: $white;
+  }
+}
+
+.d-fc-event-success {
+  background: $success-color;
+  border: none;
+  .fc-title{
+    color: $white;
+  }
+}
+
+.d-fc-event-danger {
+  background: $danger-color;
+  border: none;
+  .fc-title{
+    color: $white;
+  }
+}
+
+.d-fc-event-warning {
+  background: $warning-color;
+  border: none;
+  .fc-title{
+//    color: $white;
+  }
+}
+.d-fc-event-info {
+  background: $info-color;
+  border: none;
+  .fc-title{
+    color: $white;
+  }
+}
+.fc-ltr .fc-h-event.fc-not-start{
+  padding-left: 10px;
+}
+
+
+.fc-day-grid-event {
+  padding: 10px;
+}
+
+.fc-popover .fc-header {
+  padding: 6px;
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+  font-size: .9em;
+  margin-top: 6px;
+}
+
+.fc-event-container {
+  a{
+    margin-bottom: 3px;
+  }
+}
+
+.fc-popover {
+  box-shadow: none;
+}
+
+.fc-title {
+  font-weight: 500;
+}
+
+@media (max-width: 992px){
+
+  .fc-unthemed .fc-toolbar .fc-button {
+    height: 2rem;
+  }
+
+  .fc-unthemed th.fc-day-header {
+    padding: .30rem .5rem;
+  }
+
+  .fc-unthemed .fc-toolbar {
+    margin-bottom: 1.5rem;
+  }
+
+  .fc-unthemed .fc-toolbar .fc-left > .fc-button-group > .fc-button,
+  .fc-unthemed .fc-toolbar .fc-right > .fc-button-group > .fc-button,
+  .fc-unthemed .fc-toolbar .fc-center > .fc-button-group > .fc-button {
+    float: none;
+  }
+
+  .fc-unthemed .fc-toolbar .fc-left,
+  .fc-unthemed .fc-toolbar .fc-right,
+  .fc-unthemed .fc-toolbar .fc-center {
+    display: block;
+    float: none;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .fc-unthemed .fc-toolbar .fc-left h2,
+  .fc-unthemed .fc-toolbar .fc-right h2,
+  .fc-unthemed .fc-toolbar .fc-center h2 {
+    text-align: center;
+    float: none;
+  }
+
+  .fc-unthemed .fc-toolbar .fc-left > .fc-button-group,
+  .fc-unthemed .fc-toolbar .fc-right > .fc-button-group,
+  .fc-unthemed .fc-toolbar .fc-center > .fc-button-group {
+    display: inline-block;
+    float: none;
+  }
+
+  .fc-unthemed .fc-toolbar .fc-left > .fc-button,
+  .fc-unthemed .fc-toolbar .fc-right > .fc-button,
+  .fc-unthemed .fc-toolbar .fc-center > .fc-button {
+    float: none;
+  }
+}
+
+// list
+
+.fc-unthemed .fc-list-item.d-fc-event-accent .fc-event-dot,
+.d-fc-event-accent-bg{
+  background: $success-color;
+  border-color: $success-color;
+}
+
+.fc-unthemed .fc-list-item.d-fc-event-red .fc-event-dot{
+  background: $danger-color;
+  border-color: $danger-color;
+}
+
+.fc-unthemed .fc-list-item.d-fc-event-yellow .fc-event-dot{
+  background: $warning-color;
+  border-color: $warning-color;
+
+}
+.fc-unthemed .fc-list-item.d-fc-event-blue .fc-event-dot{
+  background: $info-color;
+  border-color: $info-color;
+}
+
+.fc-unthemed .fc-list-item .fc-event-dot {
+  background: $gray;
+  border-color: $gray;
+}
+
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-popover .fc-header,
+.fc-unthemed .fc-list-heading td {
+  background: $canvas-color;
+}
+
+.fc-unthemed th, .fc-unthemed td,
+.fc-unthemed thead, .fc-unthemed tbody,
+.fc-unthemed .fc-divider, .fc-unthemed .fc-row,
+.fc-unthemed .fc-content, .fc-unthemed .fc-popover,
+.fc-unthemed .fc-list-view, .fc-unthemed .fc-list-heading td {
+  border-color: $border-color;
+}
+
+.fc-unthemed .fc-list-item:hover td{
+  background: $canvas-color;
+}
+
+.fc-list-table td {
+  padding: 15px;
+}
+
+// external event list
+
+.calendar-event-list {
+  .fc-event {
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #2c2f33;
+    cursor: move;
+  }
+}
+
+#calendar-external-events {
+  .fc-day-grid-event {
+    padding: 5px;
+  }
+}

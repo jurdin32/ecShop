@@ -44,6 +44,7 @@ def detalles_producto(request,slug):
     producto=Productos.objects.get(slug=slug)
     contexto={
         "producto":producto,
-        "stock":stok(producto.id)
+        "stock":stok(producto.id),
+        "fotosProductos":ProductoFotos.objects.filter(producto_id=producto.id)
     }
     return render(request,"product-detail.html",contexto)

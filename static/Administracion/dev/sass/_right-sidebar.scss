@@ -1,0 +1,109 @@
+.right-sidebar{
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  top: 0;
+  right: -310px;
+  background: $black-light-alt;
+  color: $gray-dark-alt;
+  overflow-y: scroll;
+  box-shadow: none;
+  transition: all .3s ease;
+  z-index: 1200;
+  .card-body{
+    padding: 1rem 1.25rem;
+  }
+  .card{
+    background: transparent;
+  }
+  .custom-title-wrap {
+    border-color:lighten($gray-dark-alt, 30%) ;
+    .custom-title {
+      color: lighten($gray-dark-alt, 30%);
+    }
+  }
+  .text-dark {
+    color: $gray-dark-alt !important;
+  }
+  .border-bottom {
+    border-bottom-color: $gray-dark-alt !important;
+  }
+  .st-alphabet .status {
+    border: 2px solid $black-light-alt;
+  }
+  .base-timeline li:before {
+    background: $black-light-alt;
+  }
+
+  .base-timeline {
+    border-left: 1px solid $gray-dark-alt;
+  }
+
+  .cursor{
+    &:hover{
+      h6, span{
+        color: lighten($gray-dark-alt, 30%) !important;
+      }
+    }
+  }
+}
+
+.right-sidebar.show{
+  right: 0;
+  transition: all .3s ease;
+}
+
+.close-sidebar-icon {
+  font-weight: bold;
+  color: $gray-dark-alt;
+  font-size: 20px;
+  position: relative;
+  right: 6px;
+  &:hover{
+    color: $purple-color-dark;
+  }
+}
+
+.right-widget {
+  margin-bottom: 3rem;
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+
+@media (min-width: 992px) {
+  .responsive-right-side-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .responsive-right-side-toggle{
+    position: relative;
+    right: -10px;
+    color: $gray-dark;
+  }
+
+
+  .navbar-light .navbar-toggler, .navbar-dark .navbar-toggler {
+    position: absolute;
+    right: 50px;
+    top: 15px;
+  }
+
+  .top-nav{
+    .navbar-light .navbar-toggler, .navbar-dark .navbar-toggler {
+      position: static;
+      right: auto;
+      top: auto;
+      float: right;
+    }
+    .nav-notification-toggler{
+      top: 6px !important;
+      position: relative !important;
+    }
+  }
+
+}

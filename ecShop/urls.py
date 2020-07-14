@@ -18,9 +18,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from Administracion.urls import Administracion
 from Home.urls import Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(Home)),
+    path('administracion/', include(Administracion)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

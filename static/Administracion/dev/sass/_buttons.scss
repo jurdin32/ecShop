@@ -1,0 +1,153 @@
+.btn {
+  font: {
+    family: $secondary-font;
+    size: 11px;
+    weight: 400;
+  };
+  padding: .8rem 1.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+
+}
+
+.btn-group-lg>.btn, .btn-lg {
+  padding: 1rem 1.5rem;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+  padding: .5rem 1rem;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.btn-pill{
+  border-radius: 100px;
+}
+
+// btn color
+
+.btn-primary{
+  background: $primary-color !important;
+  border: none;
+  &:hover{
+    background: darken($primary-color, 5%) !important;
+  }
+}
+.btn-secondary{
+  background: $gray-light !important;
+  border: none;
+  &:hover{
+    background: darken($gray-light, 5%) !important;
+  }
+}
+.btn-success{
+  background: $success-color !important;
+  border: none;
+  &:hover{
+    background: darken($success-color, 5%) !important;
+  }
+}
+.btn-danger{
+  background: $danger-color !important;
+  border: none;
+  &:hover{
+    background: darken($danger-color, 5%) !important;
+  }
+}
+.btn-warning{
+  background: $warning-color !important;
+  border: none;
+  &:hover{
+    background: darken($warning-color, 5%) !important;
+  }
+}
+.btn-info{
+  background: $info-color !important;
+  border: none;
+  &:hover{
+    background: darken($info-color, 5%) !important;
+  }
+}
+.btn-dark{
+  background: $dark-color !important;
+  border: none;
+  &:hover{
+    background: darken($dark-color, 5%) !important;
+  }
+}
+.btn-purple{
+  background: $purple-color-dark !important;
+  color: $white;
+  border: none;
+  &:hover{
+    background: darken($purple-color-dark, 5%) !important;
+    color: $white;
+  }
+}
+
+// outline buttons
+
+.btn-outline-secondary {
+  color: $dark-color;
+  background-color: transparent;
+  border-color: $border-color;;
+  &:hover{
+    background: $dark-color;
+    border-color: $dark-color;
+  }
+}
+
+.btn-outline-primary{
+  color: $primary-color;
+  border-color: $primary-color;
+  &:hover{
+    background: $primary-color;
+    border-color: $primary-color;
+  }
+}
+
+
+.btn-outline-success{
+  color: $success-color;
+  border-color: $success-color;
+  &:hover{
+    background: $success-color;
+    border-color: $success-color;
+  }
+}
+
+.btn-outline-danger{
+  color: $danger-color;
+  border-color: $danger-color;
+  &:hover{
+    background: $danger-color;
+    border-color: $danger-color;
+  }
+}
+
+.btn-outline-warning{
+  color: $warning-color;
+  border-color: $warning-color;
+  &:hover{
+    background: $warning-color;
+    border-color: $warning-color;
+  }
+}
+
+.btn-outline-info{
+  color: $info-color;
+  border-color: $info-color;
+  &:hover{
+    background: $info-color;
+    border-color: $info-color;
+  }
+}
+
+.btn-example {
+  .btn {
+    margin: 5px;
+  }
+}
+

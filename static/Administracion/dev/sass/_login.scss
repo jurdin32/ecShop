@@ -1,0 +1,184 @@
+.signin-up-bg {
+  background: $white;
+}
+
+.leftHalf {
+  width: 50%;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  background-size: cover;
+  &:before{
+    content: '';
+    background: #000;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: .2;
+  }
+  .login-promo-txt{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+    color: $white;
+    text-align: center;
+  }
+}
+
+.rightHalf {
+  width: 50%;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  padding: 0 12%;
+  background: $white;
+  .login-form{
+    padding-top: 40%;
+    .form-control {
+      border-radius: 40px;
+      height: calc(2.25rem + 5px);
+      text-align: center;
+    }
+  }
+
+  .registration {
+    padding-top: 25%;
+  }
+}
+
+.login-form {
+  a.forgot-link{
+    color: $dark-color;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  .form-control {
+    font-size: .8rem;
+    line-height: 2.2;
+  }
+
+}
+
+.form-divider {
+  height: 0;
+  margin: 2.5rem 0;
+  border-top: 1px dashed $border-color-alt;
+  clear: both;
+  position: relative;
+  &:before{
+    content: 'or';
+    position: absolute;
+    left: 50%;
+    margin-left: -10px;
+    top: -14px;
+    color: $gray;
+    background: $white;
+    padding: 0 5px;
+  }
+}
+
+.btn-facebook {
+  background: #4d65cd;
+  color: $white;
+  display: block;
+  position: relative;
+  font-weight: 500;
+  i{
+    position: absolute;
+    left: 20px;
+    font-size: 20px;
+    top: 10px;
+    padding-right: 20px;
+    border-right: 1px solid rgba(255,255,255,.5);
+  }
+  &:hover{
+    background: #445ab6;
+    color: $white;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .leftHalf{
+    width: 40%;
+  }
+  .rightHalf{
+    width: 60%;
+  }
+}
+@media (max-width: 992px) {
+  .leftHalf, .rightHalf{
+    width: 100%;
+    position: relative;
+  }
+
+  .leftHalf {
+    min-height: 300px;
+  }
+
+  .rightHalf .login-form,
+  .rightHalf .registration{
+    padding-top: 5%;
+  }
+
+  .leftHalf .login-promo-txt {
+    top: 40%;
+    h2{
+      font-size: 1.8rem;
+    }
+  }
+
+  .login-form, .login-promo{
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .login-form, .login-promo-content {
+    padding: 1.5rem;
+  }
+
+  .login-promo, .registration-promo {
+    min-height: 400px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .leftHalf {
+    min-height: 200px;
+  }
+  .leftHalf .login-promo-txt {
+    h2{
+      font-size: 1rem;
+    }
+  }
+  .login-form {
+    h2{
+      font-size: 1.3rem;
+    }
+    h4{
+      font-size: .8rem;
+    }
+  }
+  .rightHalf .login-form, .rightHalf .registration {
+    padding-top: 10%;
+  }
+
+  .btn-facebook i {
+    border: none;
+  }
+
+  .registration {
+    .form-divider {
+      margin-top: 5rem;
+    }
+  }
+}

@@ -1,0 +1,303 @@
+.container-fluid {
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+// card
+
+.card,
+.card-header {
+  border-color: $border-color;
+}
+
+.card{
+  border-radius: 5px;
+}
+
+.card-header,
+.card-footer{
+  background: transparent;
+}
+
+.card-shadow {
+  //box-shadow: 0 1px 10px 1px rgba(0, 0, 0, .05);
+  border: 1px solid $border-color;
+}
+
+
+// bg color
+
+.bg-primary, .badge-primary{
+  background: $primary-color !important;
+}
+.bg-secondary, .badge-secondary{
+  background: $secondary-color !important;
+}
+.bg-success, .badge-success{
+  background: $success-color !important;
+}
+.bg-danger, .badge-danger{
+  background: $danger-color !important;
+}
+.bg-warning, .badge-warning{
+  background: $warning-color !important;
+}
+.bg-info, .badge-info{
+  background: $info-color !important;
+}
+.bg-dark, .badge-dark{
+  background: $dark-color !important;
+}
+.bg-purple, .badge-purple{
+  background: $purple-color-dark !important;
+}
+.bg-purple-light, .badge-purple-light{
+  background: $purple-color-light !important;
+}
+.bg-turquoise, .badge-turguoise{
+  background: $turquoise-color !important;
+}
+.bg-pink, .badge-pink{
+  background: $pink-color !important;
+}
+
+.bg-gray{
+  background: $border-color !important;
+}
+
+
+// text color
+
+.text-primary{
+  color: $primary-color !important;
+}
+.text-secondary{
+  color: $secondary-color !important;
+}
+.text-success{
+  color: $success-color !important;
+}
+.text-danger{
+  color: $danger-color !important;
+}
+.text-warning{
+  color: $warning-color !important;
+}
+.text-info{
+  color: $info-color !important;
+}
+.text-dark{
+  color: $dark-color !important;
+}
+.text-purple{
+  color: $purple-color-dark !important;
+}
+.text-purple-light{
+  color: $purple-color-light !important;
+}
+
+
+// text anchor hover color
+
+a.text-primary{
+  color: $primary-color !important;
+  &:hover{
+    color: darken($primary-color, 10%) !important;
+  }
+}
+a.text-secondary{
+  color: $secondary-color !important;
+  &:hover{
+    color: darken($secondary-color, 10%) !important;
+  }
+}
+a.text-success{
+  color: $success-color !important;
+  &:hover{
+    color: darken($success-color, 10%) !important;
+  }
+}
+a.text-danger{
+  color: $danger-color !important;
+  &:hover{
+    color: darken($danger-color, 10%) !important;
+  }
+}
+a.text-warning{
+  color: $warning-color !important;
+  &:hover{
+    color: darken($warning-color, 10%) !important;
+  }
+}
+a.text-info{
+  color: $info-color !important;
+  &:hover{
+    color: darken($info-color, 10%) !important;
+  }
+}
+a.text-dark{
+  color: $dark-color !important;
+  &:hover{
+    color: darken($dark-color, 10%) !important;
+  }
+}
+a.text-purple{
+  color: $purple-color-dark !important;
+  &:hover{
+    color: darken($purple-color-dark, 10%) !important;
+  }
+}
+a.text-purple-light{
+  color: $purple-color-light !important;
+  &:hover{
+    color: darken($purple-color-light, 10%) !important;
+  }
+}
+
+// border
+
+.border         { border-color: $border-color !important; }
+.border-top     { border-top-color: $border-color !important; }
+.border-right   { border-right-color: $border-color !important; }
+.border-bottom  { border-bottom-color: $border-color !important; }
+.border-left    { border-left-color: $border-color !important; }
+
+
+// breadcrumb
+
+.breadcrumb {
+  margin-bottom: 0;
+  background: transparent;
+
+  .breadcrumb-item {
+    font-size: 13px;
+  }
+
+  a {
+    color: $gray;
+    &:hover{
+      color: $purple-color-dark;
+    }
+  }
+}
+
+.breadcrumb-item.active {
+  color: $gray-dark;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  display: inline-block;
+  padding-right: .5rem;
+  padding-left: .5rem;
+  color: $gray-light;
+  content: "\f105";
+  font-family: "FontAwesome";
+}
+
+// checkbox
+
+.custom-control-label::after,
+.custom-control-label::before{
+  top: .35rem;
+}
+
+// grid color
+
+.bd-example-row .row>.col, .bd-example-row .row>[class^=col-] {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  border: 1px solid rgba(86,61,124,.2);
+  background-color: rgba(86,61,124,.15);
+}
+
+// tabs
+
+.nav-tabs .nav-link,
+.nav-pills .nav-link{
+  color: $black-light;
+}
+
+.nav-link.disabled {
+  color: $gray;
+}
+
+//table
+
+.table-bordered thead td, .table-bordered thead th {
+  border-bottom-width: 0px;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 0px solid $border-color;
+}
+
+.table td, .table th {
+  border-top: 1px solid $border-color;
+}
+
+.table-bordered {
+  border-top: none;
+  border-bottom: none;
+  border: 1px solid $border-color;
+}
+
+.table-striped tbody tr:nth-of-type(odd),
+.table-hover tbody tr:hover,
+.table-active, .table-active>td, .table-active>th{
+  background-color: rgba(0,0,0,.02);
+}
+
+
+.table .thead-light th {
+  background-color: $canvas-color;
+  border-color: $border-color;
+}
+
+// pagination
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: $white;
+  background-color: $purple-color-dark;
+  border-color: $purple-color-dark;
+}
+
+.page-link{
+  color: $black-light;
+  border: 1px solid $border-color;
+}
+
+.page-link:hover {
+  color: $purple-color-dark;
+  text-decoration: none;
+  background-color: $border-color;
+  border-color: $border-color;
+}
+
+//dropdown item
+
+.dropdown-item.active, .dropdown-item:active {
+  color: $purple-color-dark !important;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+//
+.input-group.input-group-sm{
+  .form-control{
+    height: calc(1.86rem + 1px);
+  }
+}
+
+.input-group.input-group-lg{
+  .form-control{
+    height: calc(2.28rem + 12px);
+  }
+}
+
+.input-group{
+  .btn {
+    padding: .6rem 1.5rem;
+  }
+}

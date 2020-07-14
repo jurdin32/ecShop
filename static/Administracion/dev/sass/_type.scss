@@ -1,0 +1,135 @@
+body{
+  font: {
+    family: $base-font;
+    size: $base-font-size;
+    weight: 400;
+  }
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-text-size-adjust: 100%;
+  background: $canvas-color;
+}
+
+a,
+a:hover {
+  transition: all .3s;
+  text-decoration: none;
+  outline: 0;
+}
+
+buttona, a, .btn {
+  &:focus{
+    box-shadow: none !important;
+  }
+}
+
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font: {
+    weight: bold;
+    family: $secondary-font;
+  };
+}
+
+
+h1, .h1{
+  font-size: 36px;
+}
+
+h2, .h2{
+  font-size: 30px;
+}
+
+h3, .h3{
+  font-size: 24px;
+}
+
+h4, .h4{
+  font-size: 18px;
+}
+
+h5, .h5{
+  font-size: 14px;
+}
+
+h6, .h6{
+  font-size: 12px;
+}
+
+body.fixed-nav {
+  padding-top: 70px;
+}
+
+.weight100{
+  font-weight: 100;
+}
+
+.weight300{
+  font-weight: 300;
+}
+
+.weight400{
+  font-weight: 400;
+}
+
+.weight500{
+  font-weight: 500;
+}
+
+.weight600{
+  font-weight: 600;
+}
+
+.weight700{
+  font-weight: 700;
+}
+
+.weight800{
+  font-weight: 800;
+}
+
+.f12{
+  font-size: 12px;
+}
+
+.f14{
+  font-size: 14px;
+}
+
+.f16{
+  font-size: 16px;
+}
+
+.f18{
+  font-size: 18px;
+}
+
+.f24{
+  font-size: 24px;
+}
+
+.f30{
+  font-size: 30px;
+}
+
+.f50{
+  font-size: 50px;
+}
+
+.f80{
+  font-size: 80px;
+}
+
+.content-wrapper {
+  min-height: calc(100vh - 70px);
+  padding-top: 1rem;
+  padding-bottom: 56px;
+  background: $canvas-color;
+  position: relative;
+}

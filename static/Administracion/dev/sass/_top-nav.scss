@@ -1,0 +1,159 @@
+.top-nav.header-fixed {
+  .app-body {
+    margin-top: 0;
+  }
+  .branding-wrap {
+    //left: auto;
+    float: left;
+    position: static;
+  }
+  .header-links{
+    padding-right: 0;
+  }
+
+  .header-links.navbar {
+    li:last-child a{
+      padding-right: 0;
+    }
+  }
+
+}
+
+
+.tb-header{
+  box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1);
+  background: $white;
+}
+
+@media (min-width: 1025px) {
+
+  .tb-logo {
+    margin-top: 20px;
+  }
+
+  .tbmenu > li > a > i.arrow {
+    display: none;
+    position: relative;
+    top: 2px;
+  }
+
+  .light-sub-menu ul, .light-sub-menu li > div {
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1);
+  }
+
+  .tbmenu {
+    //font-family: $heading-font;
+    a{
+      font-size: 12px;
+    }
+
+    > li > a {
+      //padding: 30px 0;
+    }
+
+    ul {
+      width: 250px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      a{
+        padding: 8px 30px;
+        font-size: 12px;
+      }
+      ul {
+        left: 251px;
+      }
+    }
+
+    li > div {
+      padding: 30px;
+      p{
+        font-size: 12px;
+      }
+    }
+
+    > li.menu-right > ul ul {
+      left: -251px;
+    }
+
+
+    h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .mega-menu ol li a {
+      padding: 8px 20px;
+    }
+  }
+
+  .tbmenu > li {
+    padding: 0 10px;
+  }
+
+  .light-sub-menu ul a:hover,
+  .light-sub-menu ol li a:hover {
+    color: $white;
+    background: $purple-color-dark;
+  }
+
+  .tbmenu > li > a {
+    padding: 19.5px 0;
+  }
+
+}
+
+.tbmenu > li > a:hover, .tbmenu > li.active > a {
+  color: $purple-color-dark;
+}
+
+
+@media (max-width: 1024px) {
+  .top-nav {
+    .app-header{
+      position: absolute;
+    }
+    .header-links.navbar{
+      right: 15px;
+      position: absolute;
+    }
+    #tb-menu .nav-btn{
+      height: 39px;
+    }
+    .tbmenu {
+      .tb-accordion {
+        .fa-angle-down{
+          display: none;
+        }
+      }
+    }
+    .tbmenu li li a {
+      font-family: $base-font;
+    }
+    .mega-menu {
+      h3{
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+  .top-nav #tb-menu .nav-btn{
+    float: left;
+  }
+  .app-header .navbar-brand {
+    padding: .75rem 0 0 3rem;
+    position: absolute;
+  }
+  .nav-btn .bars {
+    width: 22px;
+  }
+}
+
+@media (max-width: 767px) {
+  .top-nav {
+    .header-links.navbar{
+      right: 25px;
+    }
+  }
+}
+

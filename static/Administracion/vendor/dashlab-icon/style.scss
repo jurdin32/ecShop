@@ -1,0 +1,1879 @@
+@import "variables";
+
+@font-face {
+  font-family: 'dashlab-icon';
+  src:  url('#{$icomoon-font-path}/dashlab-icon.eot?9alpir');
+  src:  url('#{$icomoon-font-path}/dashlab-icon.eot?9alpir#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/dashlab-icon.ttf?9alpir') format('truetype'),
+    url('#{$icomoon-font-path}/dashlab-icon.woff?9alpir') format('woff'),
+    url('#{$icomoon-font-path}/dashlab-icon.svg?9alpir#dashlab-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="v"], [class*=" v"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'dashlab-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.vl_3d-rotate {
+  &:before {
+    content: $vl_3d-rotate; 
+  }
+}
+.vl_360-degree {
+  &:before {
+    content: $vl_360-degree; 
+  }
+}
+.vl_accordion-horizontal {
+  &:before {
+    content: $vl_accordion-horizontal; 
+  }
+}
+.vl_accordion-vertical {
+  &:before {
+    content: $vl_accordion-vertical; 
+  }
+}
+.vl_alarm-clock {
+  &:before {
+    content: $vl_alarm-clock; 
+  }
+}
+.vl_alien-gun {
+  &:before {
+    content: $vl_alien-gun; 
+  }
+}
+.vl_alien {
+  &:before {
+    content: $vl_alien; 
+  }
+}
+.vl_anchor {
+  &:before {
+    content: $vl_anchor; 
+  }
+}
+.vl_android {
+  &:before {
+    content: $vl_android; 
+  }
+}
+.vl_angle-down {
+  &:before {
+    content: $vl_angle-down; 
+  }
+}
+.vl_angle-left {
+  &:before {
+    content: $vl_angle-left; 
+  }
+}
+.vl_angle-right {
+  &:before {
+    content: $vl_angle-right; 
+  }
+}
+.vl_angle-up {
+  &:before {
+    content: $vl_angle-up; 
+  }
+}
+.vl_apple {
+  &:before {
+    content: $vl_apple; 
+  }
+}
+.vl_arrow-left {
+  &:before {
+    content: $vl_arrow-left; 
+  }
+}
+.vl_arrow-right {
+  &:before {
+    content: $vl_arrow-right; 
+  }
+}
+.vl_arrow-zoom-out {
+  &:before {
+    content: $vl_arrow-zoom-out; 
+  }
+}
+.vl_arrow-corner {
+  &:before {
+    content: $vl_arrow-corner; 
+  }
+}
+.vl_arrow-down {
+  &:before {
+    content: $vl_arrow-down; 
+  }
+}
+.vl_arrow-left2 {
+  &:before {
+    content: $vl_arrow-left2; 
+  }
+}
+.vl_arrow-right2 {
+  &:before {
+    content: $vl_arrow-right2; 
+  }
+}
+.vl_arrow-up {
+  &:before {
+    content: $vl_arrow-up; 
+  }
+}
+.vl_article {
+  &:before {
+    content: $vl_article; 
+  }
+}
+.vl_avatar-man {
+  &:before {
+    content: $vl_avatar-man; 
+  }
+}
+.vl_avatar-woman {
+  &:before {
+    content: $vl_avatar-woman; 
+  }
+}
+.vl_badge1 {
+  &:before {
+    content: $vl_badge1; 
+  }
+}
+.vl_badge2 {
+  &:before {
+    content: $vl_badge2; 
+  }
+}
+.vl_badge3 {
+  &:before {
+    content: $vl_badge3; 
+  }
+}
+.vl_bamboo {
+  &:before {
+    content: $vl_bamboo; 
+  }
+}
+.vl_basketball {
+  &:before {
+    content: $vl_basketball; 
+  }
+}
+.vl_battery {
+  &:before {
+    content: $vl_battery; 
+  }
+}
+.vl_beach-seat {
+  &:before {
+    content: $vl_beach-seat; 
+  }
+}
+.vl_bell {
+  &:before {
+    content: $vl_bell; 
+  }
+}
+.vl_bicycle {
+  &:before {
+    content: $vl_bicycle; 
+  }
+}
+.vl_blog-content {
+  &:before {
+    content: $vl_blog-content; 
+  }
+}
+.vl_bluetooth {
+  &:before {
+    content: $vl_bluetooth; 
+  }
+}
+.vl_board {
+  &:before {
+    content: $vl_board; 
+  }
+}
+.vl_body {
+  &:before {
+    content: $vl_body; 
+  }
+}
+.vl_bomb {
+  &:before {
+    content: $vl_bomb; 
+  }
+}
+.vl_bond-hand {
+  &:before {
+    content: $vl_bond-hand; 
+  }
+}
+.vl_bond {
+  &:before {
+    content: $vl_bond; 
+  }
+}
+.vl_bonsai {
+  &:before {
+    content: $vl_bonsai; 
+  }
+}
+.vl_book {
+  &:before {
+    content: $vl_book; 
+  }
+}
+.vl_bowl {
+  &:before {
+    content: $vl_bowl; 
+  }
+}
+.vl_brick-wall {
+  &:before {
+    content: $vl_brick-wall; 
+  }
+}
+.vl_brush-paint {
+  &:before {
+    content: $vl_brush-paint; 
+  }
+}
+.vl_brush-roll {
+  &:before {
+    content: $vl_brush-roll; 
+  }
+}
+.vl_brush {
+  &:before {
+    content: $vl_brush; 
+  }
+}
+.vl_bug {
+  &:before {
+    content: $vl_bug; 
+  }
+}
+.vl_bulb {
+  &:before {
+    content: $vl_bulb; 
+  }
+}
+.vl_calculation {
+  &:before {
+    content: $vl_calculation; 
+  }
+}
+.vl_calendar {
+  &:before {
+    content: $vl_calendar; 
+  }
+}
+.vl_camera {
+  &:before {
+    content: $vl_camera; 
+  }
+}
+.vl_candle {
+  &:before {
+    content: $vl_candle; 
+  }
+}
+.vl_candles {
+  &:before {
+    content: $vl_candles; 
+  }
+}
+.vl_car {
+  &:before {
+    content: $vl_car; 
+  }
+}
+.vl_caret-down {
+  &:before {
+    content: $vl_caret-down; 
+  }
+}
+.vl_caret-fill-down {
+  &:before {
+    content: $vl_caret-fill-down; 
+  }
+}
+.vl_caret-fill-left {
+  &:before {
+    content: $vl_caret-fill-left; 
+  }
+}
+.vl_caret-fill-right {
+  &:before {
+    content: $vl_caret-fill-right; 
+  }
+}
+.vl_caret-fill-up {
+  &:before {
+    content: $vl_caret-fill-up; 
+  }
+}
+.vl_caret-left {
+  &:before {
+    content: $vl_caret-left; 
+  }
+}
+.vl_caret-right {
+  &:before {
+    content: $vl_caret-right; 
+  }
+}
+.vl_caret-up {
+  &:before {
+    content: $vl_caret-up; 
+  }
+}
+.vl_carousal {
+  &:before {
+    content: $vl_carousal; 
+  }
+}
+.vl_cart-empty {
+  &:before {
+    content: $vl_cart-empty; 
+  }
+}
+.vl_cart-full {
+  &:before {
+    content: $vl_cart-full; 
+  }
+}
+.vl_caution {
+  &:before {
+    content: $vl_caution; 
+  }
+}
+.vl_chair {
+  &:before {
+    content: $vl_chair; 
+  }
+}
+.vl_chair2 {
+  &:before {
+    content: $vl_chair2; 
+  }
+}
+.vl_chat-bubble-single {
+  &:before {
+    content: $vl_chat-bubble-single; 
+  }
+}
+.vl_chat-bubble {
+  &:before {
+    content: $vl_chat-bubble; 
+  }
+}
+.vl_cheese {
+  &:before {
+    content: $vl_cheese; 
+  }
+}
+.vl_chef-cap {
+  &:before {
+    content: $vl_chef-cap; 
+  }
+}
+.vl_clip-board {
+  &:before {
+    content: $vl_clip-board; 
+  }
+}
+.vl_clip {
+  &:before {
+    content: $vl_clip; 
+  }
+}
+.vl_cloud-down {
+  &:before {
+    content: $vl_cloud-down; 
+  }
+}
+.vl_cloud-up {
+  &:before {
+    content: $vl_cloud-up; 
+  }
+}
+.vl_cloud {
+  &:before {
+    content: $vl_cloud; 
+  }
+}
+.vl_code-browser {
+  &:before {
+    content: $vl_code-browser; 
+  }
+}
+.vl_code-clean {
+  &:before {
+    content: $vl_code-clean; 
+  }
+}
+.vl_code {
+  &:before {
+    content: $vl_code; 
+  }
+}
+.vl_cog {
+  &:before {
+    content: $vl_cog; 
+  }
+}
+.vl_color-card {
+  &:before {
+    content: $vl_color-card; 
+  }
+}
+.vl_color-plate {
+  &:before {
+    content: $vl_color-plate; 
+  }
+}
+.vl_compass-math {
+  &:before {
+    content: $vl_compass-math; 
+  }
+}
+.vl_compass {
+  &:before {
+    content: $vl_compass; 
+  }
+}
+.vl_crop {
+  &:before {
+    content: $vl_crop; 
+  }
+}
+.vl_cross-circle {
+  &:before {
+    content: $vl_cross-circle; 
+  }
+}
+.vl_cross-game {
+  &:before {
+    content: $vl_cross-game; 
+  }
+}
+.vl_cross-gap {
+  &:before {
+    content: $vl_cross-gap; 
+  }
+}
+.vl_cross {
+  &:before {
+    content: $vl_cross; 
+  }
+}
+.vl_crown {
+  &:before {
+    content: $vl_crown; 
+  }
+}
+.vl_cube {
+  &:before {
+    content: $vl_cube; 
+  }
+}
+.vl_cup-coffee {
+  &:before {
+    content: $vl_cup-coffee; 
+  }
+}
+.vl_cup {
+  &:before {
+    content: $vl_cup; 
+  }
+}
+.vl_dashboard {
+  &:before {
+    content: $vl_dashboard; 
+  }
+}
+.vl_delivery-van {
+  &:before {
+    content: $vl_delivery-van; 
+  }
+}
+.vl_diamond-ring {
+  &:before {
+    content: $vl_diamond-ring; 
+  }
+}
+.vl_direction-both {
+  &:before {
+    content: $vl_direction-both; 
+  }
+}
+.vl_direction-right {
+  &:before {
+    content: $vl_direction-right; 
+  }
+}
+.vl_disable-person {
+  &:before {
+    content: $vl_disable-person; 
+  }
+}
+.vl_disc {
+  &:before {
+    content: $vl_disc; 
+  }
+}
+.vl_dislike {
+  &:before {
+    content: $vl_dislike; 
+  }
+}
+.vl_dollar-on-hand {
+  &:before {
+    content: $vl_dollar-on-hand; 
+  }
+}
+.vl_door-path {
+  &:before {
+    content: $vl_door-path; 
+  }
+}
+.vl_Download-circle {
+  &:before {
+    content: $vl_Download-circle; 
+  }
+}
+.vl_download {
+  &:before {
+    content: $vl_download; 
+  }
+}
+.vl_drag-inside {
+  &:before {
+    content: $vl_drag-inside; 
+  }
+}
+.vl_drag-outside {
+  &:before {
+    content: $vl_drag-outside; 
+  }
+}
+.vl_drag {
+  &:before {
+    content: $vl_drag; 
+  }
+}
+.vl_drawer {
+  &:before {
+    content: $vl_drawer; 
+  }
+}
+.vl_dribbble {
+  &:before {
+    content: $vl_dribbble; 
+  }
+}
+.vl_dropper {
+  &:before {
+    content: $vl_dropper; 
+  }
+}
+.vl_egg-fry {
+  &:before {
+    content: $vl_egg-fry; 
+  }
+}
+.vl_ellipsis-fill-h {
+  &:before {
+    content: $vl_ellipsis-fill-h; 
+  }
+}
+.vl_ellipsis-fill-v {
+  &:before {
+    content: $vl_ellipsis-fill-v; 
+  }
+}
+.vl_ellipsis-horizontal {
+  &:before {
+    content: $vl_ellipsis-horizontal; 
+  }
+}
+.vl_ellipsis-vertical {
+  &:before {
+    content: $vl_ellipsis-vertical; 
+  }
+}
+.vl_emo-normal {
+  &:before {
+    content: $vl_emo-normal; 
+  }
+}
+.vl_emo-sad {
+  &:before {
+    content: $vl_emo-sad; 
+  }
+}
+.vl_emo-smile {
+  &:before {
+    content: $vl_emo-smile; 
+  }
+}
+.vl_envelop {
+  &:before {
+    content: $vl_envelop; 
+  }
+}
+.vl_facebook {
+  &:before {
+    content: $vl_facebook; 
+  }
+}
+.vl_feeder {
+  &:before {
+    content: $vl_feeder; 
+  }
+}
+.vl_file-cabinet {
+  &:before {
+    content: $vl_file-cabinet; 
+  }
+}
+.vl_file {
+  &:before {
+    content: $vl_file; 
+  }
+}
+.vl_files {
+  &:before {
+    content: $vl_files; 
+  }
+}
+.vl_film-roll {
+  &:before {
+    content: $vl_film-roll; 
+  }
+}
+.vl_film {
+  &:before {
+    content: $vl_film; 
+  }
+}
+.vl_finger-index {
+  &:before {
+    content: $vl_finger-index; 
+  }
+}
+.vl_finger-print {
+  &:before {
+    content: $vl_finger-print; 
+  }
+}
+.vl_fire-flame {
+  &:before {
+    content: $vl_fire-flame; 
+  }
+}
+.vl_flag {
+  &:before {
+    content: $vl_flag; 
+  }
+}
+.vl_folder-network {
+  &:before {
+    content: $vl_folder-network; 
+  }
+}
+.vl_folder {
+  &:before {
+    content: $vl_folder; 
+  }
+}
+.vl_football {
+  &:before {
+    content: $vl_football; 
+  }
+}
+.vl_footer {
+  &:before {
+    content: $vl_footer; 
+  }
+}
+.vl_form {
+  &:before {
+    content: $vl_form; 
+  }
+}
+.vl_forward {
+  &:before {
+    content: $vl_forward; 
+  }
+}
+.vl_fountain-pen {
+  &:before {
+    content: $vl_fountain-pen; 
+  }
+}
+.vl_gender-female {
+  &:before {
+    content: $vl_gender-female; 
+  }
+}
+.vl_gender-male {
+  &:before {
+    content: $vl_gender-male; 
+  }
+}
+.vl_gender-sign {
+  &:before {
+    content: $vl_gender-sign; 
+  }
+}
+.vl_gender {
+  &:before {
+    content: $vl_gender; 
+  }
+}
+.vl_ghost {
+  &:before {
+    content: $vl_ghost; 
+  }
+}
+.vl_gift-box {
+  &:before {
+    content: $vl_gift-box; 
+  }
+}
+.vl_globe1 {
+  &:before {
+    content: $vl_globe1; 
+  }
+}
+.vl_globe2-17 {
+  &:before {
+    content: $vl_globe2-17; 
+  }
+}
+.vl_globe2-23 {
+  &:before {
+    content: $vl_globe2-23; 
+  }
+}
+.vl_globe4 {
+  &:before {
+    content: $vl_globe4; 
+  }
+}
+.vl_google {
+  &:before {
+    content: $vl_google; 
+  }
+}
+.vl_graduate-cap {
+  &:before {
+    content: $vl_graduate-cap; 
+  }
+}
+.vl_graph-bar {
+  &:before {
+    content: $vl_graph-bar; 
+  }
+}
+.vl_graph-pie {
+  &:before {
+    content: $vl_graph-pie; 
+  }
+}
+.vl_graph4 {
+  &:before {
+    content: $vl_graph4; 
+  }
+}
+.vl_grid-even {
+  &:before {
+    content: $vl_grid-even; 
+  }
+}
+.vl_grid-masonry {
+  &:before {
+    content: $vl_grid-masonry; 
+  }
+}
+.vl_grid-twist {
+  &:before {
+    content: $vl_grid-twist; 
+  }
+}
+.vl_grid {
+  &:before {
+    content: $vl_grid; 
+  }
+}
+.vl_group {
+  &:before {
+    content: $vl_group; 
+  }
+}
+.vl_hand-mike {
+  &:before {
+    content: $vl_hand-mike; 
+  }
+}
+.vl_hand-watch {
+  &:before {
+    content: $vl_hand-watch; 
+  }
+}
+.vl_hand {
+  &:before {
+    content: $vl_hand; 
+  }
+}
+.vl_header {
+  &:before {
+    content: $vl_header; 
+  }
+}
+.vl_headphone {
+  &:before {
+    content: $vl_headphone; 
+  }
+}
+.vl_headset {
+  &:before {
+    content: $vl_headset; 
+  }
+}
+.vl_heart-beat {
+  &:before {
+    content: $vl_heart-beat; 
+  }
+}
+.vl_highlighter {
+  &:before {
+    content: $vl_highlighter; 
+  }
+}
+.vl_home {
+  &:before {
+    content: $vl_home; 
+  }
+}
+.vl_hotdog {
+  &:before {
+    content: $vl_hotdog; 
+  }
+}
+.vl_ice-cream {
+  &:before {
+    content: $vl_ice-cream; 
+  }
+}
+.vl_imac {
+  &:before {
+    content: $vl_imac; 
+  }
+}
+.vl_image {
+  &:before {
+    content: $vl_image; 
+  }
+}
+.vl_inbox {
+  &:before {
+    content: $vl_inbox; 
+  }
+}
+.vl_infinity {
+  &:before {
+    content: $vl_infinity; 
+  }
+}
+.vl_info {
+  &:before {
+    content: $vl_info; 
+  }
+}
+.vl_injection {
+  &:before {
+    content: $vl_injection; 
+  }
+}
+.vl_jar-chemical {
+  &:before {
+    content: $vl_jar-chemical; 
+  }
+}
+.vl_key {
+  &:before {
+    content: $vl_key; 
+  }
+}
+.vl_language-change {
+  &:before {
+    content: $vl_language-change; 
+  }
+}
+.vl_laptop {
+  &:before {
+    content: $vl_laptop; 
+  }
+}
+.vl_layer {
+  &:before {
+    content: $vl_layer; 
+  }
+}
+.vl_lens {
+  &:before {
+    content: $vl_lens; 
+  }
+}
+.vl_like {
+  &:before {
+    content: $vl_like; 
+  }
+}
+.vl_line-graph-pointed {
+  &:before {
+    content: $vl_line-graph-pointed; 
+  }
+}
+.vl_link {
+  &:before {
+    content: $vl_link; 
+  }
+}
+.vl_linkedin {
+  &:before {
+    content: $vl_linkedin; 
+  }
+}
+.vl_linux {
+  &:before {
+    content: $vl_linux; 
+  }
+}
+.vl_list {
+  &:before {
+    content: $vl_list; 
+  }
+}
+.vl_location-pointer {
+  &:before {
+    content: $vl_location-pointer; 
+  }
+}
+.vl_lock {
+  &:before {
+    content: $vl_lock; 
+  }
+}
+.vl_lotus {
+  &:before {
+    content: $vl_lotus; 
+  }
+}
+.vl_love {
+  &:before {
+    content: $vl_love; 
+  }
+}
+.vl_madel {
+  &:before {
+    content: $vl_madel; 
+  }
+}
+.vl_magic-wand {
+  &:before {
+    content: $vl_magic-wand; 
+  }
+}
+.vl_magnet {
+  &:before {
+    content: $vl_magnet; 
+  }
+}
+.vl_mail-open {
+  &:before {
+    content: $vl_mail-open; 
+  }
+}
+.vl_man-range {
+  &:before {
+    content: $vl_man-range; 
+  }
+}
+.vl_map-marker {
+  &:before {
+    content: $vl_map-marker; 
+  }
+}
+.vl_measurement {
+  &:before {
+    content: $vl_measurement; 
+  }
+}
+.vl_memory {
+  &:before {
+    content: $vl_memory; 
+  }
+}
+.vl_micro-chip {
+  &:before {
+    content: $vl_micro-chip; 
+  }
+}
+.vl_microphone1 {
+  &:before {
+    content: $vl_microphone1; 
+  }
+}
+.vl_microphone2 {
+  &:before {
+    content: $vl_microphone2; 
+  }
+}
+.vl_mobile {
+  &:before {
+    content: $vl_mobile; 
+  }
+}
+.vl_money-bag {
+  &:before {
+    content: $vl_money-bag; 
+  }
+}
+.vl_money {
+  &:before {
+    content: $vl_money; 
+  }
+}
+.vl_monitor {
+  &:before {
+    content: $vl_monitor; 
+  }
+}
+.vl_mouse {
+  &:before {
+    content: $vl_mouse; 
+  }
+}
+.vl_muscle {
+  &:before {
+    content: $vl_muscle; 
+  }
+}
+.vl_net {
+  &:before {
+    content: $vl_net; 
+  }
+}
+.vl_network-68 {
+  &:before {
+    content: $vl_network-68; 
+  }
+}
+.vl_network-98 {
+  &:before {
+    content: $vl_network-98; 
+  }
+}
+.vl_newspaper {
+  &:before {
+    content: $vl_newspaper; 
+  }
+}
+.vl_nuclear-circle {
+  &:before {
+    content: $vl_nuclear-circle; 
+  }
+}
+.vl_office-file {
+  &:before {
+    content: $vl_office-file; 
+  }
+}
+.vl_pacman {
+  &:before {
+    content: $vl_pacman; 
+  }
+}
+.vl_paper-fold {
+  &:before {
+    content: $vl_paper-fold; 
+  }
+}
+.vl_paper-plane-alt {
+  &:before {
+    content: $vl_paper-plane-alt; 
+  }
+}
+.vl_paper-plane {
+  &:before {
+    content: $vl_paper-plane; 
+  }
+}
+.vl_pause {
+  &:before {
+    content: $vl_pause; 
+  }
+}
+.vl_pen-head {
+  &:before {
+    content: $vl_pen-head; 
+  }
+}
+.vl_pen-pencil {
+  &:before {
+    content: $vl_pen-pencil; 
+  }
+}
+.vl_pen-scale {
+  &:before {
+    content: $vl_pen-scale; 
+  }
+}
+.vl_pen-paper {
+  &:before {
+    content: $vl_pen-paper; 
+  }
+}
+.vl_pen {
+  &:before {
+    content: $vl_pen; 
+  }
+}
+.vl_pencil {
+  &:before {
+    content: $vl_pencil; 
+  }
+}
+.vl_pendrive {
+  &:before {
+    content: $vl_pendrive; 
+  }
+}
+.vl_phone {
+  &:before {
+    content: $vl_phone; 
+  }
+}
+.vl_pillar {
+  &:before {
+    content: $vl_pillar; 
+  }
+}
+.vl_pin-man-range {
+  &:before {
+    content: $vl_pin-man-range; 
+  }
+}
+.vl_pin-man {
+  &:before {
+    content: $vl_pin-man; 
+  }
+}
+.vl_pin {
+  &:before {
+    content: $vl_pin; 
+  }
+}
+.vl_plane {
+  &:before {
+    content: $vl_plane; 
+  }
+}
+.vl_play-end {
+  &:before {
+    content: $vl_play-end; 
+  }
+}
+.vl_play-next {
+  &:before {
+    content: $vl_play-next; 
+  }
+}
+.vl_play-previous {
+  &:before {
+    content: $vl_play-previous; 
+  }
+}
+.vl_play-start {
+  &:before {
+    content: $vl_play-start; 
+  }
+}
+.vl_play-button {
+  &:before {
+    content: $vl_play-button; 
+  }
+}
+.vl_play-store {
+  &:before {
+    content: $vl_play-store; 
+  }
+}
+.vl_play {
+  &:before {
+    content: $vl_play; 
+  }
+}
+.vl_playing-card {
+  &:before {
+    content: $vl_playing-card; 
+  }
+}
+.vl_plus-box {
+  &:before {
+    content: $vl_plus-box; 
+  }
+}
+.vl_plus-circle {
+  &:before {
+    content: $vl_plus-circle; 
+  }
+}
+.vl_plus-gap {
+  &:before {
+    content: $vl_plus-gap; 
+  }
+}
+.vl_plus-open {
+  &:before {
+    content: $vl_plus-open; 
+  }
+}
+.vl_power {
+  &:before {
+    content: $vl_power; 
+  }
+}
+.vl_printer {
+  &:before {
+    content: $vl_printer; 
+  }
+}
+.vl_pulse {
+  &:before {
+    content: $vl_pulse; 
+  }
+}
+.vl_puzzle {
+  &:before {
+    content: $vl_puzzle; 
+  }
+}
+.vl_question {
+  &:before {
+    content: $vl_question; 
+  }
+}
+.vl_quote {
+  &:before {
+    content: $vl_quote; 
+  }
+}
+.vl_radar {
+  &:before {
+    content: $vl_radar; 
+  }
+}
+.vl_radiation {
+  &:before {
+    content: $vl_radiation; 
+  }
+}
+.vl_reading-glass-alt {
+  &:before {
+    content: $vl_reading-glass-alt; 
+  }
+}
+.vl_reading-glass {
+  &:before {
+    content: $vl_reading-glass; 
+  }
+}
+.vl_recycle-bin {
+  &:before {
+    content: $vl_recycle-bin; 
+  }
+}
+.vl_recycle {
+  &:before {
+    content: $vl_recycle; 
+  }
+}
+.vl_refresh-time {
+  &:before {
+    content: $vl_refresh-time; 
+  }
+}
+.vl_reply {
+  &:before {
+    content: $vl_reply; 
+  }
+}
+.vl_responsive-device {
+  &:before {
+    content: $vl_responsive-device; 
+  }
+}
+.vl_rocket1 {
+  &:before {
+    content: $vl_rocket1; 
+  }
+}
+.vl_rocket2 {
+  &:before {
+    content: $vl_rocket2; 
+  }
+}
+.vl_rss {
+  &:before {
+    content: $vl_rss; 
+  }
+}
+.vl_safety-cap {
+  &:before {
+    content: $vl_safety-cap; 
+  }
+}
+.vl_safety-kit {
+  &:before {
+    content: $vl_safety-kit; 
+  }
+}
+.vl_sand-watch {
+  &:before {
+    content: $vl_sand-watch; 
+  }
+}
+.vl_scale {
+  &:before {
+    content: $vl_scale; 
+  }
+}
+.vl_scanner {
+  &:before {
+    content: $vl_scanner; 
+  }
+}
+.vl_scissor {
+  &:before {
+    content: $vl_scissor; 
+  }
+}
+.vl_screen {
+  &:before {
+    content: $vl_screen; 
+  }
+}
+.vl_search {
+  &:before {
+    content: $vl_search; 
+  }
+}
+.vl_SEO {
+  &:before {
+    content: $vl_SEO; 
+  }
+}
+.vl_server-network {
+  &:before {
+    content: $vl_server-network; 
+  }
+}
+.vl_server {
+  &:before {
+    content: $vl_server; 
+  }
+}
+.vl_share {
+  &:before {
+    content: $vl_share; 
+  }
+}
+.vl_shield {
+  &:before {
+    content: $vl_shield; 
+  }
+}
+.vl_ship {
+  &:before {
+    content: $vl_ship; 
+  }
+}
+.vl_shirt {
+  &:before {
+    content: $vl_shirt; 
+  }
+}
+.vl_shopping-bag1 {
+  &:before {
+    content: $vl_shopping-bag1; 
+  }
+}
+.vl_shopping-bag2 {
+  &:before {
+    content: $vl_shopping-bag2; 
+  }
+}
+.vl_shopping-bag3 {
+  &:before {
+    content: $vl_shopping-bag3; 
+  }
+}
+.vl_shopping-bag4 {
+  &:before {
+    content: $vl_shopping-bag4; 
+  }
+}
+.vl_shuffle {
+  &:before {
+    content: $vl_shuffle; 
+  }
+}
+.vl_shutter {
+  &:before {
+    content: $vl_shutter; 
+  }
+}
+.vl_sign-in {
+  &:before {
+    content: $vl_sign-in; 
+  }
+}
+.vl_sign-out {
+  &:before {
+    content: $vl_sign-out; 
+  }
+}
+.vl_sitemap1 {
+  &:before {
+    content: $vl_sitemap1; 
+  }
+}
+.vl_sitemap2 {
+  &:before {
+    content: $vl_sitemap2; 
+  }
+}
+.vl_skart {
+  &:before {
+    content: $vl_skart; 
+  }
+}
+.vl_skull {
+  &:before {
+    content: $vl_skull; 
+  }
+}
+.vl_skyscraper {
+  &:before {
+    content: $vl_skyscraper; 
+  }
+}
+.vl_slider-doc {
+  &:before {
+    content: $vl_slider-doc; 
+  }
+}
+.vl_slider-h-range {
+  &:before {
+    content: $vl_slider-h-range; 
+  }
+}
+.vl_slider-image {
+  &:before {
+    content: $vl_slider-image; 
+  }
+}
+.vl_slider-range-h {
+  &:before {
+    content: $vl_slider-range-h; 
+  }
+}
+.vl_slider-v-open {
+  &:before {
+    content: $vl_slider-v-open; 
+  }
+}
+.vl_slider-video {
+  &:before {
+    content: $vl_slider-video; 
+  }
+}
+.vl_slider {
+  &:before {
+    content: $vl_slider; 
+  }
+}
+.vl_smart-watch {
+  &:before {
+    content: $vl_smart-watch; 
+  }
+}
+.vl_snow {
+  &:before {
+    content: $vl_snow; 
+  }
+}
+.vl_spa-face {
+  &:before {
+    content: $vl_spa-face; 
+  }
+}
+.vl_spa-stone-flower {
+  &:before {
+    content: $vl_spa-stone-flower; 
+  }
+}
+.vl_spa-stone {
+  &:before {
+    content: $vl_spa-stone; 
+  }
+}
+.vl_spark {
+  &:before {
+    content: $vl_spark; 
+  }
+}
+.vl_speaker-off {
+  &:before {
+    content: $vl_speaker-off; 
+  }
+}
+.vl_speaker-on {
+  &:before {
+    content: $vl_speaker-on; 
+  }
+}
+.vl_spoon-fork {
+  &:before {
+    content: $vl_spoon-fork; 
+  }
+}
+.vl_spoon {
+  &:before {
+    content: $vl_spoon; 
+  }
+}
+.vl_star {
+  &:before {
+    content: $vl_star; 
+  }
+}
+.vl_steps {
+  &:before {
+    content: $vl_steps; 
+  }
+}
+.vl_stop-watch {
+  &:before {
+    content: $vl_stop-watch; 
+  }
+}
+.vl_stop {
+  &:before {
+    content: $vl_stop; 
+  }
+}
+.vl_support-call {
+  &:before {
+    content: $vl_support-call; 
+  }
+}
+.vl_tab {
+  &:before {
+    content: $vl_tab; 
+  }
+}
+.vl_table-lamp {
+  &:before {
+    content: $vl_table-lamp; 
+  }
+}
+.vl_tablet {
+  &:before {
+    content: $vl_tablet; 
+  }
+}
+.vl_tag {
+  &:before {
+    content: $vl_tag; 
+  }
+}
+.vl_target-arrow {
+  &:before {
+    content: $vl_target-arrow; 
+  }
+}
+.vl_target {
+  &:before {
+    content: $vl_target; 
+  }
+}
+.vl_target1 {
+  &:before {
+    content: $vl_target1; 
+  }
+}
+.vl_tennis-ball {
+  &:before {
+    content: $vl_tennis-ball; 
+  }
+}
+.vl_terminal {
+  &:before {
+    content: $vl_terminal; 
+  }
+}
+.vl_theatre {
+  &:before {
+    content: $vl_theatre; 
+  }
+}
+.vl_tick-circle {
+  &:before {
+    content: $vl_tick-circle; 
+  }
+}
+.vl_tick {
+  &:before {
+    content: $vl_tick; 
+  }
+}
+.vl_tickets {
+  &:before {
+    content: $vl_tickets; 
+  }
+}
+.vl_tie-knot {
+  &:before {
+    content: $vl_tie-knot; 
+  }
+}
+.vl_tie {
+  &:before {
+    content: $vl_tie; 
+  }
+}
+.vl_toggle {
+  &:before {
+    content: $vl_toggle; 
+  }
+}
+.vl_tools {
+  &:before {
+    content: $vl_tools; 
+  }
+}
+.vl_tree-square {
+  &:before {
+    content: $vl_tree-square; 
+  }
+}
+.vl_twitter-bird {
+  &:before {
+    content: $vl_twitter-bird; 
+  }
+}
+.vl_twitter {
+  &:before {
+    content: $vl_twitter; 
+  }
+}
+.vl_ufo {
+  &:before {
+    content: $vl_ufo; 
+  }
+}
+.vl_umbralla {
+  &:before {
+    content: $vl_umbralla; 
+  }
+}
+.vl_unlock {
+  &:before {
+    content: $vl_unlock; 
+  }
+}
+.vl_up-down {
+  &:before {
+    content: $vl_up-down; 
+  }
+}
+.vl_upload {
+  &:before {
+    content: $vl_upload; 
+  }
+}
+.vl_upward-top-right {
+  &:before {
+    content: $vl_upward-top-right; 
+  }
+}
+.vl_user-female {
+  &:before {
+    content: $vl_user-female; 
+  }
+}
+.vl_user-id {
+  &:before {
+    content: $vl_user-id; 
+  }
+}
+.vl_user-male {
+  &:before {
+    content: $vl_user-male; 
+  }
+}
+.vl_video-camera {
+  &:before {
+    content: $vl_video-camera; 
+  }
+}
+.vl_water-drop {
+  &:before {
+    content: $vl_water-drop; 
+  }
+}
+.vl_weather-cloud-day {
+  &:before {
+    content: $vl_weather-cloud-day; 
+  }
+}
+.vl_weather-cloud {
+  &:before {
+    content: $vl_weather-cloud; 
+  }
+}
+.vl_weather-day-rain {
+  &:before {
+    content: $vl_weather-day-rain; 
+  }
+}
+.vl_weather-day-snow {
+  &:before {
+    content: $vl_weather-day-snow; 
+  }
+}
+.vl_weather-day-windy-rain {
+  &:before {
+    content: $vl_weather-day-windy-rain; 
+  }
+}
+.vl_weather-flood {
+  &:before {
+    content: $vl_weather-flood; 
+  }
+}
+.vl_weather-night-cloud {
+  &:before {
+    content: $vl_weather-night-cloud; 
+  }
+}
+.vl_weather-rain-alt {
+  &:before {
+    content: $vl_weather-rain-alt; 
+  }
+}
+.vl_weather-rain {
+  &:before {
+    content: $vl_weather-rain; 
+  }
+}
+.vl_weather-snow {
+  &:before {
+    content: $vl_weather-snow; 
+  }
+}
+.vl_weather-sun-rain {
+  &:before {
+    content: $vl_weather-sun-rain; 
+  }
+}
+.vl_weather-sun {
+  &:before {
+    content: $vl_weather-sun; 
+  }
+}
+.vl_weather-sunny-day {
+  &:before {
+    content: $vl_weather-sunny-day; 
+  }
+}
+.vl_weather-thunder {
+  &:before {
+    content: $vl_weather-thunder; 
+  }
+}
+.vl_weather-windy-rain {
+  &:before {
+    content: $vl_weather-windy-rain; 
+  }
+}
+.vl_webcam1 {
+  &:before {
+    content: $vl_webcam1; 
+  }
+}
+.vl_webcam2 {
+  &:before {
+    content: $vl_webcam2; 
+  }
+}
+.vl_weight-scale {
+  &:before {
+    content: $vl_weight-scale; 
+  }
+}
+.vl_windows {
+  &:before {
+    content: $vl_windows; 
+  }
+}
+.vl_wine-glass2 {
+  &:before {
+    content: $vl_wine-glass2; 
+  }
+}
+.vl_wine-glass {
+  &:before {
+    content: $vl_wine-glass; 
+  }
+}
+.vl_worker-cap {
+  &:before {
+    content: $vl_worker-cap; 
+  }
+}
+.vl_youtube {
+  &:before {
+    content: $vl_youtube; 
+  }
+}
+.vl-51 {
+  &:before {
+    content: $vl-51; 
+  }
+}
+
