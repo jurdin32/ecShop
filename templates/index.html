@@ -42,7 +42,7 @@
     <![endif]-->
 </head>
 <body>
-<!--==========First Header==========-->
+{% block header %}
 <div class="first_header">
     <div class="container custome_container">
         <div class="live_chat_area pull-left">
@@ -74,15 +74,13 @@
                     <div class="cart">
                         <i class="glyphicon glyphicon-shopping-cart"></i>
                         <h5>Cart</h5>
-                        <span>7</span>
+                        <span>0</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--==========First Header==========-->
-<!--==========Main Menu Area==========-->
 <header class="main_menu_area">
     <nav class="navbar navbar-default">
         <div class="container custome_container">
@@ -103,7 +101,7 @@
                     </li>
                     <li class="dropdown meg_menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Todos los Elementos <i class="glyphicon glyphicon-arrow-down"></i></a>
+                           aria-expanded="false">Categorías <i class="glyphicon glyphicon-tag"></i></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <ul class="nav">
@@ -134,15 +132,18 @@
                     </li>
                     <li class="dropdown toggle_menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Blog <i class="glyphicon glyphicon-arrow-down"></i></a>
+                           aria-expanded="false">Tiendas <i class="glyphicon glyphicon-stats"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="single-blog.html">Single Blog</a></li>
+                            {% for tienda in tiendas %}
+                            <li><a href="/shop-brand/{{ tienda.hashes }}/">{{ tienda.nombre }}</a></li>
+                            {% endfor %}
+
+
                         </ul>
                     </li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="shop-brand.html">Shop Band</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="shop-brand.html">Tracking <i class="glyphicon glyphicon-cog"></i></a> </li>
+                    <li><a href="contact.html">Contacto <i class="glyphicon glyphicon-envelope"></i></a></li>
+                    <li><a href="shop-brand.html">Politica de Entrega, despacho y devolución <i class="glyphicon glyphicon-education"></i></a> </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="glyphicon glyphicon-user"></i> Mi Cuenta</a></li>
@@ -151,8 +152,9 @@
         </div><!-- /.container -->
     </nav>
 </header>
-<!--==========Main Menu Area==========-->
-<!--==========Slider Area==========-->
+{% endblock %}
+
+{% block contenido %}
 <section class="main_slider_area row m0">
     <div class="camera_wrap main_slider_inner">
         <div data-thumb="/static/img/paisa1.jpg" data-src="/static/img/paisa1.jpg">
@@ -163,7 +165,7 @@
                         <p class="fadeInUp animated">Outdoor advertising is a low budget and effective way of
                             advertising a company’s product. Among the entire methods billboard advertising is</p>
                         <h3 class="fadeInUp animated">US $120.90 <span><s>$180.99</s></span></h3>
-                        <a class="slider_btn fadeInLeft animated" href="#"><i class="lnr lnr-cart"></i> Add To Cart</a>
+                        <a class="slider_btn fadeInLeft animated" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
                     </div>
                 </div>
             </div>
@@ -176,24 +178,18 @@
                         <p class="fadeInUp animated">Outdoor advertising is a low budget and effective way of
                             advertising a company’s product. Among the entire methods billboard advertising is</p>
                         <h3 class="fadeInUp animated">US $120.90 <span><s>$180.99</s></span></h3>
-                        <a class="slider_btn fadeInLeft animated" href="#"><i class="lnr lnr-cart"></i> Add To Cart</a>
+                        <a class="slider_btn fadeInLeft animated" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--==========End Slider area==========-->
-
-<!--==========Add area==========-->
 <section class="add_space">
     <div class="container custome_container">
         <img src="/static/img/add_image/home_add_1.jpg" alt="">
     </div>
 </section>
-<!--==========End Add area==========-->
-
-<!--==========Product categories view==========-->
 <section class="product_categori_list">
     <div class="container custome_container">
         <div class="men_clothing">
@@ -748,9 +744,6 @@
         </div>
     </div>
 </section>
-<!--==========End Product categories view==========-->
-
-<!--==========Women Product categories view==========-->
 <section class="product_categori_list women_product_categori_list">
     <div class="container custome_container">
         <div class="men_clothing">
@@ -1305,15 +1298,11 @@
         </div>
     </div>
 </section>
-
 <section class="add_space middle_add">
     <div class="container custome_container">
         <img src="/static/img/add_image/home_add_1.jpg" alt="">
     </div>
 </section>
-<!--==========End Add area==========-->
-
-<!--==========Recomanded Product area==========-->
 <section class="recomanded_product">
     <div class="container custome_container">
         <div class="re_tittle">
@@ -1419,9 +1408,6 @@
         </div>
     </div>
 </section>
-<!--==========End Recomanded Product area==========-->
-
-<!--==========Home Feature area==========-->
 <section class="home_product_feature">
     <div class="container custome_container">
         <div class="home_feature_inner row m0">
@@ -1468,9 +1454,7 @@
         </div>
     </div>
 </section>
-<!--==========End Home Feature area==========-->
-
-<!--==========Footer area==========-->
+{% endblock %}
 <footer class="footer_area">
     <div class="main_footer">
         <div class="container custome_container">

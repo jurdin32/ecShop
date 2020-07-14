@@ -4,4 +4,5 @@ from Home.views import *
 
 Home = [
     path('', index),
+    path('shop-brand/<slug:slug>/', tiendas),
 ]
