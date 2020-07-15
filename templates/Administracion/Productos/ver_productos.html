@@ -2,30 +2,27 @@
 {% block contenido %}
             <div class="page-title mb-4 d-flex align-items-center">
                 <div class="mr-auto">
-                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">Ajax Data Table</h4>
                     <nav aria-label="breadcrumb" class="d-inline-block ">
                         <ol class="breadcrumb p-0">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">DataTable</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Ajax Data Table</li>
+                            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#">Lista de Productos</a></li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--/page title-->
-            <button class="primary"></button>
+
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card card-shadow mb-4">
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-primary">
-                                <div class="custom-title">Ajax DataTable</div>
+                                <div class="custom-title">Lista de Productos</div>
                             </div>
                         </div>
-                        <img src="" style="width: 100px" alt="">
                         <div class="pt-3 pb-4">
                             <div class="table-responsive">
-                                <table id="ajax-datatable" class="display table table-bordered table-striped" cellspacing="0" style="text-align: center">
+                                <table id="lista_productos" class="display table table-bordered table-striped" cellspacing="0" style="text-align: center">
                                     <thead style="text-align: center">
                                     <tr>
                                         <th>Id</th>
@@ -85,7 +82,7 @@
 
             ])
         {% endfor %}
-        $('#ajax-datatable').DataTable( {
+        $('#lista_productos').DataTable( {
         "data": data
         } );
     } );
