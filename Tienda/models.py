@@ -25,7 +25,6 @@ class Tiendas(models.Model):
 
 
 class Categorias(models.Model):
-    tienda=models.ForeignKey(Tiendas,on_delete=models.CASCADE)
     nombre=models.CharField(max_length=200)
     icono=models.CharField(max_length=30)
 
@@ -33,7 +32,6 @@ class Categorias(models.Model):
         return self.nombre
 
 class Marcas(models.Model):
-    tienda = models.ForeignKey(Tiendas, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200)
     imagen =models.ImageField(upload_to="Teindas/Marcas",null=True,blank=True)
 
@@ -59,7 +57,7 @@ class Adds(models.Model):
 
 class Productos(models.Model):
     tienda=models.ForeignKey(Tiendas,on_delete=models.CASCADE,null=True,blank=True)
-    codigo_interno=models.IntegerField(default=0)
+    codigo_interno=models.CharField(max_length=20,null=True,blank=True,default="0000000")
     categoria=models.ForeignKey(Categorias,on_delete=models.CASCADE)
     marca=models.ForeignKey(Marcas,on_delete=models.CASCADE)
     nombre=models.CharField(max_length=100)

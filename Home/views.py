@@ -19,9 +19,9 @@ def tiendas(request,slug):
     contexto={
         "tiendas":tiendas,
         "tienda":tienda,
-        "marcas":Marcas.objects.filter(tienda_id=tienda.id),
+        "marcas":Marcas.objects.all(),
         "adds":Adds.objects.filter(tienda_id=tienda.id,estado=True),
-        "categorias":Categorias.objects.filter(tienda_id=tienda.id),
+        "categorias":Categorias.objects.all(),
         "productos10":productos.order_by("puntuacion")[0:10],
         "productos":productos,
     }

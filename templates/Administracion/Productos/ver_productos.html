@@ -1,0 +1,93 @@
+{% extends "Administracion/index.html" %}
+{% block contenido %}
+            <div class="page-title mb-4 d-flex align-items-center">
+                <div class="mr-auto">
+                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">Ajax Data Table</h4>
+                    <nav aria-label="breadcrumb" class="d-inline-block ">
+                        <ol class="breadcrumb p-0">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">DataTable</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Ajax Data Table</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--/page title-->
+            <button class="primary"></button>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card card-shadow mb-4">
+                        <div class="card-header border-0">
+                            <div class="custom-title-wrap bar-primary">
+                                <div class="custom-title">Ajax DataTable</div>
+                            </div>
+                        </div>
+                        <img src="" style="width: 100px" alt="">
+                        <div class="pt-3 pb-4">
+                            <div class="table-responsive">
+                                <table id="ajax-datatable" class="display table table-bordered table-striped" cellspacing="0" style="text-align: center">
+                                    <thead style="text-align: center">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Marca</th>
+                                        <th>Categoria</th>
+                                        <th>Precio</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Marca</th>
+                                        <th>Categoria</th>
+                                        <th>Precio</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+{% block scripts %}
+<!--datatables-->
+    <script src="/static/Administracion/vendor/data-tables/jquery.dataTables.min.js"></script>
+    <script src="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.js"></script>
+    <!--init ajax datatable-->
+    <script>
+    $(document).ready(function() {
+        var data=[]
+
+        {%  for producto in productos %}
+            var imagen=""
+            {%  if producto.imagen %}
+                imagen = "<img src='/media/{{ producto.imagen }}' style='width: 100px'>"
+            {% else %}
+                imagen="Sin Imágen Asociada"
+            {% endif %}
+
+            data.push([
+                "{{ producto.id }}",
+                imagen,
+                "{{ producto.nombre }}",
+                "{{ producto.marca.nombre }}",
+                "{{ producto.categoria.nombre }}",
+                "{{ producto.precio }}",
+                '<button type="button" title="Editar" class="btn btn-outline-primary"><i class="fa fa-edit"></i></button>' +
+                '<button type="button" title="Deshabilitar" class="btn btn-outline-danger"><i class="fa fa-cog"></i></button>'+
+                '<button type="button" title="Agregar Imagenes" class="btn btn-outline-success"><i class="fa fa-image"></i></button>'
+
+            ])
+        {% endfor %}
+        $('#ajax-datatable').DataTable( {
+        "data": data
+        } );
+    } );
+    </script>
+{% endblock %}

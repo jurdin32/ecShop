@@ -6,5 +6,6 @@ from Home.views import *
 Administracion = [
     path('', dashboard),
     path('product/create/', creacion_productos),
+    path('product/view/', ver_productos),
 
 ]

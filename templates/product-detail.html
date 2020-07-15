@@ -73,7 +73,7 @@
                                 </ul>
                             </nav>
                             <a class="review_btn" href="#">Mi Calificación</a>
-                            <p>{{ producto.descripcion }}</p>
+                            <p>{{ producto.descripcion|safe }}</p>
                         {% if producto.adds %}
                             <del>$ {{ producto.precio }}</del>
                             <h4>$ {% descuento producto.id %}</h4>
@@ -115,15 +115,15 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="detail">
                                     <h4>{{ producto.nombre }}</h4>
-                                    <p>{{ producto.detalles_generales }}</p>
+                                    <p>{{ producto.detalles_generales|safe }}</p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="comments">
                                     <h4>{{ producto.nombre }}</h4>
-                                    <p>{{ producto.detalles_tecnicos }}</p>
+                                    <p>{{ producto.detalles_tecnicos|safe }}</p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="shiping">
                                     <h4>{{ producto.nombre }}</h4>
-                                    <p>{{ producto.garantia_y_mas }}</p>
+                                    <p>{{ producto.garantia_y_mas|safe }}</p>
                                 </div>
                             </div>
                         </div>
