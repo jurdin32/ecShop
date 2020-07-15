@@ -34,6 +34,7 @@
     <link href="/static/Administracion/vendor/select2/css/select2.css" rel="stylesheet">
     <link href="/static/Administracion/vendor/summernote/summernote-bs4.css" rel="stylesheet">
     <link href="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/static/Administracion/vendor/dropzone/dropzone.min.css" rel="stylesheet">
     <!--custom styles-->
     <link href="/static/Administracion/css/main.css" rel="stylesheet">
 
@@ -1039,7 +1040,11 @@
     <!--basic scripts initialization-->
 {% endblock %}
 <script src="/static/Administracion/js/scripts.js"></script>
-
+<script>
+    var URLactual = window.location.href;
+    console.log(URLactual)
+    $('a:contains("'+URLactual+'")').addClass("active")
+</script>
 </body>
 </html>
 

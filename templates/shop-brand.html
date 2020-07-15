@@ -137,8 +137,13 @@
                                         {% if producto.categoria == categoria %}
                                             <div class="col-md-4 col-xs-6">
                                                 <div class="men_clothing_product_item">
-                                                    <a class="men_item_image" href="/detail/{{  producto.slug }}">
-                                                        <img src="/media/{{ producto.imagen }}" alt="">
+                                                    <a class="men_item_image" href="/detail/{{  producto.slug }}" style="text-align: center">
+                                                        {% for fotosProducto in fotosProductos %}
+                                                            {% if fotosProducto.producto == producto %}
+                                                                <img src="/media/{{ fotosProducto.imagen }}" style="width: 100%; height: 250px" alt="">
+                                                            {% endif %}
+
+                                                        {% endfor %}
                                                     </a>
                                                     <div class="men_item_content">
                                                         <a href="product-detail.html"><h3>{{ producto.nombre }}</h3></a>

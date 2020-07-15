@@ -85,6 +85,7 @@ class Productos(models.Model):
 class ProductoFotos(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
     imagen=models.ImageField(upload_to="Tienda/Productos")
+    principal=models.BooleanField(default=False)
 
 class Kardex(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)

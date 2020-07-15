@@ -9,7 +9,9 @@
                         <div class="custom-title">Creación de Productos y/o Servicios</div>
                     </div>
                 </div>
-                <form action="/administracion/product/create/" id="registerProd" method="post">
+                <form action={% if producto %}"/administracion/product/view/{{ producto.slug }}/"{% else %}"/administracion/product/create/" {% endif %}
+                      id="registerProd"
+                      method="post">
                     {% csrf_token %}
                     <div class="card-body">
                         <div class="input-group mb-3">
@@ -18,7 +20,7 @@
                             </div>
                             <input type="text" class="form-control"
                                    placeholder="Este código ayudará a ubicar el producto en su base de datos"
-                                   name="codigo"
+                                   name="codigo" value="{{ producto.codigo_interno }}"
                                    aria-label="codigo"
                                    aria-describedby="basic-addon1">
                         </div>
@@ -65,21 +67,34 @@
                             </div>
                             <input type="text" class="form-control" name="nombre"
                                    placeholder="Escriba el nombre del Producto a ingresar"
-                                   aria-label="nombre"
+                                   aria-label="nombre" value="{{ producto.nombre }}"
                                    aria-describedby="basic-addon1">
                         </div>
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card card-shadow mb-4">
                                     <div class="card-body">
-                                        <textarea id="descripcion" name="descipcion">Aqui la Descripción</textarea>
+                                        <textarea id="descripcion" name="descipcion">
+                                            {% if producto %}
+                                                {{ producto.descripcion }}
+                                            {% else %}
+                                                Aqui la Descripción
+                                            {% endif %}
+
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="card card-shadow mb-4">
                                     <div class="card-body">
-                                        <textarea id="tecnicos" name="tecnicos">Aqui los Detalles Técnicos</textarea>
+                                        <textarea id="tecnicos" name="tecnicos">
+                                            {% if producto %}
+                                                {{ producto.detalles_tecnicos }}
+                                            {% else %}
+                                                Aqui los Detalles Técnicos
+                                            {% endif %}
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +103,13 @@
                             <div class="col-xl-6">
                                 <div class="card card-shadow mb-4">
                                     <div class="card-body">
-                                        <textarea id="generales" name="generales">Aqui los Detalles Generales</textarea>
+                                        <textarea id="generales" name="generales">
+                                            {% if producto %}
+                                                {{ producto.detalles_generales }}
+                                            {% else %}
+                                                Aqui los Detalles Generales
+                                            {% endif %}
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +117,13 @@
                                 <div class="card card-shadow" style="width: 100%">
                                     <div class="card-body">
                                         <textarea id="garantia"
-                                                  name="garantia">Garantía del Servicio y más...</textarea>
+                                                  name="garantia">
+                                        {% if producto %}
+                                                {{ producto.garantia_y_mas }}
+                                            {% else %}
+                                                Garantía del Servicio y más...
+                                            {% endif %}
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +134,7 @@
                             </div>
                             <input type="text" class="form-control" id="precio"
                                    placeholder="Aqui el Precio que tendra este producto" name="precio"
-                                   aria-label="precio"
+                                   aria-label="precio" value="{{ producto.precio }}"
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -115,6 +142,10 @@
                         <div class="col-xl-6">
                         </div>
                         <div class="col-xl-6" style="text-align: right">
+                            {% if producto %}
+                            <a  href="/administracion/product/create/" class="btn btn-danger">Nuevo</a>
+                            {% endif %}
+
                             <button type="submit" id="registart" class="btn btn-primary">Registrar</button>
                         </div>
                     </div>
@@ -131,6 +162,11 @@
     <script src="/static/Administracion/vendor/input-mask/jquery.inputmask.bundle.js"></script>
     <script src="/static/sweetalert.min.js"></script>
     <script>
+        {% if producto %}
+            $("#categoria option[value="+ {{producto.categoria_id}} +"]").attr("selected",true);
+             $("#marca option[value="+ {{producto.marca_id}} +"]").attr("selected",true);
+        {% endif %}
+
         $('#categoria').select2({
             placeholder: "Seleccione una categoría",
             tags: true
@@ -168,34 +204,23 @@
         }); //123456  =>  $ ___.__1.234,56
     </script>
     <script type="text/javascript">
-        $()
-        var frm = $('#registerProd');
-        frm.submit(function () {
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    $("#registart").attr("disabled")
-                    swal({
-                        title: "Excelente",
-                        text: "El registro se ha creado!",
-                        icon: "success",
-                        button: "Eso es Todo",
-                    });
-                },
-                error: function (data) {
-                    swal({
-                        title: "Ups",
-                        text: "Ha ocurrido un error, revisa y vuelve a intentar!",
-                        icon: "error",
-                        button: ":( Sorry..!",
-                    });
-                     $("#registart").attr("disabled")
-                }
-            });
-            return false;
+        {% if editar %}
+        swal({
+          title: "Excelente!",
+          text: "{{editar}}",
+          icon: "success",
+          button: "No hay mas por hacer",
         });
-    </script>
+        {% endif %}
+
+    {% if crear %}
+        swal({
+          title: "Bien Hecho!",
+          text: "{{ crear }}",
+          icon: "success",
+          button: "No hay mas por hacer",
+        });
+        {% endif %}
+   </script>
 
 {% endblock %}

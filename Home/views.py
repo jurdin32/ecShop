@@ -24,6 +24,7 @@ def tiendas(request,slug):
         "categorias":Categorias.objects.all(),
         "productos10":productos.order_by("puntuacion")[0:10],
         "productos":productos,
+        "fotosProductos":ProductoFotos.objects.filter(principal=True)
     }
     return render(request,"shop-brand.html",contexto)
 

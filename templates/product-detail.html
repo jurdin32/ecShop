@@ -25,11 +25,11 @@
                                 {% for foto in fotosProductos %}
                                     {% if forloop.counter == 1 %}
                                         <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}">
-                                            <img src="/media/{{ foto.imagen }}" alt="">
+                                            <img src="/media/{{ foto.imagen }}" style="width: 100%; height: 450px" alt="">
                                         </div>
                                     {% else %}
                                         <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}">
-                                            <img src="/media/{{ foto.imagen }}" alt="">
+                                            <img src="/media/{{ foto.imagen }}" style="width: 100%; height: 450px" alt="">
                                         </div>
                                     {% endif %}
 
@@ -45,10 +45,11 @@
                                     {% else %}
                                         <li role="presentation">
                                     {% endif %}
-
-                                    <a href="#prod{{ foto.id }}" aria-controls="prod{{ foto.id }}" role="tab" data-toggle="tab">
-                                        <img src="/media/{{ foto.imagen }}" style="width: 142px" alt="">
-                                    </a>
+                                    <div class="col-xl-1">
+                                        <a href="#prod{{ foto.id }}" aria-controls="prod{{ foto.id }}" role="tab" data-toggle="tab">
+                                            <img src="/media/{{ foto.imagen }}" style="width: 120px; height: 120px" alt="">
+                                        </a>
+                                    </div>
                                 </li>
                                 {% endfor %}
                             </ul>
