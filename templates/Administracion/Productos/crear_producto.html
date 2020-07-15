@@ -1,0 +1,127 @@
+{% extends "Administracion/index.html" %}
+<!--page title-->
+{% block contenido %}
+    <div class="row">
+        <div class="col-xl-12 col-md-12">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Creación de Productos y/o Servicios</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Código Interno</span>
+                        </div>
+                        <input type="text" class="form-control"
+                               placeholder="Este código ayudará a ubicar el producto en su base de datos" name="codigo"
+                               aria-label="codigo"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="form-control" id="categoria" multiple name="categoria" style="width: 100%">
+                            <option></option>
+                            {% for categoria in categorias %}
+                                <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="form-control" id="marca" multiple name="marca" style="width: 100%">
+                            <option></option>
+                            {% for marca in marcas %}
+                                <option value="{{ marca.id }}">{{ marca.nombre }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Nombre del Producto</span>
+                        </div>
+                        <input type="text" class="form-control" name="nombre"
+                               placeholder="Escriba el nombre del Producto a ingresar"
+                               aria-label="nombre"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-body">
+                                    <div id="descripcion">Aqui la Descripción</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-body">
+                                    <div id="tecnicos">Aqui los Detalles Técnicos</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3" style="width: 100%">
+                        <div class="card card-shadow" style="width: 100%">
+                            <div class="card-body">
+                                <div id="garantia">Garantia del Servicio y más...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Precio</span>
+                        </div>
+                        <input type="text" class="form-control" id="precio"
+                               placeholder="Aqui el Precio que tendra este producto" name="precio"
+                               aria-label="precio"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="/static/Administracion/vendor/select2/js/select2.min.js"></script>
+    <script src="/static/Administracion/vendor/summernote/summernote-bs4.min.js"></script>
+    <script src="/static/Administracion/vendor/input-mask/jquery.inputmask.bundle.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+
+        $('#categoria').select2({
+            placeholder: "Seleccione una categoría",
+            tags: true
+        });
+        $('#marca').select2({
+            placeholder: "Seleccione una marca",
+            tags: true
+        });
+            $('#descripcion').summernote({
+                height: 150,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                  // set focus to editable area after initializing summernote
+            });
+            $('#tecnicos').summernote({
+                height: 150,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                  // set focus to editable area after initializing summernote
+        });
+            $('#garantia').summernote({
+                height: 150,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                  // set focus to editable area after initializing summernote
+        });
+            $("#precio").inputmask('$ 999.999.999,99', {
+                numericInput: true
+            }); //123456  =>  $ ___.__1.234,56
+    </script>
+{% endblock %}
