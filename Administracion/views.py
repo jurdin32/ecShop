@@ -1,14 +1,50 @@
 import hashlib
 
+from django.contrib import auth
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from Tienda.models import Categorias, Tiendas, Marcas, Productos, ProductoFotos
 
+def log_In(request):
+    if request.POST:
+        email=request.POST["email"]
+        password=request.POST['password']
+        user=None
+        try:
+            user=User.objects.get(email=email)
+            user=auth.authenticate(username=user.username,password=password)
+            print(user)
+        except:
+            pass
+        if user:
+            auth.login(request,user=user)
+            return HttpResponseRedirect("/administracion/")
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/administracion/")
+    return render(request, "Administracion/login.html")
 
+@login_required(login_url="/administracion/log_in/")
+def log_Out(request):
+    auth.logout(request)
+    return render(request, "Administracion/login.html")
+
+
+@login_required(login_url="/administracion/log_in/")
 def dashboard(request):
-    return render(request,"Administracion/index.html")
+    usuario=request.user
+    if request.user.is_authenticated:
+        contexto={
 
+            "tiendas":Tiendas.objects.filter(usuario=usuario)
+        }
+        return render(request,"Administracion/index.html",contexto)
+    return HttpResponseRedirect("/administracion/log_in/")
+
+@login_required(login_url="/administracion/log_in/")
 def creacion_productos(request):
     crear=""
     tienda=Tiendas.objects.get(id=1)
@@ -36,6 +72,7 @@ def creacion_productos(request):
     }
     return render(request,"Administracion/Productos/crear_producto.html",contexto)
 
+@login_required(login_url="/administracion/log_in/")
 def ver_productos(request):
     contexto={
         "productos":Productos.objects.filter(tienda_id=1),
@@ -43,6 +80,7 @@ def ver_productos(request):
     }
     return render(request,"Administracion/Productos/ver_productos.html",contexto)
 
+@login_required(login_url="/administracion/log_in/")
 def editar_producto(request,slug):
     producto=Productos.objects.get(slug=slug)
     editar=""
@@ -66,6 +104,7 @@ def editar_producto(request,slug):
     }
     return render(request,"Administracion/Productos/crear_producto.html",contexto)
 
+@login_required(login_url="/administracion/log_in/")
 def crearFoto(request,slug):
     producto=Productos.objects.get(slug=slug)
     if request.POST:
@@ -76,6 +115,7 @@ def crearFoto(request,slug):
     }
     return render(request,"Administracion/Productos/imgProductos.html",contexto)
 
+@login_required(login_url="/administracion/log_in/")
 def eliminarFoto(request,id):
     prod=ProductoFotos.objects.get(id=id)
     print(prod)
@@ -83,6 +123,7 @@ def eliminarFoto(request,id):
     prod.delete()
     return HttpResponseRedirect("/administracion/product/photo/%s/"%slug)
 
+@login_required(login_url="/administracion/log_in/")
 def fotoPrincipal(request,id):
     prod = ProductoFotos.objects.get(id=id)
     for p in ProductoFotos.objects.filter(producto_id=prod.producto.id):

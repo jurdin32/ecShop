@@ -1,0 +1,72 @@
+{% extends "Administracion/index.html" %}
+{% block contenido %}
+    <div class="page-title mb-4 d-flex align-items-center">
+        <div class="mr-auto">
+            <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">Dropzone</h4>
+            <nav aria-label="breadcrumb" class="d-inline-block ">
+                <ol class="breadcrumb p-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dropzone</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title"> <strong>FOTOS DE</strong>: {{ producto.nombre|upper }} - Guia: {{ producto.slug }} -
+                            <a href=""> CLick aqui para Actualizar</a></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="dropzone mb-4" id="singleFileUpload" enctype="multipart/form-data" action="/administracion/product/photo/{{ producto.slug }}/">
+                        {% csrf_token %}
+                         <div class="fallback">
+                            <input name="imagen" type="file" multiple />
+                        </div>
+                        <div class="dz-message needsclick">
+                            <h5>Click aquí para subir la imagen, antes de iniciar asegurese de que todas las fotos sean del mismo tamaño, caso contrario podria generar errores de visualización</h5>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    {% for foto in fotos %}
+    <div class="col-xl-3 col-md-6">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-success">
+                        <div class="custom-title">Foto # {{ forloop.counter }}</div>
+                        <div class="custom-post-title">/media/{{ foto.imagen|truncatechars:40 }}</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chartjs-size-monitor">
+                        <img src="/media/{{ foto.imagen }}" width="100%" alt="">
+                    </div>
+                    <div class="text-center mt-4">
+                        {% if not foto.principal %}
+                        <a href="/administracion/product/photo/main/{{ foto.id }}/" class="btn btn-sm  btn-pill btn-primary">Hacer Principal</a>
+                        {% endif %}
+
+                        <a href="/administracion/product/photo/delete/{{ foto.id }}/" class="btn btn-sm btn-pill btn-outline-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    
+
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/Administracion/vendor/dropzone/dropzone.js"></script>
+{% endblock %}
+

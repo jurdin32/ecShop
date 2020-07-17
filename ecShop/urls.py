@@ -19,10 +19,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from Administracion.urls import Administracion
+from Administracion.views import log_In, log_Out
 from Home.urls import Home
+from Tienda.urls import Tienda
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('administracion/log_in/',log_In ),
+    path('administracion/log_out/',log_Out ),
     path('', include(Home)),
     path('administracion/', include(Administracion)),
+    path('administracion/', include(Tienda)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

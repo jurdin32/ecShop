@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+
+    <!--favicon icon-->
+    <link rel="icon" type="image/png" href="/static/Administracion/img/favicon.png">
+
+    <title>Login</title>
+
+    <!--web fonts-->
+    <link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <!--bootstrap styles-->
+    <link href="/static/Administracion/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--icon font-->
+    <link href="/static/Administracion/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/Administracion/vendor/dashlab-icon/dashlab-icon.css" rel="stylesheet">
+    <link href="/static/Administracion/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="/static/Administracion/vendor/themify-icons/css/themify-icons.css" rel="stylesheet">
+    <link href="/static/Administracion/vendor/weather-icons/css/weather-icons.min.css" rel="stylesheet">
+
+    <!--jquery ui-->
+    <link href="/static/Administracion/vendor/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+
+    <!--iCheck-->
+    <link href="/static/Administracion/vendor/icheck/skins/all.css" rel="stylesheet">
+
+    <!--custom styles-->
+    <link href="/static/Administracion/css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/static/Administracion/vendor/html5shiv.js"></script>
+    <script src="/static/Administracion/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="signin-up-bg">
+
+    <div class="leftHalf" style="background-image: url('/static/Administracion/img/login-bg.jpg')">
+        <div class="login-promo-txt">
+            <h2>Let’s Start The Journey</h2>
+            <p>Enter the most beautiful admin ever</p>
+        </div>
+    </div>
+
+    <div class="rightHalf">
+        <div class="position-relative">
+            <!--login form-->
+            <div class="login-form">
+                <h2 class="text-center mb-4">
+                    <img src="/static/Administracion/img/logo.png" srcset="/static/Administracion/img/logo@2x.jpg 2x" alt="CodeLab">
+                </h2>
+                <h4 class="text-uppercase- text-purple text-center mb-5">Iniciar Sesión</h4>
+                <form action="/administracion/log_in/" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Ingrese su email">
+                    </div>
+                    <div class="form-group mb-4">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Ingrese su Password">
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <a href="#" class="float-left forgot-link my-2">Olvide Password ?</a>
+                        <button type="submit" class="btn btn-purple btn-pill float-right">LOGIN</button>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+{#                    <a href="#" class="btn btn-facebook btn-pill text-uppercase"><i class="fa fa-facebook-square"></i> Login with facebook</a>#}
+                    <div class="text-center mt-5">
+                        <a href="registration.html" class="btn-link text-capitalize f12">Crear una Cuenta Gratis</a>
+                    </div>
+                </form>
+            </div>
+            <!--/login form-->
+        </div>
+    </div>
+
+    <!--basic scripts-->
+    <script src="/static/Administracion/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/Administracion/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/static/Administracion/vendor/popper.min.js"></script>
+    <script src="/static/Administracion/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/Administracion/vendor/icheck/skins/icheck.min.js"></script>
+    <script src="/static/Administracion/vendor/jquery.nicescroll.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/static/Administracion/vendor/modernizr.js"></script>
+    <![endif]-->
+
+    <!--basic scripts initialization-->
+    <!--<script src="assets/js/scripts.js"></script>-->
+</body>
+</html>
+

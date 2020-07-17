@@ -1,0 +1,274 @@
+{% extends "Administracion/index.html" %}
+<!--page title-->
+{% block contenido %}
+    <div class="row">
+        <div class="col-xl-12 col-md-12">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Creación de Productos y/o Servicios</div>
+                    </div>
+                </div>
+                <form action={% if producto %}"/administracion/tienda/view/{{ producto.slug }}/"{% else %}
+                    "/administracion/tienda/create/" {% endif %}
+                id="registerTienda"
+                method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Escriba Nombre</span>
+                        </div>
+                        <input type="text" class="form-control"
+                               placeholder="Escriba el nombre completo de su negocio"
+                               name="nombre" value="{{ producto.codigo_interno }}"
+                               aria-label="nombre"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-body">
+                                            <textarea id="descripcion" name="descipcion">
+                                                {% if producto %}
+                                                    {{ producto.descripcion }}
+                                                {% else %}
+                                                    Aquí la Descripción
+                                                {% endif %}
+
+                                            </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-2">
+                            <div class="input-group mb-3">
+                                <select class="form-control" id="pais" multiple name="pais"
+                                        style="width: 100%">
+                                    <option></option>
+                                    {% for pais in paises %}
+                                        <option value="{{ pais.id }}">{{ pais.nombre }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <button type="button" class="btn btn-primary" style="width: 100%"><i
+                                    class="fa fa-plus-circle"></i> Nuevo Pais
+                            </button>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="input-group mb-3">
+                                <select class="form-control" id="provincia" multiple name="provincia"
+                                        style="width: 100%">
+                                    <option></option>
+                                    {% for provincia in provincias %}
+                                        <option value="{{ provincia.id }}">{{ provincia.nombre }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <button type="button" class="btn btn-primary" style="width: 100%"><i
+                                    class="fa fa-plus-circle"></i> Nueva Provincia
+                            </button>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="input-group mb-3">
+                                <select class="form-control" id="ciudad" multiple name="ciudad" style="width: 100%">
+                                    <option></option>
+                                    {% for ciudad in ciudades %}
+                                        <option value="{{ ciudad.id }}">{{ ciudad.nombre }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <button type="button" class="btn btn-primary" style="width: 100%"><i
+                                    class="fa fa-plus-circle"></i> Nueva Ciudad
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Dirección</span>
+                                </div>
+                                <input type="text" class="form-control"
+                                       placeholder="Escriba la dirección"
+                                       name="direccion" value="{{ producto.codigo_interno }}"
+                                       aria-label="direccion"
+                                       aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Teléfonos</span>
+                                </div>
+                                <input type="text" class="form-control"
+                                       placeholder="Escriba sus telefonos"
+                                       name="telefono" value="{{ producto.codigo_interno }}"
+                                       aria-label="telefono"
+                                       aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Email</span>
+                                </div>
+                                <input type="text" class="form-control"
+                                       placeholder="Escriba un email"
+                                       name="email" value="{{ producto.codigo_interno }}"
+                                       aria-label="email"
+                                       aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Nombre del Producto</span>
+                        </div>
+                        <input type="text" class="form-control" name="nombre"
+                               placeholder="Escriba el nombre del Producto a ingresar"
+                               aria-label="nombre" value="{{ producto.nombre }}"
+                               aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-body">
+                                        <textarea id="generales" name="generales">
+                                            {% if producto %}
+                                                {{ producto.detalles_generales }}
+                                            {% else %}
+                                                Aquí los Detalles Generales
+                                            {% endif %}
+                                        </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card card-shadow" style="width: 100%">
+                                <div class="card-body">
+                                        <textarea id="garantia"
+                                                  name="garantia">
+                                        {% if producto %}
+                                            {{ producto.garantia_y_mas }}
+                                        {% else %}
+                                            Garantía del Servicio y más...
+                                        {% endif %}
+                                        </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Precio</span>
+                        </div>
+                        <input type="text" class="form-control" id="precio"
+                               placeholder="Aqui el Precio que tendra este producto" name="precio"
+                               aria-label="precio" value="{{ producto.precio }}"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom: 20px; padding-right: 20px">
+                    <div class="col-xl-6">
+                    </div>
+                    <div class="col-xl-6" style="text-align: right">
+                        {% if producto %}
+                            <a href="/administracion/tienda/create/" class="btn btn-danger">Nuevo</a>
+                        {% endif %}
+
+                        <button type="submit" id="registart" class="btn btn-primary">Registrar</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="/static/Administracion/vendor/select2/js/select2.min.js"></script>
+    <script src="/static/Administracion/vendor/summernote/summernote-bs4.min.js"></script>
+    <script src="/static/Administracion/vendor/input-mask/jquery.inputmask.bundle.js"></script>
+    <script src="/static/sweetalert.min.js"></script>
+    <script>
+        {% if producto %}
+            $("#categoria option[value=" + {{producto.categoria_id}} +"]").attr("selected", true);
+            $("#marca option[value=" + {{producto.marca_id}} +"]").attr("selected", true);
+        {% endif %}
+
+        $('#pais').select2({
+            placeholder: "Seleccione Pais",
+            tags: true
+        });
+        $('#provincia').select2({
+            placeholder: "Seleccione Provincia",
+            tags: true
+        });
+        $('#ciudad').select2({
+            placeholder: "Seleccione Ciudad",
+            tags: true
+        });
+        $('#descripcion').summernote({
+            height: 150,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true                  // set focus to editable area after initializing summernote
+        });
+        $('#tecnicos').summernote({
+            height: 150,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true                  // set focus to editable area after initializing summernote
+        });
+        $('#garantia').summernote({
+            height: 150,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true                  // set focus to editable area after initializing summernote
+        });
+        $('#generales').summernote({
+            height: 150,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true                  // set focus to editable area after initializing summernote
+        });
+        $("#precio").inputmask('$ 999.999.999,99', {
+            numericInput: true
+        }); //123456  =>  $ ___.__1.234,56
+    </script>
+    <script type="text/javascript">
+        {% if editar %}
+            swal({
+                title: "Excelente!",
+                text: "{{editar}}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+
+        {% if crear %}
+            swal({
+                title: "Bien Hecho!",
+                text: "{{ crear }}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+    </script>
+
+{% endblock %}
