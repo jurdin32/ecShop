@@ -202,10 +202,10 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
                 <div class="dropdown-item- px-3 py-2">
                     <img class="rounded-circle mr-2" src="/static/Administracion/img/avatar/avatar2.jpg" width="35" alt=""/>
-                    <span class="text-muted">Jhon Doe</span>
+                    <span class="text-muted">{{ request.user }}</span>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">My Profile</a>
+                <a class="dropdown-item" href="/administracion/">Dashboard</a>
                 <a class="dropdown-item" href="#">Account Settings</a>
                 <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
                 <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
@@ -272,8 +272,11 @@
                                 <span>Productos</span>
                             </a>
                             <ul class="sub">
+                                <li><a href="/administracion/product/categorias/">Crear Categorías</a></li>
+                                <li><a href="/administracion/product/marcas/">Crear Marcas</a></li>
                                 <li><a href="/administracion/product/create/">Creación de Productos</a></li>
                                 <li><a href="/administracion/product/view/">Listado de Productos</a></li>
+                                <li><a href="/administracion/product/promo/">Promociones</a></li>
                             </ul>
                         </li>
 

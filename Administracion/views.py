@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+from Administracion.models import Iconos
 from Tienda.models import Categorias, Tiendas, Marcas, Productos, ProductoFotos
 
 def log_In(request):
@@ -47,10 +48,9 @@ def dashboard(request):
 @login_required(login_url="/administracion/log_in/")
 def creacion_productos(request):
     crear=""
-    tienda=Tiendas.objects.get(id=1)
     if request.POST:
         producto=Productos(
-            tienda_id=tienda.id,
+        tienda_id=request.POST["id"],
         codigo_interno = request.POST["codigo"],
         categoria_id = request.POST["categoria"],
         marca_id = request.POST["marca"],
@@ -64,19 +64,23 @@ def creacion_productos(request):
         producto.save()
         producto.slug= hashlib.sha256(str.encode(str(str.zfill(str(producto.id), 10)))).hexdigest()
         producto.save()
+
         crear="Registro Creado Exitosamente..!"
     contexto={
         "categorias":Categorias.objects.all(),
         "marcas":Marcas.objects.all(),
-        "crear":crear
+        "crear":crear,
+        "tiendas":Tiendas.objects.filter(usuario=request.user),
+        "iconos":Iconos.objects.all(),
     }
     return render(request,"Administracion/Productos/crear_producto.html",contexto)
 
 @login_required(login_url="/administracion/log_in/")
 def ver_productos(request):
     contexto={
-        "productos":Productos.objects.filter(tienda_id=1),
-        "fotos":ProductoFotos.objects.filter(principal=True)
+        "productos":Productos.objects.filter(tienda__usuario=request.user),
+        "fotos":ProductoFotos.objects.filter(principal=True),
+        "tiendas":Tiendas.objects.filter(usuario=request.user),
     }
     return render(request,"Administracion/Productos/ver_productos.html",contexto)
 
@@ -85,6 +89,7 @@ def editar_producto(request,slug):
     producto=Productos.objects.get(slug=slug)
     editar=""
     if request.POST:
+        producto.tienda_id=request.POST["id"]
         producto.codigo_interno = request.POST["codigo"]
         producto.categoria_id = request.POST["categoria"]
         producto.marca_id = request.POST["marca"]
@@ -101,6 +106,8 @@ def editar_producto(request,slug):
         "categorias": Categorias.objects.all(),
         "marcas": Marcas.objects.all(),
         "editar":editar,
+        "tiendas": Tiendas.objects.filter(usuario=request.user),
+        "iconos": Iconos.objects.all(),
     }
     return render(request,"Administracion/Productos/crear_producto.html",contexto)
 
@@ -124,6 +131,16 @@ def eliminarFoto(request,id):
     return HttpResponseRedirect("/administracion/product/photo/%s/"%slug)
 
 @login_required(login_url="/administracion/log_in/")
+def deshabilitarProducto(request,id):
+    prod=Productos.objects.get(id=id)
+    if prod.estado:
+        prod.estado=False
+    else:
+        prod.estado=True
+    prod.save()
+    return HttpResponseRedirect("/administracion/product/view/")
+
+@login_required(login_url="/administracion/log_in/")
 def fotoPrincipal(request,id):
     prod = ProductoFotos.objects.get(id=id)
     for p in ProductoFotos.objects.filter(producto_id=prod.producto.id):
@@ -132,3 +149,131 @@ def fotoPrincipal(request,id):
     prod.principal=True
     prod.save()
     return HttpResponseRedirect("/administracion/product/photo/%s/" % prod.producto.slug)
+
+
+@login_required(login_url="/administracion/log_in/")
+def crearCategoria(request):
+    crear=""
+    if request.POST:
+        Categorias(nombre=request.POST["nombre_categoria"],usuario=request.user,icono_id=request.POST["iconos"]).save()
+        crear="La categoría se ha creado..!"
+    contexto = {
+        "categorias": Categorias.objects.all(),
+        "marcas": Marcas.objects.all(),
+        "crear": crear,
+        "tiendas": Tiendas.objects.filter(usuario=request.user),
+        "iconos": Iconos.objects.all().order_by("nombre"),
+    }
+    return render(request, "Administracion/Productos/crear_producto.html", contexto)
+
+@login_required(login_url="/administracion/log_in/")
+def crearMarca(request):
+    crear=""
+    if request.POST:
+        Marcas(nombre=request.POST["nombre_marca"],imagen=request.FILES["imagen"]).save()
+        crear="La marca se ha creado..!"
+    contexto = {
+        "categorias": Categorias.objects.all(),
+        "marcas": Marcas.objects.all(),
+        "crear": crear,
+        "tiendas": Tiendas.objects.filter(usuario=request.user),
+        "iconos": Iconos.objects.all().order_by("nombre"),
+    }
+    return render(request, "Administracion/Productos/crear_producto.html", contexto)
+
+@login_required(login_url="/administracion/log_in/")
+def ver_Categoria(request):
+    crear = ""
+    if request.POST:
+        Categorias(nombre=request.POST["nombre_categoria"], usuario=request.user,
+                   icono_id=request.POST["iconos"]).save()
+        crear = "La categoría se ha creado..!"
+    contexto={
+        "categorias":Categorias.objects.all().order_by("nombre"),
+        "iconos":Iconos.objects.all().order_by("nombre"),
+        "crear": crear,
+    }
+    return render(request, "Administracion/Productos/ver_categorias.html",contexto)
+
+@login_required(login_url="/administracion/log_in/")
+def editar_Categoria(request,id):
+    editar = ""
+    cat = Categorias.objects.get(id=id)
+    if request.POST:
+
+        cat.nombre=request.POST["nombre_categoria"]
+        cat.usuario=request.user
+        cat.icono_id=request.POST["iconos"]
+        cat.save()
+        editar = "El registro se ha actualizado..!"
+    contexto={
+        "categorias":Categorias.objects.all().order_by("nombre"),
+        "iconos":Iconos.objects.all().order_by("nombre"),
+        "editar": editar,
+        "categoria":cat,
+    }
+    return render(request, "Administracion/Productos/ver_categorias.html",contexto)
+
+@login_required(login_url="/administracion/log_in/")
+def deshabilitarCategorias(request,id):
+    cat=Categorias.objects.get(id=id)
+    if cat.estado:
+        cat.estado=False
+    else:
+        cat.estado=True
+    cat.save()
+    return HttpResponseRedirect("/administracion/product/categorias/")
+
+
+@login_required(login_url="/administracion/log_in/")
+def ver_Marcas(request):
+    crear = ""
+    if request.POST:
+        Marcas(nombre=request.POST["nombre_marca"], usuario=request.user,imagen=request.FILES["imagen"]).save()
+        crear = "La marca se ha creado..!"
+    contexto={
+        "marcas":Marcas.objects.all().order_by("nombre"),
+        "crear": crear,
+    }
+    return render(request, "Administracion/Productos/ver_marcas.html",contexto)
+
+@login_required(login_url="/administracion/log_in/")
+def editar_Marcas(request,id):
+    editar = ""
+    mar = Marcas.objects.get(id=id)
+    if request.POST:
+        print(request.POST)
+        mar.nombre=request.POST["nombre_marca"]
+        mar.usuario=request.user
+        if not "estado" in request.POST:
+            mar.estado=False
+        else:
+            mar.estado = True
+        if request.FILES:
+            mar.imagen=request.FILES["imagen"]
+        mar.save()
+        editar = "El registro se ha actualizado..!"
+    contexto={
+        "marcas": Marcas.objects.all().order_by("nombre"),
+        "editar": editar,
+        "marca":mar,
+    }
+    return render(request, "Administracion/Productos/ver_marcas.html",contexto)
+
+
+@login_required(login_url="/administracion/log_in/")
+def deshabilitarMarcas(request,id):
+    mar=Marcas.objects.get(id=id)
+    if mar.estado:
+        mar.estado=False
+    else:
+        mar.estado=True
+    mar.save()
+    return HttpResponseRedirect("/administracion/product/marcas/")
+
+@login_required(login_url="/administracion/log_in/")
+def promociones(request):
+    contexto={
+
+    }
+    return render(request, "Administracion/Productos/promociones.html", contexto)

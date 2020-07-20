@@ -26,6 +26,7 @@
                             <tr class="alert alert-dark">
                                 <th>Id</th>
                                 <th>Código</th>
+                                <th>Tienda</th>
                                 <th>Imagen</th>
                                 <th>Nombre</th>
                                 <th>Marca</th>
@@ -36,6 +37,7 @@
                             </thead>
                             <tfoot>
                             <tr class="alert alert-info">
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -80,13 +82,19 @@
             data.push([
                 "{{ producto.id }}",
                 "{{ producto.codigo_interno }}",
+                "{{ producto.tienda.nombre }}",
                 imagen,
-                "{{ producto.nombre }}",
+                "{{ producto.nombre }} <br>"  +
+                {% if not producto.estado %}
+                "<span class='badge badge-danger ml-2'>Desactivado</span>",
+                {% else %}
+                "<span class='badge badge-success ml-2'>Activo</span>",
+                {% endif %}
                 "{{ producto.marca.nombre }}",
                 "{{ producto.categoria.nombre }}",
                 "{{ producto.precio }}",
                 '<a href="/administracion/product/view/{{ producto.slug }}/" title="Editar" class="btn btn-primary"><i class="fa fa-edit"></i></a> ' +
-                '<a href="" title="Deshabilitar" class="btn btn-danger"><i class="fa fa-cog"></i></a> '+
+                '<a href="/administracion/product/deshabilitar/{{ producto.id }}/" title="Activar/Deshabilitar" class="btn btn-danger"><i class="fa fa-cog"></i></a> '+
                 '<a href="/administracion/product/photo/{{ producto.slug }}/" title="Agregar Imagenes" class="btn btn-success"><i class="fa fa-image"></i></a>'
 
             ])

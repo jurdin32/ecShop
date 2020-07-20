@@ -21,7 +21,7 @@ def tiendas(request,slug):
         "tienda":tienda,
         "marcas":Marcas.objects.all(),
         "adds":Adds.objects.filter(tienda_id=tienda.id,estado=True),
-        "categorias":Categorias.objects.all(),
+        "categorias":Categorias.objects.filter(usuario=tienda.usuario,estado=True),
         "productos10":productos.order_by("puntuacion")[0:10],
         "productos":productos,
         "fotosProductos":ProductoFotos.objects.filter(principal=True)

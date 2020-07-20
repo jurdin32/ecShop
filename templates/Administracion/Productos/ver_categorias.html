@@ -1,0 +1,165 @@
+{% extends "Administracion/index.html" %}
+{% block contenido %}
+    <div class="page-title mb-4 d-flex align-items-center">
+        <div class="mr-auto">
+            <nav aria-label="breadcrumb" class="d-inline-block ">
+                <ol class="breadcrumb p-0">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Todas las Categorías</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Lista de Categorías</div>
+
+                    </div>
+                </div>
+                <div class="pt-3 pb-4">
+                    <div class="table-responsive">
+                        <table id="lista_productos" class="display table table-bordered table-striped" cellspacing="0"
+                               style="text-align: center">
+                            <thead style="text-align: center">
+                            <tr class="alert alert-dark">
+                                <th>Id</th>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Usuario</th>
+                                <th>Opciones</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr class="alert alert-info">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Crear de Categorías</div>
+
+                    </div>
+                    <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre_categoria" class="col-form-label">Nombre de la Categoría</label>
+                                    <input type="text" class="form-control" name="nombre_categoria" value="{{ categoria.nombre }}" required id="nombre_categoria">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-10">
+                                        <div class="input-group mb-3">
+                                            <label for="nombre_categoria" class="col-form-label">Seleccione el Icono</label>
+                                            <select class="form-control" id="iconos" name="iconos"
+                                                    style="width: 100%">
+                                                {% for icono in iconos %}
+                                                    <option img="/media/{{ icono.icono }}"
+                                                            value="{{ icono.id }}">{{ icono.nombre }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2">
+                                        <div class="input-group mb-3">
+                                            <img id="icons_" style="width: 100%" src="" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {% if categoria %}
+                                 <a href="/administracion/product/categorias/" type="reset" class="btn btn-danger">Nuevo Registro</a>
+                                {% endif %}
+
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <!--datatables-->
+    <script src="/static/Administracion/vendor/data-tables/jquery.dataTables.min.js"></script>
+    <script src="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/sweetalert.min.js"></script>
+    <!--init ajax datatable-->
+    <script>
+        {% if categoria %}
+            $("#iconos option[value=" + {{categoria.icono.id}} +"]").attr("selected", true);
+        {% endif %}
+        $(document).ready(function () {
+
+            var data = []
+            {% for categoria in categorias %}
+                data.push([
+                    "{{ categoria.id }}",
+                    '<a><img src="/media/{{ categoria.icono.icono }}" style="width: 50px"></a>',
+                    "{{ categoria.nombre }}",
+                    {% if not categoria.estado %}
+                        "<span class='badge badge-danger ml-2'>Desactivado</span>",
+                    {% else %}
+                        "<span class='badge badge-success ml-2'>Activo</span>",
+                    {% endif %}
+                    {% if categoria.usuario == request.user %}
+                        "<span class='badge badge-info ml-2'>{{ categoria.usuario }}</span>",
+                        {% else %}
+                        "Otros Usuarios",
+                    {% endif %}
+                    {% if categoria.usuario == request.user %}
+                        '<a href="/administracion/product/categoria/edit/{{ categoria.id }}/" title="Editar" class="btn btn-primary"><i class="fa fa-edit"></i></a> ' +
+                        '<a href="/administracion/product/categoria/disable/{{ categoria.id }}/" title="Activar/Deshabilitar" class="btn btn-danger"><i class="fa fa-cog"></i></a> ',
+                    {% else %}
+                        "<span class='badge badge-success ml-2'>NO es posible realizar Acciones</span>",
+                    {% endif %}
+
+                ])
+            {% endfor %}
+            $('#lista_productos').DataTable({
+                "data": data
+            });
+        });
+        $("#iconos").change(function () {
+            imagen = $("#iconos option:selected").attr("img")
+            $("#icons_").attr("src", imagen)
+        }).change();
+    </script>
+    <script>
+    {% if editar %}
+            swal({
+                title: "Excelente!",
+                text: "{{editar}}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+
+        {% if crear %}
+            swal({
+                title: "Bien Hecho!",
+                text: "{{ crear }}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+    </script>
+
+{% endblock %}

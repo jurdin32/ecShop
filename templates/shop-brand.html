@@ -13,8 +13,7 @@
                                 </div>
                                 <ul>
                                     {% for categoria in categorias %}
-                                        <li><a href="#"><i
-                                                class="glyphicon {{ categoria.icono }}"></i>{{ categoria.nombre }}</a>
+                                        <li><a href="#"><span><img src="/media/{{ categoria.icono.icono }}" style="width: 20px" alt=""> </span> {{ categoria.nombre }}</a>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -52,8 +51,14 @@
                                             <div class="media">
                                                 <div class="media-left">
                                                     <a href="single-blog.html">
-                                                        <img class="media-object" src="/media/{{ producto.imagen }}"
+                                                        {% for fotosProducto in fotosProductos %}
+                                                            {% if fotosProducto.producto == producto %}
+                                                                <img class="media-object" src="/media/{{ fotosProducto.imagen }}"
                                                              style="width: 100px" alt="">
+                                                            {% endif %}
+                                                        {% endfor %}
+
+
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
@@ -74,7 +79,7 @@
                 <div class="col-md-9">
                     <div class="microsoft_brand_area">
                         <img src="/media/{{ tienda.logo }}" alt="">
-                        <p style="text-align: justify">{{ tienda.descripcion|linebreaksbr }}</p>
+                        <p style="text-align: justify">{{ tienda.descripcion|safe }}</p>
 
                     </div>
 
@@ -87,7 +92,7 @@
                                             <img src="/static/img/icon/home-feature-icon-1.png" alt="">
                                             <h4>Ubicacion</h4>
                                             <p>{{ tienda.direccion }}</p>
-                                               <p>{{ tienda.ciudad }} - {{ tienda.provincia }}</p>
+                                               <p>{% ciudad tienda.ciudad %} - {%  provincia tienda.provincia %} - {%  pais tienda.pais %} </p>
                                             <a href="{{ tienda.dir_map }}" target="_blank">Aqui el mapa</a>
                                         </div>
                                     </div>

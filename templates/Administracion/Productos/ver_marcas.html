@@ -1,0 +1,170 @@
+{% extends "Administracion/index.html" %}
+{% block contenido %}
+    <div class="page-title mb-4 d-flex align-items-center">
+        <div class="mr-auto">
+            <nav aria-label="breadcrumb" class="d-inline-block ">
+                <ol class="breadcrumb p-0">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Todas las Marcas</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Lista de Marcas</div>
+
+                    </div>
+                </div>
+                <div class="pt-3 pb-4">
+                    <div class="table-responsive">
+                        <table id="lista_productos" class="display table table-bordered table-striped" cellspacing="0"
+                               style="text-align: center">
+                            <thead style="text-align: center">
+                            <tr class="alert alert-dark">
+                                <th>Id</th>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Usuario</th>
+                                <th>Opciones</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr class="alert alert-info">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Crear de Marcas</div>
+
+                    </div>
+                    <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <div class="form-group">
+
+                                    <div class="card-body" style="text-align: center">
+                                        {% if marca.imagen %}
+                                            <img src="/media/{{ marca.imagen }}" class="" style="width: 80%" alt="">
+                                            <label for="nombre_marca" class="col-form-label">Actualmente: <a href="/media/{{ marca.imagen }}">/media/{{ marca.imagen }}</a></label>
+                                        {% endif %}
+                                    </div>
+                                <label for="nombre_categoria" class="col-form-label">Nombre de la Marca</label>
+                                <input type="text" class="form-control" name="nombre_marca" value="{{ marca.nombre }}" required id="nombre_marca">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="input-group mb-3">
+
+                                            <div>
+                                                <label for="nombre_marca" class="col-form-label">Seleccione una Imágen</label>
+                                                <input type="file" name="imagen" id="imagen" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <label class="switch size-sm">
+                                {% if marca.estado %}
+                                    <input type="checkbox" checked name="estado">
+                                    <span class="slider round success"></span>
+                                {% else %}
+                                    <input type="checkbox" name="estado">
+                                    <span class="slider round danger"></span>
+                                {% endif %}
+
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                {% if marca %}
+                                    <a href="/administracion/product/marcas/" class="btn btn-danger" style="color: white">Nuevo Registro</a>
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <!--datatables-->
+    <script src="/static/Administracion/vendor/data-tables/jquery.dataTables.min.js"></script>
+    <script src="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/sweetalert.min.js"></script>
+    <!--init ajax datatable-->
+    <script>
+        $(document).ready(function () {
+
+            var data = []
+            {% for marca in marcas %}
+                data.push([
+                    "{{ marca.id }}",
+                    '<a><img src="/media/{{ marca.imagen }}" style="width: 50px"></a>',
+                    "{{ marca.nombre }}",
+                    {% if not marca.estado %}
+                        "<span class='badge badge-danger ml-2'>Desactivado</span>",
+                    {% else %}
+                        "<span class='badge badge-success ml-2'>Activo</span>",
+                    {% endif %}
+                    {% if marca.usuario == request.user %}
+                        "<span class='badge badge-info ml-2'>{{ marca.usuario }}</span>",
+                        {% else %}
+                        "Otros Usuarios",
+                    {% endif %}
+                    {% if marca.usuario == request.user %}
+                        '<a href="/administracion/product/marca/edit/{{ marca.id }}/" title="Editar" class="btn btn-primary"><i class="fa fa-edit"></i></a> ' +
+                        '<a href="/administracion/product/marca/disable/{{ marca.id }}/" title="Activar/Deshabilitar" class="btn btn-danger"><i class="fa fa-cog"></i></a> ',
+                    {% else %}
+                        "<span class='badge badge-success ml-2'>NO es posible realizar Acciones</span>",
+                    {% endif %}
+
+                ])
+            {% endfor %}
+            $('#lista_productos').DataTable({
+                "data": data
+            });
+        });
+        $("#iconos").change(function () {
+            imagen = $("#iconos option:selected").attr("img")
+            $("#icons_").attr("src", imagen)
+        }).change();
+    </script>
+    <script>
+    {% if editar %}
+            swal({
+                title: "Excelente!",
+                text: "{{editar}}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+
+        {% if crear %}
+            swal({
+                title: "Bien Hecho!",
+                text: "{{ crear }}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+    </script>
+
+{% endblock %}

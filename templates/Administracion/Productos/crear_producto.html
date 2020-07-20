@@ -1,6 +1,96 @@
 {% extends "Administracion/index.html" %}
 <!--page title-->
 {% block contenido %}
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <div class="modal fade" id="_marcas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">Nueva Categoría</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="/administracion/product/marca/create/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nombre_marca" class="col-form-label">Nombre de la Marca</label>
+                            <input type="text" class="form-control" required name="nombre_marca" id="nombre_marca">
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="input-group mb-3">
+                                    <input class="form-control" required type="file" id="imagen" name="imagen">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="_categorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">Nueva Categoría</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="/administracion/product/categoria/create/" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nombre_categoria" class="col-form-label">Nombre de la Categoría</label>
+                            <input type="text" class="form-control" name="nombre_categoria" id="nombre_categoria">
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-10">
+                                <div class="input-group mb-3">
+                                    <label for="nombre_categoria" class="col-form-label">Seleccione el Icono</label>
+                                    <select class="form-control e" id="iconos" name="iconos" multiple
+                                            style="width: 100%">
+                                        {% for icono in iconos %}
+                                            <option img="/media/{{ icono.icono }}"
+                                                    value="{{ icono.id }}">{{ icono.nombre }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-2">
+                                <div class="input-group mb-3">
+                                    <img id="icons_" style="width: 100%" src="" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="row">
         <div class="col-xl-12 col-md-12">
             <div class="card card-shadow mb-4">
@@ -9,71 +99,85 @@
                         <div class="custom-title">Creación de Productos y/o Servicios</div>
                     </div>
                 </div>
-                <form action={% if producto %}"/administracion/product/view/{{ producto.slug }}/"{% else %}"/administracion/product/create/" {% endif %}
-                      id="registerProd"
-                      method="post">
-                    {% csrf_token %}
-                    <div class="card-body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Código Interno</span>
-                            </div>
-                            <input type="text" class="form-control"
-                                   placeholder="Este código ayudará a ubicar el producto en su base de datos"
-                                   name="codigo" value="{{ producto.codigo_interno }}"
-                                   aria-label="codigo"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-4">
-                                <div class="input-group mb-3">
-                                    <select class="form-control" id="categoria" multiple name="categoria"
-                                            style="width: 100%">
-                                        <option></option>
-                                        {% for categoria in categorias %}
-                                            <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
-                                        {% endfor %}
+                <form action={% if producto %}"/administracion/product/view/{{ producto.slug }}/"{% else %}
+                    "/administracion/product/create/" {% endif %}
+                id="registerProd"
+                method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="input-group mb-3">
+                                <select class="form-control" id="id" name="id" style="width: 100%" required>
+                                    <option></option>
+                                    {% for tienda in tiendas %}
+                                        <option value="{{ tienda.id }}">{{ tienda.nombre }}</option>
+                                    {% endfor %}
 
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-2">
-                                <button type="button" class="btn btn-primary" style="width: 100%"><i
-                                        class="fa fa-plus-circle"></i> Nueva Categoria
-                                </button>
-                            </div>
-                            <div class="col-xl-4">
-                                <div class="input-group mb-3">
-                                    <select class="form-control" id="marca" multiple name="marca" style="width: 100%">
-                                        <option></option>
-                                        {% for marca in marcas %}
-                                            <option value="{{ marca.id }}">{{ marca.nombre }}</option>
-                                        {% endfor %}
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-2">
-                                <button type="button" class="btn btn-primary" style="width: 100%"><i
-                                        class="fa fa-plus-circle"></i> Nueva Marca
-                                </button>
+                                </select>
                             </div>
                         </div>
-
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Nombre del Producto</span>
-                            </div>
-                            <input type="text" class="form-control" name="nombre"
-                                   placeholder="Escriba el nombre del Producto a ingresar"
-                                   aria-label="nombre" value="{{ producto.nombre }}"
-                                   aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Código Interno</span>
                         </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card card-shadow mb-4">
-                                    <div class="card-body">
+                        <input type="text" class="form-control"
+                               placeholder="Este código ayudará a ubicar el producto en su base de datos"
+                               name="codigo" value="{{ producto.codigo_interno }}"
+                               aria-label="codigo"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="input-group mb-3">
+                                <select class="form-control" id="categoria" name="categoria" required
+                                        style="width: 100%">
+                                    <option></option>
+                                    {% for categoria in categorias %}
+                                        <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#_categorias"
+                                    style="width: 100%"><i
+                                    class="fa fa-plus-circle"></i> Nueva Categoria
+                            </button>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="input-group mb-3">
+                                <select class="form-control" id="marca" multiple name="marca" style="width: 100%">
+                                    <option></option>
+                                    {% for marca in marcas %}
+                                        <option value="{{ marca.id }}">{{ marca.nombre }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#_marcas" style="width: 100%"><i
+                                    class="fa fa-plus-circle"></i> Nueva Marca
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Nombre del Producto</span>
+                        </div>
+                        <input type="text" class="form-control" name="nombre" required
+                               placeholder="Escriba el nombre del Producto a ingresar"
+                               aria-label="nombre" value="{{ producto.nombre }}"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-body">
                                         <textarea id="descripcion" name="descipcion">
                                             {% if producto %}
                                                 {{ producto.descripcion }}
@@ -82,12 +186,12 @@
                                             {% endif %}
 
                                         </textarea>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card card-shadow mb-4">
-                                    <div class="card-body">
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-body">
                                         <textarea id="tecnicos" name="tecnicos">
                                             {% if producto %}
                                                 {{ producto.detalles_tecnicos }}
@@ -95,14 +199,14 @@
                                                 Aqui los Detalles Técnicos
                                             {% endif %}
                                         </textarea>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card card-shadow mb-4">
-                                    <div class="card-body">
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-body">
                                         <textarea id="generales" name="generales">
                                             {% if producto %}
                                                 {{ producto.detalles_generales }}
@@ -110,45 +214,45 @@
                                                 Aqui los Detalles Generales
                                             {% endif %}
                                         </textarea>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card card-shadow" style="width: 100%">
-                                    <div class="card-body">
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card card-shadow" style="width: 100%">
+                                <div class="card-body">
                                         <textarea id="garantia"
                                                   name="garantia">
                                         {% if producto %}
-                                                {{ producto.garantia_y_mas }}
-                                            {% else %}
-                                                Garantía del Servicio y más...
-                                            {% endif %}
+                                            {{ producto.garantia_y_mas }}
+                                        {% else %}
+                                            Garantía del Servicio y más...
+                                        {% endif %}
                                         </textarea>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Precio</span>
-                            </div>
-                            <input type="text" class="form-control" id="precio"
-                                   placeholder="Aqui el Precio que tendra este producto" name="precio"
-                                   aria-label="precio" value="{{ producto.precio }}"
-                                   aria-describedby="basic-addon1">
-                        </div>
                     </div>
-                    <div class="row" style="padding-bottom: 20px; padding-right: 20px">
-                        <div class="col-xl-6">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Precio</span>
                         </div>
-                        <div class="col-xl-6" style="text-align: right">
-                            {% if producto %}
-                            <a  href="/administracion/product/create/" class="btn btn-danger">Nuevo</a>
-                            {% endif %}
+                        <input type="text" class="form-control" id="precio" required
+                               placeholder="Aqui el Precio que tendra este producto" name="precio"
+                               aria-label="precio" value="{{ producto.precio }}"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom: 20px; padding-right: 20px">
+                    <div class="col-xl-6">
+                    </div>
+                    <div class="col-xl-6" style="text-align: right">
+                        {% if producto %}
+                            <a href="/administracion/product/create/" class="btn btn-danger">Nuevo</a>
+                        {% endif %}
 
-                            <button type="submit" id="registart" class="btn btn-primary">Registrar</button>
-                        </div>
+                        <button type="submit" id="registart" class="btn btn-primary">Registrar</button>
                     </div>
+                </div>
                 </form>
             </div>
         </div>
@@ -163,18 +267,28 @@
     <script src="/static/sweetalert.min.js"></script>
     <script>
         {% if producto %}
-            $("#categoria option[value="+ {{producto.categoria_id}} +"]").attr("selected",true);
-             $("#marca option[value="+ {{producto.marca_id}} +"]").attr("selected",true);
+            $("#categoria option[value=" + {{producto.categoria_id}} +"]").attr("selected", true);
+            $("#marca option[value=" + {{producto.marca_id}} +"]").attr("selected", true);
+            $("#id option[value=" + {{producto.tienda_id}} +"]").attr("selected", true);
         {% endif %}
+        $('#iconos').select2({
+            placeholder: "Seleccione un ícono",
+            tags: true,
+        });
 
         $('#categoria').select2({
             placeholder: "Seleccione una categoría",
+            tags: true
+        });
+        $('#id').select2({
+            placeholder: "Seleccione una tienda",
             tags: true
         });
         $('#marca').select2({
             placeholder: "Seleccione una marca",
             tags: true
         });
+
         $('#descripcion').summernote({
             height: 150,                 // set editor height
             minHeight: null,             // set minimum height of editor
@@ -205,22 +319,28 @@
     </script>
     <script type="text/javascript">
         {% if editar %}
-        swal({
-          title: "Excelente!",
-          text: "{{editar}}",
-          icon: "success",
-          button: "No hay mas por hacer",
-        });
+            swal({
+                title: "Excelente!",
+                text: "{{editar}}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
         {% endif %}
 
-    {% if crear %}
-        swal({
-          title: "Bien Hecho!",
-          text: "{{ crear }}",
-          icon: "success",
-          button: "No hay mas por hacer",
-        });
+        {% if crear %}
+            swal({
+                title: "Bien Hecho!",
+                text: "{{ crear }}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
         {% endif %}
-   </script>
+    </script>
+    <script>
+        $("#iconos").change(function () {
+            imagen = $("#iconos option:selected").attr("img")
+            $("#icons_").attr("src", imagen)
+        }).change();
+    </script>
 
 {% endblock %}

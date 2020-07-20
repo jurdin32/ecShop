@@ -6,10 +6,10 @@
             <div class="card card-shadow mb-4">
                 <div class="card-header border-0">
                     <div class="custom-title-wrap bar-primary">
-                        <div class="custom-title">Creación de Productos y/o Servicios</div>
+                        <div class="custom-title">Creación de Tiendas</div>
                     </div>
                 </div>
-                <form action={% if producto %}"/administracion/tienda/view/{{ producto.slug }}/"{% else %}
+                <form action={% if tienda %}"/administracion/tienda/view/{{ tienda.hashes }}/"{% else %}
                     "/administracion/tienda/create/" {% endif %}
                 id="registerTienda"
                 method="post">
@@ -21,7 +21,7 @@
                         </div>
                         <input type="text" class="form-control"
                                placeholder="Escriba el nombre completo de su negocio"
-                               name="nombre" value="{{ producto.codigo_interno }}"
+                               name="nombre" value="{{ tienda.nombre }}"
                                aria-label="nombre"
                                aria-describedby="basic-addon1">
                     </div>
@@ -29,9 +29,9 @@
                         <div class="col-xl-12">
                             <div class="card card-shadow mb-4">
                                 <div class="card-body">
-                                            <textarea id="descripcion" name="descipcion">
-                                                {% if producto %}
-                                                    {{ producto.descripcion }}
+                                            <textarea id="descripcion" name="descripcion">
+                                                {% if tienda %}
+                                                    {{ tienda.descripcion }}
                                                 {% else %}
                                                     Aquí la Descripción
                                                 {% endif %}
@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-xl-2">
                             <div class="input-group mb-3">
-                                <select class="form-control" id="pais" multiple name="pais"
+                                <select class="form-control" id="pais" name="pais"
                                         style="width: 100%">
                                     <option></option>
                                     {% for pais in paises %}
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-xl-2">
                             <div class="input-group mb-3">
-                                <select class="form-control" id="provincia" multiple name="provincia"
+                                <select class="form-control" id="provincia" name="provincia"
                                         style="width: 100%">
                                     <option></option>
                                     {% for provincia in provincias %}
@@ -78,7 +78,7 @@
                         </div>
                         <div class="col-xl-2">
                             <div class="input-group mb-3">
-                                <select class="form-control" id="ciudad" multiple name="ciudad" style="width: 100%">
+                                <select class="form-control" id="ciudad" name="ciudad" style="width: 100%">
                                     <option></option>
                                     {% for ciudad in ciudades %}
                                         <option value="{{ ciudad.id }}">{{ ciudad.nombre }}</option>
@@ -101,7 +101,7 @@
                                 </div>
                                 <input type="text" class="form-control"
                                        placeholder="Escriba la dirección"
-                                       name="direccion" value="{{ producto.codigo_interno }}"
+                                       name="direccion" value="{{ tienda.direccion }}"
                                        aria-label="direccion"
                                        aria-describedby="basic-addon1">
                             </div>
@@ -113,7 +113,7 @@
                                 </div>
                                 <input type="text" class="form-control"
                                        placeholder="Escriba sus telefonos"
-                                       name="telefono" value="{{ producto.codigo_interno }}"
+                                       name="telefono" value="{{ tienda.telefono }}"
                                        aria-label="telefono"
                                        aria-describedby="basic-addon1">
                             </div>
@@ -125,7 +125,7 @@
                                 </div>
                                 <input type="text" class="form-control"
                                        placeholder="Escriba un email"
-                                       name="email" value="{{ producto.codigo_interno }}"
+                                       name="email" value="{{ tienda.correo }}"
                                        aria-label="email"
                                        aria-describedby="basic-addon1">
                             </div>
@@ -135,50 +135,21 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Nombre del Producto</span>
+                            <span class="input-group-text" id="basic-addon1">Código de Verificación</span>
                         </div>
-                        <input type="text" class="form-control" name="nombre"
-                               placeholder="Escriba el nombre del Producto a ingresar"
-                               aria-label="nombre" value="{{ producto.nombre }}"
+                        <input type="text" class="form-control" name="hashes" readonly
+                               placeholder="Se genera automaticamente"
+                               aria-label="hashes" value="{{ tienda.hashes }}"
                                aria-describedby="basic-addon1">
                     </div>
 
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card card-shadow mb-4">
-                                <div class="card-body">
-                                        <textarea id="generales" name="generales">
-                                            {% if producto %}
-                                                {{ producto.detalles_generales }}
-                                            {% else %}
-                                                Aquí los Detalles Generales
-                                            {% endif %}
-                                        </textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card card-shadow" style="width: 100%">
-                                <div class="card-body">
-                                        <textarea id="garantia"
-                                                  name="garantia">
-                                        {% if producto %}
-                                            {{ producto.garantia_y_mas }}
-                                        {% else %}
-                                            Garantía del Servicio y más...
-                                        {% endif %}
-                                        </textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Precio</span>
+                            <span class="input-group-text" id="basic-addon1">Dirección en el mapa</span>
                         </div>
-                        <input type="text" class="form-control" id="precio"
-                               placeholder="Aqui el Precio que tendra este producto" name="precio"
-                               aria-label="precio" value="{{ producto.precio }}"
+                        <input type="text" class="form-control" name="mapa"
+                               placeholder="Utilice Google Maps"
+                               aria-label="mapa" value="{{ tienda.dir_map }}"
                                aria-describedby="basic-addon1">
                     </div>
                 </div>
@@ -186,7 +157,7 @@
                     <div class="col-xl-6">
                     </div>
                     <div class="col-xl-6" style="text-align: right">
-                        {% if producto %}
+                        {% if tienda %}
                             <a href="/administracion/tienda/create/" class="btn btn-danger">Nuevo</a>
                         {% endif %}
 
@@ -194,6 +165,32 @@
                     </div>
                 </div>
                 </form>
+                {% if tienda %}
+                    <div class="row" style="padding: 20px">
+                        <div class="col-xl-6">
+                            <div class="input-group mb-3">
+                                <img src="/media/{{ tienda.logo }}" width="100%" alt="">
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="input-group mb-3">
+                                <form class="dropzone mb-4" id="singleFileUpload" enctype="multipart/form-data"
+                                      action="/administracion/tienda/photo/{{ tienda.hashes }}/"
+                                      style="width: 100%">
+                                    {% csrf_token %}
+                                    <div class="dz-message needsclick">
+                                        <h5>Click aquí para subir la imagen, antes de iniciar asegurese de que todas
+                                            las fotos sean del mismo tamaño, caso contrario podria generar errores
+                                            de visualización</h5>
+                                    </div>
+                                </form>
+                                <a href="" class="btn btn-success">Recargar</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                {% endif %}
             </div>
         </div>
     </div>
@@ -203,12 +200,14 @@
 {% block scripts %}
     <script src="/static/Administracion/vendor/select2/js/select2.min.js"></script>
     <script src="/static/Administracion/vendor/summernote/summernote-bs4.min.js"></script>
-    <script src="/static/Administracion/vendor/input-mask/jquery.inputmask.bundle.js"></script>
+    <script src="/static/Administracion/vendor/dropzone/dropzone.js"></script>
     <script src="/static/sweetalert.min.js"></script>
     <script>
-        {% if producto %}
-            $("#categoria option[value=" + {{producto.categoria_id}} +"]").attr("selected", true);
-            $("#marca option[value=" + {{producto.marca_id}} +"]").attr("selected", true);
+
+        {% if tienda %}
+            $("#pais option[value=" + {{ tienda.pais}} +"]").attr("selected", true);
+            $("#provincia option[value=" + {{tienda.provincia}} +"]").attr("selected", true);
+            $("#ciudad option[value=" + {{tienda.ciudad}} +"]").attr("selected", true);
         {% endif %}
 
         $('#pais').select2({
@@ -229,27 +228,6 @@
             maxHeight: null,             // set maximum height of editor
             focus: true                  // set focus to editable area after initializing summernote
         });
-        $('#tecnicos').summernote({
-            height: 150,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true                  // set focus to editable area after initializing summernote
-        });
-        $('#garantia').summernote({
-            height: 150,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true                  // set focus to editable area after initializing summernote
-        });
-        $('#generales').summernote({
-            height: 150,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true                  // set focus to editable area after initializing summernote
-        });
-        $("#precio").inputmask('$ 999.999.999,99', {
-            numericInput: true
-        }); //123456  =>  $ ___.__1.234,56
     </script>
     <script type="text/javascript">
         {% if editar %}

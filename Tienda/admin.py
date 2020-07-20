@@ -13,12 +13,12 @@ admin.site.register(Tiendas,AdminTiendas)
 
 class AdminCategorias(admin.ModelAdmin):
     list_display_links = Attr(Categorias)
-    list_display = Attr(Categorias)
+    list_display = Attr(Categorias)+["miniatura"]
 admin.site.register(Categorias,AdminCategorias)
 
 class AdminMarcas(admin.ModelAdmin):
     list_display_links = Attr(Marcas)
-    list_display = Attr(Marcas)
+    list_display = Attr(Marcas)+["miniatura"]
 admin.site.register(Marcas,AdminMarcas)
 
 class AdminAdds(admin.ModelAdmin):

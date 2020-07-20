@@ -1,0 +1,92 @@
+{% extends "Administracion/index.html" %}
+{% block contenido %}
+    {% load productostags %}
+    <div class="page-title mb-4 d-flex align-items-center">
+        <div class="mr-auto">
+            <nav aria-label="breadcrumb" class="d-inline-block ">
+                <ol class="breadcrumb p-0">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Lista de Tiendas</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Lista de Tiendas</div>
+
+                    </div>
+                </div>
+                <div class="pt-3 pb-4">
+                    <div class="table-responsive">
+                        <table id="lista_productos" class="display table table-bordered table-striped" cellspacing="0" style="text-align: center">
+                            <thead style="text-align: center">
+                            <tr class="alert alert-dark">
+                                <th>No.</th>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Pais - Provincia - Ciudad</th>
+                                <th>Dirección</th>
+                                <th>Telefono</th>
+                                <th>Email</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr class="alert alert-info">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+<!--datatables-->
+    <script src="/static/Administracion/vendor/data-tables/jquery.dataTables.min.js"></script>
+    <script src="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.js"></script>
+    <!--init ajax datatable-->
+    <script>
+    $(document).ready(function() {
+        var data=[]
+
+        {%  for tienda in tiendas %}
+            data.push([
+                "{{ forloop.counter }}",
+                "{{ tienda.hashes|truncatechars:32 }}",
+                "{{ tienda.nombre }}",
+                "{% pais tienda.pais %} - {% provincia tienda.provincia %} -{% ciudad tienda.ciudad %} ",
+                "{{tienda.direccion}}",
+                "{{ tienda.telefono }}",
+                "{{ tienda.correo }}",
+                {% if tienda.estado %}
+                    '<label for="" class="btn btn-success">Activo</label>',
+                {% else %}
+                    '<label for="" class="btn btn-danger">Activo</label>',
+                {% endif %}
+                '<a href="/administracion/tienda/view/{{ tienda.hashes }}/" title="Editar" class="btn btn-primary"><i class="fa fa-edit"></i></a> ' +
+                '<a href="/administracion/tienda/disable/{{ tienda.id }}/" title="Deshabilitar" class="btn btn-danger"><i class="fa fa-cog"></i></a> '
+            ])
+        {% endfor %}
+        $('#lista_productos').DataTable( {
+        "data": data
+        } );
+    } );
+    </script>
+{% endblock %}
