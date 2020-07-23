@@ -11,6 +11,8 @@ class AdminTiendas(admin.ModelAdmin):
     readonly_fields = ["hashes"]
 admin.site.register(Tiendas,AdminTiendas)
 
+
+
 class AdminCategorias(admin.ModelAdmin):
     list_display_links = Attr(Categorias)
     list_display = Attr(Categorias)+["miniatura"]
