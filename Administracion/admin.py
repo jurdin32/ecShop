@@ -2,7 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 from Administracion.models import Pais, Provincia, Ciudad, Iconos
-from Tienda.models import Categorias
 from ecShop.snippers import Attr
 
 class InLineProvincia(admin.StackedInline):
@@ -26,12 +25,7 @@ class AdminProvincia(admin.ModelAdmin):
 admin.site.register(Provincia, AdminProvincia)
 
 
-class CategoriaInline(admin.StackedInline):
-    model = Categorias
-    extra = 2
-
 class AdminIcono(admin.ModelAdmin):
     list_display_links = Attr(Iconos)
     list_display = Attr(Iconos)+["miniatura"]
-    inlines = [CategoriaInline]
 admin.site.register(Iconos, AdminIcono)
