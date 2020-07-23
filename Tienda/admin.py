@@ -40,3 +40,8 @@ class AdminKardex(admin.ModelAdmin):
     list_display = Attr(Kardex)
     list_display_links = Attr(Kardex)
 admin.site.register(Kardex,AdminKardex)
+
+class AdminTiendaCategoria(admin.ModelAdmin):
+    list_display = Attr(TiendaCategoria)+["id_Categoria"]
+    list_display_links = Attr(TiendaCategoria)
+admin.site.register(TiendaCategoria, AdminTiendaCategoria)

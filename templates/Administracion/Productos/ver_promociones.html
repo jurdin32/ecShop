@@ -1,0 +1,196 @@
+{% extends "Administracion/index.html" %}
+{% block contenido %}
+    <div class="modal fade" id="mPromo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Esta Acción afectará a: </label>
+                            <input type="text" class="form-control" id="accion">
+                            <input type="text" class="form-control" id="todos">
+                            <input type="text" class="form-control" id="categoria">
+                            <input type="text" class="form-control" id="prodcuto">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Mensaje:</label>
+                            <textarea disabled rows="4" style="resize: none" class="form-control" id="message">Se procederá a aplicar la promoción generada por: {{ add.tienda.nombre }}, desde la fecha de inicio {{ add.fecha_inicio }} y expira el {{ add.fecha_limite }}.</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-title mb-4 d-flex align-items-center">
+        <div class="mr-auto">
+            <h4 class="weight500 d-inline-block pr-3 mr-3 border-right alert alert-info">{{ add.descuento }}%
+                | {{ add.tienda.nombre }} - Promoción aplica desde: {{ add.fecha_inicio }}
+                hasta: {{ add.fecha_limite }}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card card-shadow mb-4 ">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-danger">
+                        <div class="custom-title">
+                            Todas las Categorías
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-today" role="tabpanel"
+                             aria-labelledby="pills-today-tab">
+                            <ul class="list-unstyled mb-0 list-widget">
+                                {% for categoria in categorias %}
+                                    <li>
+                                        <div class="media mb-4">
+
+                                            <img style="width: 20px" class="mr-3 rounded-circle"
+                                                 src="/media/{{ categoria.icono }}"
+                                                 alt=" ">
+                                            <div class="media-body list-widget-border">
+                                                <a href="/administracion/product/promo/put/{{ add.id }}/{{ categoria.id }}/">
+                                                    <div class="float-left">
+                                                        <h6 class="text-uppercase mb-0">{{ categoria.nombre }}</h6>
+                                                        <span class="text-muted">Lista para seleccionar</span>
+                                                    </div>
+                                                    <div class=" float-right">
+                                                        <strong><i
+                                                                class="fa fa-chevron-right text-success pl-2"></i></strong>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-danger">
+                        <div class="custom-title">Productos de la Categoría</div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+
+                        {% if categoria %}
+                            <div style="padding: 20px">
+                            <input type="checkbox" name="iCheck" id="iCheck" class="iCheck-flat-red">
+                            <label class="control-label" style="font-weight: bold"> Seleccionar toda la
+                                categoria {{ categoria.nombre }}</label>
+                            </div>
+                        {% endif %}
+                    <form action="" method="post">
+                    <table id="lista_productos" class="display table table-bordered table-striped" cellspacing="0"
+                           style="text-align: center">
+                        <thead>
+                        <th>Selec.</th>
+                        <th>Código</th>
+                        <th>Imágen</th>
+                        <th>Marca</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Estado</th>
+
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/static/Administracion/vendor/data-tables/jquery.dataTables.min.js"></script>
+    <script src="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/Administracion/vendor/icheck/skins/icheck.min.js"></script>
+    <script>
+            var data = []
+
+            {%  for producto in productos %}
+                var imagen = ""
+                {% for foto in fotos %}
+                    {% if foto.producto == producto %}
+                        imagen = '<a href="/administracion/product/view/{{ producto.slug }}/"><img src="/media/{{ foto.imagen }}" style="width: 100px"></a>'
+                    {% endif %}
+                {% endfor %}
+                if (imagen) {
+
+                } else {
+                    imagen = '<a href="/administracion/product/photo/{{ producto.slug }}" class="btn btn-danger form-pill">Sin Imagen</a>'
+                }
+
+
+                data.push([
+                    '<input type="checkbox" name="{{ producto.id }}" class="xItem" {% if producto.adds %} checked {% endif %} >',
+                    "{{ producto.codigo_interno }}",
+                    imagen,
+                    "{{ producto.marca.nombre }}",
+                    "{{ producto.nombre }}",
+                    "{{ producto.precio }}",
+                    {% if not producto.estado %}
+                        "<span class='badge badge-danger ml-2'>Desactivado</span>",
+                    {% else %}
+                        "<span class='badge badge-success ml-2'>Activo</span>",
+                    {% endif %}
+                ])
+            {% endfor %}
+            $('#lista_productos').DataTable({
+                "data": data
+            });
+    </script>
+    <script>
+    {% comment %}$('.iCheck-flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-red',
+        radioClass: 'iradio_flat-red',
+        increaseArea: '20%' // optional
+    });{% endcomment %}
+
+    $("#iCheck").click(function(){
+        if ($("#iCheck").is(":checked")){
+            $( ".xItem" ).prop( "checked", true );
+        }
+        else{
+            $( ".xItem" ).prop( "checked", false );
+        }
+
+
+    })
+    </script>
+{% endblock %}
+

@@ -29,18 +29,36 @@ class Tiendas(models.Model):
     def __str__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name_plural="Tiendas"
+        verbose_name="Tienda"
+
 
 class Categorias(models.Model):
-    usuario=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     nombre=models.CharField(max_length=200)
     icono = models.ForeignKey(Iconos, on_delete=models.CASCADE, null=True, blank=True)
-    estado=models.BooleanField(default=True)
 
     def miniatura(self):
         return mark_safe('<img src="/media/%s" style="width: 40px" alt="">' % self.icono.icono)
 
     def __str__(self):
         return self.nombre
+
+    class Meta:
+        verbose_name="Categoría"
+        verbose_name_plural="Categorías"
+
+class TiendaCategoria(models.Model):
+    tienda = models.ForeignKey(Tiendas, on_delete=models.CASCADE, null=True, blank=True)
+    categoria= models.ForeignKey(Categorias,on_delete=models.CASCADE,null=True,blank=True)
+    estado = models.BooleanField(default=True)
+
+    def id_Categoria(self):
+        return self.categoria.id
+
+    class Meta:
+        verbose_name_plural="Relaciones Tiendas y Categorias"
+        verbose_name="Relacion Tienda y Categoria"
 
 class Marcas(models.Model):
     usuario=models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE)
@@ -54,10 +72,15 @@ class Marcas(models.Model):
     def __str__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name="Marca"
+        verbose_name_plural="Marcas"
+
 class Adds(models.Model):
     fecha_inicio=models.DateTimeField(null=True,blank=True)
     fecha_limite=models.DateTimeField(null=True,blank=True)
     tienda=models.ForeignKey(Tiendas,on_delete=models.CASCADE)
+    usuario=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     imagen=models.ImageField(upload_to="Tienda/Adds")
     descuento=models.DecimalField(decimal_places=2,max_digits=9,default=0)
     estado=models.BooleanField(default=False)
@@ -70,6 +93,10 @@ class Adds(models.Model):
 
     def __str__(self):
         return "%s | %s %s"%(self.fecha_inicio,self.fecha_limite,self.descuento)
+
+    class Meta:
+        verbose_name="Promoción"
+        verbose_name_plural="Promociones"
 
 class Productos(models.Model):
     tienda=models.ForeignKey(Tiendas,on_delete=models.CASCADE,null=True,blank=True)
@@ -84,12 +111,15 @@ class Productos(models.Model):
     garantia_y_mas=models.TextField(null=True,blank=True)
     adds=models.ForeignKey(Adds,on_delete=models.CASCADE,null=True,blank=True)
     puntuacion=models.DecimalField(max_digits=9,decimal_places=2,default=0)
-    imagen=models.ImageField(upload_to="Tienda/Productos",null=True,blank=True)
     slug=models.CharField(max_length=200,null=True,blank=True)
     estado=models.BooleanField(default=True)
 
     def miniatura(self):
-        return mark_safe("<img src='/media/%s' style='width: 100px'>"%self.imagen)
+        imagen=ProductoFotos.objects.get(producto_id=self.id,principal=True)
+        if imagen:
+            return mark_safe("<img src='/media/%s' style='width: 100px'>"%imagen.imagen)
+        else:
+            return "Sin Imágen."
 
     def clean(self):
         self.slug=hashlib.sha256(str.encode(str(str.zfill(str(self.pk),10)))).hexdigest()
@@ -98,10 +128,18 @@ class Productos(models.Model):
     def __str__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name="Producto"
+        verbose_name_plural="Productos"
+
 class ProductoFotos(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
     imagen=models.ImageField(upload_to="Tienda/Productos")
     principal=models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name="Fotos de Producto"
+        verbose_name_plural = "Fotos de Producto"
 
 class Kardex(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
@@ -109,6 +147,10 @@ class Kardex(models.Model):
     fecha=models.DateField(null=True,blank=True)
     cantidad=models.IntegerField(default=0)
     detalle=models.TextField()
+
+    class Meta:
+        verbose_name="Kardex"
+        verbose_name_plural="Kardex"
 
 
 

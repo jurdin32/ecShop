@@ -3,94 +3,6 @@
 {% block contenido %}
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <div class="modal fade" id="_marcas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel5">Nueva Categoría</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form action="/administracion/product/marca/create/" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="nombre_marca" class="col-form-label">Nombre de la Marca</label>
-                            <input type="text" class="form-control" required name="nombre_marca" id="nombre_marca">
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="input-group mb-3">
-                                    <input class="form-control" required type="file" id="imagen" name="imagen">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Registrar</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="_categorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel5">Nueva Categoría</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form action="/administracion/product/categoria/create/" method="post">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="nombre_categoria" class="col-form-label">Nombre de la Categoría</label>
-                            <input type="text" class="form-control" name="nombre_categoria" id="nombre_categoria">
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-10">
-                                <div class="input-group mb-3">
-                                    <label for="nombre_categoria" class="col-form-label">Seleccione el Icono</label>
-                                    <select class="form-control e" id="iconos" name="iconos" multiple
-                                            style="width: 100%">
-                                        {% for icono in iconos %}
-                                            <option img="/media/{{ icono.icono }}"
-                                                    value="{{ icono.id }}">{{ icono.nombre }}</option>
-                                        {% endfor %}
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-2">
-                                <div class="input-group mb-3">
-                                    <img id="icons_" style="width: 100%" src="" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Registrar</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-
-
     <div class="row">
         <div class="col-xl-12 col-md-12">
             <div class="card card-shadow mb-4">
@@ -129,7 +41,7 @@
                                aria-describedby="basic-addon1">
                     </div>
                     <div class="row">
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="input-group mb-3">
                                 <select class="form-control" id="categoria" name="categoria" required
                                         style="width: 100%">
@@ -140,15 +52,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xl-2">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#_categorias"
-                                    style="width: 100%"><i
-                                    class="fa fa-plus-circle"></i> Nueva Categoria
-                            </button>
-                        </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="input-group mb-3">
-                                <select class="form-control" id="marca" multiple name="marca" style="width: 100%">
+                                <select class="form-control" id="marca" name="marca" style="width: 100%">
                                     <option></option>
                                     {% for marca in marcas %}
                                         <option value="{{ marca.id }}">{{ marca.nombre }}</option>
@@ -156,11 +62,6 @@
 
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#_marcas" style="width: 100%"><i
-                                    class="fa fa-plus-circle"></i> Nueva Marca
-                            </button>
                         </div>
                     </div>
 

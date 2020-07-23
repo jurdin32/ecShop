@@ -20,4 +20,8 @@ Administracion = [
     path('product/marcas/', ver_Marcas),
     path('product/marca/edit/<int:id>/', editar_Marcas),
     path('product/marca/disable/<int:id>/', deshabilitarMarcas),
+    path('product/promo/', promociones),
+    path('product/promo/edit/<int:id>/', editar_promocion),
+    path('product/promo/put/<int:id>/', aplicar_promocion),
+    path('product/promo/put/<int:id>/<int:categoria>/', aplicar_categoria),
 ]

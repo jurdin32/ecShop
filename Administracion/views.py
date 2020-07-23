@@ -1,4 +1,5 @@
 import hashlib
+from datetime import datetime
 
 from django.contrib import auth
 from django.contrib.auth import authenticate
@@ -8,7 +9,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from Administracion.models import Iconos
-from Tienda.models import Categorias, Tiendas, Marcas, Productos, ProductoFotos
+from Tienda.models import Categorias, Tiendas, Marcas, Productos, ProductoFotos, Adds, TiendaCategoria
+
 
 def log_In(request):
     if request.POST:
@@ -185,11 +187,19 @@ def crearMarca(request):
 def ver_Categoria(request):
     crear = ""
     if request.POST:
-        Categorias(nombre=request.POST["nombre_categoria"], usuario=request.user,
-                   icono_id=request.POST["iconos"]).save()
+        print(request.POST)
+        try:
+            int(request.POST["nombre_categoria"])
+            TiendaCategoria(tienda_id=request.POST["tienda"], categoria_id=request.POST["nombre_categoria"], estado=True).save()
+        except:
+            categoria=Categorias(nombre=request.POST["nombre_categoria"],icono_id=request.POST["iconos"])
+            categoria.save()
+            TiendaCategoria(tienda_id=request.POST["tienda"],categoria_id=categoria.id,estado=True).save()
         crear = "La categoría se ha creado..!"
     contexto={
         "categorias":Categorias.objects.all().order_by("nombre"),
+        "tiendas":Tiendas.objects.filter(usuario=request.user),
+        "tcategorias":TiendaCategoria.objects.filter(tienda__usuario=request.user).order_by("categoria__nombre"),
         "iconos":Iconos.objects.all().order_by("nombre"),
         "crear": crear,
     }
@@ -198,25 +208,30 @@ def ver_Categoria(request):
 @login_required(login_url="/administracion/log_in/")
 def editar_Categoria(request,id):
     editar = ""
-    cat = Categorias.objects.get(id=id)
+    cat = TiendaCategoria.objects.get(id=id)
     if request.POST:
-
-        cat.nombre=request.POST["nombre_categoria"]
-        cat.usuario=request.user
-        cat.icono_id=request.POST["iconos"]
+        print(request.POST)
+        cat.tienda_id=request.POST['tienda']
+        cat.categoria_id=request.POST["nombre_categoria"]
         cat.save()
+        catt=Categorias.objects.get(id=cat.categoria_id)
+        catt.nombre=request.POST['nombre_']
+        catt.icono_id=request.POST['iconos']
+        catt.save()
         editar = "El registro se ha actualizado..!"
     contexto={
         "categorias":Categorias.objects.all().order_by("nombre"),
         "iconos":Iconos.objects.all().order_by("nombre"),
         "editar": editar,
         "categoria":cat,
+        "tiendas": Tiendas.objects.filter(usuario=request.user),
+        "tcategorias": TiendaCategoria.objects.filter(tienda__usuario=request.user).order_by("categoria__nombre"),
     }
     return render(request, "Administracion/Productos/ver_categorias.html",contexto)
 
 @login_required(login_url="/administracion/log_in/")
 def deshabilitarCategorias(request,id):
-    cat=Categorias.objects.get(id=id)
+    cat=TiendaCategoria.objects.get(id=id)
     if cat.estado:
         cat.estado=False
     else:
@@ -273,7 +288,99 @@ def deshabilitarMarcas(request,id):
 
 @login_required(login_url="/administracion/log_in/")
 def promociones(request):
+    estado=""
+    crear=""
+    print(Adds.objects.filter(usuario=request.user))
+    if request.POST:
+        fecha1 = datetime.strptime(request.POST["finicio"],'%d/%m/%Y %H:%M')
+        fecha2 = datetime.strptime(request.POST["ffin"],'%d/%m/%Y %H:%M')
+        print(request.POST)
+        if "estado" in request.POST:
+            estado=True
+        else:
+            estado=False
+        Adds(fecha_inicio=fecha1,fecha_limite=fecha2,tienda_id=request.POST["tienda"],
+                descuento=request.POST["descuento"].replace("_","").replace("%",""),
+                estado=estado,usuario=request.user).save()
+        crear="La promoción se ha creado exitosamente..!"
     contexto={
-
+        "adds":Adds.objects.filter(usuario=request.user),
+        "tiendas":Tiendas.objects.filter(usuario=request.user),
+        "crear":crear
     }
     return render(request, "Administracion/Productos/promociones.html", contexto)
+
+def editar_promocion(request,id):
+    estado = ""
+    editar = ""
+    add=Adds.objects.get(id=id)
+    if request.POST:
+        print(request.POST)
+        fecha1 = datetime.strptime(request.POST["finicio"], '%d/%m/%Y %H:%M')
+        fecha2 = datetime.strptime(request.POST["ffin"], '%d/%m/%Y %H:%M')
+        print(request.POST)
+        if "estado" in request.POST:
+            estado = True
+        else:
+            estado = False
+        add.fecha_inicio=fecha1
+        add.fecha_limite=fecha2
+        add.tienda_id=request.POST["tienda"]
+        add.descuento=request.POST["descuento"].replace("_", "").replace("%", "")
+        add.estado=estado
+        add.usuario=request.user
+        add.save()
+        editar="El registro fué Actualizado..!"
+    contexto={
+        "editar":editar,
+        "add":Adds.objects.get(id=id),
+        "tiendas": Tiendas.objects.filter(usuario=request.user),
+        "adds": Adds.objects.filter(usuario=request.user),
+    }
+    return render(request, "Administracion/Productos/promociones.html", contexto)
+
+def aplicar_promocion(request,id):
+    promocion=Adds.objects.get(id=id)
+    contexto={
+        "add":promocion,
+        "categorias":obtenerCategoriaProductos(promocion.tienda),
+        "productos":Productos.objects.filter(tienda=promocion.tienda),
+        "fotos":ProductoFotos.objects.filter(producto__tienda=promocion.tienda, principal=True),
+    }
+    print(Productos.objects.filter(tienda=promocion.tienda))
+    obtenerCategoriaProductos(promocion.tienda)
+    return render(request, "Administracion/Productos/ver_promociones.html",contexto)
+
+def aplicar_categoria(request,id,categoria):
+    promocion=Adds.objects.get(id=id)
+    if request.POST:
+        for p in Productos.objects.filter(categoria_id=categoria):
+            p.adds=None
+            p.save()
+        for i in request.POST:
+            try:
+                prod=Productos.objects.get(id=int(str(i)))
+                prod.adds_id=id
+                prod.save()
+            except:
+                pass
+
+    contexto={
+        "add":promocion,
+        "categorias":obtenerCategoriaProductos(promocion.tienda),
+        "productos":Productos.objects.filter(tienda=promocion.tienda,categoria_id=categoria),
+        "fotos":ProductoFotos.objects.filter(producto__tienda=promocion.tienda, principal=True),
+        "categoria":Categorias.objects.get(id=categoria)
+    }
+    obtenerCategoriaProductos(promocion.tienda)
+    return render(request, "Administracion/Productos/ver_promociones.html",contexto)
+
+
+def obtenerCategoriaProductos(tienda):
+    lista=[]
+    lista2=[]
+    for p in Productos.objects.filter(tienda=tienda):
+        if not p.categoria.nombre in lista:
+            lista.append(p.categoria.nombre)
+            lista2.append({"id":p.categoria.id,"nombre":p.categoria.nombre,"icono":p.categoria.icono.icono })
+    return lista2

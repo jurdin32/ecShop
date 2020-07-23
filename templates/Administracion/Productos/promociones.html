@@ -1,21 +1,115 @@
 {% extends "Administracion/index.html" %}
 {% block contenido %}
+    <link href="/static/Administracion/vendor/datetime-picker/css/datetimepicker.css" rel="stylesheet">
+    <link href="/static/Administracion/vendor/timepicker/css/timepicker.css" rel="stylesheet">
     <div class="page-title mb-4 d-flex align-items-center">
         <div class="mr-auto">
             <nav aria-label="breadcrumb" class="d-inline-block ">
                 <ol class="breadcrumb p-0">
                     <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Todas las Marcas</a></li>
+                    <li class="breadcrumb-item"><a href="#">Todas las Promociones</a></li>
                 </ol>
             </nav>
         </div>
     </div>
     <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <div class="card card-shadow mb-4">
                 <div class="card-header border-0">
                     <div class="custom-title-wrap bar-primary">
-                        <div class="custom-title">Lista de Marcas</div>
+                        <div class="custom-title">Crear Promoción</div>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">Fecha de Inicio</span>
+                                            </div>
+                                            <input type="text" class="form_datetime form-control" name="finicio" value="{{ add.fecha_inicio|date:"d/m/Y H:m" }}"
+                                                   aria-describedby="basic-addon3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"
+                                                      id="basic-addon3">Fecha de Expiración</span>
+                                            </div>
+                                            <input type="text" class="form_datetime form-control" name="ffin" value="{{ add.fecha_limite|date:"d/m/Y H:m" }}"
+                                                   aria-describedby="basic-addon3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <select name="tienda" id="tienda" style="width: 100%">
+                                        <option></option>
+                                        {% for tienda in tiendas %}
+                                            <option value="{{ tienda.id }}">{{ tienda.nombre }}</option>
+                                        {% endfor %}
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"
+                                                      id="basic-addon3">Porcentaje de Descuento</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="descuento" name="descuento" value="{{ add.descuento|floatformat:"0" }}"
+                                                   aria-describedby="basic-addon3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <label class="switch size-sm">
+                                                {% if add.estado %}
+                                                    <input type="checkbox" name="estado" checked>
+                                                    <span class="slider round success"></span>
+                                                {% else %}
+                                                    <input type="checkbox" name="estado">
+                                                    <span class="slider round danger"></span>
+                                                {% endif %}
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"> </i> Registrar</button>
+
+                                            {% if add %}
+                                                <a href="/administracion/product/promo/" type="submit" class="btn btn-danger" style="color: white; margin-left: 10px"><i class="fa fa-plus"> </i> Crear Nueva Promoción</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Todas las Promociones</div>
 
                     </div>
                 </div>
@@ -26,15 +120,19 @@
                             <thead style="text-align: center">
                             <tr class="alert alert-dark">
                                 <th>Id</th>
-                                <th>Imagen</th>
-                                <th>Nombre</th>
-                                <th>Estado</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Expiración</th>
+                                <th>Tienda</th>
+                                <th>% Descuento</th>
                                 <th>Usuario</th>
+                                <th>Estado</th>
                                 <th>Opciones</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr class="alert alert-info">
+                                <th></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -48,90 +146,43 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4">
-            <div class="card card-shadow mb-4">
-                <div class="card-header border-0">
-                    <div class="custom-title-wrap bar-primary">
-                        <div class="custom-title">Crear de Marcas</div>
-
-                    </div>
-                    <form action="" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="modal-body">
-                                <div class="form-group">
-
-                                    <div class="card-body" style="text-align: center">
-                                        {% if marca.imagen %}
-                                            <img src="/media/{{ marca.imagen }}" class="" style="width: 80%" alt="">
-                                            <label for="nombre_marca" class="col-form-label">Actualmente: <a href="/media/{{ marca.imagen }}">/media/{{ marca.imagen }}</a></label>
-                                        {% endif %}
-                                    </div>
-                                <label for="nombre_categoria" class="col-form-label">Nombre de la Marca</label>
-                                <input type="text" class="form-control" name="nombre_marca" value="{{ marca.nombre }}" required id="nombre_marca">
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <div class="input-group mb-3">
-
-                                            <div>
-                                                <label for="nombre_marca" class="col-form-label">Seleccione una Imágen</label>
-                                                <input type="file" name="imagen" id="imagen" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <label class="switch size-sm">
-                                {% if marca.estado %}
-                                    <input type="checkbox" checked name="estado">
-                                    <span class="slider round success"></span>
-                                {% else %}
-                                    <input type="checkbox" name="estado">
-                                    <span class="slider round danger"></span>
-                                {% endif %}
-
-                                </label>
-                            </div>
-                            <div class="modal-footer">
-                                {% if marca %}
-                                    <a href="/administracion/product/marcas/" class="btn btn-danger" style="color: white">Nuevo Registro</a>
-                                {% endif %}
-                                <button type="submit" class="btn btn-primary">Registrar</button>
-
-                            </div>
-                        </form>
-                </div>
-            </div>
-        </div>
     </div>
 {% endblock %}
 {% block scripts %}
     <!--datatables-->
     <script src="/static/Administracion/vendor/data-tables/jquery.dataTables.min.js"></script>
     <script src="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/Administracion/vendor/input-mask/jquery.inputmask.bundle.js"></script>
     <script src="/static/sweetalert.min.js"></script>
     <!--init ajax datatable-->
     <script>
+        {% if add %}
+            $("#tienda option[value=" + {{add.tienda_id}} +"]").attr("selected", true);
+        {% endif %}
         $(document).ready(function () {
 
             var data = []
-            {% for marca in marcas %}
+            {% for add in adds %}
                 data.push([
-                    "{{ marca.id }}",
-                    '<a><img src="/media/{{ marca.imagen }}" style="width: 50px"></a>',
-                    "{{ marca.nombre }}",
-                    {% if not marca.estado %}
+                    "{{ add.id }}",
+                    "{{ add.fecha_inicio }}",
+                    "{{ add.fecha_limite }}",
+                    "{{ add.tienda.nombre }}",
+                    "{{ add.descuento }}%",
+                    {% if add.usuario == request.user %}
+                        "<span class='badge badge-info ml-2'>{{ add.usuario }}</span>",
+                    {% else %}
+                        "Otros Usuarios",
+                    {% endif %}
+                    {% if not add.estado %}
                         "<span class='badge badge-danger ml-2'>Desactivado</span>",
                     {% else %}
                         "<span class='badge badge-success ml-2'>Activo</span>",
                     {% endif %}
-                    {% if marca.usuario == request.user %}
-                        "<span class='badge badge-info ml-2'>{{ marca.usuario }}</span>",
-                        {% else %}
-                        "Otros Usuarios",
-                    {% endif %}
-                    {% if marca.usuario == request.user %}
-                        '<a href="/administracion/product/marca/edit/{{ marca.id }}/" title="Editar" class="btn btn-primary"><i class="fa fa-edit"></i></a> ' +
-                        '<a href="/administracion/product/marca/disable/{{ marca.id }}/" title="Activar/Deshabilitar" class="btn btn-danger"><i class="fa fa-cog"></i></a> ',
+
+                    {% if add.usuario == request.user %}
+                        '<a href="/administracion/product/promo/edit/{{ add.id }}/" title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i></a> ' +
+                        '<a href="/administracion/product/promo/put/{{ add.id }}/" title="Organizar productos para establecer descuentos" class="btn btn-success"><i class="fa fa-shopping-cart"></i></a> ',
                     {% else %}
                         "<span class='badge badge-success ml-2'>NO es posible realizar Acciones</span>",
                     {% endif %}
@@ -148,7 +199,7 @@
         }).change();
     </script>
     <script>
-    {% if editar %}
+        {% if editar %}
             swal({
                 title: "Excelente!",
                 text: "{{editar}}",
@@ -166,5 +217,30 @@
             });
         {% endif %}
     </script>
+    <script src="/static/Administracion/vendor/datetime-picker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/static/Administracion/vendor/timepicker/js/bootstrap-timepicker.js"></script>
+{#    <script src="/static/Administracion/vendor/js-init/pickers/init-datetime-picker.js"></script>#}
+    <script src="/static/Administracion/vendor/select2/js/select2.min.js"></script>
+    <script>
+        $('#tienda').select2({
+            placeholder: "Seleccione una Tienda",
+            tags: true,
+        });
+        $("#descuento").inputmask('999 %', {
+            numericInput: true
+        });
 
+        $(".form_datetime").datetimepicker({
+        format: 'dd/mm/yyyy hh:ii',
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left",
+        templates: {
+            leftArrow: '<i class="fa fa-angle-left"></i>',
+            rightArrow: '<i class="fa fa-angle-right"></i>'
+        }
+
+    });
+
+    </script>
 {% endblock %}
