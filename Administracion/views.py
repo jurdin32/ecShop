@@ -347,8 +347,6 @@ def aplicar_promocion(request,id):
         "productos":Productos.objects.filter(tienda=promocion.tienda),
         "fotos":ProductoFotos.objects.filter(producto__tienda=promocion.tienda, principal=True),
     }
-    print(Productos.objects.filter(tienda=promocion.tienda))
-    obtenerCategoriaProductos(promocion.tienda)
     return render(request, "Administracion/Productos/ver_promociones.html",contexto)
 
 def aplicar_categoria(request,id,categoria):
@@ -382,5 +380,5 @@ def obtenerCategoriaProductos(tienda):
     for p in Productos.objects.filter(tienda=tienda):
         if not p.categoria.nombre in lista:
             lista.append(p.categoria.nombre)
-            lista2.append({"id":p.categoria.id,"nombre":p.categoria.nombre,"icono":p.categoria.icono.icono })
+            lista2.append({"id":p.categoria.id,"nombre":p.categoria.nombre,"icono":p.categoria.icono })
     return lista2

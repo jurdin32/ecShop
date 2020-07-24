@@ -1,3 +1,4 @@
 /venv/
 /.idea/
 /ecShop/settings.py/
+/db.sqlite3/

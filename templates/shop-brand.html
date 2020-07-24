@@ -152,7 +152,7 @@
                                                     </a>
                                                     <div class="men_item_content">
                                                         <a href="product-detail.html"><h3>{{ producto.nombre }}</h3></a>
-                                                        {% if producto.adds %}
+                                                        {% if producto.adds and producto.adds.estado %}
                                                             <h4>US
                                                                 <del>${{ producto.precio }}</del>
                                                             </h4><br>

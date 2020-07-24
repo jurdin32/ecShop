@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 
 
@@ -16,6 +18,14 @@ def tiendas(request,slug):
     tiendas=Tiendas.objects.all()
     tienda=tiendas.get(hashes=slug)
     productos=Productos.objects.filter(tienda_id=tienda.id)
+    for ads in Adds.objects.filter(tienda_id=tienda.id):
+        print(datetime.datetime.now() > ads.fecha_limite)
+        if datetime.datetime.now() > ads.fecha_limite:
+            ads.estado=False
+            ads.save()
+
+
+
     contexto={
         "tiendas":tiendas,
         "tienda":tienda,
