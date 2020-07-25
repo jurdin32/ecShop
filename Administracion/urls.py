@@ -24,4 +24,6 @@ Administracion = [
     path('product/promo/edit/<int:id>/', editar_promocion),
     path('product/promo/put/<int:id>/', aplicar_promocion),
     path('product/promo/put/<int:id>/<int:categoria>/', aplicar_categoria),
+    path('product/stock/', stockProductos),
+    path('product/stock/<int:tienda_id>/<int:categoria_id>/', return_tienda_categoria_productos),
 ]

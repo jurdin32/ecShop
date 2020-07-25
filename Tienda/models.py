@@ -144,7 +144,7 @@ class ProductoFotos(models.Model):
 class Kardex(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
     tipo=models.CharField(max_length=2,help_text="Puede ser I o E")
-    fecha=models.DateField(null=True,blank=True)
+    fecha=models.DateField(auto_now_add=True,null=True,blank=True)
     cantidad=models.IntegerField(default=0)
     detalle=models.TextField()
 

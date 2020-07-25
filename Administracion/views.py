@@ -1,15 +1,17 @@
 import hashlib
+import json
 from datetime import datetime
 
 from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from Administracion.models import Iconos
-from Tienda.models import Categorias, Tiendas, Marcas, Productos, ProductoFotos, Adds, TiendaCategoria
+from Tienda.models import Categorias, Tiendas, Marcas, Productos, ProductoFotos, Adds, TiendaCategoria, Kardex
 
 
 def log_In(request):
@@ -382,3 +384,53 @@ def obtenerCategoriaProductos(tienda):
             lista.append(p.categoria.nombre)
             lista2.append({"id":p.categoria.id,"nombre":p.categoria.nombre,"icono":p.categoria.icono })
     return lista2
+
+def cantKardex(id_producto):
+    ing=0
+    egr=0
+    kardex=Kardex.objects.filter(producto_id=id_producto)
+    for k in kardex:
+        if k.tipo=="I":
+            ing+=k.cantidad
+        else:
+            egr+=k.cantidad
+    return ing-egr
+
+def obtenerProductos(productos):
+    strjson= []
+    for p in productos:
+        strjson.append({"id":p.id,"nombre":p.nombre,"precio":str(p.precio),"tienda":p.tienda.nombre,"stock":cantKardex(p.id),"estado":p.estado})
+    return json.dumps(list(strjson))
+
+def return_tienda_categoria_productos(request,tienda_id=0,categoria_id=0):
+    if categoria_id==0 and tienda_id==0:
+        return HttpResponse(Productos())
+    elif categoria_id==0 and tienda_id>0:
+        data = obtenerProductos(Productos.objects.filter(tienda_id=tienda_id))
+        return HttpResponse(data,content_type="application/json")
+    elif categoria_id>0 and tienda_id==0:
+        data = obtenerProductos(Productos.objects.filter(categoria_id=categoria_id))
+        return HttpResponse(data,content_type="application/json")
+
+    else:
+        data = obtenerProductos(Productos.objects.filter(tienda_id=tienda_id, categoria_id=categoria_id))
+        return HttpResponse(data,content_type="application/json")
+
+def stockProductos(request):
+    items=[]
+    if request.POST:
+        for i in request.POST:
+            if not i in items:
+                try:
+                    int(i)
+                    items.append(i)
+                except:
+                    pass
+    for i in items:
+        if int(request.POST[i].replace("_", ""))>0:
+            Kardex(producto_id=i, tipo="I",detalle="Entrada Manual", cantidad=request.POST[i].replace("_","")).save()
+    contexto={
+        "tiendas":Tiendas.objects.filter(usuario=request.user),
+        "categorias":Categorias.objects.all(),
+    }
+    return render(request, "Administracion/Productos/stok_productos.html",contexto)

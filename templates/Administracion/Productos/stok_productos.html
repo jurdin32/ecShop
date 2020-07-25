@@ -1,0 +1,204 @@
+{% extends "Administracion/index.html" %}
+{% block contenido %}
+    {% load tiendaTags %}
+    <div class="page-title mb-4 d-flex align-items-center">
+        <div class="mr-auto">
+            <nav aria-label="breadcrumb" class="d-inline-block ">
+                <ol class="breadcrumb p-0">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Todas las Promociones</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Crear Promoción</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <select name="tienda" id="tienda" style="width: 100%">
+                                    <option></option>
+                                    {% for tienda in tiendas %}
+                                        <option value="{{ tienda.id }}">{{ tienda.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-xl-4">
+                                <select name="categorias" id="categorias" style="width: 100%">
+                                    <option></option>
+                                    {% for categoria in categorias %}
+                                        <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-primary">
+                        <div class="custom-title">Todas las Promociones</div>
+
+                    </div>
+                </div>
+                <div class="pt-3 pb-4">
+                    <div class="table-responsive">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <table id="productos" class="display table table-bordered table-striped" cellspacing="0"
+                                   style="text-align: center">
+                                <thead style="text-align: center">
+                                <tr class="alert alert-dark">
+                                    <th>Id</th>
+                                    <th>Producto</th>
+                                    <th style="width: 100px">Precio</th>
+                                    <th>Tienda</th>
+                                    <th style="width: 100px">Stock Actual</th>
+                                    <th style="width: 100px">Stock Nuevo</th>
+                                    <th style="width: 100px">Estado</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr class="alert alert-info">
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <div style="padding: 30px">
+                                <button class="btn btn-primary" id="reg">Registrar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block scripts %}
+    <!--datatables-->
+    <script src="/static/Administracion/vendor/data-tables/jquery.dataTables.min.js"></script>
+    <script src="/static/Administracion/vendor/data-tables/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/Administracion/vendor/input-mask/jquery.inputmask.bundle.js"></script>
+    <script src="/static/sweetalert.min.js"></script>
+    <!--init ajax datatable-->
+    <script>
+
+        $(document).ready(function () {
+            $('#productos').DataTable()
+            $("#tienda").change(function() {
+                let ti = 0
+                let cat = 0
+                if ($("#tienda").val()) {
+                    ti = $("#tienda").val()
+                }
+                if ($("#categorias").val()) {
+                    cat = $("#categorias").val()
+                }
+                $.get("/administracion/product/stock/" + ti + "/" + cat + "/", function (data) {
+                    var datos = []
+                    $.each(data, function(i) {
+                        datos.push([
+                            data[i].id+"",
+                            data[i].nombre,
+                            data[i].precio,
+                            data[i].tienda,
+                            data[i].stock,
+                            '<input type="text" value="0" class="form-control cantidad" name="'+data[i].id+'">',
+                            data[i].estado,
+                        ])
+                    });
+                    $('#productos').DataTable().destroy();
+                    $('#productos').DataTable({
+                        "data":datos
+                    });
+                    $('.cantidad').inputmask('9999999999', {
+                        numericInput: true,
+                    });
+                });
+            }).change();
+            $("#categorias").change(function(){
+                var datos = []
+                let ti=0
+                let cat=0
+                if ($("#tienda").val()){
+                    ti=$("#tienda").val()
+                }
+                if ($("#categorias").val()){
+                    cat=$("#categorias").val()
+                }
+                $.get("/administracion/product/stock/"+ti+"/"+cat+"/",function(data){
+                    $.each(data, function(i, item) {
+                        datos.push([
+                            data[i].id+"",
+                            data[i].nombre,
+                            data[i].precio,
+                            data[i].tienda,
+                            data[i].stock,
+                            '<input type="text" value="0" class="form-control cantidad" name="'+data[i].id+'">',
+                            data[i].estado,
+                        ])
+                    });
+                    $('#productos').DataTable().destroy();
+                    $('#productos').DataTable({
+                        "data":datos
+                    });
+                     $('.cantidad').inputmask('9999999999', {
+                        numericInput: true,
+
+                    });
+                });
+            }).change();
+        });
+
+    </script>
+    <script>
+        {% if editar %}
+            swal({
+                title: "Excelente!",
+                text: "{{editar}}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+
+        {% if crear %}
+            swal({
+                title: "Bien Hecho!",
+                text: "{{ crear }}",
+                icon: "success",
+                button: "No hay mas por hacer",
+            });
+        {% endif %}
+    </script>
+    <script src="/static/Administracion/vendor/datetime-picker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/static/Administracion/vendor/select2/js/select2.min.js"></script>
+    <script>
+        $("#tienda").prop("selectedIndex", 1);
+        $('#tienda').select2({
+            placeholder: "Seleccione una Tienda",
+            tags: true,
+        });
+        $('#categorias').select2({
+            placeholder: "Seleccione una categoria",
+            tags: true,
+        });
+    </script>
+{% endblock %}
