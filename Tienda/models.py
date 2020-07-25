@@ -63,7 +63,7 @@ class TiendaCategoria(models.Model):
 class Marcas(models.Model):
     usuario=models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200)
-    imagen =models.ImageField(upload_to="Tienda/Marcas",null=True,blank=True)
+    imagen =models.FileField(upload_to="Tienda/Marcas",null=True,blank=True)
     estado = models.BooleanField(default=True)
 
     def miniatura(self):
