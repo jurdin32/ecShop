@@ -253,7 +253,7 @@
                 <nav class="sidebar-menu">
                     <ul id="nav-accordion">
                         <li class="sub-menu">
-                            <a href="/" class="active">
+                            <a href="/administracion/">
                                 <i class=" ti-home"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -261,7 +261,7 @@
                         </li>
 
                         <li class="nav-title">
-                            <h5 class="text-uppercase">Components</h5>
+                            <h5 class="text-uppercase">Opciones Generales</h5>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
@@ -269,8 +269,8 @@
                                 <span>Mi Tienda</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="/administracion/tienda/create/">Datos Basicos</a></li>
-                                <li><a href="/administracion/tienda/view/">Listar Tiendas</a></li>
+                                <li><a  href="/administracion/tienda/create/"> <i class="fa fa-plus-circle"></i> Datos Basicos</a></li>
+                                <li><a  href="/administracion/tienda/view/"> <i class="fa fa-list-ul"></i> Listar Tiendas</a></li>
                             </ul>
                         </li>
 
@@ -280,11 +280,11 @@
                                 <span>Productos</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="/administracion/product/categorias/">Crear Categorías</a></li>
-                                <li><a href="/administracion/product/marcas/">Crear Marcas</a></li>
-                                <li><a href="/administracion/product/create/">Creación de Productos</a></li>
-                                <li><a href="/administracion/product/view/">Listado de Productos</a></li>
-                                <li><a href="/administracion/product/promo/">Promociones</a></li>
+                                <li><a  href="/administracion/product/categorias/"> <i class="fa fa-plus-circle"></i> Crear Categorías</a></li>
+                                <li><a href="/administracion/product/marcas/"> <i class="fa fa-plus-circle"></i> Crear Marcas</a></li>
+                                <li><a  href="/administracion/product/create/"> <i class="fa fa-plus-circle"></i> Creación de Productos</a></li>
+                                <li><a  href="/administracion/product/view/"> <i class="fa fa-list-ul"> </i>Listado de Productos</a></li>
+                                <li><a  href="/administracion/product/promo/"> <i class="fa fa-plus-circle"></i> Promociones</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -293,7 +293,18 @@
                                 <span>Inventario</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="/administracion/product/stock/">Agregar Stock</a></li>
+                                <li> <a  href="/administracion/product/stock/"> <i class="fa fa-plus-circle"></i> Agregar Stock </a></li>
+                                <li> <a  href="/administracion/product/stock/quit/"> <i class="fa fa-minus-circle"></i> Quitar Stock </a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class=" icon-speech"></i>
+                                <span>Mis Ventas</span>
+                            </a>
+                            <ul class="sub">
+                                <li> <a  href="/administracion/ventas/"> <i class="fa fa-list-ul"></i> Lista de Ventas</a></li>
+                                <li> <a  href="/administracion/balance/"> <i class="fa fa-shopping-bag"></i> Balance </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -911,9 +922,12 @@
 
 <script src="/static/Administracion/js/scripts.js"></script>
 <script>
-    var URLactual = window.location.href;
+    var URLactual = window.location.pathname;
     console.log(URLactual)
-    $('a:contains("'+URLactual+'")').addClass("active")
+    $('.sub-menu').find('a').each(function() {
+            $(this).addClass('active');
+
+    });
 </script>
 </body>
 </html>

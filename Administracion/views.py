@@ -434,3 +434,22 @@ def stockProductos(request):
         "categorias":Categorias.objects.all(),
     }
     return render(request, "Administracion/Productos/stok_productos.html",contexto)
+
+def quitarStockProductos(request):
+    items=[]
+    if request.POST:
+        for i in request.POST:
+            if not i in items:
+                try:
+                    int(i)
+                    items.append(i)
+                except:
+                    pass
+    for i in items:
+        if int(request.POST[i].replace("_", ""))>0:
+            Kardex(producto_id=i, tipo="E",detalle="Egreso Manual", cantidad=request.POST[i].replace("_","")).save()
+    contexto={
+        "tiendas":Tiendas.objects.filter(usuario=request.user),
+        "categorias":Categorias.objects.all(),
+    }
+    return render(request, "Administracion/Productos/stok_productos.html",contexto)
