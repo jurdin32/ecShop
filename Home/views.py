@@ -23,9 +23,6 @@ def tiendas(request,slug):
         if datetime.datetime.now() > ads.fecha_limite:
             ads.estado=False
             ads.save()
-
-
-
     contexto={
         "tiendas":tiendas,
         "tienda":tienda,

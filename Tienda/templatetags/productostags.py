@@ -1,7 +1,7 @@
 from django import template
 
 from Administracion.models import Pais, Provincia, Ciudad
-from Tienda.models import Productos
+from Tienda.models import Productos, Kardex
 
 register = template.Library()
 
@@ -41,3 +41,15 @@ def ciudad(id):
         return ciudad
     except:
         return "No asignado"
+
+@register.simple_tag
+def cantKardex(id_producto):
+    ing=0
+    egr=0
+    kardex=Kardex.objects.filter(producto_id=id_producto)
+    for k in kardex:
+        if k.tipo=="I":
+            ing+=k.cantidad
+        else:
+            egr+=k.cantidad
+    return ing-egr

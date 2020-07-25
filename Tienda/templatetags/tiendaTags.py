@@ -1,6 +1,6 @@
 from django import template
 
-from Tienda.models import Productos, Tiendas
+from Tienda.models import Tiendas
 
 register = template.Library()
 
