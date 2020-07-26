@@ -16,7 +16,7 @@
                                    <h4>Todas las Categorías</h4>
                                </div>
                                 <ul>
-                                    {% for categoria in categorias %}
+                                    {% for categoria in cat %}
                                     <li><a href="/single-category/{{ categoria.id }}/"><img src="/media/{{ categoria.icono.icono }}" alt="" style="width: 20px"> {{ categoria.nombre }}</a></li>
                                     {% endfor %}
                                 </ul>
