@@ -179,7 +179,7 @@
                     <ul class="nav nav-tabs" role="tablist">
                         {% for categoria in cat %}
                             <li role="presentation" class="{% if forloop.counter == 1 %} active {% endif %}">
-                                <a href="#cat_{{ categoria.id }}" aria-controls="cat_{{ categoria.id }}" role="tab" data-toggle="tab">{{ categoria.nombre }}</a>
+                                <a href="#cat_{{ categoria.id }}" aria-controls="cat_{{ categoria.id }}" role="tab" data-toggle="tab">{{ categoria.nombre|capfirst }}</a>
                             </li>
                         {% endfor %}
                     </ul>
