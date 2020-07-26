@@ -55,8 +55,6 @@ def stok(id):
 
     return ingresos - egresos
 
-
-
 def detalles_producto(request,slug):
     producto=Productos.objects.get(slug=slug)
     contexto={
@@ -67,3 +65,10 @@ def detalles_producto(request,slug):
         "cat": Categorias.objects.all().order_by("nombre"),
     }
     return render(request,"product-detail.html",contexto)
+
+def ver_todas_categorias(request):
+    contexto = {
+        "tiendas": Tiendas.objects.all(),
+        "cat": Categorias.objects.all().order_by("nombre"),
+    }
+    return render(request, "category.html", contexto)
