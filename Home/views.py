@@ -19,7 +19,8 @@ def ver_porCategoria(request,id):
     contexto={
         "categorias":Categorias.objects.all().order_by("nombre"),
         "productos":Productos.objects.filter(categoria_id=id,estado=True),
-        "categoria":Categorias.objects.get(id=id)
+        "categoria":Categorias.objects.get(id=id),
+        "fotosProductos":ProductoFotos.objects.filter(principal=True),
     }
     return render(request,"single-category.html",contexto)
 

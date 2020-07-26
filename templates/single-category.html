@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% block contenido %}
+    {% load productostags %}
         <section class="banner_area">
             <div class="banner_tittle">
                 <h3>CATEGORÍA: {{ categoria.nombre|upper }}</h3>
@@ -30,18 +31,6 @@
                                     <li><a href="#">Huwei</a></li>
                                     <li><a href="#">Asus</a></li>
                                 </ul>
-                            </div>
-                            <div class="s_widget s_widget_price_range">
-                               <div class="s_widget_tittle">
-                                   <h4>Price Range</h4>
-                               </div>
-                                <div class="range_slider">
-                                    <div id="slider-range"></div>
-                                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                                </div>
-                            </div>
-                            <div class="s_widget s_widget_add">
-                               <img src="img/add_image/sidebar_add.jpg" alt="">
                             </div>
                             <div class="s_widget s_widget_t_product">
                                <div class="s_widget_tittle">
@@ -140,261 +129,37 @@
                                 </select>
                            </div>
                        </div>
-                        <div class="men_clothing_add">
-                            <img src="img/add_image/home-2-add.jpg" alt="">
-                        </div>
                         <div class="men_clothing_tittle">
-                            <h2>Men Clothing</h2>
+                            <h2>{{  categoria.nombre| upper}}</h2>
                         </div>
                         <div class="men_clothing_product_inner row">
+                            {% for producto in productos %}
                             <div class="col-md-4 col-xs-6">
                                 <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-1.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-2.jpg" alt="">
+                                    <a class="men_item_image" href="/detail/{{ producto.slug }}">
+                                        {% for fotosProducto in fotosProductos %}
+                                            <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                        {% endfor %}
                                     </a>
                                     <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
+                                        <a href="product-detail.html"><h3>{{  producto.nombre }}</h3></a>
+                                        {% if producto.adds and producto.adds.estado %}
+                                            <h4>US
+                                                <del>${{ producto.precio }}</del>
+                                            </h4><br>
+                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                            <h4>US ${% descuento producto.id %}</h4>
+                                        {% else %}
+                                            <h4>US ${{ producto.precio }}</h4><br>
+                                        {% endif %}
                                         <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
+                                           <a class="active" href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                           <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-2.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-3.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-3.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-4.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-4.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-5.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-5.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-6.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-6.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-5.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="men_clothing_add add_space">
-                            <img src="img/add_image/home-2-add.jpg" alt="">
-                        </div>
-                        <div class="men_clothing_tittle">
-                            <h2>Men Clothing</h2>
-                        </div>
-                        <div class="men_clothing_product_inner row">
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-1.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-2.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-2.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-3.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-3.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-4.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-4.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-5.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-5.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-6.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-6.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-5.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-1.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-2.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-2.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-3.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="men_clothing_product_item">
-                                    <a class="men_item_image" href="single-product.html">
-                                        <img src="img/product/men-product/men-product-3.jpg" alt="">
-                                        <img class="secondary_img" src="img/product/men-product/men-product-4.jpg" alt="">
-                                    </a>
-                                    <div class="men_item_content">
-                                        <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                        <h4>US $120.90</h4>
-                                        <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                           <a href="#"><i class="lnr lnr-heart"></i></a>
-                                       </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                         <nav aria-label="Page navigation">
                             <ul class="pagination product_pagination">
