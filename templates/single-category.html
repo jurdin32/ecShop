@@ -138,7 +138,10 @@
                                 <div class="men_clothing_product_item">
                                     <a class="men_item_image" href="/detail/{{ producto.slug }}">
                                         {% for fotosProducto in fotosProductos %}
-                                            <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                            {% if fotosProducto.producto == producto %}
+                                             <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                            {% endif %}
+
                                         {% endfor %}
                                     </a>
                                     <div class="men_item_content">

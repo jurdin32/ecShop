@@ -22,6 +22,7 @@ def ver_porCategoria(request,id):
         "categoria":Categorias.objects.get(id=id),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
     }
+    print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
 
 def tiendas(request,slug):
