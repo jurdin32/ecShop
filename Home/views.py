@@ -9,6 +9,7 @@ def index(request):
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
         "productos":Productos.objects.filter(estado=True),
+        "fotosProductos":ProductoFotos.objects.filter(principal=True)
     }
     return render(request,"index.html",contexto)
 

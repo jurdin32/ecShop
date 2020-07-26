@@ -194,7 +194,12 @@
                         {% if producto.categoria == categoria %}
                             <div class="col-md-6">
                                 <div class="men_clithing_item">
-                                    <img src="/static/img/categories_product/men/men_1.jpg" alt="">
+                                    {% for fotosProducto in fotosProductos %}
+                                        {% if fotosProducto.producto == producto %}
+                                            <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                        {% endif %}
+
+                                    {% endfor %}
                                     <div class="men_clithing_item_text">
                                         <h4><a href="" class="text-danger"><i class="glyphicon glyphicon-heart"></i></a></h4>
                                         <h4><a href="/detail/{{ producto.slug }}/" style="float: left !important; color: white">{{  producto.nombre }}</a></h4>
