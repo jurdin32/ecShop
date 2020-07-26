@@ -10,9 +10,18 @@ from Tienda.models import *
 
 def index(request):
     contexto={
-        "tiendas":Tiendas.objects.all()
+        "tiendas":Tiendas.objects.all(),
+        "categorias":Categorias.objects.all().order_by("nombre"),
     }
     return render(request,"index.html",contexto)
+
+def ver_porCategoria(request,id):
+    contexto={
+        "categorias":Categorias.objects.all().order_by("nombre"),
+        "productos":Productos.objects.filter(categoria_id=id,estado=True),
+        "categoria":Categorias.objects.get(id=id)
+    }
+    return render(request,"single-category.html",contexto)
 
 def tiendas(request,slug):
     tiendas=Tiendas.objects.all()
