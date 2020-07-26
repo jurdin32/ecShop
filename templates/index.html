@@ -178,7 +178,7 @@
                 <nav>
                     <ul class="nav nav-tabs" role="tablist">
                         {% for categoria in cat %}
-                            <li role="presentation" class="active">
+                            <li role="presentation" class="{% if forloop.counter == 1 %} active {% endif %}">
                                 <a href="#cat_{{ categoria.id }}" aria-controls="cat_{{ categoria.id }}" role="tab" data-toggle="tab">{{ categoria.nombre }}</a>
                             </li>
                         {% endfor %}
@@ -189,7 +189,7 @@
             <div class="men_clothing_body row">
                 <div class="tab-content">
                     {% for categoria in cat %}
-                    <div role="tabpanel" class="tab-pane active" id="cat_{{ categoria.id }}">
+                    <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active {% endif %}" id="cat_{{ categoria.id }}">
                         <div class="col-md-6">
                             <div class="men_clithing_item">
                                 <img src="/static/img/categories_product/men/men_1.jpg" alt="">
