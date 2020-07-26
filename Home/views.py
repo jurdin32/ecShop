@@ -8,6 +8,7 @@ def index(request):
     contexto={
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
+        "productos":Productos.objects.filter(estado=True),
     }
     return render(request,"index.html",contexto)
 

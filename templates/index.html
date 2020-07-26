@@ -190,78 +190,25 @@
                 <div class="tab-content">
                     {% for categoria in cat %}
                     <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active {% endif %}" id="cat_{{ categoria.id }}">
-                        <div class="col-md-6">
-                            <div class="men_clithing_item">
-                                <img src="/static/img/categories_product/men/men_1.jpg" alt="">
-                                <div class="men_clithing_item_text">
-                                    <h4>Old Style Semi Narrow T-shirt <i class="lnr lnr-heart"></i></h4>
-                                    <h5>Winter Wear</h5>
-                                    <h6>US $120.90</h6>
-                                    <a class="add_to_cart" href="#"><i class="lnr lnr-cart"></i> Add To Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="men_clithing_item">
-                                <img src="/static/img/categories_product/men/men_2.jpg" alt="">
-                                <div class="men_clithing_item_text_two">
-                                    <h4>Old Style Narrow T-shirt</h4>
-                                    <h6>US $120.90</h6>
-                                    <div class="favourite_icon">
-                                        <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                        <a href="#"><i class="lnr lnr-heart"></i></a>
+                    {% for producto in productos %}
+                        {% if producto.categoria == categoria %}
+                            <div class="col-md-6">
+                                <div class="men_clithing_item">
+                                    <img src="/static/img/categories_product/men/men_1.jpg" alt="">
+                                    <div class="men_clithing_item_text">
+                                        <h4><a href="" class="text-danger"><i class="glyphicon glyphicon-heart"></i></a></h4>
+                                        <h4><a href="/detail/{{ producto.slug }}/" style="float: left !important; color: white">{{  producto.nombre }}</a></h4>
+                                        <br>
+                                            <h5>Precio especial</h5>
+                                            <h6>$ {{ producto.precio }}</h6>
+                                            <a class="add_to_cart" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="men_clithing_item">
-                                <img src="/static/img/categories_product/men/men_3.jpg" alt="">
-                                <div class="men_clithing_item_text_two">
-                                    <h4>Old Style Narrow T-shirt</h4>
-                                    <h6>US $120.90</h6>
-                                    <div class="favourite_icon">
-                                        <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                        <a href="#"><i class="lnr lnr-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="men_clithing_item min">
-                                <img src="/static/img/categories_product/men/men_4.jpg" alt="">
-                                <div class="men_clithing_item_text_two men_clithing_small">
-                                    <h4>Old Style Narrow T-shirt</h4>
-                                    <h6>US $120.90</h6>
-                                    <div class="favourite_icon">
-                                        <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                        <a href="#"><i class="lnr lnr-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="men_clithing_item min">
-                                <img src="/static/img/categories_product/men/men_4.jpg" alt="">
-                                <div class="men_clithing_item_text_two men_clithing_small">
-                                    <h4>Old Style Narrow T-shirt</h4>
-                                    <h6>US $120.90</h6>
-                                    <div class="favourite_icon">
-                                        <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                        <a href="#"><i class="lnr lnr-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="men_clithing_item min">
-                                <img src="/static/img/categories_product/men/men_5.jpg" alt="">
-                                <div class="men_clithing_item_text_two men_clithing_small">
-                                    <h4>Old Style Narrow T-shirt</h4>
-                                    <h6>US $120.90</h6>
-                                    <div class="favourite_icon">
-                                        <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                        <a href="#"><i class="lnr lnr-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+
                     </div>
                     {% endfor %}
 
