@@ -6,13 +6,13 @@
             <div class="men_clothing_product_inner row">
                 {% for categoria in cat %}
                 <div class="col-md-3 col-xs-3">
-                    <div class="men_clothing_product_item">
-                        <a class="men_item_image" href="/single-category/{{ categoria.id }}/" style="text-align: center">
+                    <div class="men_clothing_product_item panel">
+                        <a class="men_item_image" href="/single-category/{{ categoria.id }}/" style="text-align: center; padding: 20px">
                             <img src="/media/{{ categoria.icono.icono }}" style="width: 200px; height: 200px" alt="">
                         </a>
-                        <div class="men_item_content" style="text-align: center">
-                            <a href="product-detail.html"><h3>{{  categoria.nombre }}</h3></a>
-                            <h4>Total de Productos: {% total_categoria categoria.id %}</h4>
+                        <div class="men_item_content" style="text-align: center; background-color: #1e7e34;">
+                            <a href="/single-category/{{ categoria.id }}/"><h3 style="color: white">{{  categoria.nombre }}</h3></a>
+                            <h4 style="color: white">Total de Productos: {% total_categoria categoria.id %}</h4>
                         </div>
                     </div>
                 </div>
