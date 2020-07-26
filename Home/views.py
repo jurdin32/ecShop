@@ -1,26 +1,23 @@
 import datetime
-
 from django.shortcuts import render
-
-
 
 # Create your views here.
 from Tienda.models import *
 
-
 def index(request):
     contexto={
         "tiendas":Tiendas.objects.all(),
-        "categorias":Categorias.objects.all().order_by("nombre"),
+        "cat":Categorias.objects.all().order_by("nombre"),
     }
     return render(request,"index.html",contexto)
 
 def ver_porCategoria(request,id):
     contexto={
-        "categorias":Categorias.objects.all().order_by("nombre"),
+        "cat":Categorias.objects.all().order_by("nombre"),
         "productos":Productos.objects.filter(categoria_id=id,estado=True),
         "categoria":Categorias.objects.get(id=id),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
+        "tiendas":Tiendas.objects.all(),
     }
     print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
@@ -42,7 +39,8 @@ def tiendas(request,slug):
         "categorias":TiendaCategoria.objects.filter(estado=True,tienda=tienda),
         "productos10":productos.order_by("puntuacion")[0:10],
         "productos":productos,
-        "fotosProductos":ProductoFotos.objects.filter(principal=True)
+        "fotosProductos":ProductoFotos.objects.filter(principal=True),
+        "cat": Categorias.objects.all().order_by("nombre"),
     }
     return render(request,"shop-brand.html",contexto)
 
@@ -64,6 +62,8 @@ def detalles_producto(request,slug):
     contexto={
         "producto":producto,
         "stock":stok(producto.id),
-        "fotosProductos":ProductoFotos.objects.filter(producto_id=producto.id)
+        "fotosProductos":ProductoFotos.objects.filter(producto_id=producto.id),
+        "tiendas":Tiendas.objects.all(),
+        "cat": Categorias.objects.all().order_by("nombre"),
     }
     return render(request,"product-detail.html",contexto)
