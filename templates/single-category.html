@@ -12,19 +12,12 @@
                         <div class="product_sidebar_widget_inner">
                             <div class="s_widget s_widget_categories">
                                <div class="s_widget_tittle">
-                                   <h4>All Categories</h4>
+                                   <h4>Todas las Categorías</h4>
                                </div>
                                 <ul>
-                                    <li><a href="#"><i class="lnr lnr-user"></i>Women’s Clothing</a></li>
-                                    <li><a href="#"><i class="lnr lnr-shirt"></i>Men’s Clothing</a></li>
-                                    <li><a href="#"><i class="lnr lnr-phone"></i>Phones & Accessories</a></li>
-                                    <li><a href="#"><i class="lnr lnr-printer"></i>Computer & Office</a></li>
-                                    <li><a href="#"><i class="lnr lnr-file-empty"></i>Consumer Electronics</a></li>
-                                    <li><a href="#"><i class="lnr lnr-star"></i>Jewelry & Watches</a></li>
-                                    <li><a href="#"><i class="lnr lnr-apartment"></i>Home & Garden</a></li>
-                                    <li><a href="#"><i class="lnr lnr-mustache"></i>Bags & Shoes</a></li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i>Toys, Kids & Baby</a></li>
-                                    <li><a href="#"><i class="lnr lnr-mustache"></i>Sports & Outdoors</a></li>
+                                    {% for categoria in categorias %}
+                                    <li><a href="/single-category/{{ categoria.id }}/"><img src="/media/{{ categoria.icono.icono }}/" alt="" style="width: 20px"> {{ categoria.nombre }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="s_widget s_widget_brand">
