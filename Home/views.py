@@ -74,3 +74,9 @@ def ver_todas_categorias(request):
         "cat": Categorias.objects.all().order_by("nombre"),
     }
     return render(request, "category.html", contexto)
+
+def registroClientes(request):
+    contexto={
+        
+    }
+    return render(request,"registration.html",contexto)
