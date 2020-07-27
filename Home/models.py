@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Slider(models.Model):
+    fecha=models.DateField(auto_now_add=True,null=True,blank=True)
     imagen=models.ImageField(upload_to="slider")
     titulo=models.CharField(max_length=60)
     descripcion=models.TextField(null=True,blank=True)

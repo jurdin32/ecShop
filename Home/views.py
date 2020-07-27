@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from Home.models import Slider
 from Tienda.models import *
 from ecShop.snippers import send_email
 
@@ -13,7 +14,8 @@ def index(request):
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
         "productos":Productos.objects.filter(estado=True),
-        "fotosProductos":ProductoFotos.objects.filter(principal=True)
+        "fotosProductos":ProductoFotos.objects.filter(principal=True),
+        "slider":Slider.objects.all().order_by("fecha")
     }
     return render(request,"index.html",contexto)
 
