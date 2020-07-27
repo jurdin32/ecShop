@@ -38,7 +38,7 @@
 </head>
 <body>
 {% block header %}
-<div class="first_header" style="background-color: #333333;">
+<div class="first_header" style="background-color: {{ colores.header }};">
     <div class="container custome_container">
         <div class="live_chat_area pull-left">
             <a href="/registration/" style="color: white"><i class="glyphicon glyphicon-user"></i>Registrate Gratis</a>
@@ -50,7 +50,7 @@
     cccccc52
     efefef
     -->
-<div class="logo_area" style="background-color: #cccccc52;">
+<div class="logo_area" style="background-color: {{ colores.page }};">
     <div class="container custome_container">
         <div class="row">
             <div class="col-md-3" style="margin-top: -10px;">
@@ -61,7 +61,7 @@
             <div class="col-md-7">
                 <div class="find_item_inner">
                     <input type="text" placeholder="Search Here">
-                    <a class="find_button" style="background:#ff3600 !important;" href="#">Búscar Productos</a>
+                    <a class="find_button" style="background:{{ colores.botons }} !important;" href="#">Búscar Productos</a>
                 </div>
             </div>
             <div class="col-md-2">
@@ -82,7 +82,7 @@
     </div>
 </div>
 <header class="main_menu_area">
-    <nav class="navbar navbar-default" style="background-color: #ff3600">
+    <nav class="navbar navbar-default" style="background-color:{{ colores.menu }}">
         <div class="container custome_container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -149,9 +149,9 @@
                         <h3 class="fadeInUp animated">US ${{ sli.valorPromocion }} <span><s>${{ sli.valorSinPromocion }}</s></span></h3>
                         {% endif %}
                         {% if sli.alCarrito %}
-                        <a class="slider_btn fadeInLeft animated" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
+                        <a class="slider_btn fadeInLeft animated" href="#" style="background-color: {{ sli.colorBoton }}!important;"><i class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
                             {% else %}
-                        <a class="slider_btn fadeInLeft animated" href="{{ sli.enlace }}"><i class="glyphicon glyphicon-chevron-right"></i>
+                        <a class="slider_btn fadeInLeft animated" href="{{ sli.enlace }}" style="background-color: {{ sli.colorBoton }}!important;"><i class="glyphicon glyphicon-chevron-right"></i>
                             {{ sli.mensajeBoton}}</a>
                         {% endif %}
 

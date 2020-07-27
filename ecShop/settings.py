@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     "Tienda",
     "Users",
     "Administracion",
+    "colorfield",
+
+
 ]
+
+X_FRAME_OPTIONS='SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

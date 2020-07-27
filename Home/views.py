@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from Home.models import Slider
+from Home.models import Slider, ColorInterfaz
 from Tienda.models import *
 from ecShop.snippers import send_email
 
@@ -15,7 +15,8 @@ def index(request):
         "cat":Categorias.objects.all().order_by("nombre"),
         "productos":Productos.objects.filter(estado=True),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
-        "slider":Slider.objects.all().order_by("fecha")
+        "slider":Slider.objects.all().order_by("fecha"),
+        "colores":ColorInterfaz.objects.last(),
     }
     return render(request,"index.html",contexto)
 
@@ -26,6 +27,7 @@ def ver_porCategoria(request,id):
         "categoria":Categorias.objects.get(id=id),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "tiendas":Tiendas.objects.all(),
+        "colores": ColorInterfaz.objects.last(),
     }
     print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
@@ -49,6 +51,7 @@ def tiendas(request,slug):
         "productos":productos,
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "cat": Categorias.objects.all().order_by("nombre"),
+        "colores": ColorInterfaz.objects.last(),
     }
     return render(request,"shop-brand.html",contexto)
 
@@ -71,6 +74,7 @@ def detalles_producto(request,slug):
         "fotosProductos":ProductoFotos.objects.filter(producto_id=producto.id),
         "tiendas":Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
+        "colores": ColorInterfaz.objects.last(),
     }
     return render(request,"product-detail.html",contexto)
 
@@ -78,6 +82,7 @@ def ver_todas_categorias(request):
     contexto = {
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
+        "colores": ColorInterfaz.objects.last(),
     }
     return render(request, "category.html", contexto)
 
@@ -96,13 +101,15 @@ def registroClientes(request):
                 return HttpResponseRedirect("/registration/success/%s/%d"%(hash,user.id))
     contexto={
         "mensaje":mensaje,
+        "colores": ColorInterfaz.objects.last(),
     }
     return render(request,"registration.html",contexto)
 
 
 def registro_exitoso(request,hash,id):
     contexto={
-        "usuario":User.objects.get(id=id)
+        "usuario":User.objects.get(id=id),
+        "colores": ColorInterfaz.objects.last(),
     }
     return render(request,"registration_success.html",contexto)
 

@@ -1,3 +1,4 @@
+from colorfield.fields import ColorField
 from django.db import models
 
 # Create your models here.
@@ -11,3 +12,10 @@ class Slider(models.Model):
     mensajeBoton=models.CharField(max_length=20, default="Llévame allá",null=True,blank=True)
     alCarrito=models.BooleanField(default=False)
     enlace=models.URLField(max_length=2000,null=True,blank=True)
+    colorBoton = ColorField(default='#FF0000')
+
+class ColorInterfaz(models.Model):
+    header=ColorField(default='#333333')
+    page=ColorField(default='#cccccc52')
+    botons=ColorField(default="#ff3600" )
+    menu = ColorField(default="#ff3600")
