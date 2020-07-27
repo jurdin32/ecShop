@@ -9,4 +9,5 @@ Home = [
     path('single-category/<int:id>/', ver_porCategoria),
     path('category/', ver_todas_categorias),
     path('registration/', registroClientes),
+    path('registration/success/<slug:hash>/<int:id>/', registro_exitoso),
 ]

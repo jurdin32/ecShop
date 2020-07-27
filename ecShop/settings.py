@@ -132,3 +132,13 @@ STATICFILES_DIRS=[
 
 MEDIA_URL="/media/"
 MEDIA_ROOT="media"
+
+
+#configuracion_email:
+# EMAIL_USE_TLS = True
+# EMAIL_Host = 'email-smtp.us-east-2.amazonaws.com'
+# EMAIL_Host_USER = 'AKIA6D72IORIEUBLU5EA'
+# EMAIL_Host_PASSWORD = 'BHXBbTYbGPQNZHbslwrL7qyzzR/BqB3jvHNJnf3H/M2m'
+# EMAIL_PORT = 465
+
+

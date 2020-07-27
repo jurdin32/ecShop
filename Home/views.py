@@ -1,8 +1,12 @@
 import datetime
+
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
 from Tienda.models import *
+from ecShop.snippers import send_email
+
 
 def index(request):
     contexto={
@@ -76,7 +80,29 @@ def ver_todas_categorias(request):
     return render(request, "category.html", contexto)
 
 def registroClientes(request):
+    mensaje=""
+    if request.POST:
+        if request.POST["pass1"]==request.POST["pass2"]:
+            try:
+                user=User.objects.get(email=request.POST["email"])
+                mensaje="Sentimos informarte que no puedes registrarte, debido a que el email que proporcionastes ya se encuentra registrado..!"
+                print(mensaje)
+            except:
+                user=User.objects.create_user(username=request.POST["email"],email=request.POST["email"],password=request.POST["pass2"]).save()
+                user=User.objects.get(username=request.POST["email"])
+                hash=hashlib.sha256(str.encode(str(str.zfill(str(user.id), 10)))).hexdigest()
+                return HttpResponseRedirect("/registration/success/%s/%d"%(hash,user.id))
     contexto={
-        
+        "mensaje":mensaje,
     }
     return render(request,"registration.html",contexto)
+
+
+def registro_exitoso(request,hash,id):
+    contexto={
+        "usuario":User.objects.get(id=id)
+    }
+    return render(request,"registration_success.html",contexto)
+
+def enviar_email(request,correo):
+    pass
