@@ -2,6 +2,9 @@ from colorfield.fields import ColorField
 from django.db import models
 
 # Create your models here.
+from django.utils.safestring import mark_safe
+
+
 class Slider(models.Model):
     fecha=models.DateField(auto_now_add=True,null=True,blank=True)
     imagen=models.ImageField(upload_to="slider")
@@ -19,3 +22,10 @@ class ColorInterfaz(models.Model):
     page=ColorField(default='#cccccc52')
     botons=ColorField(default="#ff3600" )
     menu = ColorField(default="#ff3600")
+
+    def colores(self):
+        return mark_safe('<div style="width: 200px;height: 10px; background-color: %s"></div>'
+                         '<div style="width: 200px;height: 10px; background-color: %s"></div>'
+                         '<div style="width: 200px;height: 10px; background-color: %s"></div>'
+                         '<div style="width: 200px;height: 10px; background-color: %s"></div>'%(self.header,self.page,self.botons,self.menu))
+
