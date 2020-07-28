@@ -111,24 +111,27 @@
                         <p>{{ producto.descripcion|safe }}</p>
                         {% if producto.adds %}
                             <del>$ {{ producto.precio }}</del>
-                            <h4>$ {% descuento producto.id %}</h4>
+                            <h4>$ {% descuento producto.id %} <input type="hidden" id="precio"
+                                                                     value="{% descuento producto.id %} "></h4>
                         {% else %}
-                            <h4>$ {{ producto.precio }}</h4>
+                            <h4>$ {{ producto.precio }} <input type="hidden" id="precio" value="{{ producto.precio }}">
+                            </h4>
                         {% endif %}
                         <div class="quantity_area">
                             <h5>Cantidad</h5>
                             <div class="custom">
-                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Quantity:"
                                        class="input-text qty">
-                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                <button onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                         class="increase items-count" type="button"><i
                                         class="glyphicon glyphicon-chevron-up"></i></button>
-                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                <button onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                                         class="reduced items-count" type="button"><i
                                         class="glyphicon glyphicon-chevron-down"></i></button>
                             </div>
-                            <a class="add_to_cart" href="#" style="background-color: {{ colores.botons }}"><i
-                                    class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
+                            <button class="add_to_cart" id="carrito" style="background-color: {{ colores.botons }}"><i
+                                    class="glyphicon glyphicon-shopping-cart"></i> Al Carrito
+                            </button>
                             <a class="heart_btn" href="#"><i class="glyphicon glyphicon-heart"></i></a>
                         </div>
                     </div>
@@ -200,7 +203,8 @@
                                             {% if pr.adds %}
                                                 <ul>
                                                     <li>
-                                                        <del style="font-size: 12px; padding: 0px">$ {{ pr.precio }}</del>
+                                                        <del style="font-size: 12px; padding: 0px">
+                                                            $ {{ pr.precio }}</del>
                                                     </li>
                                                     <li><a class="in_stock">$ {% descuento pr.id %}</a></li>
                                                 </ul>
@@ -264,6 +268,23 @@
                 }
             });
         </script>
+        <script>
+            $("#carrito").click(function () {
+                $.get("/to_car/", {
+                    "cantidad": $("#qty").val(),
+                    "precio": $("#precio").val(),
+                    "producto": '{{producto.id}}'
+                }, function (data) {
+                    swal({
+                        title: "Excelente!",
+                        text: data,
+                        icon: "success",
+                        button: "No hay mas por hacer",
+                    });
+                })
+            })
+        </script>
+
     {% endblock %}
 
 {% endblock %}

@@ -6,6 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from Home.models import Slider, ColorInterfaz, CalificarProductos
 from Tienda.models import *
+from Users.models import Carrito, DetallesCarrito
 from ecShop.snippers import send_email
 
 
@@ -106,6 +107,36 @@ def ver_todas_categorias(request):
         "colores": ColorInterfaz.objects.last(),
     }
     return render(request, "category.html", contexto)
+
+def carrito_usuario(request):
+    carrito=Carrito.objects.get(usuario=request.user,estado=False)
+
+
+def enviar_carrito(request):
+    cantidad= request.GET["cantidad"]
+    precio=request.GET["precio"]
+    producto=request.GET["producto"]
+    try:
+        carrito = Carrito.objects.get(usuario=request.user, estado=False)
+        det=DetallesCarrito.objects.filter(producto_id=producto,carrito=carrito)
+        if det:
+            for d in det:
+                can=d.cantidad
+                cantidad+=int(cantidad)
+                d.precio=(d.precio * cantidad)
+                d.save()
+        else:
+            DetallesCarrito(cantidad=cantidad,precio=precio,total=float(cantidad)*float(precio), producto_id=producto,carrito=carrito).save()
+    except:
+        print("entro aca")
+        carrito = Carrito.objects.create(usuario=request.user, estado=False)
+        carrito.slug=hashlib.sha256(str.encode(str(carrito.fecha))).hexdigest()
+        carrito.save()
+        DetallesCarrito(cantidad=cantidad, precio=precio, total=float(cantidad) * float(precio), producto_id=producto,
+                        carrito=carrito).save()
+    return HttpResponse("Se envio al carrito")
+
+
 
 def registroClientes(request):
     mensaje=""

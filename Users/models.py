@@ -56,19 +56,22 @@ class ListaDeseos(models.Model):
         verbose_name_plural="Lista de Deseos"
 
 class Carrito(models.Model):
-    fecha=models.DateField(auto_now_add=True)
+    fecha=models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=9, decimal_places=2,default=0)
     slug = models.CharField(max_length=300, null=True, blank=True)
+    estado =models.BooleanField(default=False)
 
     class Meta:
         verbose_name="Carrito"
         verbose_name_plural="Carritos"
 
 class DetallesCarrito(models.Model):
+    carrito=models.ForeignKey(Carrito,on_delete=models.CASCADE,null=True,blank=True)
     fecha = models.DateField(auto_now_add=True)
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
-    cantidad = models.ImageField(default=0)
+    cantidad = models.IntegerField(default=0)
+    precio=models.DecimalField(max_digits=9, decimal_places=2, default=0)
     total = models.DecimalField(max_digits=9, decimal_places=2, default=0)
 
     class Meta:
