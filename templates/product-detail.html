@@ -97,7 +97,7 @@
                         {% endif %}
                         <h3>{{ producto.nombre }}</h3>
                         {% if calificacion %}
-                        <span class="in_stock" style="background-color: {{ colores.botons }}">Mi calificación: </span><a href="/view/prom/{{ producto.slug }}"><div class="my-rating"></div></a>
+                        <span class="in_stock" style="background-color: {{ colores.botons }}; color: white">Mi calificación: </span><a href="/view/prom/{{ producto.slug }}"><div class="my-rating"></div></a>
                         {% endif %}
                      {% if calificacion == 0 %}
                         <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo" href="#">Calificar</button>
