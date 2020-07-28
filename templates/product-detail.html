@@ -1,6 +1,8 @@
 {% extends "index.html" %}
 {% block contenido %}
     {% load productostags %}
+    <link rel="stylesheet" type="text/css" href="/static/rata/src/css/star-rating-svg.css">
+    <link rel="stylesheet" type="text/css" href="/static/rata/demo/css/demo.css">
     <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -12,22 +14,14 @@
                     {% csrf_token %}
                     <div class="modal-body">
                         <div class="product_detail_content">
-                            <nav>
-                                <ul class="product_details_rating" style="color: yellow; text-align: center">
-                                    <li><span id="1s"><i class="glyphicon glyphicon-star"></i></span></li>
-                                    <li><span id="2s"><i class="glyphicon glyphicon-star"></i></span></li>
-                                    <li><span id="3s"><i class="glyphicon glyphicon-star"></i></span></li>
-                                    <li><span id="4s"><i class="glyphicon glyphicon-star"></i></span></li>
-                                    <li><span id="5s"> <i class="glyphicon glyphicon-star"></i></span></li>
-                                </ul>
-                            </nav>
+                            <div class="my-rating"></div>
                         </div>
                         <div>
-                            <input type="hidden" value="0" id="start" name="start" readonly required>
+                            <input type="hidden" value="1" id="start" name="start" readonly required>
                             <textarea name="comentario" id="comentario" class="form-control"
                                       style="resize: none; height: 100px"></textarea>
                         </div>
-                        <p style="font-weight: bold">Usted ha seleccionado: <i id="numero"> 0 </i> de estrellas para
+                        <p style="font-weight: bold">Usted ha seleccionado: <i id="numero"> 1 </i> de estrellas para
                             este producto.</p>
                     </div>
 
@@ -101,136 +95,12 @@
                         {% else %}
                             <a class="in_stock" style="background-color: red; color: white">Sin Stok</a>
                         {% endif %}
-
                         <h3>{{ producto.nombre }}</h3>
-                        <nav>
-                            {% if calificacion == 0 %}
-                                <ul class="product_details_rating">
-                                    <li>Tu calificación:</li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificacion == 1 %}
-                                <ul class="product_details_rating">
-                                    <li>Tu calificación:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificacion == 2 %}
-                                <ul class="product_details_rating">
-                                    <li>Tu calificación:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificacion == 3 %}
-
-                                <ul class="product_details_rating">
-                                    <li>Tu calificación:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificacion == 4 %}
-
-                                <ul class="product_details_rating">
-                                    <li>Tu calificación:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificacion == 5 %}
-
-                                <ul class="product_details_rating">
-                                    <li>Tu calificación:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% endif %}
-
-                        </nav>
+                        <span>Mi calificación: </span><div class="my-rating"></div>
                      {% if calificacion == 0 %}
-                    <a class="review_btn" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo" href="#">Mi Calificación</a>
+                        <a class="review_btn" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo" href="#">Calificar</a>
                     {% endif %}
                         <br>
-                        <nav>
-                            {% if calificaciong == 0 %}
-                                <ul class="product_details_rating">
-                                    <li>Calificacion General:</li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificaciong == 1 %}
-                                <ul class="product_details_rating">
-                                    <li>Calificacion General:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificaciong == 2 %}
-                                <ul class="product_details_rating">
-                                    <li>Calificacion General:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificaciong == 3 %}
-
-                                <ul class="product_details_rating">
-                                    <li>Calificacion General:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificaciong == 4 %}
-
-                                <ul class="product_details_rating">
-                                    <li>Calificacion General:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% elif calificaciong == 5 %}
-
-                                <ul class="product_details_rating">
-                                    <li>Calificacion General:</li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a style="color: blue"><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            {% endif %}
-
-                        </nav>
-
-
                         <p>{{ producto.descripcion|safe }}</p>
                         {% if producto.adds %}
                             <del>$ {{ producto.precio }}</del>
@@ -376,59 +246,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="/static/sweetalert.min.js"></script>
-        <script>
-            $("#2s").css("color", "black");
-            $("#3s").css("color", "black");
-            $("#4s").css("color", "black");
-            $("#5s").css("color", "black");
-            $("#numero").text("1")
-            $("#start").val("1")
-            $("#1s").click(function () {
-                $("#1s").css("color", "blue");
-                $("#2s").css("color", "black");
-                $("#3s").css("color", "black");
-                $("#4s").css("color", "black");
-                $("#5s").css("color", "black");
-                $("#numero").text("1")
-                $("#start").val("1")
-            });
-            $("#2s").click(function () {
-                $("#1s").css("color", "blue");
-                $("#2s").css("color", "blue");
-                $("#3s").css("color", "black");
-                $("#4s").css("color", "black");
-                $("#5s").css("color", "black");
-                $("#numero").text("2")
-                $("#start").val("2")
-            });
-            $("#3s").click(function () {
-                $("#1s").css("color", "blue");
-                $("#2s").css("color", "blue");
-                $("#3s").css("color", "blue");
-                $("#4s").css("color", "black");
-                $("#5s").css("color", "black");
-                $("#numero").text("3")
-                $("#start").val("3")
-            });
-            $("#4s").click(function () {
-                $("#1s").css("color", "blue");
-                $("#2s").css("color", "blue");
-                $("#3s").css("color", "blue");
-                $("#4s").css("color", "blue");
-                $("#5s").css("color", "black");
-                $("#numero").text("4")
-                $("#start").val("4")
-            });
-            $("#5s").click(function () {
-                $("#1s").css("color", "blue");
-                $("#2s").css("color", "blue");
-                $("#3s").css("color", "blue");
-                $("#4s").css("color", "blue");
-                $("#5s").css("color", "blue");
-                $("#numero").text("5")
-                $("#start").val("5")
-            });
-        </script>
+       <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
         <script>
             {% if mensaje %}
                 swal({
@@ -438,6 +256,28 @@
                     button: "No hay mas por hacer",
                 });
             {% endif %}
+        </script>
+        <script>
+        $(".my-rating").starRating({
+        {% if calificacion %}
+            initialRating: '{{ calificacion }}'.replace(",","."),
+        {% else %}
+            initialRating: 1,
+        {% endif %}
+            starSize: 25,
+        {% if calificacion %}
+             readOnly: true,
+        {% endif %}
+            disableAfterRate: false,
+            onHover: function(currentIndex, currentRating, $el){
+              $('#numero').text(currentIndex);
+              $("#start").val(currentIndex)
+            },
+            onLeave: function(currentIndex, currentRating, $el){
+              $('#numero').text(currentRating);
+              $("#start").val(currentIndex)
+            }
+        });
         </script>
     {% endblock %}
 

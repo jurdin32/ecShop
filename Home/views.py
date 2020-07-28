@@ -72,6 +72,7 @@ def detalles_producto(request,slug):
     calificacion=0
     producto=Productos.objects.get(slug=slug)
     if request.POST:
+        print(request.POST)
         try:
             calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
             mensaje = "No es posible volver a calificar el producto"

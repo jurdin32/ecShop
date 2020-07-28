@@ -35,5 +35,5 @@ class ColorInterfaz(models.Model):
 class CalificarProductos(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
     usuario=models.ForeignKey(User,on_delete=models.CASCADE)
-    calificacion=models.IntegerField(default=0)
+    calificacion=models.DecimalField(default=0,max_digits=9,decimal_places=2)
     comentario=models.TextField(null=True,blank=True)
