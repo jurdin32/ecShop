@@ -418,7 +418,10 @@
 }
 </style>
 {% block script %}
-    <script>
+
+
+{% endblock %}
+ <script>
     $( function() {
     var availableTags = [];
         {% for prod in productos %}
@@ -429,7 +432,5 @@
     });
   } );
 </script>
-
-{% endblock %}
 </body>
 </html>
