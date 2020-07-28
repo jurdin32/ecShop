@@ -142,6 +142,7 @@ def carrito_usuario(request):
 
 
 def enviar_carrito(request):
+
     if request.POST:
         carrito=Carrito.objects.get(usuario=request.user,estado=False)
         carrito.slug=hashlib.sha256(str.encode(str(str.zfill(str(carrito.id), 10)))).hexdigest()
@@ -158,11 +159,22 @@ def enviar_carrito(request):
                             total=float(request.POST["cantidad"])*float(request.POST["precio"].replace(",","."))
                             ).save()
         contador=DetallesCarrito.objects.filter(carrito=carrito).count()
-
+        eliminar_duplicados()
         return HttpResponse(str(contador))
 
 
+def eliminar_duplicados():
+    unique_fields=["producto","carrito","cantidad","precio"]
+    duplicates = (DetallesCarrito.objects.values(*unique_fields)
+                  .order_by()
+                  .annotate(max_id=models.Max('id'),
+                            count_id=models.Count('id'))
+                  .filter(count_id__gt=1))
 
+    for duplicate in duplicates:
+        (DetallesCarrito.objects.filter(**{x: duplicate[x] for x in unique_fields})
+         .exclude(id=duplicate['max_id'])
+         .delete())
 
 
 
