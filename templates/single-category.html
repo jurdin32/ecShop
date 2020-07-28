@@ -26,82 +26,37 @@
                                    <h4>Brand/Company</h4>
                                </div>
                                 <ul>
-                                    <li><a href="#">Apple</a></li>
-                                    <li class=active><a href="#">Samsung</a></li>
-                                    <li><a href="#">Huwei</a></li>
-                                    <li><a href="#">Asus</a></li>
+                                    {% for marca in marcas %}
+                                        <li><a href="#">{{ marca.nombre }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="s_widget s_widget_t_product">
                                <div class="s_widget_tittle">
-                                   <h4>Trending Products.</h4>
+                                   <h4>Top 10 de Productos.</h4>
                                </div>
                                <div class="t_product_inner">
-                                   <div class="item_t_product">
+                                    {% for t10 in top10 %}
+                                    <div class="item_t_product">
                                         <div class="media">
                                             <div class="media-left">
-                                                <a href="single-blog.html">
-                                                    <img class="media-object" src="img/product/t-product/t-product-1.jpg" alt="">
+                                                <a href="/detail/{{ t10.slug }}">
+                                                    {% for fotosProducto in fotosProductos %}
+                                                        {% if fotosProducto.producto == t10 %}
+                                                            <img style="width: 80px" class="media-object" src="/media/{{ fotosProducto.imagen }}" alt="">
+                                                        {% endif %}
+                                                    {% endfor %}
+
+
                                                 </a>
                                             </div>
                                             <div class="media-body">
-                                                <a href="single-blog.html"><h4>Polo t-shirt</h4></a>
-                                                <h5>$34.50</h5>
+                                                <a href="/detail/{{ t10.slug }}"><h4>{{ t10.nombre}}</h4></a>
+                                                <h5>$ {{ t10.precio }}</h5>
                                             </div>
                                         </div>
                                    </div>
-                                   <div class="item_t_product">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="single-blog.html">
-                                                    <img class="media-object" src="img/product/t-product/t-product-2.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="single-blog.html"><h4>Polo t-shirt</h4></a>
-                                                <h5>$34.50</h5>
-                                            </div>
-                                        </div>
-                                   </div>
-                                   <div class="item_t_product">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="single-blog.html">
-                                                    <img class="media-object" src="img/product/t-product/t-product-3.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="single-blog.html"><h4>Polo t-shirt</h4></a>
-                                                <h5>$34.50</h5>
-                                            </div>
-                                        </div>
-                                   </div>
-                                   <div class="item_t_product">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="single-blog.html">
-                                                    <img class="media-object" src="img/product/t-product/t-product-4.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="single-blog.html"><h4>Polo t-shirt</h4></a>
-                                                <h5>$34.50</h5>
-                                            </div>
-                                        </div>
-                                   </div>
-                                   <div class="item_t_product">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="single-blog.html">
-                                                    <img class="media-object" src="img/product/t-product/t-product-5.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="single-blog.html"><h4>Polo t-shirt</h4></a>
-                                                <h5>$34.50</h5>
-                                            </div>
-                                        </div>
-                                   </div>
+                                    {% endfor %}
                                </div>
                             </div>
                         </div>

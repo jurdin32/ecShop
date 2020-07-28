@@ -28,16 +28,19 @@ def index(request):
 
 def ver_porCategoria(request,id):
     carro = 0
+    productos=Productos.objects.filter(categoria_id=id,estado=True)
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     contexto={
         "cat":Categorias.objects.all().order_by("nombre"),
-        "productos":Productos.objects.filter(categoria_id=id,estado=True),
+        "productos":productos,
         "categoria":Categorias.objects.get(id=id),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "tiendas":Tiendas.objects.all(),
         "colores": ColorInterfaz.objects.last(),
-        "carrito": carro
+        "carrito": carro,
+        "marcas":Marcas.objects.all().order_by("nombre"),
+        "top10":productos.order_by("puntuacion"),
     }
     print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
