@@ -83,10 +83,11 @@ def detalles_producto(request,slug):
         calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
     except:
         pass
+    ft=ProductoFotos.objects.all()
     contexto={
         "producto":producto,
         "stock":stok(producto.id),
-        "fotosProductos":ProductoFotos.objects.filter(producto_id=producto.id),
+        "fotosProductos":ft.filter(producto_id=producto.id),
         "tiendas":Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
@@ -94,6 +95,7 @@ def detalles_producto(request,slug):
         "mensaje":mensaje,
         "calificacion":calificacion,
         "calificaciong":0,
+        "fproductos":ft.filter(principal=True)
     }
     return render(request,"product-detail.html",contexto)
 

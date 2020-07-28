@@ -97,11 +97,16 @@
                         {% endif %}
                         <h3>{{ producto.nombre }}</h3>
                         {% if calificacion %}
-                        <span class="in_stock" style="background-color: {{ colores.botons }}; color: white">Mi calificación: </span><a href="/view/prom/{{ producto.slug }}"><div class="my-rating"></div></a>
+                            <span class="in_stock" style="background-color: {{ colores.botons }}; color: white">Mi calificación: </span>
+                            <a href="/view/prom/{{ producto.slug }}">
+                                <div class="my-rating"></div>
+                            </a>
                         {% endif %}
-                     {% if calificacion == 0 %}
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo" href="#">Calificar</button>
-                    {% endif %}
+                        {% if calificacion == 0 %}
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal4"
+                                    data-whatever="@mdo" href="#">Calificar
+                            </button>
+                        {% endif %}
                         <br>
                         <p>{{ producto.descripcion|safe }}</p>
                         {% if producto.adds %}
@@ -122,7 +127,8 @@
                                         class="reduced items-count" type="button"><i
                                         class="glyphicon glyphicon-chevron-down"></i></button>
                             </div>
-                            <a class="add_to_cart" href="#" style="background-color: {{ colores.botons }}"><i class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
+                            <a class="add_to_cart" href="#" style="background-color: {{ colores.botons }}"><i
+                                    class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
                             <a class="heart_btn" href="#"><i class="glyphicon glyphicon-heart"></i></a>
                         </div>
                     </div>
@@ -172,73 +178,51 @@
                 <img src="/static/img/add_image/home-2-add.jpg" alt="">
             </div>
             <div class="men_clothing_tittle">
-                <h2>Similar Products</h2>
+                <h2>Productos Similares</h2>
             </div>
             <div class="men_clothing_product_inner row">
-                <div class="col-md-3 col-xs-6">
-                    <div class="men_clothing_product_item">
-                        <a class="men_item_image" href="single-product.html">
-                            <img src="/static/img/product/men-product/men-product-1.jpg" alt="">
-                            <img class="secondary_img" src="/static/img/product/men-product/men-product-2.jpg" alt="">
-                        </a>
-                        <div class="men_item_content">
-                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                            <h4>US $120.90</h4>
-                            <div class="favourite_icon">
-                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                <a href="#"><i class="lnr lnr-heart"></i></a>
+                {% for pr in productos %}
+                    {% if pr.categoria == producto.categoria %}
+                        {% if forloop.counter <= 20 %}
+                            <div class="col-md-3 col-xs-6">
+                                <div class="men_clothing_product_item">
+                                    <a class="men_item_image" href="/detail/{{ pr.slug }}">
+                                        {% for fotosProducto in fproductos %}
+                                            {% if fotosProducto.producto == pr %}
+                                                <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                            {% endif %}
+
+                                        {% endfor %}
+                                    </a>
+                                    <div class="men_item_content">
+                                        <a href="product-detail.html"><h3>{{ pr.nombre|capfirst }}</h3></a>
+                                        <div class="product_detail_content">
+                                            {% if pr.adds %}
+                                                <ul>
+                                                    <li>
+                                                        <del style="font-size: 10px; padding: 0px">$ {{ pr.precio }}</del>
+                                                    </li>
+                                                    <li><a class="in_stock">$ {% descuento pr.id %}</a></li>
+                                                </ul>
+                                            {% else %}
+                                                <a class="in_stock">$ {{ pr.precio }}</a>
+                                            {% endif %}
+                                            <div class="favourite_icon">
+                                                <a class="active" href="#"
+                                                   style="background-color: {{ colores.botons }}"><i
+                                                        class="glyphicon glyphicon-shopping-cart"></i></a>
+                                                <a href="#" style="color: {{ colores.botons }}"><i
+                                                        class="glyphicon glyphicon-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="men_clothing_product_item">
-                        <a class="men_item_image" href="single-product.html">
-                            <img src="img/product/men-product/men-product-2.jpg" alt="">
-                            <img class="secondary_img" src="img/product/men-product/men-product-3.jpg" alt="">
-                        </a>
-                        <div class="men_item_content">
-                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                            <h4>US $120.90</h4>
-                            <div class="favourite_icon">
-                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                <a href="#"><i class="lnr lnr-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="men_clothing_product_item">
-                        <a class="men_item_image" href="single-product.html">
-                            <img src="../static/img/product/men-product/men-product-3.jpg" alt="">
-                            <img class="secondary_img" src="../static/img/product/men-product/men-product-4.jpg" alt="">
-                        </a>
-                        <div class="men_item_content">
-                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                            <h4>US $120.90</h4>
-                            <div class="favourite_icon">
-                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                <a href="#"><i class="lnr lnr-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="men_clothing_product_item">
-                        <a class="men_item_image" href="single-product.html">
-                            <img src="../static/img/product/men-product/men-product-3.jpg" alt="">
-                            <img class="secondary_img" src="../static/img/product/men-product/men-product-4.jpg" alt="">
-                        </a>
-                        <div class="men_item_content">
-                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                            <h4>US $120.90</h4>
-                            <div class="favourite_icon">
-                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                <a href="#"><i class="lnr lnr-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+
             </div>
         </div>
     </section>
@@ -247,7 +231,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="/static/sweetalert.min.js"></script>
-       <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
+        <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
         <script>
             {% if mensaje %}
                 swal({
@@ -259,26 +243,26 @@
             {% endif %}
         </script>
         <script>
-        $(".my-rating").starRating({
-        {% if calificacion %}
-            initialRating: '{{ calificacion }}'.replace(",","."),
-        {% else %}
-            initialRating: 1,
-        {% endif %}
-            starSize: 25,
-        {% if calificacion %}
-             readOnly: true,
-        {% endif %}
-            disableAfterRate: false,
-            onHover: function(currentIndex, currentRating, $el){
-              $('#numero').text(currentIndex);
-              $("#start").val(currentIndex)
-            },
-            onLeave: function(currentIndex, currentRating, $el){
-              $('#numero').text(currentRating);
-              $("#start").val(currentIndex)
-            }
-        });
+            $(".my-rating").starRating({
+                {% if calificacion %}
+                    initialRating: '{{ calificacion }}'.replace(",", "."),
+                {% else %}
+                    initialRating: 1,
+                {% endif %}
+                starSize: 25,
+                {% if calificacion %}
+                    readOnly: true,
+                {% endif %}
+                disableAfterRate: false,
+                onHover: function (currentIndex, currentRating, $el) {
+                    $('#numero').text(currentIndex);
+                    $("#start").val(currentIndex)
+                },
+                onLeave: function (currentIndex, currentRating, $el) {
+                    $('#numero').text(currentRating);
+                    $("#start").val(currentIndex)
+                }
+            });
         </script>
     {% endblock %}
 
