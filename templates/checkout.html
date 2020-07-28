@@ -4,7 +4,9 @@
         <div class="container">
             <div class="checkout_inner_area">
             <div class="personal_info_area">
-                    <h3>Tu Pedido está casi listo # {{ car.slug }}</h3>
+                    <h3>Tu Pedido está casi listo </h3>
+                    <p># {{ car.slug }}</p>
+                    <p>No.: {{ car.id|stringformat:"010d" }}</p>
                 <div class="checkout_inner_first">
                     <div class="item_price_area" style="padding: 0px">
                         <div class="table-responsive" data-example-id="simple-responsive-table">
@@ -32,7 +34,7 @@
 
                                             {{ detalle.producto.nombre }}</td>
                                         <td>$ {{ detalle.precio }}</td>
-                                        <td> {{ detalle.cantidad }}</td>
+                                        <td><input style="width: 80px; border: none; text-align: center" min="1" type="number" value="{{ detalle.cantidad }}"></td>
                                         <td> {{ detalle.total }}</td>
                                         <td><a href="#">Eliminar</a></td>
                                     </tr>
