@@ -96,7 +96,9 @@
                             <a class="in_stock" style="background-color: red; color: white">Sin Stok</a>
                         {% endif %}
                         <h3>{{ producto.nombre }}</h3>
-                        <span>Mi calificación: </span><div class="my-rating"></div>
+                        {% if calificacion %}
+                        <span class="text-danger">Mi calificación: </span><a href="/view/prom/{{ producto.slug }}"><div class="my-rating"></div></a>
+                        {% endif %}
                      {% if calificacion == 0 %}
                         <a class="review_btn" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo" href="#">Calificar</a>
                     {% endif %}
