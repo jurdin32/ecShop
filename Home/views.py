@@ -139,7 +139,25 @@ def ver_todas_categorias(request):
     return render(request, "category.html", contexto)
 
 def carrito_usuario(request):
-    carrito=Carrito.objects.get(usuario=request.user,estado=False)
+    carro = 0
+    car=Carrito.objects.get(usuario=request.user,estado=False)
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito=car)
+    contexto={
+        "tiendas": Tiendas.objects.all(),
+        "cat": Categorias.objects.all().order_by("nombre"),
+        "productos": Productos.objects.filter(estado=True),
+        "fotosProductos": ProductoFotos.objects.filter(principal=True),
+        "slider": Slider.objects.all().order_by("fecha"),
+        "colores": ColorInterfaz.objects.last(),
+        "carrito": carro.count(),
+        "car":car,
+        "detalles":carro,
+
+    }
+
+
+    return render(request,"checkout.html",contexto)
 
 
 def enviar_carrito(request):

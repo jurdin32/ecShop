@@ -9,6 +9,7 @@ Home = [
     path('single-category/<int:id>/', ver_porCategoria),
     path('category/', ver_todas_categorias),
     path('to_car/', enviar_carrito),
+    path('this_car/', carrito_usuario),
     path('registration/', registroClientes),
     path('registration/success/<slug:hash>/<int:id>/', registro_exitoso),
 ]
