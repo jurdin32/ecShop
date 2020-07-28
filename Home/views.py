@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from Home.models import Slider, ColorInterfaz
+from Home.models import Slider, ColorInterfaz, CalificarProductos
 from Tienda.models import *
 from ecShop.snippers import send_email
 
@@ -31,6 +31,7 @@ def ver_porCategoria(request,id):
     }
     print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
+
 
 def tiendas(request,slug):
     tiendas=Tiendas.objects.all()
@@ -67,7 +68,20 @@ def stok(id):
     return ingresos - egresos
 
 def detalles_producto(request,slug):
+    mensaje=""
+    calificacion=0
     producto=Productos.objects.get(slug=slug)
+    if request.POST:
+        try:
+            calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
+            mensaje = "No es posible volver a calificar el producto"
+        except:
+            calificacion= CalificarProductos(producto=producto,usuario=request.user,calificacion=request.POST["start"],comentario=request.POST['comentario']).save()
+            mensaje="Gracias por calificar este producto con %s"%request.POST['start']
+    try:
+        calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
+    except:
+        pass
     contexto={
         "producto":producto,
         "stock":stok(producto.id),
@@ -75,7 +89,10 @@ def detalles_producto(request,slug):
         "tiendas":Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
-        "productos":Productos.objects.filter(estado=True)
+        "productos":Productos.objects.filter(estado=True),
+        "mensaje":mensaje,
+        "calificacion":calificacion,
+        "calificaciong":0,
     }
     return render(request,"product-detail.html",contexto)
 

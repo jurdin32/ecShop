@@ -1,8 +1,11 @@
 from colorfield.fields import ColorField
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
 from django.utils.safestring import mark_safe
+
+from Tienda.models import Productos
 
 
 class Slider(models.Model):
@@ -29,3 +32,8 @@ class ColorInterfaz(models.Model):
                          '<div style="width: 200px;height: 10px; background-color: %s"></div>'
                          '<div style="width: 200px;height: 10px; background-color: %s"></div>'%(self.header,self.page,self.botons,self.menu))
 
+class CalificarProductos(models.Model):
+    producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
+    usuario=models.ForeignKey(User,on_delete=models.CASCADE)
+    calificacion=models.IntegerField(default=0)
+    comentario=models.TextField(null=True,blank=True)
