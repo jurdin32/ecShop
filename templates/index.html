@@ -199,12 +199,12 @@
                                 <div class="men_clithing_item">
                                     {% for fotosProducto in fotosProductos %}
                                         {% if fotosProducto.producto == producto %}
-                                            <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                            <a href="/detail/{{ producto.slug }}/"><img src="/media/{{ fotosProducto.imagen }}" alt=""></a>
                                         {% endif %}
 
                                     {% endfor %}
                                     <div class="men_clithing_item_text">
-                                        <h4><a href="/detail/{{ producto.slug }}/" class="text-danger"><i class="glyphicon glyphicon-heart"></i></a></h4>
+                                        <h4><a href="#" class="text-danger"><i class="glyphicon glyphicon-heart"></i></a></h4>
                                         <h4><a href="/detail/{{ producto.slug }}/" style="float: left !important; color: white">{{  producto.nombre }}</a></h4>
                                         <br>
                                             <h5>Precio especial</h5>
