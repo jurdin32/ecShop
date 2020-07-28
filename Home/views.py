@@ -12,6 +12,9 @@ from ecShop.snippers import send_email
 
 
 def index(request):
+    carro=0
+    if request.user.is_authenticated:
+        carro=DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False).count()
     contexto={
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
@@ -19,11 +22,14 @@ def index(request):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "slider":Slider.objects.all().order_by("fecha"),
         "colores":ColorInterfaz.objects.last(),
-        "carrito":DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False).count()
+        "carrito":carro
     }
     return render(request,"index.html",contexto)
 
 def ver_porCategoria(request,id):
+    carro = 0
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     contexto={
         "cat":Categorias.objects.all().order_by("nombre"),
         "productos":Productos.objects.filter(categoria_id=id,estado=True),
@@ -31,13 +37,17 @@ def ver_porCategoria(request,id):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "tiendas":Tiendas.objects.all(),
         "colores": ColorInterfaz.objects.last(),
-        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        "carrito": carro
     }
     print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
 
 
 def tiendas(request,slug):
+    carro = 0
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+
     tiendas=Tiendas.objects.all()
     tienda=tiendas.get(hashes=slug)
     productos=Productos.objects.filter(tienda_id=tienda.id)
@@ -57,7 +67,7 @@ def tiendas(request,slug):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
-        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        "carrito": carro
     }
     return render(request,"shop-brand.html",contexto)
 
@@ -73,6 +83,9 @@ def stok(id):
     return ingresos - egresos
 
 def detalles_producto(request,slug):
+    carro = 0
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     mensaje=""
     calificacion=0
     producto=Productos.objects.get(slug=slug)
@@ -105,16 +118,19 @@ def detalles_producto(request,slug):
         "calificacion":calificacion,
         "calificaciong":0,
         "fproductos":ft.filter(principal=True),
-        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        "carrito": carro
     }
     return render(request,"product-detail.html",contexto)
 
 def ver_todas_categorias(request):
+    carro = 0
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     contexto = {
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
-        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count(),
+        "carrito": carro,
     }
     return render(request, "category.html", contexto)
 
