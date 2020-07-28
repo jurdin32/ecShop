@@ -120,7 +120,7 @@
                         <div class="quantity_area">
                             <h5>Cantidad</h5>
                             <div class="custom">
-                                <select name="qty" id="qty" style="width: 100%; border: none; line-height: 50px;" >
+                                <select name="qty" id="qty" style="width: 100%; border: none; line-height: 50px;text-align-last: center;text-indent: 5px;" >
                                     {% for i in "x"|rjust:stock %}
                                         <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
                                     {% endfor %}

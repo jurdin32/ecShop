@@ -147,12 +147,19 @@ def enviar_carrito(request):
         carrito=Carrito.objects.get(usuario=request.user,estado=False)
         carrito.slug=hashlib.sha256(str.encode(str(str.zfill(str(carrito.id), 10)))).hexdigest()
         carrito.save()
-        detalles=DetallesCarrito.objects.filter(carrito_id=carrito.id,producto_id=int(request.POST['producto']))
-        if not detalles:
+        detalles=None
+        try:
+            detalles=DetallesCarrito.objects.get(carrito_id=carrito.id,producto_id=int(request.POST['producto']))
+            detalles.cantidad = request.POST["cantidad"]
+            detalles.precio = request.POST["precio"].replace(",", ".")
+            detalles.total = float(request.POST["cantidad"]) * float(request.POST["precio"].replace(",", "."))
+            detalles.save()
+        except:
             DetallesCarrito(carrito=carrito, producto_id=request.POST['producto'],cantidad=request.POST["cantidad"],
                             precio=request.POST["precio"].replace(",","."),
                             total=float(request.POST["cantidad"])*float(request.POST["precio"].replace(",","."))
                             ).save()
+
         contador=DetallesCarrito.objects.filter(carrito=carrito).count()
         eliminar_duplicados()
         return HttpResponse(str(contador))
