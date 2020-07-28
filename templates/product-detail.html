@@ -120,14 +120,11 @@
                         <div class="quantity_area">
                             <h5>Cantidad</h5>
                             <div class="custom">
-                                <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Quantity:"
-                                       class="input-text qty">
-                                <button onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                        class="increase items-count" type="button"><i
-                                        class="glyphicon glyphicon-chevron-up"></i></button>
-                                <button onclick="var result = document.getElementById('qty'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                        class="reduced items-count" type="button"><i
-                                        class="glyphicon glyphicon-chevron-down"></i></button>
+                                <select name="qty" id="qty" style="width: 100%; border: none; line-height: 50px;" >
+                                    {% for i in "x"|rjust:stock %}
+                                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                             <button class="add_to_cart" id="carrito" style="background-color: {{ colores.botons }}"><i
                                     class="glyphicon glyphicon-shopping-cart"></i> Al Carrito

@@ -129,6 +129,7 @@ def ver_todas_categorias(request):
     carro = 0
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        eliminar_duplicados()
     contexto = {
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
@@ -148,18 +149,13 @@ def enviar_carrito(request):
         carrito.slug=hashlib.sha256(str.encode(str(str.zfill(str(carrito.id), 10)))).hexdigest()
         carrito.save()
         detalles=DetallesCarrito.objects.filter(carrito_id=carrito.id,producto_id=int(request.POST['producto']))
-        if detalles:
-            for detalle in detalles:
-                    detalle.cantidad= detalle.cantidad+int(request.POST['cantidad'])
-                    detalle.total=float(detalle.cantidad)*float(request.POST["precio"].replace(",","."))
-                    detalle.save()
-        else:
+        if not detalles:
             DetallesCarrito(carrito=carrito, producto_id=request.POST['producto'],cantidad=request.POST["cantidad"],
                             precio=request.POST["precio"].replace(",","."),
                             total=float(request.POST["cantidad"])*float(request.POST["precio"].replace(",","."))
                             ).save()
         contador=DetallesCarrito.objects.filter(carrito=carrito).count()
-        eliminar_duplicados()
+
         return HttpResponse(str(contador))
 
 
