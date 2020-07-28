@@ -75,12 +75,12 @@
                     <div class="cart">
                         <i class="glyphicon glyphicon-th-list"></i>
                         <h5>Mi lista</h5>
-                        <span>0</span>
+                        <span id="lista">0</span>
                     </div>
                     <div class="cart">
                         <i class="glyphicon glyphicon-shopping-cart"></i>
                         <h5>Cart</h5>
-                        <span>0</span>
+                        <span id="ncarrito">{{ carrito }}</span>
                     </div>
                 </div>
             </div>
@@ -412,7 +412,14 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
+
+<style>
+    .logo_area .website_logo img {
+    max-width: 200px !important;
+}
+</style>
+{% block script %}
+    <script>
     $( function() {
     var availableTags = [];
         {% for prod in productos %}
@@ -423,11 +430,7 @@
     });
   } );
 </script>
-<style>
-    .logo_area .website_logo img {
-    max-width: 200px !important;
-}
-</style>
-{% block script %}{% endblock %}
+
+{% endblock %}
 </body>
 </html>

@@ -225,11 +225,10 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-
-
             </div>
         </div>
     </section>
+    {% csrf_token %}
     {% block script %}
         <script src="/static/js/jquery-1.12.3.min.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -237,6 +236,23 @@
         <script src="/static/sweetalert.min.js"></script>
         <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
         <script>
+            $("#carrito").click(function () {
+                $.post("/to_car/", {
+                    "cantidad": $("#qty").val(),
+                    "precio": $("#precio").val(),
+                    "producto": '{{producto.id}}',
+                    "csrfmiddlewaretoken": $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                }, function (data) {
+                    $("#ncarrito").text(data)
+                    swal({
+                        title: "Excelente!",
+                        text: "El producto se agrego al carrito",
+                        icon: "success",
+                        button: "No hay mas por hacer",
+                    });
+                })
+            })
+
             {% if mensaje %}
                 swal({
                     title: "Bien Hecho!",
@@ -245,8 +261,7 @@
                     button: "No hay mas por hacer",
                 });
             {% endif %}
-        </script>
-        <script>
+
             $(".my-rating").starRating({
                 {% if calificacion %}
                     initialRating: '{{ calificacion }}'.replace(",", "."),
@@ -268,23 +283,6 @@
                 }
             });
         </script>
-        <script>
-            $("#carrito").click(function () {
-                $.get("/to_car/", {
-                    "cantidad": $("#qty").val(),
-                    "precio": $("#precio").val(),
-                    "producto": '{{producto.id}}'
-                }, function (data) {
-                    swal({
-                        title: "Excelente!",
-                        text: data,
-                        icon: "success",
-                        button: "No hay mas por hacer",
-                    });
-                })
-            })
-        </script>
-
     {% endblock %}
 
 {% endblock %}

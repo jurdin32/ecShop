@@ -62,6 +62,8 @@ class Carrito(models.Model):
     slug = models.CharField(max_length=300, null=True, blank=True)
     estado =models.BooleanField(default=False)
 
+    def __str__(self):
+        return "%s|%s"%(self.fecha,self.usuario.username)
     class Meta:
         verbose_name="Carrito"
         verbose_name_plural="Carritos"

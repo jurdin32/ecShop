@@ -1,5 +1,6 @@
 import datetime
 
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -18,6 +19,7 @@ def index(request):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "slider":Slider.objects.all().order_by("fecha"),
         "colores":ColorInterfaz.objects.last(),
+        "carrito":DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False).count()
     }
     return render(request,"index.html",contexto)
 
@@ -29,6 +31,7 @@ def ver_porCategoria(request,id):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "tiendas":Tiendas.objects.all(),
         "colores": ColorInterfaz.objects.last(),
+        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     }
     print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
@@ -54,6 +57,7 @@ def tiendas(request,slug):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
+        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     }
     return render(request,"shop-brand.html",contexto)
 
@@ -84,6 +88,10 @@ def detalles_producto(request,slug):
         calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
     except:
         pass
+    carrito = Carrito.objects.filter(usuario=request.user, estado=False)
+    if not carrito:
+        Carrito(usuario=request.user, estado=False).save()
+
     ft=ProductoFotos.objects.all()
     contexto={
         "producto":producto,
@@ -96,7 +104,8 @@ def detalles_producto(request,slug):
         "mensaje":mensaje,
         "calificacion":calificacion,
         "calificaciong":0,
-        "fproductos":ft.filter(principal=True)
+        "fproductos":ft.filter(principal=True),
+        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     }
     return render(request,"product-detail.html",contexto)
 
@@ -105,6 +114,7 @@ def ver_todas_categorias(request):
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
+        "carrito": DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count(),
     }
     return render(request, "category.html", contexto)
 
@@ -113,28 +123,28 @@ def carrito_usuario(request):
 
 
 def enviar_carrito(request):
-    cantidad= request.GET["cantidad"]
-    precio=request.GET["precio"]
-    producto=request.GET["producto"]
-    try:
-        carrito = Carrito.objects.get(usuario=request.user, estado=False)
-        det=DetallesCarrito.objects.filter(producto_id=producto,carrito=carrito)
-        if det:
-            for d in det:
-                can=d.cantidad
-                cantidad+=int(cantidad)
-                d.precio=(d.precio * cantidad)
-                d.save()
-        else:
-            DetallesCarrito(cantidad=cantidad,precio=precio,total=float(cantidad)*float(precio), producto_id=producto,carrito=carrito).save()
-    except:
-        print("entro aca")
-        carrito = Carrito.objects.create(usuario=request.user, estado=False)
-        carrito.slug=hashlib.sha256(str.encode(str(carrito.fecha))).hexdigest()
+    if request.POST:
+        carrito=Carrito.objects.get(usuario=request.user,estado=False)
+        carrito.slug=hashlib.sha256(str.encode(str(str.zfill(str(carrito.id), 10)))).hexdigest()
         carrito.save()
-        DetallesCarrito(cantidad=cantidad, precio=precio, total=float(cantidad) * float(precio), producto_id=producto,
-                        carrito=carrito).save()
-    return HttpResponse("Se envio al carrito")
+        detalles=DetallesCarrito.objects.filter(carrito_id=carrito.id,producto_id=int(request.POST['producto']))
+        if detalles:
+            for detalle in detalles:
+                    detalle.cantidad= detalle.cantidad+int(request.POST['cantidad'])
+                    detalle.total=float(detalle.cantidad)*float(request.POST["precio"].replace(",","."))
+                    detalle.save()
+        else:
+            DetallesCarrito(carrito=carrito, producto_id=request.POST['producto'],cantidad=request.POST["cantidad"],
+                            precio=request.POST["precio"].replace(",","."),
+                            total=float(request.POST["cantidad"])*float(request.POST["precio"].replace(",","."))
+                            ).save()
+        contador=DetallesCarrito.objects.filter(carrito=carrito).count()
+
+        return HttpResponse(str(contador))
+
+
+
+
 
 
 
