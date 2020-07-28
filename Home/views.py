@@ -75,6 +75,7 @@ def detalles_producto(request,slug):
         "tiendas":Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
+        "productos":Productos.objects.filter(estado=True)
     }
     return render(request,"product-detail.html",contexto)
 

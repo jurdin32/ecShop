@@ -1,208 +1,297 @@
 {% extends "index.html" %}
 {% block contenido %}
-{% load productostags %}
-<section class="banner_area">
-            <div class="banner_tittle">
-                <h3>Brand: {{ producto.tienda.nombre }}</h3>
-            </div>
-            <div class="banner_page_ling">
-                <a href="/">Inicio</a>
-                <i class="glyphicon glyphicon-chevron-right"></i>
-                <a href="index.html">{{ producto.tienda.nombre }}</a>
-                <i class="glyphicon glyphicon-chevron-right"></i>
-                <a href="index.html">{{ producto.categoria.nombre }}</a>
-            </div>
-        </section>
-        <!--==========End Slider area==========-->
-
-        <!--==========End Slider area==========-->
-        <section class="product_detail_area">
-            <div class="container custome_container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="product_detail_image">
-                            <div class="tab-content">
-                                {% for foto in fotosProductos %}
-                                    {% if forloop.counter == 1 %}
-                                        <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}">
-                                            <img src="/media/{{ foto.imagen }}" style="width: 100%; height: 450px" alt="">
-                                        </div>
-                                    {% else %}
-                                        <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}">
-                                            <img src="/media/{{ foto.imagen }}" style="width: 100%; height: 450px" alt="">
-                                        </div>
-                                    {% endif %}
-
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <br>
-                        <div class="product_detail_list">
-                            <ul class="nav nav-tabs" role="tablist">
-                                {% for foto in fotosProductos %}
-                                    {% if forloop.counter == 1 %}
-                                        <li role="presentation" class="active">
-                                    {% else %}
-                                        <li role="presentation">
-                                    {% endif %}
-                                    <div class="col-xl-1">
-                                        <a href="#prod{{ foto.id }}" aria-controls="prod{{ foto.id }}" role="tab" data-toggle="tab">
-                                            <img src="/media/{{ foto.imagen }}" style="width: 120px; height: 120px" alt="">
-                                        </a>
-                                    </div>
-                                </li>
-                                {% endfor %}
+    {% load productostags %}
+    <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">Califica este Producto</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="product_detail_content">
+                        <nav>
+                            <ul class="product_details_rating" style="color: yellow; text-align: center">
+                                <li><a id="1s" href="1"><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a id="2s" href="2"><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a id="3s" href="3"><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a id="4s" href="4"><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a id="5s" href="5"> <i class="glyphicon glyphicon-star"></i></a></li>
                             </ul>
+                        </nav>
+                    </div>
+                    <p>Usted ha seleccionado: <i id="numero"></i> de estrellas para este producto.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="banner_area">
+        <div class="banner_tittle">
+            <h3>Brand: {{ producto.tienda.nombre }}</h3>
+        </div>
+        <div class="banner_page_ling">
+            <a href="/">Inicio</a>
+            <i class="glyphicon glyphicon-chevron-right"></i>
+            <a href="index.html">{{ producto.tienda.nombre }}</a>
+            <i class="glyphicon glyphicon-chevron-right"></i>
+            <a href="index.html">{{ producto.categoria.nombre }}</a>
+        </div>
+    </section>
+    <!--==========End Slider area==========-->
+
+    <!--==========End Slider area==========-->
+    <section class="product_detail_area">
+        <div class="container custome_container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="product_detail_image">
+                        <div class="tab-content">
+                            {% for foto in fotosProductos %}
+                                {% if forloop.counter == 1 %}
+                                    <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}">
+                                        <img src="/media/{{ foto.imagen }}" style="width: 100%; height: 450px" alt="">
+                                    </div>
+                                {% else %}
+                                    <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}">
+                                        <img src="/media/{{ foto.imagen }}" style="width: 100%; height: 450px" alt="">
+                                    </div>
+                                {% endif %}
+
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="product_detail_content">
-                            {% if stock > 0%}
-                                En Stock: <a class="in_stock"><strong>{{ stock }}</strong></a>
-                            {% else %}
-                                 <a class="in_stock" style="background-color: red; color: white">Sin Stok</a>
-                            {% endif %}
+                    <br>
+                    <div class="product_detail_list">
+                        <ul class="nav nav-tabs" role="tablist">
+                            {% for foto in fotosProductos %}
+                                {% if forloop.counter == 1 %}
+                                    <li role="presentation" class="active">
+                                        {% else %}
+                                    <li role="presentation">
+                                {% endif %}
+                            <div class="col-xl-1">
+                                <a href="#prod{{ foto.id }}" aria-controls="prod{{ foto.id }}" role="tab"
+                                   data-toggle="tab">
+                                    <img src="/media/{{ foto.imagen }}" style="width: 120px; height: 120px" alt="">
+                                </a>
+                            </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product_detail_content">
+                        {% if stock > 0 %}
+                            En Stock: <a class="in_stock"><strong>{{ stock }}</strong></a>
+                        {% else %}
+                            <a class="in_stock" style="background-color: red; color: white">Sin Stok</a>
+                        {% endif %}
 
-                            <h3>{{ producto.nombre }}</h3>
-                            <nav>
-                                <ul class="product_details_rating">
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                    <li><a><i class="glyphicon glyphicon-star"></i></a></li>
-                                </ul>
-                            </nav>
-                            <a class="review_btn" href="#">Mi Calificación</a>
-                            <p>{{ producto.descripcion|safe }}</p>
+                        <h3>{{ producto.nombre }}</h3>
+                        <nav>
+                            <ul class="product_details_rating">
+                                <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                                <li><a><i class="glyphicon glyphicon-star"></i></a></li>
+                            </ul>
+                        </nav>
+                        <a class="review_btn" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo"
+                           href="#">Mi Calificación</a>
+                        <p>{{ producto.descripcion|safe }}</p>
                         {% if producto.adds %}
                             <del>$ {{ producto.precio }}</del>
                             <h4>$ {% descuento producto.id %}</h4>
                         {% else %}
                             <h4>$ {{ producto.precio }}</h4>
                         {% endif %}
-                            <div class="quantity_area">
-                                <h5>Cantidad</h5>
-                                <div class="custom">
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="glyphicon glyphicon-chevron-up"></i></button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="glyphicon glyphicon-chevron-down"></i></button>
-                                </div>
-                                <a class="add_to_cart" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart</a>
-                                <a class="heart_btn" href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                        <div class="quantity_area">
+                            <h5>Cantidad</h5>
+                            <div class="custom">
+                                <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                       class="input-text qty">
+                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                        class="increase items-count" type="button"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></button>
+                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                        class="reduced items-count" type="button"><i
+                                        class="glyphicon glyphicon-chevron-down"></i></button>
                             </div>
+                            <a class="add_to_cart" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Add To
+                                Cart</a>
+                            <a class="heart_btn" href="#"><i class="glyphicon glyphicon-heart"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!--==========End Slider area==========-->
+        </div>
+    </section>
+    <!--==========End Slider area==========-->
 
-        <!--==========Product Detail Description area==========-->
-        <section class="detail_description">
-            <div class="container custome_container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="detail_description_list">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detalles Generales del Producto</a></li>
-                                <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Detalles Tecnicos</a></li>
-                                <li role="presentation"><a href="#shiping" aria-controls="shiping" role="tab" data-toggle="tab">Garantía</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="detail_description_content">
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="detail">
-                                    <h4>{{ producto.nombre }}</h4>
-                                    <p>{{ producto.detalles_generales|safe }}</p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="comments">
-                                    <h4>{{ producto.nombre }}</h4>
-                                    <p>{{ producto.detalles_tecnicos|safe }}</p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="shiping">
-                                    <h4>{{ producto.nombre }}</h4>
-                                    <p>{{ producto.garantia_y_mas|safe }}</p>
-                                </div>
-                            </div>
-                        </div>
+    <!--==========Product Detail Description area==========-->
+    <section class="detail_description">
+        <div class="container custome_container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="detail_description_list">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab"
+                                                                      data-toggle="tab">Detalles Generales del
+                                Producto</a></li>
+                            <li role="presentation"><a href="#comments" aria-controls="comments" role="tab"
+                                                       data-toggle="tab">Detalles Tecnicos</a></li>
+                            <li role="presentation"><a href="#shiping" aria-controls="shiping" role="tab"
+                                                       data-toggle="tab">Garantía</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="men_clothing_add add_space">
-                    <img src="img/add_image/home-2-add.jpg" alt="">
-                </div>
-                <div class="men_clothing_tittle">
-                    <h2>Similar Products</h2>
-                </div>
-                <div class="men_clothing_product_inner row">
-                    <div class="col-md-3 col-xs-6">
-                        <div class="men_clothing_product_item">
-                            <a class="men_item_image" href="single-product.html">
-                                <img src="img/product/men-product/men-product-1.jpg" alt="">
-                                <img class="secondary_img" src="img/product/men-product/men-product-2.jpg" alt="">
-                            </a>
-                            <div class="men_item_content">
-                                <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                <h4>US $120.90</h4>
-                                <div class="favourite_icon">
-                                   <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                   <a href="#"><i class="lnr lnr-heart"></i></a>
-                               </div>
+                <div class="col-md-8">
+                    <div class="detail_description_content">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="detail">
+                                <h4>{{ producto.nombre }}</h4>
+                                <p>{{ producto.detalles_generales|safe }}</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="men_clothing_product_item">
-                            <a class="men_item_image" href="single-product.html">
-                                <img src="img/product/men-product/men-product-2.jpg" alt="">
-                                <img class="secondary_img" src="img/product/men-product/men-product-3.jpg" alt="">
-                            </a>
-                            <div class="men_item_content">
-                                <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                <h4>US $120.90</h4>
-                                <div class="favourite_icon">
-                                   <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                   <a href="#"><i class="lnr lnr-heart"></i></a>
-                               </div>
+                            <div role="tabpanel" class="tab-pane" id="comments">
+                                <h4>{{ producto.nombre }}</h4>
+                                <p>{{ producto.detalles_tecnicos|safe }}</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="men_clothing_product_item">
-                            <a class="men_item_image" href="single-product.html">
-                                <img src="img/product/men-product/men-product-3.jpg" alt="">
-                                <img class="secondary_img" src="img/product/men-product/men-product-4.jpg" alt="">
-                            </a>
-                            <div class="men_item_content">
-                                <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                <h4>US $120.90</h4>
-                                <div class="favourite_icon">
-                                   <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                   <a href="#"><i class="lnr lnr-heart"></i></a>
-                               </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="men_clothing_product_item">
-                            <a class="men_item_image" href="single-product.html">
-                                <img src="img/product/men-product/men-product-3.jpg" alt="">
-                                <img class="secondary_img" src="img/product/men-product/men-product-4.jpg" alt="">
-                            </a>
-                            <div class="men_item_content">
-                                <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
-                                <h4>US $120.90</h4>
-                                <div class="favourite_icon">
-                                   <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
-                                   <a href="#"><i class="lnr lnr-heart"></i></a>
-                               </div>
+                            <div role="tabpanel" class="tab-pane" id="shiping">
+                                <h4>{{ producto.nombre }}</h4>
+                                <p>{{ producto.garantia_y_mas|safe }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="men_clothing_add add_space">
+                <img src="/static/img/add_image/home-2-add.jpg" alt="">
+            </div>
+            <div class="men_clothing_tittle">
+                <h2>Similar Products</h2>
+            </div>
+            <div class="men_clothing_product_inner row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="men_clothing_product_item">
+                        <a class="men_item_image" href="single-product.html">
+                            <img src="/static/img/product/men-product/men-product-1.jpg" alt="">
+                            <img class="secondary_img" src="/static/img/product/men-product/men-product-2.jpg" alt="">
+                        </a>
+                        <div class="men_item_content">
+                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
+                            <h4>US $120.90</h4>
+                            <div class="favourite_icon">
+                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
+                                <a href="#"><i class="lnr lnr-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="men_clothing_product_item">
+                        <a class="men_item_image" href="single-product.html">
+                            <img src="img/product/men-product/men-product-2.jpg" alt="">
+                            <img class="secondary_img" src="img/product/men-product/men-product-3.jpg" alt="">
+                        </a>
+                        <div class="men_item_content">
+                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
+                            <h4>US $120.90</h4>
+                            <div class="favourite_icon">
+                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
+                                <a href="#"><i class="lnr lnr-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="men_clothing_product_item">
+                        <a class="men_item_image" href="single-product.html">
+                            <img src="../static/img/product/men-product/men-product-3.jpg" alt="">
+                            <img class="secondary_img" src="../static/img/product/men-product/men-product-4.jpg" alt="">
+                        </a>
+                        <div class="men_item_content">
+                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
+                            <h4>US $120.90</h4>
+                            <div class="favourite_icon">
+                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
+                                <a href="#"><i class="lnr lnr-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="men_clothing_product_item">
+                        <a class="men_item_image" href="single-product.html">
+                            <img src="../static/img/product/men-product/men-product-3.jpg" alt="">
+                            <img class="secondary_img" src="../static/img/product/men-product/men-product-4.jpg" alt="">
+                        </a>
+                        <div class="men_item_content">
+                            <a href="product-detail.html"><h3>Old Style Narrow T-shirt</h3></a>
+                            <h4>US $120.90</h4>
+                            <div class="favourite_icon">
+                                <a class="active" href="#"><i class="lnr lnr-cart"></i></a>
+                                <a href="#"><i class="lnr lnr-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block script %}
+        <script src="/static/js/jquery-1.12.3.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script>
+            $("#1s").mousemove(function() {
+                $("#1s").css("color", "yellow");
+                $("#2s").css("color", "black");
+                 $("#3s").css("color", "black");
+                 $("#4s").css("color", "black");
+                 $("#5s").css("color", "black");
+                 $("#numero").text("1")
+            });
+            $("#2s").hover(function() {
+                $("#1s").css("color", "yellow");
+                 $("#2s").css("color", "yellow");
+                 $("#3s").css("color", "black");
+                 $("#4s").css("color", "black");
+                 $("#5s").css("color", "black");
+                 $("#numero").text("2")
+            });
+            $("#3s").hover(function() {
+                $("#1s").css("color", "yellow");
+                 $("#2s").css("color", "yellow");
+                 $("#3s").css("color", "yellow");
+                 $("#4s").css("color", "black");
+                 $("#5s").css("color", "black");
+                 $("#numero").text("3")
+            });
+            $("#4s").hover(function() {
+                $("#1s").css("color", "yellow");
+                 $("#2s").css("color", "yellow");
+                 $("#3s").css("color", "yellow");
+                 $("#4s").css("color", "yellow");
+                 $("#5s").css("color", "black");
+                 $("#numero").text("4")
+            });
+            $("#5s").hover(function() {
+                $("#1s").css("color", "yellow");
+                 $("#2s").css("color", "yellow");
+                 $("#3s").css("color", "yellow");
+                 $("#4s").css("color", "yellow");
+                 $("#5s").css("color", "yellow");
+                 $("#numero").text("5")
+            });
+        </script>
+    {% endblock %}
+
 {% endblock %}
 
