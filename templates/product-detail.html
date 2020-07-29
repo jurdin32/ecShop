@@ -117,6 +117,9 @@
                             <h4>$ {{ producto.precio }} <input type="hidden" id="precio" value="{{ producto.precio }}">
                             </h4>
                         {% endif %}
+                    {% if stock > 0 %}
+
+
                         <div class="quantity_area">
                             <h5>Cantidad</h5>
                             <div class="custom">
@@ -131,6 +134,7 @@
                             </button>
                             <a class="heart_btn" href="#"><i class="glyphicon glyphicon-heart"></i></a>
                         </div>
+                    {% endif %}
                     </div>
                 </div>
             </div>
