@@ -426,7 +426,7 @@
     $( function() {
     var availableTags = [];
         {% for prod in productos %}
-            availableTags.push("{{ prod.nombre }}")
+            availableTags.push("{{ prod.nombre|capfirst }}")
         {% endfor %}
     $( "#buscar" ).autocomplete({
       source: availableTags
