@@ -1,6 +1,7 @@
 import datetime
 
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from django.db.models import Sum
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -153,12 +154,14 @@ def carrito_usuario(request):
         "carrito": carro.count(),
         "car":car,
         "detalles":carro,
-
+        "total_carro":carro.aggregate(Sum("total"))
     }
-
-
     return render(request,"checkout.html",contexto)
 
+def eliminar_carrito(request,id):
+    detalle=DetallesCarrito.objects.get(id=id)
+    detalle.delete()
+    return HttpResponseRedirect("/this_car/")
 
 def enviar_carrito(request):
     if request.POST:

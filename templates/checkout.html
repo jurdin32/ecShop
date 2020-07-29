@@ -3,75 +3,83 @@
     <section class="checkout_area">
         <div class="container">
             <div class="checkout_inner_area">
-            <div class="personal_info_area">
+                <div class="personal_info_area">
                     <h3>Tu Pedido está casi listo </h3>
                     <p># {{ car.slug }}</p>
                     <p>No.: {{ car.id|stringformat:"010d" }}</p>
-                <div class="checkout_inner_first">
-                    <div class="item_price_area" style="padding: 0px">
-                        <div class="table-responsive" data-example-id="simple-responsive-table">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Nombre</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                    <th>Opciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for detalle in detalles %}
+                    <div class="checkout_inner_first">
+                        <div class="item_price_area" style="padding: 0px">
+                            <div class="table-responsive" data-example-id="simple-responsive-table">
+                                <table class="table">
+                                    <thead>
                                     <tr>
-                                        <td>{% for fotosProducto in fotosProductos %}
-                                            {% if fotosProducto.producto == detalle.producto %}
-                                                <img style="width: 80px" src="/media/{{ fotosProducto.imagen }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                        </td>
-                                        <td>
-
-                                            {{ detalle.producto.nombre }}</td>
-                                        <td>$ {{ detalle.precio }}</td>
-                                        <td><input style="width: 80px; border: none; text-align: center" min="1" type="number" value="{{ detalle.cantidad }}"></td>
-                                        <td> {{ detalle.total }}</td>
-                                        <td><a href="#">Eliminar</a></td>
+                                        <th></th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>Total</th>
+                                        <th>Opciones</th>
                                     </tr>
-                                {% endfor %}
+                                    </thead>
+                                    <tbody>
+                                    {% for detalle in detalles %}
+                                        <tr>
+                                            <td>{% for fotosProducto in fotosProductos %}
+                                                {% if fotosProducto.producto == detalle.producto %}
+                                                    <img style="width: 80px" src="/media/{{ fotosProducto.imagen }}"
+                                                         alt="">
+                                                {% endif %}
+                                            {% endfor %}
+                                            </td>
+                                            <td>
+
+                                                {{ detalle.producto.nombre }}</td>
+                                            <td>$ {{ detalle.precio }}</td>
+                                            <td><input style="width: 80px; border: none; text-align: center" min="1"
+                                                       type="number" value="{{ detalle.cantidad }}"></td>
+                                            <td> {{ detalle.total }}</td>
+                                            <td><a class="btn btn-primary" style="color: white"
+                                                   href="/car/delete/{{ detalle.id }}/">Eliminar</a></td>
+                                        </tr>
+                                    {% endfor %}
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if total_carro.total__sum %}
+                                <h4 style="padding: 30px">Total: {{ total_carro.total__sum }}</h4>
+                            {% else %}
+                                <h4 style="padding: 30px">Total: 0,00</h4>
+                            {% endif %}
+
                         </div>
-                        <h4>Total : $298.00</h4>
+                    </div>
+                    <div class="personal_info_area">
+                        <h3>Personal Info</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email Address *</label>
+                                <p>We will send the purchase receipt to this address.</p>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                       placeholder="Enter your email address">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-text">First Name *</label>
+                                <p>We will use this to personalize your acount experince.</p>
+                                <input type="text" class="form-control" id="input-text" placeholder="Your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputtext">Last Name *</label>
+                                <p>We will use this as well to personalize your acount experince.</p>
+                                <input type="text" class="form-control" id="inputtext" placeholder="Your last name">
+                            </div>
+                            <h4>Purchase Total: $298.00</h4>
+                            <button type="submit" class="submit_btn">Confirm</button>
+                        </form>
                     </div>
                 </div>
-                <div class="personal_info_area">
-                    <h3>Personal Info</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email Address *</label>
-                            <p>We will send the purchase receipt to this address.</p>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   placeholder="Enter your email address">
-                        </div>
-                        <div class="form-group">
-                            <label for="input-text">First Name *</label>
-                            <p>We will use this to personalize your acount experince.</p>
-                            <input type="text" class="form-control" id="input-text" placeholder="Your first name">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputtext">Last Name *</label>
-                            <p>We will use this as well to personalize your acount experince.</p>
-                            <input type="text" class="form-control" id="inputtext" placeholder="Your last name">
-                        </div>
-                        <h4>Purchase Total: $298.00</h4>
-                        <button type="submit" class="submit_btn">Confirm</button>
-                    </form>
-                </div>
             </div>
-        </div>
     </section>
     <style>
         .item_price_area .table-responsive .table thead tr th {
