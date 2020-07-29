@@ -118,7 +118,7 @@ class Productos(models.Model):
     nombre_comun=models.CharField(max_length=300,null=True,blank=True)
 
     def save(self, *args, **kwargs):
-        self.nombre_comun = re.sub(r'[^a-z0-9+]', '-', self.nombre_comun.lower())
+        self.nombre_comun = re.sub(r'[^a-z0-9+]', '-', self.nombre_comun)
         super(Productos, self).save(*args, **kwargs)
 
     def miniatura(self):
