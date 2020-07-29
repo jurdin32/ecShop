@@ -290,6 +290,14 @@
                     button: "No hay mas por hacer",
                 });
             {% endif %}
+            {% if error %}
+                 swal({
+                    title: "Cuanto lo siento!",
+                    text: "{{ error }}",
+                    icon: "error",
+                    button: "No hay mas por hacer",
+                });
+            {% endif %}
 
             $(".my-rating").starRating({
                 {% if calificacion %}

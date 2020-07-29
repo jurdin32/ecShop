@@ -87,6 +87,7 @@ def stok(id):
 
 def detalles_producto(request,slug):
     carro = 0
+    error=""
     carrito=Carrito()
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
@@ -94,13 +95,16 @@ def detalles_producto(request,slug):
     calificacion=0
     producto=Productos.objects.get(slug=slug)
     if request.POST:
-        print(request.POST)
         try:
             calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
             mensaje = "No es posible volver a calificar el producto"
         except:
-            calificacion= CalificarProductos(producto=producto,usuario=request.user,calificacion=request.POST["start"],comentario=request.POST['comentario']).save()
-            mensaje="Gracias por calificar este producto con %s"%request.POST['start']
+            if request.user.is_authenticated:
+                calificacion= CalificarProductos(producto=producto,usuario=request.user,calificacion=request.POST["start"],comentario=request.POST['comentario']).save()
+                mensaje="Gracias por calificar este producto con %s"%request.POST['start']
+            else:
+                error="No es posible calificar sin estar registrado."
+
     try:
         calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
     except:
@@ -125,7 +129,8 @@ def detalles_producto(request,slug):
         "calificacion":calificacion,
         "calificaciong":0,
         "fproductos":ft.filter(principal=True),
-        "carrito": carro
+        "carrito": carro,
+        "error":error,
     }
     return render(request,"product-detail.html",contexto)
 
