@@ -74,7 +74,11 @@
                                 <p>We will use this as well to personalize your acount experince.</p>
                                 <input type="text" class="form-control" id="inputtext" placeholder="Your last name">
                             </div>
-                            <h4>Purchase Total: $298.00</h4>
+                            {% if total_carro.total__sum %}
+                                <h4 style="padding: 30px">Total: {{ total_carro.total__sum }}</h4>
+                            {% else %}
+                                <h4 style="padding: 30px">Total: 0,00</h4>
+                            {% endif %}
                             <button type="submit" class="submit_btn">Confirm</button>
                         </form>
                     </div>
