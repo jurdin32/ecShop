@@ -269,7 +269,7 @@ def busqueda(request,nombre):
 
     contexto={
         "productos": Productos.objects.filter(estado=True),
-        "_productos":Productos.objects.filter(nombre=nombre),
+        "prt":Productos.objects.filter(nombre__icontains=nombre.replace("_"," ")),
         "deseos": deseos.count(),
         "carrito": carro,
         "colores": ColorInterfaz.objects.last(),
