@@ -106,12 +106,12 @@
                                                 <del>${{ producto.precio }}</del>
                                             </h4><br>
                                             <label class="label label-danger">{{ producto.adds.descuento }}%</label>
-                                            <h4>US ${% descuento producto.id %}</h4>
+                                            <h4 class="in_stock">US ${% descuento producto.id %}</h4>
                                         {% else %}
-                                            <h4>US ${{ producto.precio }}</h4><br>
+                                            <h4 class="in_stock">US ${{ producto.precio }}</h4><br>
                                         {% endif %}
                                         <div class="favourite_icon" style="margin-top: -20px;">
-                                           <a style="cursor: pointer" class="corazon in_stock" data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
+                                           <a style="cursor: pointer" class="corazon " data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
                                        </div>
                                     </div>
                                 </div>
