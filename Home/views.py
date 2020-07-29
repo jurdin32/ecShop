@@ -232,6 +232,9 @@ def ver_lista_deseos(request):
         "carrito":carro,
         "colores": ColorInterfaz.objects.last(),
         "fotosProductos": ProductoFotos.objects.filter(principal=True),
+        "tiendas": Tiendas.objects.all(),
+        "cat": Categorias.objects.all().order_by("nombre"),
+        "productos": Productos.objects.filter(estado=True),
     }
     return render(request,"list_deseos.html",contexto)
 
