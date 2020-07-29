@@ -44,6 +44,7 @@
 </head>
 <body>
 {% block header %}
+    {% load productostags %}
     <div class="first_header" style="background-color: {{ colores.header }};">
         <div class="container custome_container">
             <div class="live_chat_area pull-left">
@@ -74,9 +75,11 @@
                 <div class="col-md-2">
                     <div class="cart_area">
                         <div class="cart">
-                            <i class="glyphicon glyphicon-th-list"></i>
-                            <h5>Mi lista</h5>
-                            <span id="lista">{{ deseos }}</span>
+                            <a href="/this_list/">
+                                <i class="glyphicon glyphicon-th-list"></i>
+                                <h5>Mi lista</h5>
+                                <span id="lista">{{ deseos }}</span>
+                            </a>
                         </div>
                         <div class="cart">
                             <a href="/this_car/">
@@ -226,9 +229,13 @@
                                                     <h4><a href="/detail/{{ producto.slug }}/"
                                                            style="float: left !important; color: white">{{ producto.nombre }}</a>
                                                     </h4>
-                                                    <br>
-                                                    <h5>Precio especial</h5>
-                                                    <h6>$ {{ producto.precio }}</h6>
+                                                    {% if producto.adds %}
+                                                        <h4>, <del>$ {{ producto.precio }}</del></h4>
+                                                        <br>
+                                                        <h4>$ {% descuento producto.id %} <input type="hidden" id="precio" value="{% descuento producto.id %} "></h4>
+                                                    {% else %}
+                                                        <h4>$ {{ producto.precio }} <input type="hidden" id="precio" value="{{ producto.precio }}"></h4>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>

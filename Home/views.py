@@ -218,14 +218,24 @@ def lista_deseos(request):
         return HttpResponse(ListaDeseos.objects.filter(usuario=request.user).count())
 
 def ver_lista_deseos(request):
-    deseos=ListaDeseos.objects.create(usuario=request.user)
+    carro = 0
+    deseos=None
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        deseos=ListaDeseos.objects.filter(usuario=request.user)
     contexto={
-        "ldeseos":deseos,
-        "deseos":deseos.count()
+        "detalles":deseos,
+        "deseos":deseos.count(),
+        "carrito":carro,
+        "colores": ColorInterfaz.objects.last(),
+        "fotosProductos": ProductoFotos.objects.filter(principal=True),
     }
-    return render(request,"",contexto)
+    return render(request,"list_deseos.html",contexto)
 
-
+def eliminar_lista_deseos(request,id):
+    lista=ListaDeseos.objects.get(id=id)
+    lista.delete()
+    return HttpResponseRedirect("/this_list/")
 
 
 def eliminar_duplicados(unique_fields,modelo):
@@ -268,6 +278,7 @@ def registro_exitoso(request,hash,id):
     contexto={
         "usuario":User.objects.get(id=id),
         "colores": ColorInterfaz.objects.last(),
+
     }
     return render(request,"registration_success.html",contexto)
 
