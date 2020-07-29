@@ -43,7 +43,6 @@ def ver_porCategoria(request,id):
         "marcas":Marcas.objects.all().order_by("nombre"),
         "top10":productos.order_by("puntuacion"),
     }
-    print(ProductoFotos.objects.filter(principal=True))
     return render(request,"single-category.html",contexto)
 
 
