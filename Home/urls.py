@@ -13,6 +13,7 @@ Home = [
     path('car/delete/<int:id>/', eliminar_carrito),
 
     path('to_list/', lista_deseos),
+    path('this_list/', ver_lista_deseos),
     path('registration/', registroClientes),
     path('registration/success/<slug:hash>/<int:id>/', registro_exitoso),
 ]

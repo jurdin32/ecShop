@@ -146,23 +146,28 @@ def detalles_producto(request,slug):
     return render(request,"product-detail.html",contexto)
 
 def ver_todas_categorias(request):
+    deseos=0
     carro = 0
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        deseos=ListaDeseos.objects.filter(usuario=request.user).count()
         eliminar_duplicados(["producto","carrito","cantidad","precio"],DetallesCarrito)
     contexto = {
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
         "carrito": carro,
+        "deseos":deseos,
     }
     return render(request, "category.html", contexto)
 
 def carrito_usuario(request):
     carro = 0
+    deseos=0
     car=Carrito.objects.get(usuario=request.user,estado=False)
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito=car)
+        deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     contexto={
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
@@ -173,7 +178,8 @@ def carrito_usuario(request):
         "carrito": carro.count(),
         "car":car,
         "detalles":carro,
-        "total_carro":carro.aggregate(Sum("total"))
+        "total_carro":carro.aggregate(Sum("total")),
+        "deseos":deseos,
     }
     return render(request,"checkout.html",contexto)
 
@@ -211,6 +217,13 @@ def lista_deseos(request):
         eliminar_duplicados(["usuario","producto"],ListaDeseos)
         return HttpResponse(ListaDeseos.objects.filter(usuario=request.user).count())
 
+def ver_lista_deseos(request):
+    deseos=ListaDeseos.objects.create(usuario=request.user)
+    contexto={
+        "ldeseos":deseos,
+        "deseos":deseos.count()
+    }
+    return render(request,"",contexto)
 
 
 
