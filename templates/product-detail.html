@@ -2,6 +2,7 @@
 {% block contenido %}
     {% load productostags %}
     <link rel="stylesheet" type="text/css" href="/static/rata/src/css/star-rating-svg.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/rata/demo/css/demo.css">
     <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
          aria-hidden="true">
@@ -266,20 +267,6 @@
 
                     }
                 });
-                {% comment %}$.post("/to_car/", {
-                    "cantidad": $("#qty").val(),
-                    "precio": $("#precio").val(),
-                    "producto": '{{producto.id}}',
-                    "csrfmiddlewaretoken": $('input:hidden[name="csrfmiddlewaretoken"]').val()
-                }, function (data) {
-                    $("#ncarrito").text(data)
-                    swal({
-                        title: "Excelente!",
-                        text: "El producto se agrego al carrito",
-                        icon: "success",
-                        button: "No hay mas por hacer",
-                    });
-                });{% endcomment %}
             });
 
             {% if mensaje %}
@@ -310,6 +297,7 @@
                     readOnly: true,
                 {% endif %}
                 disableAfterRate: false,
+                totalStars: 5,
                 onHover: function (currentIndex, currentRating, $el) {
                     $('#numero').text(currentIndex);
                     $("#start").val(currentIndex)
