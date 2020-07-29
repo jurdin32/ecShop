@@ -404,7 +404,7 @@
     $(function () {
         var availableTags = [];
         {% for prod in productos %}
-            availableTags.push("{{ prod.nombre|capfirst }}".replace(" ","_"))
+            availableTags.push("{{ prod.nombre_comun|capfirst }}".replace(" ","_"))
         {% endfor %}
         $("#buscar").autocomplete({
             source: availableTags
