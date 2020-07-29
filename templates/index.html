@@ -222,8 +222,7 @@
                                                     <div class="re_product_inner">
                                                         {% for fotosProducto in fotosProductos %}
                                                         {% if fotosProducto.producto == producto %}
-                                                            <a href="/detail/{{ producto.slug }}/"><img
-                                                                    src="/media/{{ fotosProducto.imagen }}" alt=""></a>
+                                                            <a href="/detail/{{ producto.slug }}/"><img src="/media/{{ fotosProducto.imagen }}" style="height: 220px" alt=""></a>
                                                         {% endif %}
 
                                                     {% endfor %}
