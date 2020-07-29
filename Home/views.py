@@ -188,6 +188,9 @@ def eliminar_carrito(request,id):
     detalle.delete()
     return HttpResponseRedirect("/this_car/")
 
+
+
+
 def enviar_carrito(request):
     if request.POST:
         carrito=Carrito.objects.get(usuario=request.user,estado=False)
@@ -235,6 +238,11 @@ def ver_lista_deseos(request):
 def eliminar_lista_deseos(request,id):
     lista=ListaDeseos.objects.get(id=id)
     lista.delete()
+    return HttpResponseRedirect("/this_list/")
+
+def eliminar_todos_deseos(request):
+    for l in ListaDeseos.objects.filter(usuario=request.user):
+        l.delete()
     return HttpResponseRedirect("/this_list/")
 
 

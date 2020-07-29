@@ -17,7 +17,7 @@ Home = [
     path('to_list/', lista_deseos),
     path('this_list/', ver_lista_deseos),
     path('list/delete/<int:id>/', eliminar_lista_deseos),
-
+    path('list/delete/all/', eliminar_todos_deseos),
 
     path('registration/', registroClientes),
     path('registration/success/<slug:hash>/<int:id>/', registro_exitoso),

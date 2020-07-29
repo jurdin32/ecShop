@@ -6,6 +6,14 @@
             <div class="checkout_inner_area">
                 <div class="personal_info_area">
                     <h3>Aquí tu lista de deseos</h3>
+                <div style="padding-bottom: 20px">
+                    {% if detalles %}
+                        <a href="/list/delete/all/" id="borrar" class="btn btn-danger" style="color: whitesmoke">Borrar la Lista de Favoritos</a>
+                    {% endif %}
+
+                </div>
+
+
                     <div class="checkout_inner_first">
                         <div class="item_price_area" style="padding: 0px">
                             <div class="table-responsive" data-example-id="simple-responsive-table">
@@ -21,10 +29,11 @@
                                     <tbody>
                                     {% for detalle in detalles %}
                                         <tr>
+
                                             <td style="text-align: center">{% for fotosProducto in fotosProductos %}
                                                 {% if fotosProducto.producto == detalle.producto %}
-                                                    <img style="width: 80px" src="/media/{{ fotosProducto.imagen }}"
-                                                         alt="">
+                                                    <a href="/detail/{{ detalle.producto.slug }}/"><img style="width: 80px" src="/media/{{ fotosProducto.imagen }}"
+                                                         alt=""></a>
                                                 {% endif %}
                                             {% endfor %}
                                                 <br>
@@ -32,19 +41,28 @@
                                             <td>$ {{ detalle.producto.precio }}</td>
                                             <td>
                                                 {% if detalle.producto.adds %}
-                                                    $ {% descuento detalle.producto.id %} <input type="hidden" id="precio" value="{% descuento detalle.producto.id %} ">
+                                                    $ {% descuento detalle.producto.id %}
                                                     {% else %}
                                                     No hay promociones.
                                                 {% endif %}
                                             </td>
                                             <td><a class="btn btn-primary" style="color: whitesmoke"
                                                    href="/list/delete/{{ detalle.id }}/"><i class="glyphicon glyphicon-trash"></i></a>
-                                                <a href="//" class="btn btn-success" style="color: whitesmoke"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                                <a  class="btn btn-success carrito"
+                                                    data-cantidad="1"
+                                                   {% if detalle.producto.adds %}
+                                                    data-precio="{% descuento detalle.producto.id %}"
+                                                   {% else %}
+                                                   data-precio="{{ detalle.producto.precio }}"
+                                                   {% endif %}
+                                                    data-id="{{ detalle.producto.id }}"
+                                                   style="color: whitesmoke"><i class="glyphicon glyphicon-shopping-cart"></i></a>
                                             </td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -58,4 +76,38 @@
         }
     </style>
 {% endblock %}
+{% block script %}
+    <script src="/static/sweetalert.min.js"></script>
+    <script>
+    $(".carrito").click(function () {
+                $.ajax({
+                    url: "/to_car/",
+                    data: {
+                        cantidad: 1,
+                        precio: $(this).data("precio"),
+                        producto: $(this).data("id"),
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        swal({
+                        title: "Cuanto lo siento!",
+                        text: "Para usar esta acción debe estar registrado",
+                        icon: "error",
+                        button: "No hay mas por hacer",
+                    });
 
+                    },
+                    success: function(data){
+                        swal({
+                        title: "Excelente!",
+                        text: "El producto se agrego al carrito",
+                        icon: "success",
+                        button: "No hay mas por hacer",
+                    });
+                    $("#ncarrito").text(data)
+                    }
+                });
+            });
+    </script>
+{% endblock %}
