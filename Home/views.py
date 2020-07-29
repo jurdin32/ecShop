@@ -14,8 +14,10 @@ from ecShop.snippers import send_email
 
 def index(request):
     carro=0
+    deseos=0
     if request.user.is_authenticated:
         carro=DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False).count()
+        deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     contexto={
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
@@ -23,15 +25,18 @@ def index(request):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "slider":Slider.objects.all().order_by("fecha"),
         "colores":ColorInterfaz.objects.last(),
-        "carrito":carro
+        "carrito":carro,
+        "deseos":deseos,
     }
     return render(request,"index.html",contexto)
 
 def ver_porCategoria(request,id):
     carro = 0
+    deseos=0
     productos=Productos.objects.filter(categoria_id=id,estado=True)
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     contexto={
         "cat":Categorias.objects.all().order_by("nombre"),
         "productos":productos,
@@ -42,15 +47,17 @@ def ver_porCategoria(request,id):
         "carrito": carro,
         "marcas":Marcas.objects.all().order_by("nombre"),
         "top10":productos.order_by("puntuacion"),
+        "deseos":deseos,
     }
     return render(request,"single-category.html",contexto)
 
 
 def tiendas(request,slug):
     carro = 0
+    deseos=0
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
-
+        deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     tiendas=Tiendas.objects.all()
     tienda=tiendas.get(hashes=slug)
     productos=Productos.objects.filter(tienda_id=tienda.id)
@@ -70,7 +77,8 @@ def tiendas(request,slug):
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "cat": Categorias.objects.all().order_by("nombre"),
         "colores": ColorInterfaz.objects.last(),
-        "carrito": carro
+        "carrito": carro,
+        "deseos":deseos,
     }
     return render(request,"shop-brand.html",contexto)
 
@@ -88,9 +96,11 @@ def stok(id):
 def detalles_producto(request,slug):
     carro = 0
     error=""
+    deseos=0
     carrito=Carrito()
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     mensaje=""
     calificacion=0
     producto=Productos.objects.get(slug=slug)
@@ -131,6 +141,7 @@ def detalles_producto(request,slug):
         "fproductos":ft.filter(principal=True),
         "carrito": carro,
         "error":error,
+        "deseos":deseos,
     }
     return render(request,"product-detail.html",contexto)
 
@@ -138,7 +149,7 @@ def ver_todas_categorias(request):
     carro = 0
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
-        eliminar_duplicados()
+        eliminar_duplicados(["producto","carrito","cantidad","precio"],DetallesCarrito)
     contexto = {
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
@@ -190,26 +201,30 @@ def enviar_carrito(request):
                             ).save()
 
         contador=DetallesCarrito.objects.filter(carrito=carrito).count()
-        eliminar_duplicados()
+        eliminar_duplicados(["producto","carrito","cantidad","precio"],DetallesCarrito)
         return HttpResponse(str(contador))
 
 
 def lista_deseos(request):
     if request.POST:
         ListaDeseos.objects.create(usuario=request.user,producto_id=request.POST["producto_id"])
+        eliminar_duplicados(["usuario","producto"],ListaDeseos)
+        return HttpResponse(ListaDeseos.objects.filter(usuario=request.user).count())
 
 
 
-def eliminar_duplicados():
-    unique_fields=["producto","carrito","cantidad","precio"]
-    duplicates = (DetallesCarrito.objects.values(*unique_fields)
+
+
+def eliminar_duplicados(unique_fields,modelo):
+
+    duplicates = (modelo.objects.values(*unique_fields)
                   .order_by()
                   .annotate(max_id=models.Max('id'),
                             count_id=models.Count('id'))
                   .filter(count_id__gt=1))
 
     for duplicate in duplicates:
-        (DetallesCarrito.objects.filter(**{x: duplicate[x] for x in unique_fields})
+        (modelo.objects.filter(**{x: duplicate[x] for x in unique_fields})
          .exclude(id=duplicate['max_id'])
          .delete())
 

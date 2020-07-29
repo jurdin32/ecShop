@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
- <link rel="icon" href="/static/img/favicon.png" type="image/x-icon"/>
+    <link rel="icon" href="/static/img/favicon.png" type="image/x-icon"/>
 
     <title>ecShop</title>
 
@@ -44,308 +44,326 @@
 </head>
 <body>
 {% block header %}
-<div class="first_header" style="background-color: {{ colores.header }};">
-    <div class="container custome_container">
-        <div class="live_chat_area pull-left">
-            <a href="/registration/" style="color: white"><i class="glyphicon glyphicon-user"></i>Registrate Gratis</a>
-            <a href="#" style="color: white"><i class="glyphicon glyphicon-envelope"></i>Contactanos: +57 3024634847</a>
+    <div class="first_header" style="background-color: {{ colores.header }};">
+        <div class="container custome_container">
+            <div class="live_chat_area pull-left">
+                <a href="/registration/" style="color: white"><i class="glyphicon glyphicon-user"></i>Registrate Gratis</a>
+                <a href="#" style="color: white"><i class="glyphicon glyphicon-envelope"></i>Contactanos: +57 3024634847</a>
+            </div>
         </div>
     </div>
-</div>
     <!--
     cccccc52
     efefef
     -->
-<div class="logo_area" style="background-color: {{ colores.page }};">
-    <div class="container custome_container">
-        <div class="row">
-            <div class="col-md-3" style="margin-top: -10px;">
-                <div class="website_logo">
-                    <a href="/"><img src="/static/img/ec-02.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="find_item_inner">
-                    <input type="text" id="buscar" name="buscar" placeholder="¿Qué busca..?">
-                    <a class="find_button" style="background:{{ colores.botons }} !important;" href="#">Búscar Productos</a>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="cart_area">
-                    <div class="cart">
-                        <i class="glyphicon glyphicon-th-list"></i>
-                        <h5>Mi lista</h5>
-                        <span id="lista">0</span>
+    <div class="logo_area" style="background-color: {{ colores.page }};">
+        <div class="container custome_container">
+            <div class="row">
+                <div class="col-md-3" style="margin-top: -10px;">
+                    <div class="website_logo">
+                        <a href="/"><img src="/static/img/ec-02.png" alt=""></a>
                     </div>
-                    <div class="cart">
-                        <a href="/this_car/">
-                            <i class="glyphicon glyphicon-shopping-cart"></i>
-                            <h5>Cart</h5>
-                            <span id="ncarrito">{{ carrito }}</span>
-                        </a>
+                </div>
+                <div class="col-md-7">
+                    <div class="find_item_inner">
+                        <input type="text" id="buscar" name="buscar" placeholder="¿Qué busca..?">
+                        <a class="find_button" style="background:{{ colores.botons }} !important;" href="#">Búscar
+                            Productos</a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="cart_area">
+                        <div class="cart">
+                            <i class="glyphicon glyphicon-th-list"></i>
+                            <h5>Mi lista</h5>
+                            <span id="lista">{{ deseos }}</span>
+                        </div>
+                        <div class="cart">
+                            <a href="/this_car/">
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                                <h5>Cart</h5>
+                                <span id="ncarrito">{{ carrito }}</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<header class="main_menu_area">
-    <nav class="navbar navbar-default" style="background-color:{{ colores.menu }}">
-        <div class="container custome_container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown toggle_menu active">
-                        <a href="/">Inicio <i class="glyphicon glyphicon-home"></i></a>
-                    </li>
-                    <li class="dropdown meg_menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Categorías <i class="glyphicon glyphicon-tag"></i></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <ul class="nav">
-                                    {% for categoria in cat %}
-                                        <li><a href="/single-category/{{ categoria.id }}">{{ categoria.nombre|capfirst }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown toggle_menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Tiendas <i class="glyphicon glyphicon-stats"></i></a>
-                        <ul class="dropdown-menu">
-                            {% for tienda in tiendas %}
-                            <li><a href="/shop-brand/{{ tienda.hashes }}/">{{ tienda.nombre }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
+    <header class="main_menu_area">
+        <nav class="navbar navbar-default" style="background-color:{{ colores.menu }}">
+            <div class="container custome_container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Navegación</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown toggle_menu active">
+                            <a href="/">Inicio <i class="glyphicon glyphicon-home"></i></a>
+                        </li>
+                        <li class="dropdown meg_menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Categorías <i class="glyphicon glyphicon-tag"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <ul class="nav">
+                                        {% for categoria in cat %}
+                                            <li>
+                                                <a href="/single-category/{{ categoria.id }}">{{ categoria.nombre|capfirst }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown toggle_menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Tiendas <i class="glyphicon glyphicon-stats"></i></a>
+                            <ul class="dropdown-menu">
+                                {% for tienda in tiendas %}
+                                    <li><a href="/shop-brand/{{ tienda.hashes }}/">{{ tienda.nombre }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
 
-                    <li><a href="shop-brand.html">Tracking <i class="glyphicon glyphicon-cog"></i></a> </li>
-                    <li><a href="contact.html">Contacto <i class="glyphicon glyphicon-envelope"></i></a></li>
-                    <li><a href="shop-brand.html">Politíca <i class="glyphicon glyphicon-education"></i></a> </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Mi Cuenta</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
-    </nav>
-</header>
+                        <li><a href="shop-brand.html">Tracking <i class="glyphicon glyphicon-cog"></i></a></li>
+                        <li><a href="contact.html">Contacto <i class="glyphicon glyphicon-envelope"></i></a></li>
+                        <li><a href="shop-brand.html">Politíca <i class="glyphicon glyphicon-education"></i></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Mi Cuenta</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+    </header>
 {% endblock %}
 
 {% block contenido %}
 
-<section class="main_slider_area row m0">
-    <div class="camera_wrap main_slider_inner">
-        {% for sli in slider %}
-        <div data-thumb="/media/{{ sli.imagen }}" data-src="/media/{{ sli.imagen }}">
-            <div class="container custome_container">
-                <div class="slider_text_main">
-                    <div class="slider_text">
-                        <h2 class="fadeInUp animated">{{ sli.titulo}}</h2>
-                        <p class="fadeInUp animated">{{ sli.descripcion }}</p>
-                        {% if sli.valorPromocion > 0 %}
-                        <h3 class="fadeInUp animated">US ${{ sli.valorPromocion }} <span><s>${{ sli.valorSinPromocion }}</s></span></h3>
-                        {% endif %}
-                        {% if sli.alCarrito %}
-                        <a class="slider_btn fadeInLeft animated" href="#" style="background-color: {{ sli.colorBoton }}!important;"><i class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
-                            {% else %}
-                        <a class="slider_btn fadeInLeft animated" href="{{ sli.enlace }}" style="background-color: {{ sli.colorBoton }}!important;"><i class="glyphicon glyphicon-chevron-right"></i>
-                            {{ sli.mensajeBoton}}</a>
-                        {% endif %}
+    <section class="main_slider_area row m0">
+        <div class="camera_wrap main_slider_inner">
+            {% for sli in slider %}
+                <div data-thumb="/media/{{ sli.imagen }}" data-src="/media/{{ sli.imagen }}">
+                    <div class="container custome_container">
+                        <div class="slider_text_main">
+                            <div class="slider_text">
+                                <h2 class="fadeInUp animated">{{ sli.titulo }}</h2>
+                                <p class="fadeInUp animated">{{ sli.descripcion }}</p>
+                                {% if sli.valorPromocion > 0 %}
+                                    <h3 class="fadeInUp animated">US ${{ sli.valorPromocion }}
+                                        <span><s>${{ sli.valorSinPromocion }}</s></span></h3>
+                                {% endif %}
+                                {% if sli.alCarrito %}
+                                    <a class="slider_btn fadeInLeft animated" href="#"
+                                       style="background-color: {{ sli.colorBoton }}!important;"><i
+                                            class="glyphicon glyphicon-shopping-cart"></i> Al Carrito</a>
+                                {% else %}
+                                    <a class="slider_btn fadeInLeft animated" href="{{ sli.enlace }}"
+                                       style="background-color: {{ sli.colorBoton }}!important;"><i
+                                            class="glyphicon glyphicon-chevron-right"></i>
+                                        {{ sli.mensajeBoton }}</a>
+                                {% endif %}
 
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</section>
-<section class="add_space">
-    <div class="container custome_container">
-        <img src="/static/img/add_image/home_add_1.jpg" alt="">
-    </div>
-</section>
-<section class="product_categori_list">
-    <div class="container custome_container">
-        <div class="men_clothing">
-            <div class="men_clothing_heading" style="padding-top: 10px">
-                <nav>
-                    <ul class="nav nav-tabs" role="tablist">
-                        {% for categoria in cat %}
-                            <li role="presentation" class="{% if forloop.counter == 1 %} active {% endif %}">
-                                <a href="#cat_{{ categoria.id }}" aria-controls="cat_{{ categoria.id }}" role="tab" data-toggle="tab">{{ categoria.nombre|capfirst }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </nav>
-                <a class="all_categories" href="/category/">Todas las categorías <i class="glyphicon glyphicon-arrow-right"></i></a>
-            </div>
-            <div class="men_clothing_body row">
-                <div class="tab-content">
-                    {% for categoria in cat %}
-                    <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active {% endif %}" id="cat_{{ categoria.id }}">
-                    {% for producto in productos %}
-                        {% if producto.categoria == categoria %}
-                            <div class="col-md-6">
-                                <div class="men_clithing_item">
-                                    {% for fotosProducto in fotosProductos %}
-                                        {% if fotosProducto.producto == producto %}
-                                            <a href="/detail/{{ producto.slug }}/"><img src="/media/{{ fotosProducto.imagen }}" alt=""></a>
-                                        {% endif %}
-
-                                    {% endfor %}
-                                    <div class="men_clithing_item_text">
-                                        <h4><a href="#" class="text-danger"><i class="glyphicon glyphicon-heart"></i></a></h4>
-                                        <h4><a href="/detail/{{ producto.slug }}/" style="float: left !important; color: white">{{  producto.nombre }}</a></h4>
-                                        <br>
-                                            <h5>Precio especial</h5>
-                                            <h6>$ {{ producto.precio }}</h6>
-                                    </div>
-                                </div>
                             </div>
-                        {% endif %}
-                    {% endfor %}
-
-
+                        </div>
                     </div>
-                    {% endfor %}
-
-
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    </div>
-</section>
-<section class="recomanded_product">
-    <div class="container custome_container">
-        <div class="re_tittle">
-            <h2>Lo mas Vendido</h2>
+    </section>
+    <section class="add_space">
+        <div class="container custome_container">
+            <img src="/static/img/add_image/home_add_1.jpg" alt="">
         </div>
-        <div class="row">
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-1.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    </div>
+    </section>
+    <section class="product_categori_list">
+        <div class="container custome_container">
+            <div class="men_clothing">
+                <div class="men_clothing_heading" style="padding-top: 10px">
+                    <nav>
+                        <ul class="nav nav-tabs" role="tablist">
+                            {% for categoria in cat %}
+                                <li role="presentation" class="{% if forloop.counter == 1 %} active {% endif %}">
+                                    <a href="#cat_{{ categoria.id }}" aria-controls="cat_{{ categoria.id }}" role="tab"
+                                       data-toggle="tab">{{ categoria.nombre|capfirst }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                    <a class="all_categories" href="/category/">Todas las categorías <i
+                            class="glyphicon glyphicon-arrow-right"></i></a>
                 </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-2.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-3.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-4.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-5.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-6.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-7.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="re_product_inner">
-                    <img src="/static/img/recommended-product/re-product-8.jpg" alt="">
-                    <div class="re_product_price">
-                        <h4>US $120.90</h4>
-                        <div class="re_product_checkout">
-                            <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                            <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
+                <div class="men_clothing_body row">
+                    <div class="tab-content">
+                        {% for categoria in cat %}
+                            <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active {% endif %}"
+                                 id="cat_{{ categoria.id }}">
+                                {% for producto in productos %}
+                                    {% if producto.categoria == categoria %}
+                                        <div class="col-md-6">
+                                            <div class="men_clithing_item">
+                                                {% for fotosProducto in fotosProductos %}
+                                                    {% if fotosProducto.producto == producto %}
+                                                        <a href="/detail/{{ producto.slug }}/"><img
+                                                                src="/media/{{ fotosProducto.imagen }}" alt=""></a>
+                                                    {% endif %}
+
+                                                {% endfor %}
+                                                <div class="men_clithing_item_text">
+                                                    <h4><a style="cursor: pointer" class="text-danger corazon"
+                                                           data-producto="{{ producto.id }}"><i
+                                                            class="glyphicon glyphicon-heart"></i></a></h4>
+                                                    <h4><a href="/detail/{{ producto.slug }}/"
+                                                           style="float: left !important; color: white">{{ producto.nombre }}</a>
+                                                    </h4>
+                                                    <br>
+                                                    <h5>Precio especial</h5>
+                                                    <h6>$ {{ producto.precio }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+
+                            </div>
+                        {% endfor %}
+
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <section class="recomanded_product">
+        <div class="container custome_container">
+            <div class="re_tittle">
+                <h2>Lo mas Vendido</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-1.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-2.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-3.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-4.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-5.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-6.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-7.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="re_product_inner">
+                        <img src="/static/img/recommended-product/re-product-8.jpg" alt="">
+                        <div class="re_product_price">
+                            <h4>US $120.90</h4>
+                            <div class="re_product_checkout">
+                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
 {% block footer %}
-<footer class="footer_area">
-    <div class="main_footer">
-        <div class="container custome_container">
+    <footer class="footer_area">
+        <div class="main_footer">
+            <div class="container custome_container">
 
+            </div>
         </div>
-    </div>
-    <div class="copyright_footer">
-        <h4>© Todos los Derechos reservados BIT-EC</h4>
-    </div>
-</footer>
+        <div class="copyright_footer">
+            <h4>© Todos los Derechos reservados BIT-EC</h4>
+        </div>
+    </footer>
 {% endblock %}
-
+{% csrf_token %}
 <!--==========End Footer area==========-->
 
 
@@ -365,27 +383,60 @@
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script src="/static/sweetalert.min.js"></script>
 
 <style>
     .logo_area .website_logo img {
-    max-width: 200px !important;
-}
+        max-width: 200px !important;
+    }
 </style>
 {% block script %}
 
 
 {% endblock %}
- <script>
-    $( function() {
-    var availableTags = [];
+<script>
+    $(function () {
+        var availableTags = [];
         {% for prod in productos %}
             availableTags.push("{{ prod.nombre|capfirst }}")
         {% endfor %}
-    $( "#buscar" ).autocomplete({
-      source: availableTags
+        $("#buscar").autocomplete({
+            source: availableTags
+        });
+
+        $(".corazon").click(function () {
+            $.ajax({
+                url: "/to_list/",
+                data: {
+                    producto_id: $(this).data("producto"),
+                    csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                },
+                type: 'post',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    swal({
+                        title: "Cuanto lo siento!",
+                        text: "Para usar esta acción debe estar registrado",
+                        icon: "error",
+                        button: "No hay mas por hacer",
+                    });
+
+                },
+                success: function (data) {
+                    swal({
+                        title: "Excelente!",
+                        text: "El producto fue agregado a tu lista de deseos",
+                        icon: "success",
+                        button: "No hay mas por hacer",
+                    });
+
+                }
+            });
+        })
+
+
     });
-  } );
+
+
 </script>
 </body>
 </html>

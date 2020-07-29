@@ -111,8 +111,7 @@
                                             <h4>US ${{ producto.precio }}</h4><br>
                                         {% endif %}
                                         <div class="favourite_icon">
-                                           <a class="active" href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                           <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
+                                           <a style="cursor: pointer" class="corazon" data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
                                        </div>
                                     </div>
                                 </div>
