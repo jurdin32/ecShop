@@ -212,144 +212,44 @@
                             <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active {% endif %}"
                                  id="cat_{{ categoria.id }}">
                                 <div class="row">
-                                    {% for producto in productos %}
-                                        {% if producto.categoria == categoria %}
-                                            <div class="col-md-3">
-                                                <div class="men_clithing_item">
-                                                    {% for fotosProducto in fotosProductos %}
+
+                                </div>
+                                <div class="container custome_container">
+                                    <div class="row">
+                                        {% for producto in productos %}
+                                            {% if producto.categoria == categoria %}
+                                                <div class="col-md-3 col-xs-6">
+                                                    <div class="re_product_inner">
+                                                        {% for fotosProducto in fotosProductos %}
                                                         {% if fotosProducto.producto == producto %}
                                                             <a href="/detail/{{ producto.slug }}/"><img
                                                                     src="/media/{{ fotosProducto.imagen }}" alt=""></a>
                                                         {% endif %}
 
                                                     {% endfor %}
-                                                    <div class="men_clithing_item_text">
-                                                        <h4><a style="cursor: pointer" class="text-danger corazon"
-                                                               data-producto="{{ producto.id }}"><i
-                                                                class="glyphicon glyphicon-heart"></i></a></h4>
-                                                        <h4><a href="/detail/{{ producto.slug }}/"
-                                                               style="float: left !important; color: white">{{ producto.nombre }}</a>
-                                                        </h4>
-                                                        {% if producto.adds %}
-                                                            <h4>,
-                                                                <del>$ {{ producto.precio }}</del>
-                                                            </h4>
+                                                        <div class="re_product_price">
+                                                            {% if producto.adds %}
+                                                            <h4><del>$ {{ producto.precio }}</del></h4>
                                                             <br>
-                                                            <h4>$ {% descuento producto.id %} <input type="hidden"
-                                                                                                     id="precio"
-                                                                                                     value="{% descuento producto.id %} ">
-                                                            </h4>
+                                                            <h4>$ {% descuento producto.id %} <input type="hidden" id="precio" value="{% descuento producto.id %} "></h4>
                                                         {% else %}
-                                                            <h4>$ {{ producto.precio }} <input type="hidden" id="precio"
-                                                                                               value="{{ producto.precio }}">
-                                                            </h4>
+                                                            <h4>$ {{ producto.precio }} <input type="hidden" id="precio" value="{{ producto.precio }}"></h4>
                                                         {% endif %}
+                                                            <div class="re_product_checkout">
+                                                                <a style="cursor: pointer" class="text-danger corazon"
+                                                               data-producto="{{ producto.id }}"><i
+                                                                class="glyphicon glyphicon-heart"></i></a>
+                                                                <a href="#"><i
+                                                                        class="glyphicon glyphicon-heart corazon"></i></a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
                                 </div>
-                            <div class="container custome_container">
-                                <div class="row">
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-1.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-2.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-3.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-4.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-5.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-6.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-7.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-8.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                            </div>
                             </div>
                         {% endfor %}
 
