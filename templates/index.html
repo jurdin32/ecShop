@@ -68,7 +68,8 @@
                 <div class="col-md-7">
                     <div class="find_item_inner">
                         <input type="text" id="buscar" name="buscar" placeholder="¿Qué busca..?">
-                        <a id="ab" class="find_button" style="background:{{ colores.botons }} !important;" href="#">Búscar Productos</a>
+                        <a id="ab" class="find_button" style="background:{{ colores.botons }} !important;" href="#">Búscar
+                            Productos</a>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -210,38 +211,45 @@
                         {% for categoria in cat %}
                             <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active {% endif %}"
                                  id="cat_{{ categoria.id }}">
-                                {% for producto in productos %}
-                                    {% if producto.categoria == categoria %}
-                                        <div class="col-md-3">
-                                            <div class="men_clithing_item">
-                                                {% for fotosProducto in fotosProductos %}
-                                                    {% if fotosProducto.producto == producto %}
-                                                        <a href="/detail/{{ producto.slug }}/"><img
-                                                                src="/media/{{ fotosProducto.imagen }}" alt=""></a>
-                                                    {% endif %}
+                                <div class="row">
+                                    {% for producto in productos %}
+                                        {% if producto.categoria == categoria %}
+                                            <div class="col-md-3">
+                                                <div class="men_clithing_item">
+                                                    {% for fotosProducto in fotosProductos %}
+                                                        {% if fotosProducto.producto == producto %}
+                                                            <a href="/detail/{{ producto.slug }}/"><img
+                                                                    src="/media/{{ fotosProducto.imagen }}" alt=""></a>
+                                                        {% endif %}
 
-                                                {% endfor %}
-                                                <div class="men_clithing_item_text">
-                                                    <h4><a style="cursor: pointer" class="text-danger corazon"
-                                                           data-producto="{{ producto.id }}"><i
-                                                            class="glyphicon glyphicon-heart"></i></a></h4>
-                                                    <h4><a href="/detail/{{ producto.slug }}/"
-                                                           style="float: left !important; color: white">{{ producto.nombre }}</a>
-                                                    </h4>
-                                                    {% if producto.adds %}
-                                                        <h4>, <del>$ {{ producto.precio }}</del></h4>
-                                                        <br>
-                                                        <h4>$ {% descuento producto.id %} <input type="hidden" id="precio" value="{% descuento producto.id %} "></h4>
-                                                    {% else %}
-                                                        <h4>$ {{ producto.precio }} <input type="hidden" id="precio" value="{{ producto.precio }}"></h4>
-                                                    {% endif %}
+                                                    {% endfor %}
+                                                    <div class="men_clithing_item_text">
+                                                        <h4><a style="cursor: pointer" class="text-danger corazon"
+                                                               data-producto="{{ producto.id }}"><i
+                                                                class="glyphicon glyphicon-heart"></i></a></h4>
+                                                        <h4><a href="/detail/{{ producto.slug }}/"
+                                                               style="float: left !important; color: white">{{ producto.nombre }}</a>
+                                                        </h4>
+                                                        {% if producto.adds %}
+                                                            <h4>,
+                                                                <del>$ {{ producto.precio }}</del>
+                                                            </h4>
+                                                            <br>
+                                                            <h4>$ {% descuento producto.id %} <input type="hidden"
+                                                                                                     id="precio"
+                                                                                                     value="{% descuento producto.id %} ">
+                                                            </h4>
+                                                        {% else %}
+                                                            <h4>$ {{ producto.precio }} <input type="hidden" id="precio"
+                                                                                               value="{{ producto.precio }}">
+                                                            </h4>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-
-
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         {% endfor %}
 
@@ -404,7 +412,7 @@
     $(function () {
         var availableTags = [];
         {% for prod in productos %}
-            availableTags.push("{{ prod.nombre_comun|capfirst }}".replace(" ","_"))
+            availableTags.push("{{ prod.nombre_comun|capfirst }}".replace(" ", "_"))
         {% endfor %}
         $("#buscar").autocomplete({
             source: availableTags
@@ -441,9 +449,9 @@
 
 
     });
-    $("#buscar").change(function (){
-        var cadena=$("#buscar").val()
-        $("#ab").attr("href","/search/"+cadena+"/")
+    $("#buscar").change(function () {
+        var cadena = $("#buscar").val()
+        $("#ab").attr("href", "/search/" + cadena + "/")
     }).change()
 
 </script>
