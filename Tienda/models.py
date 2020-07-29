@@ -100,6 +100,12 @@ class Adds(models.Model):
         verbose_name="Promoción"
         verbose_name_plural="Promociones"
 
+
+import unicodedata
+def strip_accents(s):
+    return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+
+
 class Productos(models.Model):
     tienda=models.ForeignKey(Tiendas,on_delete=models.CASCADE,null=True,blank=True)
     codigo_interno=models.CharField(max_length=20,null=True,blank=True,default="0000000")
@@ -118,7 +124,7 @@ class Productos(models.Model):
     nombre_comun=models.CharField(max_length=300,null=True,blank=True)
 
     def save(self, *args, **kwargs):
-        self.nombre_comun =str(self.nombre).replace(" ","_")
+        self.nombre_comun =str(strip_accents(self.nombre)).replace(" ","_")
         super(Productos, self).save(*args, **kwargs)
 
     def miniatura(self):
