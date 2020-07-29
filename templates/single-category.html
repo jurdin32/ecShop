@@ -94,13 +94,13 @@
                                     <a class="men_item_image" href="/detail/{{ producto.slug }}">
                                         {% for fotosProducto in fotosProductos %}
                                             {% if fotosProducto.producto == producto %}
-                                             <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                             <img src="/media/{{ fotosProducto.imagen }}" style="height: 220px" alt="">
                                             {% endif %}
 
                                         {% endfor %}
                                     </a>
-                                    <div class="men_item_content">
-                                        <a href="/detail/{{ producto.slug }}"><h3>{{  producto.nombre }}</h3></a>
+                                    <div class="men_item_content" style="height: 120px">
+                                        <a href="/detail/{{ producto.slug }}"><h3>{{  producto.nombre|truncatechars:30 }}</h3></a>
                                         {% if producto.adds and producto.adds.estado %}
                                             <h4>US
                                                 <del>${{ producto.precio }}</del>
