@@ -7,32 +7,32 @@ from Tienda.models import Productos
 
 
 class Clientes(models.Model):
-    nombres=models.CharField(max_length=60)
-    apellidos=models.CharField(max_length=60)
-    fecha_nacimiento=models.DateField(null=True,blank=True)
-    cedula=models.CharField(max_length=10)
+    nombres = models.CharField(max_length=60)
+    apellidos = models.CharField(max_length=60)
+    fecha_nacimiento = models.DateField(null=True,blank=True)
+    cedula = models.CharField(max_length=10)
 
     class Meta:
-        verbose_name="Cliente"
-        verbose_name_plural="Clientes"
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
 
 class Pagos(models.Model):
-    numero_tarjeta=models.CharField(max_length=20)
-    codigo_cvc=models.CharField(max_length=10)
-    principal=models.BooleanField(default=False)
+    numero_tarjeta = models.CharField(max_length=20)
+    codigo_cvc = models.CharField(max_length=10)
+    principal = models.BooleanField(default=False)
 
     class Meta:
         verbose_name="Pago"
         verbose_name_plural="Pagos"
 
 class Telefonos(models.Model):
-    cliente=models.ForeignKey(Clientes,on_delete=models.CASCADE)
-    numero=models.CharField(max_length=10)
-    principal=models.BooleanField(default=False)
+    cliente = models.ForeignKey(Clientes,on_delete=models.CASCADE)
+    numero = models.CharField(max_length=10)
+    principal = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name="Telefono"
-        verbose_name_plural="Telefonos"
+        verbose_name = "Telefono"
+        verbose_name_plural = "Telefonos"
 
 class Direcciones(models.Model):
     cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE)

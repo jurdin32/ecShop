@@ -196,7 +196,7 @@ def enviar_carrito(request):
 
 def lista_deseos(request):
     if request.POST:
-        lista=ListaDeseos.objects.create(usuario=request.user,producto_id=request.POST["producto_id"])
+        ListaDeseos.objects.create(usuario=request.user,producto_id=request.POST["producto_id"])
 
 
 
