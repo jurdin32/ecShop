@@ -224,9 +224,9 @@
                                                         {% if fotosProducto.producto == producto %}
                                                             <a href="/detail/{{ producto.slug }}/"><img src="/media/{{ fotosProducto.imagen }}" style="height: 220px" alt=""></a>
                                                         {% endif %}
-
                                                     {% endfor %}
                                                         <div class="re_product_price">
+                                                        <h4> {{ producto.nombre|truncatechars:30 }}</h4>
                                                             {% if producto.adds %}
                                                             <h4><del>$ {{ producto.precio }}</del></h4>
                                                             <br>
