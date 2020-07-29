@@ -87,6 +87,7 @@ def stok(id):
 
 def detalles_producto(request,slug):
     carro = 0
+    carrito=Carrito()
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
     mensaje=""
@@ -104,9 +105,12 @@ def detalles_producto(request,slug):
         calificacion = CalificarProductos.objects.get(usuario=request.user, producto=producto).calificacion
     except:
         pass
-    carrito = Carrito.objects.filter(usuario=request.user, estado=False)
-    if not carrito:
-        Carrito(usuario=request.user, estado=False).save()
+    try:
+        carrito = Carrito.objects.filter(usuario=request.user, estado=False)
+        if not carrito:
+            Carrito(usuario=request.user, estado=False).save()
+    except:
+        pass
 
     ft=ProductoFotos.objects.all()
     contexto={

@@ -238,7 +238,35 @@
         <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
         <script>
             $("#carrito").click(function () {
-                $.post("/to_car/", {
+                $.ajax({
+                    url: "/to_car/",
+                    data: {
+                        cantidad: $("#qty").val(),
+                        precio: $("#precio").val(),
+                        producto: '{{producto.id}}',
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        swal({
+                        title: "Excelente!",
+                        text: "Para usar esta acción debe estar registrado",
+                        icon: "error",
+                        button: "No hay mas por hacer",
+                    });
+
+                    },
+                    success: function(data){
+                        swal({
+                        title: "Excelente!",
+                        text: "El producto se agrego al carrito",
+                        icon: "success",
+                        button: "No hay mas por hacer",
+                    });
+
+                    }
+                });
+                {% comment %}$.post("/to_car/", {
                     "cantidad": $("#qty").val(),
                     "precio": $("#precio").val(),
                     "producto": '{{producto.id}}',
@@ -251,8 +279,8 @@
                         icon: "success",
                         button: "No hay mas por hacer",
                     });
-                })
-            })
+                });{% endcomment %}
+            });
 
             {% if mensaje %}
                 swal({
