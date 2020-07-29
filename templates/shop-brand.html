@@ -145,12 +145,11 @@
                                                     <a class="men_item_image" href="/detail/{{  producto.slug }}" style="text-align: center">
                                                         {% for fotosProducto in fotosProductos %}
                                                             {% if fotosProducto.producto == producto %}
-                                                                <img src="/media/{{ fotosProducto.imagen }}" style="width: 100%; height: 250px" alt="">
+                                                                <img src="/media/{{ fotosProducto.imagen }}" style="width: 100%; height: 150px" alt="">
                                                             {% endif %}
-
                                                         {% endfor %}
                                                     </a>
-                                                    <div class="men_item_content">
+                                                    <div class="men_item_content" style="height: 150px">
                                                         <a href="product-detail.html"><h3>{{ producto.nombre }}</h3></a>
                                                         {% if producto.adds and producto.adds.estado %}
                                                             <h4>US
