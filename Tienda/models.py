@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth.models import User
 from django.db import models
 import hashlib
@@ -113,6 +115,11 @@ class Productos(models.Model):
     puntuacion=models.DecimalField(max_digits=9,decimal_places=2,default=0)
     slug=models.CharField(max_length=200,null=True,blank=True)
     estado=models.BooleanField(default=True)
+    nombre_comun=models.CharField(max_length=300,null=True,blank=True)
+
+    def save(self, *args, **kwargs):
+        self.nombre_comun = re.sub(r'[^a-z0-9+]', '-', self.nombre_comun.lower())
+        super(Productos, self).save(*args, **kwargs)
 
     def miniatura(self):
         imagen=ProductoFotos.objects.get(producto_id=self.id,principal=True)

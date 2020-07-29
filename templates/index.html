@@ -68,8 +68,7 @@
                 <div class="col-md-7">
                     <div class="find_item_inner">
                         <input type="text" id="buscar" name="buscar" placeholder="¿Qué busca..?">
-                        <a class="find_button" style="background:{{ colores.botons }} !important;" href="#">Búscar
-                            Productos</a>
+                        <a id="ab" class="find_button" style="background:{{ colores.botons }} !important;" href="#">Búscar Productos</a>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -405,7 +404,7 @@
     $(function () {
         var availableTags = [];
         {% for prod in productos %}
-            availableTags.push("{{ prod.nombre|capfirst }}")
+            availableTags.push("{{ prod.nombre|capfirst }}".replace(" ","_"))
         {% endfor %}
         $("#buscar").autocomplete({
             source: availableTags
@@ -442,7 +441,10 @@
 
 
     });
-
+    $("#buscar").change(function (){
+        var cadena=$("#buscar").val()
+        $("#ab").attr("href","/search/"+cadena)
+    }).change()
 
 </script>
 </body>

@@ -188,9 +188,6 @@ def eliminar_carrito(request,id):
     detalle.delete()
     return HttpResponseRedirect("/this_car/")
 
-
-
-
 def enviar_carrito(request):
     if request.POST:
         carrito=Carrito.objects.get(usuario=request.user,estado=False)
@@ -263,6 +260,28 @@ def eliminar_duplicados(unique_fields,modelo):
          .delete())
 
 
+def busqueda(request,nombre):
+    carro = 0
+    deseos = None
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        deseos = ListaDeseos.objects.filter(usuario=request.user)
+
+    contexto={
+        "productos": Productos.objects.filter(estado=True),
+        "_productos":Productos.objects.filter(nombre=nombre),
+        "deseos": deseos.count(),
+        "carrito": carro,
+        "colores": ColorInterfaz.objects.last(),
+        "fotosProductos": ProductoFotos.objects.filter(principal=True),
+        "tiendas": Tiendas.objects.all(),
+        "cat": Categorias.objects.all().order_by("nombre"),
+    }
+
+    return render(request,"resultSearch.html",contexto)
+
+
+
 
 
 def registroClientes(request):
@@ -293,5 +312,3 @@ def registro_exitoso(request,hash,id):
     }
     return render(request,"registration_success.html",contexto)
 
-def enviar_email(request,correo):
-    pass
