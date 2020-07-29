@@ -49,7 +49,6 @@ class ListaDeseos(models.Model):
     fecha=models.DateField(auto_now_add=True)
     usuario=models.ForeignKey(User,on_delete=models.CASCADE)
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
-    slug=models.CharField(max_length=300,null=True,blank=True)
 
     class Meta:
         verbose_name="Lista de Deseos"

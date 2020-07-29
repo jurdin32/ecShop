@@ -8,7 +8,7 @@ from django.shortcuts import render
 # Create your views here.
 from Home.models import Slider, ColorInterfaz, CalificarProductos
 from Tienda.models import *
-from Users.models import Carrito, DetallesCarrito
+from Users.models import Carrito, DetallesCarrito, ListaDeseos
 from ecShop.snippers import send_email
 
 
@@ -192,6 +192,12 @@ def enviar_carrito(request):
         contador=DetallesCarrito.objects.filter(carrito=carrito).count()
         eliminar_duplicados()
         return HttpResponse(str(contador))
+
+
+def lista_deseos(request):
+    if request.POST:
+        lista=ListaDeseos.objects.create(usuario=request.user,producto_id=request.POST["producto_id"])
+
 
 
 def eliminar_duplicados():
