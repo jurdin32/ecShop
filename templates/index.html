@@ -114,7 +114,7 @@
                             <li>
                                 <ul class="nav">
                                     {% for categoria in cat %}
-                                        <li><a href="/single-category/{{ categoria.id }}">{{ categoria.nombre }}</a></li>
+                                        <li><a href="/single-category/{{ categoria.id }}">{{ categoria.nombre|capfirst }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li>
