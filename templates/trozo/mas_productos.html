@@ -1,5 +1,40 @@
 {% load productostags %}
 {% for producto in productos %}
+    {% if categoria > 0 %}
+        <div class="col-md-4 col-xs-6" style="text-align: center;">
+            <div class="re_product_inner" style="border: 1px solid {{ colores.botons }} ">
+                {% for fotosProducto in fotosProductos %}
+                    {% if fotosProducto.producto == producto %}
+                        <a href="/detail/{{ producto.slug }}/"><img
+                                src="/media/{{ fotosProducto.imagen }}"
+                                style="height: 220px" alt=""></a>
+                    {% endif %}
+                {% endfor %}
+                <div class="re_product_price"
+                     style="background-color: {{ colores.botons }}; color: whitesmoke">
+                    <h4 style="color: whitesmoke"> {{ producto.nombre|truncatechars:30 }}</h4>
+                    <br>
+                    {% if producto.adds and producto.adds.estado %}
+                        <h4>US
+                            <del>${{ producto.precio }}</del>
+                        </h4><br>
+                        <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                        <h4 style="padding: 10px; color: {{ colores.botons }};background-color: whitesmoke;border-radius: 10px">
+                            US ${% descuento producto.id %}</h4>
+                    {% else %}
+                        <h4 style="margin-top:10px;padding: 10px; color: {{ colores.botons }};background-color: whitesmoke;border-radius: 10px">
+                            US ${{ producto.precio }}</h4><br>
+                    {% endif %}
+                    <div class="re_product_checkout">
+                        <a style="cursor: pointer; color: white" class="text-danger corazon"
+                           data-producto="{{ producto.id }}"><i style="color: {{ colores.menu }}"
+                                                                class="glyphicon glyphicon-heart"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
         <div class="col-md-3 col-xs-6" style="text-align: center;">
             <div class="re_product_inner" style="border: 1px solid {{ colores.botons }} ">
                 {% for fotosProducto in fotosProductos %}
@@ -33,4 +68,6 @@
                 </div>
             </div>
         </div>
+    {% endif %}
+
 {% endfor %}

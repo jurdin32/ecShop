@@ -38,6 +38,7 @@ def cargar_mas_productos(request,inicio,fin,categoria=0):
         "productos":list(productos.order_by("-puntuacion")[inicio:fin]),
         "fotosProductos": ProductoFotos.objects.filter(principal=True),
         "colores": ColorInterfaz.objects.last(),
+        "categoria":categoria
     }
     return render(request, "trozo/mas_productos.html",contexto)
 
