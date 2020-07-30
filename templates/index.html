@@ -227,7 +227,7 @@
                                                                         style="height: 220px" alt=""></a>
                                                             {% endif %}
                                                         {% endfor %}
-                                                        <div class="re_product_price">
+                                                        <div class="re_product_price" style="background-color: {{ colores.menu }}; color: whitesmoke">
                                                             <h4> {{ producto.nombre|truncatechars:30 }}</h4>
                                                             <br>
                                                             {% if producto.adds and producto.adds.estado %}
@@ -244,6 +244,7 @@
                                                             <div class="re_product_checkout">
                                                                 <a style="cursor: pointer" class="text-danger corazon"
                                                                    data-producto="{{ producto.id }}"><i
+                                                                        style="color: {{ colores.menu }}"
                                                                         class="glyphicon glyphicon-heart"></i></a>
 
                                                             </div>
@@ -281,7 +282,8 @@
                                                 style="height: 220px" alt=""></a>
                                     {% endif %}
                                 {% endfor %}
-                                <div class="re_product_price" style="background-color: {{ colores.botons }}; color: whitesmoke">
+                                <div class="re_product_price"
+                                     style="background-color: {{ colores.botons }}; color: whitesmoke">
                                     <h4 style="color: whitesmoke"> {{ producto.nombre|truncatechars:30 }}</h4>
                                     <br>
                                     {% if producto.adds and producto.adds.estado %}
@@ -297,8 +299,8 @@
                                     {% endif %}
                                     <div class="re_product_checkout">
                                         <a style="cursor: pointer; color: white" class="text-danger corazon"
-                                           data-producto="{{ producto.id }}"><i style="color: {{ colores.menu  }}"
-                                                class="glyphicon glyphicon-heart"></i></a>
+                                           data-producto="{{ producto.id }}"><i style="color: {{ colores.menu }}"
+                                                                                class="glyphicon glyphicon-heart"></i></a>
 
                                     </div>
                                 </div>
