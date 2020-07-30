@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 {% load productostags %}
 {% block contenido %}
+    <link rel="stylesheet" type="text/css" href="/static/rata/src/css/star-rating-svg.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/rata/demo/css/demo.css">
     <section class="men_clothing_area">
         <div class="container custome_container">
             <div class="row">
@@ -67,6 +70,7 @@
                                                 <div class="media-body">
                                                     <a href="single-blog.html"><h4>{{ producto.nombre }}</h4></a>
                                                     <h5>${{ producto.precio }}</h5>
+                                                    <div class="my-rating{{ producto.id }}"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -203,4 +207,18 @@
             </div>
         </div>
     </section>
+{% endblock %}
+{% block script %}
+    <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
+    <script>
+        {% for t in top10 %}
+            $(".my-rating{{ t.id }}").starRating({
+                initialRating: parseFloat({% coma_punto t.puntuacion %}),
+                starSize: 10,
+                readOnly: true,
+                disableAfterRate: false,
+                totalStars: 10,
+            });
+        {% endfor %}
+    </script>
 {% endblock %}
