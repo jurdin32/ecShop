@@ -403,17 +403,18 @@
 </script>
 
 <script>
-    var contador = 0
+    var contador = 12
     var inicio=8
     $(window).scroll(function () {
-
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
             //Al llegar al pie de la pagina se ejecuta
-            inicio=contador
-            contador += 2
+
             $.get("/plus/prod/" +inicio+"/"+ contador+"/", function (data) {
                 $('#mas').append(data);
             });
+            inicio=contador
+            contador += 4
+
 
         }
     });
