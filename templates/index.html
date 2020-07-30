@@ -270,15 +270,6 @@
                 <h2>Lo mas Vendido</h2>
             </div>
             <div class="row">
-
-            </div>
-        </div>
-    </section>
-{% endblock %}
-{% block footer %}
-    <footer class="footer_area">
-        <div class="main_footer">
-            <div class="container custome_container">
                 {% for producto in productos %}
                     {% if producto.puntuacion > 0 %}
                         <div class="col-md-3 col-xs-6">
@@ -315,6 +306,15 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block footer %}
+    <footer class="footer_area">
+        <div class="main_footer">
+            <div class="container custome_container">
+
             </div>
         </div>
         <div class="copyright_footer">
