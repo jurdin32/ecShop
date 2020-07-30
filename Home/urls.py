@@ -20,6 +20,8 @@ Home = [
     path('list/delete/all/', eliminar_todos_deseos),
     path('search/<slug:nombre>/', busqueda),
 
+    path('view/prom/<slug:slug>/', ver_comentarios),
+
     path('registration/', registroClientes),
     path('registration/success/<slug:hash>/<int:id>/', registro_exitoso),
 ]

@@ -319,7 +319,24 @@ def busqueda(request,nombre):
 
     return render(request,"resultSearch.html",contexto)
 
+def ver_comentarios(request,slug):
+    carro = 0
+    deseos = None
+    if request.user.is_authenticated:
+        carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
+        deseos = ListaDeseos.objects.filter(usuario=request.user)
 
+    contexto={
+        "productos": Productos.objects.filter(estado=True),
+        "deseos": deseos.count(),
+        "carrito": carro,
+        "colores": ColorInterfaz.objects.last(),
+        "fotosProductos": ProductoFotos.objects.filter(principal=True),
+        "tiendas": Tiendas.objects.all(),
+        "cat": Categorias.objects.all().order_by("nombre"),
+        "producto":Productos.objects.get(slug=slug)
+    }
+    return render(request,"view_prom.html",contexto)
 
 
 
