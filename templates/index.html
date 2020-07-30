@@ -274,7 +274,7 @@
             </div>
             <div class="row" id="mas">
                 {% for producto in productos %}
-                    {% if forloop.counter <= 20 %}
+                    {% if forloop.counter <= 8 %}
                         <div class="col-md-3 col-xs-6" style="text-align: center;">
                             <div class="re_product_inner" style="border: 1px solid {{ colores.botons }} ">
                                 {% for fotosProducto in fotosProductos %}
@@ -403,8 +403,8 @@
 </script>
 
 <script>
-    var contador = 20
-    var inicio=0
+    var contador = 0
+    var inicio=8
     $(window).scroll(function () {
 
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
