@@ -32,7 +32,8 @@ def index(request):
 
 def cargar_mas_productos(request,inicio,fin):
     contexto={
-        "productos":list(Productos.objects.all().order_by("puntuacion")[inicio:fin])
+        "productos":list(Productos.objects.all().order_by("puntuacion")[inicio:fin]),
+        "fotosProductos": ProductoFotos.objects.filter(principal=True),
     }
     return render(request, "trozo/mas_productos.html",contexto)
 
