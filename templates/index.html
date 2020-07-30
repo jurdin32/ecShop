@@ -219,7 +219,7 @@
                                         {% for producto in productos %}
                                             {% if producto.categoria == categoria %}
                                                 <div class="col-md-3 col-xs-6">
-                                                    <div class="re_product_inner" style="text-align: center">
+                                                    <div class="re_product_inner" style="text-align: center; border: 1px solid {{ colores.menu }}">
                                                         {% for fotosProducto in fotosProductos %}
                                                             {% if fotosProducto.producto == producto %}
                                                                 <a href="/detail/{{ producto.slug }}/"><img
