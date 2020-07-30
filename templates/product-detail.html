@@ -57,11 +57,11 @@
                         <div class="tab-content">
                             {% for foto in fotosProductos %}
                                 {% if forloop.counter == 1 %}
-                                    <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}">
+                                    <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}" style="text-align: center">
                                         <img src="/media/{{ foto.imagen }}" style="height: 380px" alt="">
                                     </div>
                                 {% else %}
-                                    <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}">
+                                    <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}" style="text-align: center">
                                         <img src="/media/{{ foto.imagen }}" style="height: 380px" alt="">
                                     </div>
                                 {% endif %}
