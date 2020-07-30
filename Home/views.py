@@ -321,7 +321,7 @@ def busqueda(request,nombre):
 
 def ver_comentarios(request,slug):
     carro = 0
-    deseos = None
+    deseos = 0
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
         deseos = ListaDeseos.objects.filter(usuario=request.user).count()
