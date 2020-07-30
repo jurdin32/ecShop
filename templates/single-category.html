@@ -156,7 +156,7 @@
 {% block script %}
     <script>
         {% for t in top10 %}
-            $(".my-rating"+t.id).starRating({
+            $(".my-rating"+{{ t.id }}).starRating({
                 initialRating: parseFloat({% coma_punto t.puntuacion %}),
                 starSize: 25,
                 readOnly: true,
