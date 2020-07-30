@@ -402,6 +402,9 @@
 
 </script>
 
+
+
+{% block script %}
 <script>
     var contador = 12
     var inicio=8
@@ -409,9 +412,8 @@
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
             //Al llegar al pie de la pagina se ejecuta
 
-            $.get("/plus/prod/" +inicio+"/"+ contador+"/", function (data) {
+            $.get("/plus/prod/" +inicio+"/"+ contador+"/0/", function (data) {
                 setTimeout(function (){
-                $('#mas').html("<p>Espere..</p>")
                 },2000)
                 $('#mas').append(data);
             });
@@ -422,9 +424,6 @@
         }
     });
 </script>
-
-{% block script %}
-
 
 {% endblock %}
 </body>

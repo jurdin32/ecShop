@@ -4,7 +4,7 @@ from Home.views import *
 
 Home = [
     path('', index),
-    path('plus/prod/<int:inicio>/<int:fin>/', cargar_mas_productos),
+    path('plus/prod/<int:inicio>/<int:fin>/<int:categoria>/', cargar_mas_productos),
 
     path('shop-brand/<slug:slug>/', tiendas),
     path('detail/<slug:slug>/', detalles_producto),

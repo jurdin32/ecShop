@@ -157,14 +157,21 @@
 {% block script %}
     <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
     <script>
-        {% for t in top10 %}
-            $(".my-rating{{ t.id }}").starRating({
-                initialRating: parseFloat({% coma_punto t.puntuacion %}),
-                starSize: 10,
-                readOnly: true,
-                disableAfterRate: false,
-                totalStars: 10,
+    var contador = 12
+    var inicio=8
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            //Al llegar al pie de la pagina se ejecuta
+
+            $.get("/plus/prod/" +inicio+"/"+ contador+"/{{ categoria.id }}/", function (data) {
+                setTimeout(function (){
+                $('#mas').html("<p>Espere..</p>")
+                },2000)
+                $('#mas').append(data);
             });
-        {% endfor %}
-    </script>
+            inicio=contador
+            contador += 4
+        }
+    });
+</script>
 {% endblock %}
