@@ -288,7 +288,7 @@
             puntaje='{{ producto.puntuacion }}'+""
             $(".my-rating").starRating({
 
-                    initialRating: {{calificacion}}.replace(",", "."),
+                    initialRating: {{producto.puntuacion}}.replace(",","."),
                     initialRating: 1,
                 starSize: 25,
                 {% if calificacion %}
