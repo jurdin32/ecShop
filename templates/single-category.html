@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 {% block contenido %}
     {% load productostags %}
+     <link rel="stylesheet" type="text/css" href="/static/rata/src/css/star-rating-svg.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/rata/demo/css/demo.css">
     <section class="banner_area">
         <div class="banner_tittle">
             <h3>CATEGORÍA: {{ categoria.nombre|upper }}</h3>
@@ -49,13 +52,12 @@
                                                                  src="/media/{{ fotosProducto.imagen }}" alt="">
                                                         {% endif %}
                                                     {% endfor %}
-
-
                                                 </a>
                                             </div>
                                             <div class="media-body">
                                                 <a href="/detail/{{ t10.slug }}"><h4>{{ t10.nombre }}</h4></a>
                                                 <h5>$ {{ t10.precio }}</h5>
+                                                <div class="my-rating"{{ t10.id }}></div>
                                             </div>
                                         </div>
                                     </div>
@@ -149,4 +151,18 @@
             </div>
         </div>
     </section>
+{% endblock %}
+<script src="/static/rata/src/jquery.star-rating-svg.js"></script>
+{% block script %}
+    <script>
+        {% for t in top10 %}
+            $(".my-rating"+t.id).starRating({
+                initialRating: parseFloat({% coma_punto t.puntuacion %}),
+                starSize: 25,
+                readOnly: true,
+                disableAfterRate: false,
+                totalStars: 5,
+            });
+        {% endfor %}
+    </script>
 {% endblock %}
