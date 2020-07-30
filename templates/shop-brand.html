@@ -211,7 +211,7 @@
 {% block script %}
     <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
     <script>
-        {% for t in productos10 %}
+        {% for t in productos10|dictsort:"puntuacion" %}
             $(".my-rating{{ t.id }}").starRating({
                 initialRating: parseFloat({% coma_punto t.puntuacion %}),
                 starSize: 10,
