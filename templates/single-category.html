@@ -165,7 +165,6 @@
 
             $.get("/plus/prod/" +inicio+"/"+ contador+"/{{ categoria.id }}/", function (data) {
                 setTimeout(function (){
-                $('#mas').html("<p>Espere..</p>")
                 },2000)
                 $('#mas').append(data);
             });
