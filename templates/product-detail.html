@@ -101,7 +101,7 @@
                         {% endif %}
                         <h3>{{ producto.nombre }}</h3>
                         {% if calificacion %}
-                            <span class="in_stock" style="background-color: {{ colores.botons }}; color: white">Mi calificación: </span>
+                            <span class="in_stock" style="background-color: {{ colores.botons }}; color: white">Calificación del Artículo: </span>
                             <a href="/view/prom/{{ producto.slug }}">
                                 <div class="my-rating"></div>
                             </a>
@@ -287,11 +287,8 @@
             {% endif %}
 
             $(".my-rating").starRating({
-                {% if calificacion %}
-                    initialRating: '{{ calificacion }}'.replace(",", "."),
-                {% else %}
+                    initialRating: '{{ producto.puntuacion }}'.replace(",", "."),
                     initialRating: 1,
-                {% endif %}
                 starSize: 25,
                 {% if calificacion %}
                     readOnly: true,
