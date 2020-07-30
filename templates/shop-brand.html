@@ -152,14 +152,14 @@
                                                     <div class="men_item_content" style="height: 150px">
                                                         <a href="/detail/{{  producto.slug }}/"><h3>{{ producto.nombre }}</h3></a>
                                                         {% if producto.adds and producto.adds.estado %}
-                                                            <h4>US
-                                                                <del>${{ producto.precio }}</del>
-                                                            </h4><br>
-                                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
-                                                            <h4>US ${% descuento producto.id %}</h4>
-                                                        {% else %}
-                                                            <h4>US ${{ producto.precio }}</h4><br>
-                                                        {% endif %}
+                                            <h4>US
+                                                <del>${{ producto.precio }}</del>
+                                            </h4><br>
+                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                            <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${% descuento producto.id %}</h4>
+                                        {% else %}
+                                            <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${{ producto.precio }}</h4><br>
+                                        {% endif %}
                                                     <div class="favourite_icon">
                                                        <a style="cursor: pointer" class="corazon" data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
                                                    </div>
