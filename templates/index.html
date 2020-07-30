@@ -272,8 +272,8 @@
             <div class="row">
                 {% for producto in productos %}
                     {% if producto.puntuacion > 0 %}
-                        <div class="col-md-3 col-xs-6">
-                            <div class="re_product_inner" style="text-align: center">
+                        <div class="col-md-3 col-xs-6" style="text-align: center;">
+                            <div class="re_product_inner" style="border: 1px solid {{ colores.botons }} ">
                                 {% for fotosProducto in fotosProductos %}
                                     {% if fotosProducto.producto == producto %}
                                         <a href="/detail/{{ producto.slug }}/"><img
