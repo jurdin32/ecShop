@@ -211,17 +211,15 @@
                                         <a href="product-detail.html"><h3>{{ pr.nombre|truncatechars:30|capfirst }}</h3>
                                         </a>
                                         <div class="product_detail_content">
-                                            {% if pr.adds %}
-                                                <ul>
-                                                    <li>
-                                                        <del style="font-size: 12px; padding: 0px">
-                                                            $ {{ pr.precio }}</del>
-                                                    </li>
-                                                    <li><a class="in_stock">$ {% descuento pr.id %}</a></li>
-                                                </ul>
-                                            {% else %}
-                                                <a class="in_stock">$ {{ pr.precio }}</a>
-                                            {% endif %}
+                                            {% if producto.adds and producto.adds.estado %}
+                                            <h4>US
+                                                <del>${{ producto.precio }}</del>
+                                            </h4><br>
+                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                            <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${% descuento producto.id %}</h4>
+                                        {% else %}
+                                            <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${{ producto.precio }}</h4><br>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>
