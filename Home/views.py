@@ -30,6 +30,12 @@ def index(request):
     }
     return render(request,"index.html",contexto)
 
+def cargar_mas_productos(request,inicio,fin):
+    contexto={
+        "productos":list(Productos.objects.all().order_by("puntuacion")[inicio:fin])
+    }
+    return render(request, "trozo/mas_productos.html",contexto)
+
 def ver_porCategoria(request,id):
     carro = 0
     deseos=0
