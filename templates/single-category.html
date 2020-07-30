@@ -160,10 +160,10 @@
         {% for t in top10 %}
             $(".my-rating{{ t.id }}").starRating({
                 initialRating: parseFloat({% coma_punto t.puntuacion %}),
-                starSize: 25,
+                starSize: 10,
                 readOnly: true,
                 disableAfterRate: false,
-                totalStars: 5,
+                totalStars: 10,
             });
         {% endfor %}
     </script>
