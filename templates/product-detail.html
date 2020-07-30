@@ -110,14 +110,15 @@
                         {% endif %}
                         <br>
                         <p>{{ producto.descripcion|safe }}</p>
-                        {% if producto.adds %}
-                            <del>$ {{ producto.precio }}</del>
-                            <h4>$ {% descuento producto.id %} <input type="hidden" id="precio"
-                                                                     value="{% descuento producto.id %} "></h4>
-                        {% else %}
-                            <h4>$ {{ producto.precio }} <input type="hidden" id="precio" value="{{ producto.precio }}">
-                            </h4>
-                        {% endif %}
+                        {% if producto.adds and producto.adds.estado %}
+                                            <h4>US
+                                                <del>${{ producto.precio }}</del>
+                                            </h4><br>
+                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                            <h4>US ${% descuento producto.id %}</h4>
+                                        {% else %}
+                                            <h4>US ${{ producto.precio }}</h4><br>
+                                        {% endif %}
                     {% if stock > 0 %}
 
 
