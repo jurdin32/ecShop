@@ -6,60 +6,34 @@
             <div class="checkout_inner_area">
                 <div class="personal_info_area">
                     <h3>Usuarios hablan de este artículo</h3>
-                    <div class="checkout_inner_first">
-                        <div class="item_price_area" style="padding: 0px">
-                            <div class="table-responsive" data-example-id="simple-responsive-table">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Precio Normal</th>
-                                        <th>Precio Especial</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for detalle in detalles %}
-                                        <tr>
-
-                                            <td style="text-align: center">{% for fotosProducto in fotosProductos %}
-                                                {% if fotosProducto.producto == detalle.producto %}
-                                                    <a href="/detail/{{ detalle.producto.slug }}/"><img
-                                                            style="width: 80px" src="/media/{{ fotosProducto.imagen }}"
-                                                            alt=""></a>
-                                                {% endif %}
-                                            {% endfor %}
-                                                <br>
-                                                {{ detalle.producto.nombre }}</td>
-                                            <td>$ {{ detalle.producto.precio }}</td>
-                                            <td>
-                                                {% if detalle.producto.adds %}
-                                                    $ {% descuento detalle.producto.id %}
-                                                {% else %}
-                                                    No hay promociones.
-                                                {% endif %}
-                                            </td>
-                                            <td><a class="btn btn-primary" style="color: whitesmoke"
-                                                   href="/list/delete/{{ detalle.id }}/"><i
-                                                    class="glyphicon glyphicon-trash"></i></a>
-                                                <a class="btn btn-success carrito"
-                                                   data-cantidad="1"
-                                                        {% if detalle.producto.adds %}
-                                                   data-precio="{% descuento detalle.producto.id %}"
-                                                        {% else %}
-                                                   data-precio="{{ detalle.producto.precio }}"
-                                                        {% endif %}
-                                                   data-id="{{ detalle.producto.id }}"
-                                                   style="color: whitesmoke"><i
-                                                        class="glyphicon glyphicon-shopping-cart"></i></a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-
-                            </div>
+                    <div class="r_widget popular_post_widget">
+                        <div class="widget_tittle">
+                            <h3>Popular Posts</h3>
                         </div>
+                        <ul class="recent_post_list">
+                            {% for calificacion in calificaciones %}
+                            <li>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="single-blog.html">
+                                            ++++++
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="single-blog.html"><h4>{{ calificacion.usuario.get_full_name }} {{ calificacion.usuario.username }}</h4></a>
+                                        <a class="date_comment" href="#">
+                                            {% if calificacion.comentario %}
+                                            {{ calificacion.comentario}}
+                                                {% else %}
+                                                No dejo Comentario
+                                            {% endif %}
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -325,7 +325,7 @@ def ver_comentarios(request,slug):
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
         deseos = ListaDeseos.objects.filter(usuario=request.user)
-
+    prod=Productos.objects.get(slug=slug)
     contexto={
         "productos": Productos.objects.filter(estado=True),
         "deseos": deseos.count(),
@@ -334,7 +334,8 @@ def ver_comentarios(request,slug):
         "fotosProductos": ProductoFotos.objects.filter(principal=True),
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
-        "producto":Productos.objects.get(slug=slug)
+        "producto":prod,
+        "calificaciones":CalificarProductos.objects.filter(producto=prod)
     }
     return render(request,"view_prom.html",contexto)
 
