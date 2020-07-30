@@ -46,7 +46,7 @@ def ver_porCategoria(request,id):
         "colores": ColorInterfaz.objects.last(),
         "carrito": carro,
         "marcas":Marcas.objects.all().order_by("nombre"),
-        "top10":productos[0:10],
+        "top10":list(productos.order_by("-puntuacion")[0:10]),
         "deseos":deseos,
     }
     return render(request,"single-category.html",contexto)
