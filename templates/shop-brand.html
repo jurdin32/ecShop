@@ -13,7 +13,9 @@
                                 </div>
                                 <ul>
                                     {% for categoria in categorias %}
-                                        <li><a href="#"><span><img src="/media/{{ categoria.categoria.icono.icono }}" style="width: 20px" alt=""> </span> {{ categoria.categoria.nombre }}</a>
+                                        <li><a href="#"><span><img src="/media/{{ categoria.categoria.icono.icono }}"
+                                                                   style="width: 20px"
+                                                                   alt=""> </span> {{ categoria.categoria.nombre }}</a>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -50,11 +52,12 @@
                                         <div class="item_t_product">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="/detail/{{  producto.slug }}">
+                                                    <a href="/detail/{{ producto.slug }}">
                                                         {% for fotosProducto in fotosProductos %}
                                                             {% if fotosProducto.producto == producto %}
-                                                                <img class="media-object" src="/media/{{ fotosProducto.imagen }}"
-                                                             style="width: 100px" alt="">
+                                                                <img class="media-object"
+                                                                     src="/media/{{ fotosProducto.imagen }}"
+                                                                     style="width: 100px" alt="">
                                                             {% endif %}
                                                         {% endfor %}
 
@@ -92,7 +95,8 @@
                                             <img src="/static/img/icon/home-feature-icon-1.png" alt="">
                                             <h4>Ubicacion</h4>
                                             <p>{{ tienda.direccion }}</p>
-                                               <p>{% ciudad tienda.ciudad %} - {%  provincia tienda.provincia %} - {%  pais tienda.pais %} </p>
+                                            <p>{% ciudad tienda.ciudad %} - {% provincia tienda.provincia %}
+                                                - {% pais tienda.pais %} </p>
                                             <a href="{{ tienda.dir_map }}" target="_blank">Aqui el mapa</a>
                                         </div>
                                     </div>
@@ -140,29 +144,36 @@
                                 <div class="men_clothing_product_inner row">
                                     {% for producto in productos %}
                                         {% if producto.categoria == categoria.categoria %}
-                                            <div class="col-md-4 col-xs-6">
+                                            <div class="col-md-4 col-xs-6" style="text-align: center">
                                                 <div class="men_clothing_product_item">
-                                                    <a class="men_item_image" href="/detail/{{  producto.slug }}/" style="text-align: center">
+                                                    <a class="men_item_image" href="/detail/{{ producto.slug }}/"
+                                                       style="text-align: center">
                                                         {% for fotosProducto in fotosProductos %}
                                                             {% if fotosProducto.producto == producto %}
-                                                                <img src="/media/{{ fotosProducto.imagen }}" style="width: 100%; height: 200px" alt="">
+                                                                <img src="/media/{{ fotosProducto.imagen }}"
+                                                                     style="height: 200px" alt="">
                                                             {% endif %}
                                                         {% endfor %}
                                                     </a>
                                                     <div class="men_item_content" style="height: 150px">
-                                                        <a href="/detail/{{  producto.slug }}/"><h3>{{ producto.nombre }}</h3></a>
+                                                        <a href="/detail/{{ producto.slug }}/">
+                                                            <h3>{{ producto.nombre|truncatechars:30 }}</h3></a>
                                                         {% if producto.adds and producto.adds.estado %}
-                                            <h4>US
-                                                <del>${{ producto.precio }}</del>
-                                            </h4><br>
-                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
-                                            <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${% descuento producto.id %}</h4>
-                                        {% else %}
-                                            <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${{ producto.precio }}</h4><br>
-                                        {% endif %}
-                                                    <div class="favourite_icon">
-                                                       <a style="cursor: pointer" class="corazon" data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
-                                                   </div>
+                                                            <h4>US
+                                                                <del>${{ producto.precio }}</del>
+                                                            </h4><br>
+                                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                                            <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                                                US ${% descuento producto.id %}</h4>
+                                                        {% else %}
+                                                            <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                                                US ${{ producto.precio }}</h4><br>
+                                                        {% endif %}
+                                                        <div class="favourite_icon">
+                                                            <a style="cursor: pointer" class="corazon"
+                                                               data-producto="{{ producto.id }}"><i
+                                                                    class="glyphicon glyphicon-heart"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
