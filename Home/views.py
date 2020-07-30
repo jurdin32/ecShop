@@ -127,6 +127,25 @@ def detalles_producto(request,slug):
     except:
         pass
 
+    ft=ProductoFotos.objects.all()
+    contexto={
+        "producto":producto,
+        "stock":stok(producto.id),
+        "fotosProductos":ft.filter(producto_id=producto.id),
+        "tiendas":Tiendas.objects.all(),
+        "cat": Categorias.objects.all().order_by("nombre"),
+        "colores": ColorInterfaz.objects.last(),
+        "productos":Productos.objects.filter(estado=True),
+        "mensaje":mensaje,
+        "calificacion":calificacion,
+        "calificaciong":0,
+        "fproductos":ft.filter(principal=True),
+        "carrito": carro,
+        "error":error,
+        "deseos":deseos,
+    }
+    return render(request,"product-detail.html",contexto)
+
 def calificacion_global(producto):
     calificacion=CalificarProductos.objects.filter(producto=producto)
     uno=float(calificacion.filter(calificacion__lte = 2).count())*1
@@ -154,27 +173,6 @@ def calificacion_global(producto):
     promedio=sumaproducto/sumasimple
     producto.puntuacion=promedio
     producto.save()
-
-
-
-    ft=ProductoFotos.objects.all()
-    contexto={
-        "producto":producto,
-        "stock":stok(producto.id),
-        "fotosProductos":ft.filter(producto_id=producto.id),
-        "tiendas":Tiendas.objects.all(),
-        "cat": Categorias.objects.all().order_by("nombre"),
-        "colores": ColorInterfaz.objects.last(),
-        "productos":Productos.objects.filter(estado=True),
-        "mensaje":mensaje,
-        "calificacion":calificacion,
-        "calificaciong":0,
-        "fproductos":ft.filter(principal=True),
-        "carrito": carro,
-        "error":error,
-        "deseos":deseos,
-    }
-    return render(request,"product-detail.html",contexto)
 
 def ver_todas_categorias(request):
     deseos=0
