@@ -145,11 +145,11 @@
                         {% for categoria in categorias %}
                             <div class="men_clothing_tittle">
                                 <h2>{{ categoria.categoria.nombre }}</h2>
-                                <div class="men_clothing_product_inner row">
+                                <div class="men_clothing_product_inner row" >
                                     {% for producto in productos %}
                                         {% if producto.categoria == categoria.categoria %}
                                             <div class="col-md-4 col-xs-6" style="text-align: center">
-                                                <div class="men_clothing_product_item">
+                                                <div class="men_clothing_product_item" style="text-align: center">
                                                     <a class="men_item_image" href="/detail/{{ producto.slug }}/"
                                                        style="text-align: center">
                                                         {% for fotosProducto in fotosProductos %}
