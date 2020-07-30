@@ -270,102 +270,7 @@
                 <h2>Lo mas Vendido</h2>
             </div>
             <div class="row">
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-1.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-2.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-3.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-4.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-5.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-6.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-7.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="re_product_inner">
-                        <img src="/static/img/recommended-product/re-product-8.jpg" alt="">
-                        <div class="re_product_price">
-                            <h4>US $120.90</h4>
-                            <div class="re_product_checkout">
-                                <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-                                <a href="#"><i class="glyphicon glyphicon-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -374,7 +279,42 @@
     <footer class="footer_area">
         <div class="main_footer">
             <div class="container custome_container">
+                {% for producto in productos %}
+                    {% if producto.puntuacion > 0 %}
+                        <div class="col-md-3 col-xs-6">
+                            <div class="re_product_inner" style="text-align: center">
+                                {% for fotosProducto in fotosProductos %}
+                                    {% if fotosProducto.producto == producto %}
+                                        <a href="/detail/{{ producto.slug }}/"><img
+                                                src="/media/{{ fotosProducto.imagen }}"
+                                                style="height: 220px" alt=""></a>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="re_product_price">
+                                    <h4> {{ producto.nombre|truncatechars:30 }}</h4>
+                                    <br>
+                                    {% if producto.adds and producto.adds.estado %}
+                                        <h4>US
+                                            <del>${{ producto.precio }}</del>
+                                        </h4><br>
+                                        <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                        <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                            US ${% descuento producto.id %}</h4>
+                                    {% else %}
+                                        <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                            US ${{ producto.precio }}</h4><br>
+                                    {% endif %}
+                                    <div class="re_product_checkout">
+                                        <a style="cursor: pointer" class="text-danger corazon"
+                                           data-producto="{{ producto.id }}"><i
+                                                class="glyphicon glyphicon-heart"></i></a>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
         <div class="copyright_footer">
