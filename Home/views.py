@@ -112,6 +112,7 @@ def detalles_producto(request,slug):
             if request.user.is_authenticated:
                 calificacion= CalificarProductos(producto=producto,usuario=request.user,calificacion=request.POST["start"],comentario=request.POST['comentario']).save()
                 mensaje="Gracias por calificar este producto con %s"%request.POST['start']
+                calificacion_global(producto)
             else:
                 error="No es posible calificar sin estar registrado."
 
@@ -125,6 +126,36 @@ def detalles_producto(request,slug):
             Carrito(usuario=request.user, estado=False).save()
     except:
         pass
+
+def calificacion_global(producto):
+    calificacion=CalificarProductos.objects.filter(producto=producto)
+    uno=float(calificacion.filter(calificacion__lte = 2).count())*1
+    dos=float(calificacion.filter(calificacion__lte = 3).count())*2
+    tres=float(calificacion.filter(calificacion__lte = 4).count())*3
+    cuatro = float(calificacion.filter(calificacion__lte=5).count())*4
+    cinco = float(calificacion.filter(calificacion__lte=6).count())*5
+    seis = float(calificacion.filter(calificacion__lte=7).count())*6
+    siete = float(calificacion.filter(calificacion__lte=8).count())*7
+    ocho = float(calificacion.filter(calificacion__lte=9).count())*8
+    nueve = float(calificacion.filter(calificacion__lte=10).count())*9
+    diez = float(calificacion.filter(calificacion=10).count())*10
+    sumaproducto=uno+dos+tres+cuatro+cinco+seis+siete+ocho+nueve+diez
+    uno = float(calificacion.filter(calificacion__lte=2).count())
+    dos = float(calificacion.filter(calificacion__lte=3).count())
+    tres = float(calificacion.filter(calificacion__lte=4).count())
+    cuatro = float(calificacion.filter(calificacion__lte=5).count())
+    cinco = float(calificacion.filter(calificacion__lte=6).count())
+    seis = float(calificacion.filter(calificacion__lte=7).count())
+    siete = float(calificacion.filter(calificacion__lte=8).count())
+    ocho = float(calificacion.filter(calificacion__lte=9).count())
+    nueve = float(calificacion.filter(calificacion__lte=10).count())
+    diez = float(calificacion.filter(calificacion=10).count())
+    sumasimple=uno+dos+tres+cuatro+cinco+seis+siete+ocho+nueve+diez
+    promedio=sumaproducto/sumasimple
+    producto.puntuacion=promedio
+    producto.save()
+
+
 
     ft=ProductoFotos.objects.all()
     contexto={
