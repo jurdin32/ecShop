@@ -72,7 +72,7 @@ def tiendas(request,slug):
         "marcas":Marcas.objects.all(),
         "adds":Adds.objects.filter(tienda_id=tienda.id,estado=True),
         "categorias":TiendaCategoria.objects.filter(estado=True,tienda=tienda),
-        "productos10":list(productos.order_by("puntuacion")[0:10]),
+        "productos10":list(productos.order_by("-puntuacion")[0:10]),
         "productos":productos,
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "cat": Categorias.objects.all().order_by("nombre"),
