@@ -229,6 +229,7 @@
                                                         {% endfor %}
                                                         <div class="re_product_price">
                                                             <h4> {{ producto.nombre|truncatechars:30 }}</h4>
+                                                            <br>
                                                             {% if producto.adds and producto.adds.estado %}
                                                                 <h4>US
                                                                     <del>${{ producto.precio }}</del>
