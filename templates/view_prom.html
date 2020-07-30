@@ -5,22 +5,22 @@
         <div class="container">
             <div class="checkout_inner_area">
                 <div class="personal_info_area">
-                    <h3>Usuarios hablan de este artículo</h3>
+
                     <div class="r_widget popular_post_widget">
                         <div class="widget_tittle">
-                            <h3>Popular Posts</h3>
+                            <h3>Usuarios hablan de este artículo</h3>
                         </div>
                         <ul class="recent_post_list">
                             {% for calificacion in calificaciones %}
                             <li>
                                 <div class="media">
-                                    <div class="media-left">
-                                        <a href="single-blog.html">
-                                            ++++++
-                                        </a>
+                                    <div class="media-left" style="vertical-align: middle; text-align: center;">
+                                        <a><h4>Calificación</h4></a>
+
+                                        <span style="background-color: {{ colores.botons }}; color: whitesmoke; border-radius: 10px; padding: 10px">{{ calificacion.calificacion }}</span>
                                     </div>
                                     <div class="media-body">
-                                        <a href="single-blog.html"><h4>{{ calificacion.usuario.get_full_name }} {{ calificacion.usuario.username }}</h4></a>
+                                        <a><h4>{{ calificacion.usuario.get_full_name }} {{ calificacion.usuario.username }}</h4></a>
                                         <a class="date_comment" href="#">
                                             {% if calificacion.comentario %}
                                             {{ calificacion.comentario}}
