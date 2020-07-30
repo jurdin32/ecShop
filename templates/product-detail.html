@@ -100,7 +100,7 @@
                             <a class="in_stock" style="background-color: red; color: white">Sin Stok</a>
                         {% endif %}
                         <h3>{{ producto.nombre }}</h3>
-                        {% if calificacion %}
+                        {% if producto.puntuacion > 0 %}
                             <span class="in_stock" style="background-color: {{ colores.botons }}; color: white">Calificación del Artículo: </span>
                             <a href="/view/prom/{{ producto.slug }}">
                                 <div class="my-rating"></div>
