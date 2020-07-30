@@ -31,13 +31,11 @@ def index(request):
     return render(request,"index.html",contexto)
 
 def cargar_mas_productos(request,inicio,fin,categoria=0):
-    productos=None
+    productos=Productos.objects.all()
     if categoria>0:
-        productos=Productos.objects.filter(categoria_id=categoria)
-    else:
-        productos=Productos.objects.all()
+        productos=productos.filter(categoria_id=categoria)
     contexto={
-        "productos":list(productos.order_by("puntuacion")[inicio:fin]),
+        "productos":list(productos.order_by("-puntuacion")[inicio:fin]),
         "fotosProductos": ProductoFotos.objects.filter(principal=True),
         "colores": ColorInterfaz.objects.last(),
     }
