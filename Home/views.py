@@ -317,12 +317,12 @@ def busqueda(request,nombre):
     deseos = None
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
-        deseos = ListaDeseos.objects.filter(usuario=request.user)
+        deseos = ListaDeseos.objects.filter(usuario=request.user).count()
 
     contexto={
         "productos": Productos.objects.filter(estado=True),
         "prt":Productos.objects.filter(nombre__icontains=nombre.replace("_"," ")),
-        "deseos": deseos.count(),
+        "deseos": deseos,
         "carrito": carro,
         "colores": ColorInterfaz.objects.last(),
         "fotosProductos": ProductoFotos.objects.filter(principal=True),
