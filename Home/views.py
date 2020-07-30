@@ -52,7 +52,7 @@ def ver_porCategoria(request,id):
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     contexto={
         "cat":Categorias.objects.all().order_by("nombre"),
-        "productos":productos,
+        "productos":list(productos.order_by("-puntuacion")),
         "categoria":Categorias.objects.get(id=id),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "tiendas":Tiendas.objects.all(),
