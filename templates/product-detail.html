@@ -57,11 +57,13 @@
                         <div class="tab-content">
                             {% for foto in fotosProductos %}
                                 {% if forloop.counter == 1 %}
-                                    <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}" style="text-align: center">
+                                    <div role="tabpanel" class="tab-pane active" id="prod{{ foto.id }}"
+                                         style="text-align: center">
                                         <img src="/media/{{ foto.imagen }}" style="height: 380px" alt="">
                                     </div>
                                 {% else %}
-                                    <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}" style="text-align: center">
+                                    <div role="tabpanel" class="tab-pane" id="prod{{ foto.id }}"
+                                         style="text-align: center">
                                         <img src="/media/{{ foto.imagen }}" style="height: 380px" alt="">
                                     </div>
                                 {% endif %}
@@ -81,7 +83,8 @@
                             <div class="col-xl-1">
                                 <a href="#prod{{ foto.id }}" aria-controls="prod{{ foto.id }}" role="tab"
                                    data-toggle="tab">
-                                    <img class="img-thumbnail" src="/media/{{ foto.imagen }}" style="height: 80px" alt="">
+                                    <img class="img-thumbnail" src="/media/{{ foto.imagen }}" style="height: 80px"
+                                         alt="">
                                 </a>
                             </div>
                             </li>
@@ -111,32 +114,35 @@
                         <br>
                         <p>{{ producto.descripcion|safe }}</p>
                         {% if producto.adds and producto.adds.estado %}
-                                            <h4>US
-                                                <del>${{ producto.precio }}</del>
-                                            </h4><br>
-                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
-                                            <h4>US ${% descuento producto.id %}</h4>
-                                        {% else %}
-                                            <h4>US ${{ producto.precio }}</h4><br>
-                                        {% endif %}
-                    {% if stock > 0 %}
+                            <h4>US
+                                <del>${{ producto.precio }}</del>
+                            </h4><br>
+                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                            <h4>US ${% descuento producto.id %}</h4>
+                        {% else %}
+                            <h4>US ${{ producto.precio }}</h4><br>
+                        {% endif %}
+                        {% if stock > 0 %}
 
 
-                        <div class="quantity_area">
-                            <h5>Cantidad</h5>
-                            <div class="custom">
-                                <select name="qty" id="qty" style="width: 100%; border: none; line-height: 50px;text-align-last: center;text-indent: 5px;" >
-                                    {% for i in "x"|rjust:stock %}
-                                        <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                                    {% endfor %}
-                                </select>
+                            <div class="quantity_area">
+                                <h5>Cantidad</h5>
+                                <div class="custom">
+                                    <select name="qty" id="qty"
+                                            style="width: 100%; border: none; line-height: 50px;text-align-last: center;text-indent: 5px;">
+                                        {% for i in "x"|rjust:stock %}
+                                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button class="add_to_cart" id="carrito" style="background-color: {{ colores.botons }}">
+                                    <i
+                                            class="glyphicon glyphicon-shopping-cart"></i> Al Carrito
+                                </button>
+                                <a class="heart_btn corazon" style="cursor: pointer"
+                                   data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
                             </div>
-                            <button class="add_to_cart" id="carrito" style="background-color: {{ colores.botons }}"><i
-                                    class="glyphicon glyphicon-shopping-cart"></i> Al Carrito
-                            </button>
-                            <a class="heart_btn corazon" style="cursor: pointer" data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
-                        </div>
-                    {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -195,13 +201,15 @@
                                     <a class="men_item_image" href="/detail/{{ pr.slug }}">
                                         {% for fotosProducto in fproductos %}
                                             {% if fotosProducto.producto == pr %}
-                                                <img src="/media/{{ fotosProducto.imagen }}" style="height: 220px" alt="">
+                                                <img src="/media/{{ fotosProducto.imagen }}" style="height: 220px"
+                                                     alt="">
                                             {% endif %}
 
                                         {% endfor %}
                                     </a>
                                     <div class="men_item_content" style="height: 120px">
-                                        <a href="product-detail.html"><h3>{{ pr.nombre|truncatechars:30|capfirst }}</h3></a>
+                                        <a href="product-detail.html"><h3>{{ pr.nombre|truncatechars:30|capfirst }}</h3>
+                                        </a>
                                         <div class="product_detail_content">
                                             {% if pr.adds %}
                                                 <ul>
@@ -242,22 +250,22 @@
                         csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
                     },
                     type: 'post',
-                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
                         swal({
-                        title: "Cuanto lo siento!",
-                        text: "Para usar esta acción debe estar registrado",
-                        icon: "error",
-                        button: "No hay mas por hacer",
-                    });
+                            title: "Cuanto lo siento!",
+                            text: "Para usar esta acción debe estar registrado",
+                            icon: "error",
+                            button: "No hay mas por hacer",
+                        });
 
                     },
-                    success: function(data){
+                    success: function (data) {
                         swal({
-                        title: "Excelente!",
-                        text: "El producto se agrego al carrito",
-                        icon: "success",
-                        button: "No hay mas por hacer",
-                    });
+                            title: "Excelente!",
+                            text: "El producto se agrego al carrito",
+                            icon: "success",
+                            button: "No hay mas por hacer",
+                        });
 
                     }
                 });
@@ -272,7 +280,7 @@
                 });
             {% endif %}
             {% if error %}
-                 swal({
+                swal({
                     title: "Cuanto lo siento!",
                     text: "{{ error }}",
                     icon: "error",
