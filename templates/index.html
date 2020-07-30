@@ -45,6 +45,37 @@
 <body>
 {% block header %}
     {% load productostags %}
+
+     <div class="modal fade" id="sesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">Iniciar Sesion</h5>
+                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3"><span style="font-weight: bold">Usuario o email:</span></div>
+                            <div class="col-lg-9"><input type="text" class="form-control" name="username" placeholder="email@dominio.com" required></div>
+                        </div>
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-lg-3"><span style="font-weight: bold">Password:</span></div>
+                            <div class="col-lg-9"><input type="password" class="form-control" name="password" placeholder="Escriba su contraseña" required></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Iniciar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <div class="first_header" style="background-color: {{ colores.header }};">
         <div class="container custome_container">
             <div class="live_chat_area pull-left">
@@ -143,7 +174,7 @@
                         <li><a href="shop-brand.html">Politíca <i class="glyphicon glyphicon-education"></i></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Mi Cuenta</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#sesion" ><i class="glyphicon glyphicon-user"></i> Mi Cuenta</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
