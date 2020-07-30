@@ -94,12 +94,13 @@
                     </div>
                     <div class="men_clothing_product_inner row" id="mas">
                         {% for producto in productos %}
+                            {% if forloop.counter < 4 %}
                             <div class="col-md-3 col-xs-6" style="text-align: center">
                                 <div class="men_clothing_product_item">
                                     <a class="men_item_image" href="/detail/{{ producto.slug }}">
                                         {% for fotosProducto in fotosProductos %}
                                             {% if fotosProducto.producto == producto %}
-                                                <img src="/media/{{ fotosProducto.imagen }}" style="height: 220px"
+                                                <img src="/media/{{ fotosProducto.imagen }}" style="height: 150px"
                                                      alt="">
                                             {% endif %}
 
@@ -125,28 +126,10 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
+
                         {% endfor %}
                     </div>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination product_pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <i class="lnr lnr-chevron-left"></i>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">...</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <i class="lnr lnr-chevron-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </div>
@@ -157,8 +140,8 @@
 {% block script %}
     <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
     <script>
-    var contador = 6
-    var inicio=3
+    var contador = 8
+    var inicio=4
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
             //Al llegar al pie de la pagina se ejecuta
