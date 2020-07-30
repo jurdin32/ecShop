@@ -144,6 +144,7 @@ class Productos(models.Model):
     class Meta:
         verbose_name="Producto"
         verbose_name_plural="Productos"
+        ordering = ['puntuacion']
 
 class ProductoFotos(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
