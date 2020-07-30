@@ -21,7 +21,7 @@ def index(request):
     contexto={
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
-        "productos":Productos.objects.filter(estado=True),
+        "productos":list(Productos.objects.filter(estado=True).order_by("puntuacion")),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "slider":Slider.objects.all().order_by("fecha"),
         "colores":ColorInterfaz.objects.last(),
