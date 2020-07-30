@@ -53,3 +53,7 @@ def cantKardex(id_producto):
         else:
             egr+=k.cantidad
     return ing-egr
+
+@register.simple_tag
+def coma_punto(value):
+    return str(value).replace(",",".")
