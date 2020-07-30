@@ -119,7 +119,7 @@
 {% block script %}
      <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
     <script>
-        {% for t in productos10 %}
+        {% for t in top10 %}
             $(".my-rating{{ t.id }}").starRating({
                 initialRating: parseFloat({% coma_punto t.puntuacion %}),
                 starSize: 10,
@@ -130,8 +130,8 @@
         {% endfor %}
     </script>
     <script>
-    var contador = 8
-    var inicio=4
+    var contador = 24
+    var inicio=20
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
             //Al llegar al pie de la pagina se ejecuta
