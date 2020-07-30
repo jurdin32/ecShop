@@ -219,7 +219,8 @@
                                         {% for producto in productos %}
                                             {% if producto.categoria == categoria %}
                                                 <div class="col-md-3 col-xs-6">
-                                                    <div class="re_product_inner" style="text-align: center; border: 1px solid {{ colores.menu }}">
+                                                    <div class="re_product_inner"
+                                                         style="text-align: center; border: 1px solid {{ colores.menu }}">
                                                         {% for fotosProducto in fotosProductos %}
                                                             {% if fotosProducto.producto == producto %}
                                                                 <a href="/detail/{{ producto.slug }}/"><img
@@ -227,7 +228,8 @@
                                                                         style="height: 220px" alt=""></a>
                                                             {% endif %}
                                                         {% endfor %}
-                                                        <div class="re_product_price" style="background-color: {{ colores.menu }}; color: whitesmoke">
+                                                        <div class="re_product_price"
+                                                             style="background-color: {{ colores.menu }}; color: whitesmoke">
                                                             <h4> {{ producto.nombre|truncatechars:30 }}</h4>
                                                             <br>
                                                             {% if producto.adds and producto.adds.estado %}
@@ -238,7 +240,7 @@
                                                                 <h4 style="padding: 10px; color: {{ colores.menu }};background-color:whitesmoke;border-radius: 10px">
                                                                     US ${% descuento producto.id %}</h4>
                                                             {% else %}
-                                                                <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                                                <h4 style="padding: 10px; color: {{ colores.menu }};background-color:whitesmoke;border-radius: 10px">
                                                                     US ${{ producto.precio }}</h4><br>
                                                             {% endif %}
                                                             <div class="re_product_checkout">
