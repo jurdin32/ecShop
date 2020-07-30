@@ -33,7 +33,7 @@ def index(request):
 def cargar_mas_productos(request,inicio,fin,categoria=0):
     productos=None
     if categoria>0:
-        productos=Productos.objects.filter(categoria=categoria)
+        productos=Productos.objects.filter(categoria_id=categoria)
     else:
         productos=Productos.objects.all()
     contexto={

@@ -410,8 +410,6 @@
     var inicio=8
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-            //Al llegar al pie de la pagina se ejecuta
-
             $.get("/plus/prod/" +inicio+"/"+ contador+"/0/", function (data) {
                 setTimeout(function (){
                 },2000)
@@ -419,8 +417,6 @@
             });
             inicio=contador
             contador += 4
-
-
         }
     });
 </script>
