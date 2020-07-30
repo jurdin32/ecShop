@@ -324,11 +324,11 @@ def ver_comentarios(request,slug):
     deseos = None
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
-        deseos = ListaDeseos.objects.filter(usuario=request.user)
+        deseos = ListaDeseos.objects.filter(usuario=request.user).count()
     prod=Productos.objects.get(slug=slug)
     contexto={
         "productos": Productos.objects.filter(estado=True),
-        "deseos": deseos.count(),
+        "deseos": deseos,
         "carrito": carro,
         "colores": ColorInterfaz.objects.last(),
         "fotosProductos": ProductoFotos.objects.filter(principal=True),
