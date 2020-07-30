@@ -16,7 +16,7 @@
                                 </div>
                                 <ul>
                                     {% for categoria in categorias %}
-                                        <li><a href="#"><span><img src="/media/{{ categoria.categoria.icono.icono }}"
+                                        <li><a href="/single-category/{{ categoria.id }}"><span><img src="/media/{{ categoria.categoria.icono.icono }}"
                                                                    style="width: 20px"
                                                                    alt=""> </span> {{ categoria.categoria.nombre }}</a>
                                         </li>
