@@ -55,9 +55,9 @@
                                                 <del>${{ producto.precio }}</del>
                                             </h4><br>
                                             <label class="label label-danger">{{ producto.adds.descuento }}%</label>
-                                            <h4>US ${% descuento producto.id %}</h4>
+                                            <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${% descuento producto.id %}</h4>
                                         {% else %}
-                                            <h4>US ${{ producto.precio }}</h4><br>
+                                            <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${{ producto.precio }}</h4><br>
                                         {% endif %}
                                         <div class="favourite_icon">
                                             <a style="cursor: pointer" class="corazon" data-producto="{{ producto.id }}"><i class="glyphicon glyphicon-heart"></i></a>
