@@ -73,7 +73,7 @@
                     </div>
                     <div class="men_clothing_product_inner row" id="mas">
                         {% for producto in productos %}
-                            {% if forloop.counter < 4 %}
+                            {% if forloop.counter <= 20 %}
                             <div class="col-md-3 col-xs-6" style="text-align: center">
                                 <div class="men_clothing_product_item">
                                     <a class="men_item_image" href="/detail/{{ producto.slug }}">
