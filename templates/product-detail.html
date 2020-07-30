@@ -190,7 +190,7 @@
                     {% if pr.categoria == producto.categoria %}
                         {% if forloop.counter <= 20 %}
                             <div class="col-md-3 col-xs-6">
-                                <div class="men_clothing_product_item">
+                                <div class="men_clothing_product_item" style="text-align: center;">
                                     <a class="men_item_image" href="/detail/{{ pr.slug }}">
                                         {% for fotosProducto in fproductos %}
                                             {% if fotosProducto.producto == pr %}
