@@ -66,6 +66,49 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="men_clothing_tittle">
+                        <h2>{{ categoria.nombre| upper }}</h2>
+                    </div>
+                    <div class="men_clothing_product_inner row" id="mas">
+                        {% for producto in productos %}
+                            {% if forloop.counter < 4 %}
+                            <div class="col-md-4 col-xs-6" style="text-align: center">
+                                <div class="men_clothing_product_item">
+                                    <a class="men_item_image" href="/detail/{{ producto.slug }}">
+                                        {% for fotosProducto in fotosProductos %}
+                                            {% if fotosProducto.producto == producto %}
+                                                <img src="/media/{{ fotosProducto.imagen }}" style="height: 220px"
+                                                     alt="">
+                                            {% endif %}
+
+                                        {% endfor %}
+                                    </a>
+                                    <div class="men_item_content" style="height: 120px">
+                                        <a href="/detail/{{ producto.slug }}">
+                                            <h3>{{ producto.nombre|truncatechars:30 }}</h3></a>
+                                        {% if producto.adds and producto.adds.estado %}
+                                            <h4>US
+                                                <del>${{ producto.precio }}</del>
+                                            </h4><br>
+                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                            <h4 style="background-color: green;border-radius: 10px;padding: 5px;color: whitesmoke">US ${% descuento producto.id %}</h4>
+                                        {% else %}
+                                            <h4 style="background-color: green;border-radius: 10px;padding: 5px;color: whitesmoke">US ${{ producto.precio }}</h4><br>
+                                        {% endif %}
+                                        <div class="favourite_icon" style="margin-top: -50px;">
+                                            <a style="cursor: pointer; color: {{ colores.botons }}" class="corazon "
+                                               data-producto="{{ producto.id }}"><i
+                                                    class="glyphicon glyphicon-heart"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
