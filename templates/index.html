@@ -221,23 +221,29 @@
                                                 <div class="col-md-3 col-xs-6">
                                                     <div class="re_product_inner" style="text-align: center">
                                                         {% for fotosProducto in fotosProductos %}
-                                                        {% if fotosProducto.producto == producto %}
-                                                            <a href="/detail/{{ producto.slug }}/"><img src="/media/{{ fotosProducto.imagen }}" style="height: 220px" alt=""></a>
-                                                        {% endif %}
-                                                    {% endfor %}
+                                                            {% if fotosProducto.producto == producto %}
+                                                                <a href="/detail/{{ producto.slug }}/"><img
+                                                                        src="/media/{{ fotosProducto.imagen }}"
+                                                                        style="height: 220px" alt=""></a>
+                                                            {% endif %}
+                                                        {% endfor %}
                                                         <div class="re_product_price">
-                                                        <h4> {{ producto.nombre|truncatechars:30 }}</h4>
-                                                            {% if producto.adds %}
-                                                            <h4><del>$ {{ producto.precio }}</del></h4>
-                                                            <br>
-                                                            <h4>$ {% descuento producto.id %} <input type="hidden" id="precio" value="{% descuento producto.id %} "></h4>
-                                                        {% else %}
-                                                            <h4>$ {{ producto.precio }} <input type="hidden" id="precio" value="{{ producto.precio }}"></h4>
-                                                        {% endif %}
+                                                            <h4> {{ producto.nombre|truncatechars:30 }}</h4>
+                                                            {% if producto.adds and producto.adds.estado %}
+                                                                <h4>US
+                                                                    <del>${{ producto.precio }}</del>
+                                                                </h4><br>
+                                                                <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                                                <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                                                    US ${% descuento producto.id %}</h4>
+                                                            {% else %}
+                                                                <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                                                    US ${{ producto.precio }}</h4><br>
+                                                            {% endif %}
                                                             <div class="re_product_checkout">
                                                                 <a style="cursor: pointer" class="text-danger corazon"
-                                                               data-producto="{{ producto.id }}"><i
-                                                                class="glyphicon glyphicon-heart"></i></a>
+                                                                   data-producto="{{ producto.id }}"><i
+                                                                        class="glyphicon glyphicon-heart"></i></a>
 
                                                             </div>
                                                         </div>
