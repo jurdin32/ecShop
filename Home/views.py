@@ -42,6 +42,7 @@ def cargar_mas_productos(request,inicio,fin,categoria=0):
     }
     return render(request, "trozo/mas_productos.html",contexto)
 
+
 def ver_porCategoria(request,id):
     carro = 0
     deseos=0
