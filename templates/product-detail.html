@@ -285,9 +285,10 @@
                     button: "No hay mas por hacer",
                 });
             {% endif %}
-
+            puntaje='{{ producto.puntuacion }}'
             $(".my-rating").starRating({
-                    initialRating: '{{ producto.puntuacion }}'.replace(",", "."),
+
+                    initialRating: puntaje.replace(",", "."),
                     initialRating: 1,
                 starSize: 25,
                 {% if calificacion %}
