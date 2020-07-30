@@ -27,9 +27,9 @@ def log_In(request):
             pass
         if user:
             auth.login(request,user=user)
-            return HttpResponseRedirect("/administracion/")
+            return HttpResponseRedirect("/")
     if request.user.is_authenticated:
-        return HttpResponseRedirect("/administracion/")
+        return HttpResponseRedirect("/")
     return render(request, "Administracion/login.html")
 
 @login_required(login_url="/administracion/log_in/")
