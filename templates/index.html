@@ -175,7 +175,7 @@
                         <li><a href="shop-brand.html">Tracking <i class="glyphicon glyphicon-cog"></i></a></li>
                         <li><a href="contact.html">Contacto <i class="glyphicon glyphicon-envelope"></i></a></li>
                         <li><a href="shop-brand.html">Politíca <i class="glyphicon glyphicon-education"></i></a></li>
-                    {% if request.user %}
+                    {% if request.user.username %}
                         <li><a href="/administracion/log_out/">Cerrar Sesión <i class="glyphicon glyphicon-remove"></i> </a></li>
                     {% endif %}
                     </ul>
