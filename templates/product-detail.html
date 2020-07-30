@@ -49,6 +49,7 @@
     <!--==========End Slider area==========-->
 
     <!--==========End Slider area==========-->
+
     <section class="product_detail_area">
         <div class="container custome_container">
             <div class="row">
@@ -208,18 +209,21 @@
                                         {% endfor %}
                                     </a>
                                     <div class="men_item_content" style="height: 140px">
-                                        <a href=href="/detail/{{ pr.slug }}"><h3>{{ pr.nombre|truncatechars:30|capfirst }}</h3>
+                                        <a href=href="/detail/{{ pr.slug }}">
+                                            <h3>{{ pr.nombre|truncatechars:30|capfirst }}</h3>
                                         </a>
                                         <div class="product_detail_content">
                                             {% if producto.adds and producto.adds.estado %}
-                                            <h4>US
-                                                <del>${{ producto.precio }}</del>
-                                            </h4><br>
-                                            <label class="label label-danger">{{ producto.adds.descuento }}%</label>
-                                            <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${% descuento producto.id %}</h4>
-                                        {% else %}
-                                            <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">US ${{ producto.precio }}</h4><br>
-                                        {% endif %}
+                                                <h4>US
+                                                    <del>${{ producto.precio }}</del>
+                                                </h4><br>
+                                                <label class="label label-danger">{{ producto.adds.descuento }}%</label>
+                                                <h4 style="padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                                    US ${% descuento producto.id %}</h4>
+                                            {% else %}
+                                                <h4 style="margin-top:10px;padding: 10px; color: whitesmoke;background-color: {{ colores.botons }};border-radius: 10px">
+                                                    US ${{ producto.precio }}</h4><br>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -287,7 +291,7 @@
             {% endif %}
 
             $(".my-rating").starRating({
-                    initialRating: parseFloat({% coma_punto producto.puntuacion %}),
+                initialRating: parseFloat({% coma_punto producto.puntuacion %}),
                 starSize: 25,
                 {% if calificacion %}
                     readOnly: true,

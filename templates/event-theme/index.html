@@ -1,0 +1,553 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    {% load productostags %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="M_Adnan"/>
+    <!-- Document Title -->
+    <title>EcShop</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="/static/event-theme/rs-plugin/css/settings.css" media="screen"/>
+
+    <!-- StyleSheets -->
+    <link rel="stylesheet" href="/static/event-theme/css/ionicons.min.css">
+    <link rel="stylesheet" href="/static/event-theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/event-theme/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/event-theme/css/main.css">
+    <link rel="stylesheet" href="/static/event-theme/css/style.css">
+    <link rel="stylesheet" href="/static/event-theme/css/responsive.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Fonts Online -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+          rel="stylesheet">
+
+
+    <!-- JavaScripts -->
+    <script src="/static/event-theme/js/vendors/modernizr.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!-- Page Wrapper -->
+<div id="wrap" class="layout-1">
+
+    <!-- Top bar -->
+    <div class="top-bar" style="background-color: {{ colores.header }};">
+        <div class="container">
+            <p style="color: {{ colores.header_texto }}">Bienvenidos a EcShop!</p>
+            <div class="right-sec">
+                <ul>
+                    <li><a href="/registration/" style="color: {{ colores.header_texto }}"><i
+                            class="glyphicon glyphicon-user"></i> Login/Registro </a></li>
+                    <li><a href="#" style="color: {{ colores.header_texto }}"><i
+                            class="glyphicon glyphicon-envelope"></i> info@lit-ec.com</a></li>
+                    <li><a href="#" style="color: {{ colores.header_texto }}"><i class="glyphicon glyphicon-globe"></i>
+                        Ecuador </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header style="background-color: {{ colores.page }}">
+        <div class="container">
+            <div class="logo"><a href="/"><img src="/static/img/ec-02.png" style="width: 205px" alt=""></a></div>
+            <div class="search-cate">
+                <input type="search" placeholder="Qué buscamos?">
+                <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
+            </div>
+
+            <!-- Cart Part -->
+            <ul class="nav navbar-right cart-pop">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false"><span class="itm-cont">{{ carrito }}</span> <i
+                            class="flaticon-shopping-bag"></i> <strong>Mi Carrito</strong> <br>
+                        <span>{{ carrito }} item(s) - USD ${{ valor }}</span></a>
+                    <ul class="dropdown-menu">
+                        {% for dato in datosCarrito %}
+                            <li>
+                                <div class="media-left"><a href="/detail/{{ dato.producto.slug }}/" class="thumb">
+                                    <img src="/static/event-theme/images/item-img-1-1.jpg" class="img-responsive"
+                                         alt=""> </a>
+                                </div>
+                                <div class="media-body"><a href="/detail/{{ dato.producto.slug }}/"
+                                                           class="tittle">{{ dato.producto.nombre }}</a>
+                                    <span>{{ dato.precio }} x {{ dato.cantidad }}</span></div>
+                            </li>
+                        {% endfor %}
+                        <li class="btn-cart"><a href="/this_car/" class="btn-round">Ir al Carrito</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Nav -->
+        <nav class="navbar ownmenu" style="background-color: {{ colores.menu }}">
+            <div class="container">
+
+                <!-- Categories -->
+                <div class="cate-lst"><a data-toggle="collapse" class="cate-style" href="#cater"><i
+                        class="glyphicon glyphicon-list-alt"></i> Todas las categorias </a>
+                    <div class="cate-bar-in">
+                        <div id="cater" class="collapse">
+                            <ul>
+                                {% for categoria in cat %}
+                                    <li><a href="/single-category/{{ categoria.id }}/"> {{ categoria.nombre }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navbar Header -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#nav-open-btn" aria-expanded="false"><span><i class="fa fa-navicon"></i></span>
+                    </button>
+                </div>
+                <!-- NAV -->
+                <div class="collapse navbar-collapse" id="nav-open-btn">
+                    <ul class="nav">
+                        <li class="dropdown megamenu active"><a href="/">Inicio </a></li>
+                        <li class="dropdown"><a href="#">Tiendas <i class="glyphicon glyphicon-arrow-down"></i></a>
+                            <ul class="dropdown-menu multi-level animated-2s fadeInUpHalf">
+                                {% for tienda in tiendas %}
+                                    <li><a href="/shop-brand/{{ tienda.hashes }}/"> {{ tienda.nombre }} </a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#">Traking <i class="glyphicon glyphicon-eye-close"></i></a>
+                        <li class="dropdown"><a href="#">Contacto <i class="glyphicon glyphicon-envelope"></i></a>
+                        <li class="dropdown"><a href="#">Politíca <i class="glyphicon glyphicon-file"></i></a>
+                    </ul>
+                </div>
+
+                <!-- NAV RIGHT -->
+                <div class="nav-right"><span class="call-mun"><i class="glyphicon glyphicon-phone-alt"></i> <strong>Hotline:</strong> (+57) 3024624847</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Slid Sec -->
+    <section class="slid-sec">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- Main Slider  -->
+                    <div class="col-md-12 no-padding">
+
+                        <!-- Main Slider Start -->
+                        <div class="tp-banner-container">
+                            <div class="tp-banner">
+                                <ul>
+                                    <!-- SLIDE  -->
+                                    {% for sli in slider %}
+                                        <li data-transition="random" data-slotamount="7" data-masterspeed="300"
+                                            data-saveperformance="off">
+                                            <!-- MAIN IMAGE -->
+                                            <img src="/media/{{ sli.imagen }}" alt="slider"
+                                                 data-bgposition="center bottom"
+                                                 data-bgfit="cover" data-bgrepeat="no-repeat">
+
+                                            <!-- LAYER NR. 1 -->
+                                            <div class="tp-caption sfl tp-resizeme"
+                                                 data-x="left" data-hoffset="60"
+                                                 data-y="center" data-voffset="-110"
+                                                 data-speed="800"
+                                                 data-start="800"
+                                                 data-easing="Power3.easeInOut"
+                                                 data-splitin="chars"
+                                                 data-splitout="none"
+                                                 data-elementdelay="0.03"
+                                                 data-endelementdelay="0.4"
+                                                 data-endspeed="300"
+                                                 style="z-index: 5; font-size:30px; font-weight:500; color:#888888;  max-width: auto; max-height: auto; white-space: nowrap;">
+                                                {{ sli.titulo }}
+                                            </div>
+
+                                            <!-- LAYER NR. 2 -->
+                                            <div class="tp-caption sfr tp-resizeme"
+                                                 data-x="left" data-hoffset="60"
+                                                 data-y="center" data-voffset="-60"
+                                                 data-speed="800"
+                                                 data-start="1000"
+                                                 data-easing="Power3.easeInOut"
+                                                 data-splitin="chars"
+                                                 data-splitout="none"
+                                                 data-elementdelay="0.03"
+                                                 data-endelementdelay="0.1"
+                                                 data-endspeed="300"
+                                                 style="z-index: 6; font-size:20px; color:#0088cc; white-space: nowrap;">
+                                                {{ sli.descripcion }}
+                                            </div>
+
+                                            <!-- LAYER NR. 4 -->
+                                            {% if sli.enlace %}
+                                                <div class="tp-caption lfb tp-resizeme scroll"
+                                                     data-x="left" data-hoffset="60"
+                                                     data-y="center" data-voffset="80"
+                                                     data-speed="800"
+                                                     data-start="1300"
+                                                     data-easing="Power3.easeInOut"
+                                                     data-elementdelay="0.1"
+                                                     data-endelementdelay="0.1"
+                                                     data-endspeed="300"
+                                                     data-scrolloffset="0"
+                                                     style="z-index: 8;"><a href="{{ sli.enlace }}"
+                                                                            class="btn-round big">{{ sli.mensajeBoton }}</a>
+                                                </div>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .tp-caption .btn-round {
+                            background-color: {{ colores.botons }};
+                        }
+                    </style>
+                    <!-- Main Slider  -->
+                    {% comment %}<div class="col-md-3 no-padding">
+
+                        <!-- New line required  -->
+                        <div class="product">
+                            <div class="like-bnr">
+                                <div class="position-center-center">
+                                    <h5>New line required</h5>
+                                    <h4>Smartphone s7</h4>
+                                    <span class="price">$259.99</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Weekly Slaes  -->
+                        <div class="week-sale-bnr">
+                            <h4>Weekly <span>Sale!</span></h4>
+                            <p>Saving up to 50% off all online
+                                store items this week.</p>
+                            <a href="#." class="btn-round">Shop now</a></div>
+                    </div>{% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div id="content">
+
+        <!-- Shipping Info -->
+        <section class="shipping-info">
+            <div class="container">
+                <ul>
+
+                    <!-- Free Shipping -->
+                    <li>
+                        <div class="media-left"><i class="flaticon-delivery-truck-1"></i></div>
+                        <div class="media-body">
+                            <h5>Envio Gratis</h5>
+                            <span>A partir de tu compra de $99</span></div>
+                    </li>
+                    <!-- Money Return -->
+                    <li>
+                        <div class="media-left"><i class="flaticon-arrows"></i></div>
+                        <div class="media-body">
+                            <h5>Devolución</h5>
+                            <span>Si tu pedido no llega te devolvemos tu dinero</span></div>
+                    </li>
+                    <!-- Support 24/7 -->
+                    <li>
+                        <div class="media-left"><i class="flaticon-operator"></i></div>
+                        <div class="media-body">
+                            <h5>Soporte</h5>
+                            <span>Hotline: (+57) 3024634847</span></div>
+                    </li>
+                    <!-- Safe Payment -->
+                    <li>
+                        <div class="media-left"><i class="flaticon-business"></i></div>
+                        <div class="media-body">
+                            <h5>Pagos</h5>
+                            <span>Pagos completamente protegidos</span></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- tab Section -->
+        <section class="featur-tabs padding-top-60 padding-bottom-60">
+            <div class="container">
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-pills margin-bottom-40" role="tablist">
+                    {% for categoria in cat %}
+                        {% if forloop.counter == 1 %}
+                            <li role="presentation" class="active">
+                                <a href="#cat{{ categoria.id }}" aria-controls="cat{{ categoria.id }}" role="tab"
+                                   data-toggle="tab">{{ categoria.nombre }}</a>
+                            </li>
+                        {% else %}
+                            <li role="presentation">
+                                <a href="#cat{{ categoria.id }}" aria-controls="cat{{ categoria.id }}" role="tab"
+                                   data-toggle="tab">{{ categoria.nombre }}</a>
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- Featured -->
+                    {% for categoria in cat %}
+                        <div role="tabpanel" class="tab-pane active fade in" id="cat{{ categoria.id }}">
+                            <!-- Items Slider -->
+                            <div class="item-slide-5 with-nav">
+                                <!-- Product -->
+                                {% for producto in productos %}
+                                    {% if producto.categoria == categoria %}
+                                        <div class="product">
+                                            <article>
+                                                {% for fotosProducto in fotosProductos %}
+                                                    {% if fotosProducto.producto == producto %}
+                                                        <img class="img-responsive"
+                                                             src="/media/{{ fotosProducto.imagen }}" alt="">
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if producto.adds.estado %}
+                                                    <span class="sale-tag">-{{ producto.adds.descuento }}%</span>
+                                                {% endif %}
+                                                <!-- Content -->
+                                                <span class="tag">{{ categoria.nombre }}</span> <a
+                                                    href="/detail/{{ producto.slug }}/"
+                                                    class="tittle">{{ producto.nombre }}</a>
+                                                <!-- Reviews -->
+                                                <p class="rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <span class="margin-left-10">{{ producto.puntuacion }} Calf.</span>
+                                                </p>
+                                                {% if producto.adds.estado %}
+                                                    <div class="price">${% descuento producto.id %}</div>
+                                                {% else %}
+                                                    <div class="price">${{ producto.precio }}</div>
+                                                {% endif %}
+                                                <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a>
+                                            </article>
+                                        </div>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Selling Week -->
+        <section class="light-gry-bg padding-top-60 padding-bottom-30">
+            <div class="container">
+
+                <!-- heading -->
+                <div class="heading">
+                    <h2>Top Semanal</h2>
+                    <hr>
+                </div>
+
+                <!-- Items -->
+                <div class="item-col-5">
+                    <!-- Product -->
+                    {% for producto in productos %}
+                        <div class="product">
+                                            <article>
+                                                {% for fotosProducto in fotosProductos %}
+                                                    {% if fotosProducto.producto == producto %}
+                                                        <img class="img-responsive"
+                                                             src="/media/{{ fotosProducto.imagen }}" alt="">
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if producto.adds.estado %}
+                                                    <span class="sale-tag">-{{ producto.adds.descuento }}%</span>
+                                                {% endif %}
+                                                <!-- Content -->
+                                                <span class="tag">{{ categoria.nombre }}</span> <a
+                                                    href="/detail/{{ producto.slug }}/"
+                                                    class="tittle">{{ producto.nombre }}</a>
+                                                <!-- Reviews -->
+                                                <p class="rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <span class="margin-left-10">{{ producto.puntuacion }} Calf.</span>
+                                                </p>
+                                                {% if producto.adds.estado %}
+                                                    <div class="price">${% descuento producto.id %}</div>
+                                                {% else %}
+                                                    <div class="price">${{ producto.precio }}</div>
+                                                {% endif %}
+                                                <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a>
+                                            </article>
+                                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- Top Selling Week -->
+        <section class="light-gry-bg clients-img">
+            <div class="container">
+                <ul>
+                    {% for marca in marcas %}
+                    <li><img src="/media/{{ marca.imagen }}" alt=""></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <!-- Newslatter -->
+        <section class="newslatter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Subscribe our Newsletter <span>Get <strong>25% Off</strong> first purchase!</span></h3>
+                    </div>
+                    <div class="col-md-6">
+                        <form>
+                            <input type="email" placeholder="Your email address here...">
+                            <button type="submit">Subscribe!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+
+            <!-- Footer Upside Links -->
+            <div class="foot-link">
+                <ul>
+                    <li><a href="#."> About us </a></li>
+                    <li><a href="#."> Customer Service </a></li>
+                    <li><a href="#."> Privacy Policy </a></li>
+                    <li><a href="#."> Site Map </a></li>
+                    <li><a href="#."> Search Terms </a></li>
+                    <li><a href="#."> Advanced Search </a></li>
+                    <li><a href="#."> Orders and Returns </a></li>
+                    <li><a href="#."> Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="row">
+
+                <!-- Contact -->
+                <div class="col-md-4">
+                    <h4>Contact SmartTech!</h4>
+                    <p>Address: 45 Grand Central Terminal New York, NY 1017
+                        United State USA</p>
+                    <p>Phone: (+100) 123 456 7890</p>
+                    <p>Email: Support@smarttech.com</p>
+                    <div class="social-links"><a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i
+                            class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> <a href="#."><i
+                            class="fa fa-pinterest"></i></a> <a href="#."><i class="fa fa-instagram"></i></a> <a
+                            href="#."><i class="fa fa-google"></i></a></div>
+                </div>
+
+                <!-- Categories -->
+                <div class="col-md-3">
+                    <h4>Categories</h4>
+                    <ul class="links-footer">
+                        <li><a href="#.">Home Audio & Theater</a></li>
+                        <li><a href="#."> TV & Video</a></li>
+                        <li><a href="#."> Camera, Photo & Video</a></li>
+                        <li><a href="#."> Cell Phones & Accessories</a></li>
+                        <li><a href="#."> Headphones</a></li>
+                        <li><a href="#."> Video Games</a></li>
+                        <li><a href="#."> Bluetooth & Wireless</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="col-md-3">
+                    <h4>Customer Services</h4>
+                    <ul class="links-footer">
+                        <li><a href="#.">Shipping & Returns</a></li>
+                        <li><a href="#."> Secure Shopping</a></li>
+                        <li><a href="#."> International Shipping</a></li>
+                        <li><a href="#."> Affiliates</a></li>
+                        <li><a href="#."> Contact </a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="col-md-2">
+                    <h4>Information</h4>
+                    <ul class="links-footer">
+                        <li><a href="#.">Our Blog</a></li>
+                        <li><a href="#."> About Our Shop</a></li>
+                        <li><a href="#."> Secure Shopping</a></li>
+                        <li><a href="#."> Delivery infomation</a></li>
+                        <li><a href="#."> Store Locations</a></li>
+                        <li><a href="#."> FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Rights -->
+    <div class="rights">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>Copyright © 2017 <a href="#." class="ri-li"> SmartTech </a>HTML5 template. All rights reserved
+                    </p>
+                </div>
+                <div class="col-sm-6 text-right"><img src="images/card-icon.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Footer -->
+
+    <!-- GO TO TOP  -->
+    <a href="#" class="cd-top"><i class="fa fa-angle-up"></i></a>
+    <!-- GO TO TOP End -->
+</div>
+<!-- End Page Wrapper -->
+
+<!-- JavaScripts -->
+<script src="/static/event-theme/js/vendors/jquery/jquery.min.js"></script>
+<script src="/static/event-theme/js/vendors/wow.min.js"></script>
+<script src="/static/event-theme/js/vendors/bootstrap.min.js"></script>
+<script src="/static/event-theme/js/vendors/own-menu.js"></script>
+<script src="/static/event-theme/js/vendors/jquery.sticky.js"></script>
+<script src="/static/event-theme/js/vendors/owl.carousel.min.js"></script>
+
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+<script type="text/javascript" src="/static/event-theme/rs-plugin/js/jquery.tp.t.min.js"></script>
+<script type="text/javascript" src="/static/event-theme/rs-plugin/js/jquery.tp.min.js"></script>
+<script src="/static/event-theme/js/main.js"></script>
+</body>
+</html>

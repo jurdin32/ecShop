@@ -22,6 +22,7 @@ class Slider(models.Model):
 
 class ColorInterfaz(models.Model):
     header=ColorField(default='#333333')
+    header_texto = ColorField(default='#ffffff')
     page=ColorField(default='#cccccc52')
     botons=ColorField(default="#ff3600" )
     menu = ColorField(default="#ff3600")

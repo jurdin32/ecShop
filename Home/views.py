@@ -15,9 +15,14 @@ from ecShop.snippers import send_email
 def index(request):
     carro=0
     deseos=0
+    carrito=None
+    valor=0
     if request.user.is_authenticated:
-        carro=DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False).count()
+        carrito=DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False)
+        carro=carrito.count()
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
+    if carro>0:
+        valor=carrito.aggregate(Sum("total"))
     contexto={
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
@@ -27,8 +32,11 @@ def index(request):
         "colores":ColorInterfaz.objects.last(),
         "carrito":carro,
         "deseos":deseos,
+        "datosCarrito":carrito,
+        "valor":valor,
+        "marcas":list(Marcas.objects.all().order_by("nombre"))
     }
-    return render(request,"index.html",contexto)
+    return render(request, "event-theme/index.html", contexto)
 
 def cargar_mas_productos(request,inicio,fin,categoria=0):
     productos=Productos.objects.all()
