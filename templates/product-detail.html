@@ -208,7 +208,7 @@
                                         {% endfor %}
                                     </a>
                                     <div class="men_item_content" style="height: 140px">
-                                        <a href="product-detail.html"><h3>{{ pr.nombre|truncatechars:30|capfirst }}</h3>
+                                        <a href=href="/detail/{{ pr.slug }}"><h3>{{ pr.nombre|truncatechars:30|capfirst }}</h3>
                                         </a>
                                         <div class="product_detail_content">
                                             {% if producto.adds and producto.adds.estado %}
