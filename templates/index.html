@@ -410,6 +410,9 @@
             //Al llegar al pie de la pagina se ejecuta
 
             $.get("/plus/prod/" +inicio+"/"+ contador+"/", function (data) {
+                setTimeout(function (){
+                $('#mas').html("<p>Espere..</p>")
+                },2000)
                 $('#mas').append(data);
             });
             inicio=contador
