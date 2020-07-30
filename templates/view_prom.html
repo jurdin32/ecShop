@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 {% block contenido %}
     {% load productostags %}
+    <link rel="stylesheet" type="text/css" href="/static/rata/src/css/star-rating-svg.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/rata/demo/css/demo.css">
     <section class="checkout_area">
         <div class="container">
             <div class="checkout_inner_area">
@@ -8,30 +11,34 @@
 
                     <div class="r_widget popular_post_widget">
                         <div class="widget_tittle">
-                            <h3>Usuarios hablan de este artículo</h3>
+                            <h3>Usuarios hablan de {{ producto.nombre|capfirst }}, calificación:
+                                <i>({{ producto.puntuacion }})</i></h3>
+                                <div class="my-rating"></div>
                         </div>
                         <ul class="recent_post_list">
                             {% for calificacion in calificaciones %}
-                            <li>
-                                <div class="media">
-                                    <div class="media-left" style="vertical-align: middle; text-align: center;">
-                                        <a><h4>Calificación</h4></a>
+                                <li>
+                                    <div class="media">
+                                        <div class="media-left" style="vertical-align: middle; text-align: center;">
+                                            <a><h4>Calificación</h4></a>
 
-                                        <span style="background-color: {{ colores.botons }}; color: whitesmoke; border-radius: 10px; padding: 10px">{{ calificacion.calificacion }}</span>
-                                    </div>
-                                    <div class="media-body">
-                                        <a><h4>{{ calificacion.usuario.get_full_name }} {{ calificacion.usuario.username }}</h4></a>
-                                        <a class="date_comment" href="#">
-                                            {% if calificacion.comentario %}
-                                            {{ calificacion.comentario}}
+                                            <span style="background-color: {{ colores.botons }}; color: whitesmoke; border-radius: 10px; padding: 10px">{{ calificacion.calificacion }}</span>
+                                        </div>
+                                        <div class="media-body">
+                                            <a>
+                                                <h4>{{ calificacion.usuario.get_full_name }} {{ calificacion.usuario.username }}</h4>
+                                            </a>
+                                            <a class="date_comment" href="#">
+                                                {% if calificacion.comentario %}
+                                                    {{ calificacion.comentario }}
                                                 {% else %}
-                                                No dejo Comentario
-                                            {% endif %}
+                                                    No dejo Comentario
+                                                {% endif %}
 
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -39,44 +46,24 @@
             </div>
         </div>
     </section>
-    <style>
-        .item_price_area .table-responsive .table thead tr th {
-            width: calc(100% / 4) !important;
-        }
-    </style>
 {% endblock %}
 {% block script %}
-    <script src="/static/sweetalert.min.js"></script>
+    <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
     <script>
-        $(".carrito").click(function () {
-            $.ajax({
-                url: "/to_car/",
-                data: {
-                    cantidad: 1,
-                    precio: $(this).data("precio"),
-                    producto: $(this).data("id"),
-                    csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
-                },
-                type: 'post',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    swal({
-                        title: "Cuanto lo siento!",
-                        text: "Para usar esta acción debe estar registrado",
-                        icon: "error",
-                        button: "No hay mas por hacer",
-                    });
-
-                },
-                success: function (data) {
-                    swal({
-                        title: "Excelente!",
-                        text: "El producto se agrego al carrito",
-                        icon: "success",
-                        button: "No hay mas por hacer",
-                    });
-                    $("#ncarrito").text(data)
-                }
-            });
+        $(".my-rating").starRating({
+            initialRating: parseFloat({% coma_punto producto.puntuacion %}),
+            starSize: 25,
+            readOnly: true,
+            disableAfterRate: false,
+            totalStars: 10,
+            onHover: function (currentIndex, currentRating, $el) {
+                $('#numero').text(currentIndex);
+                $("#start").val(currentIndex)
+            },
+            onLeave: function (currentIndex, currentRating, $el) {
+                $('#numero').text(currentRating);
+                $("#start").val(currentIndex)
+            }
         });
     </script>
 {% endblock %}
