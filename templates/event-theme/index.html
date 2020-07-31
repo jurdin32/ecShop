@@ -403,9 +403,9 @@
                                                 </p>
                                                 <br>
                                                 {% if producto.adds.estado %}
-                                                    <div class="price">${% descuento producto.id %}</div>
+                                                    <div class="price" style="text-align: center">${% descuento producto.id %}</div>
                                                 {% else %}
-                                                    <div class="price">${{ producto.precio }}</div>
+                                                    <div class="price" style="text-align: center">${{ producto.precio }}</div>
                                                 {% endif %}
                                                 <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a>
                                             </article>
