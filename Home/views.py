@@ -222,31 +222,26 @@ def ver_todas_categorias(request):
     return render(request, "category.html", contexto)
 
 def carrito_usuario(request):
-    carro = DetallesCarrito()
-    deseos=0
-    cc=0
-    suma=0
-    car=Carrito()
     if request.user.is_authenticated:
         car = Carrito.objects.get(usuario=request.user, estado=False)
         carro = DetallesCarrito.objects.filter(carrito=car)
-        cc=carro.count()
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
-        suma=carro.aggregate(Sum("total"))
-    contexto={
-        "tiendas": Tiendas.objects.all(),
-        "cat": Categorias.objects.all().order_by("nombre"),
-        "productos": Productos.objects.filter(estado=True),
-        "fotosProductos": ProductoFotos.objects.filter(principal=True),
-        "slider": Slider.objects.all().order_by("fecha"),
-        "colores": ColorInterfaz.objects.last(),
-        "carrito": cc,
-        "car":car,
-        "detalles":carro,
-        "total_carro":suma,
-        "deseos":deseos,
-    }
-    return render(request,"checkout.html",contexto)
+        contexto={
+            "tiendas": Tiendas.objects.all(),
+            "cat": Categorias.objects.all().order_by("nombre"),
+            "productos": Productos.objects.filter(estado=True),
+            "fotosProductos": ProductoFotos.objects.filter(principal=True),
+            "slider": Slider.objects.all().order_by("fecha"),
+            "colores": ColorInterfaz.objects.last(),
+            "carrito": carro.count(),
+            "car":car,
+            "detalles":carro,
+            "total_carro":carro.aggregate(Sum("total")),
+            "deseos":deseos,
+        }
+        return render(request,"checkout.html",contexto)
+    else:
+        return HttpResponse("/")
 
 def eliminar_carrito(request,id):
     detalle=DetallesCarrito.objects.get(id=id)
