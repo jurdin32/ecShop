@@ -82,13 +82,10 @@
                                 <div class="media-left"><a href="/detail/{{ dato.producto.slug }}/" class="thumb">
                                     {% for fotosProducto in fotosProductos %}
                                         {% if fotosProducto.producto == dato.producto %}
- <img src="/media/{{ fotosProducto.imagen }}" class="img-responsive"
-                                         alt=""> </a>
+                                            <img src="/media/{{ fotosProducto.imagen }}" class="img-responsive"alt="">
                                         {% endif %}
-
                                     {% endfor %}
-
-
+                                    </a>
                                 </div>
                                 <div class="media-body"><a href="/detail/{{ dato.producto.slug }}/"
                                                            class="tittle">{{ dato.producto.nombre }}</a>
