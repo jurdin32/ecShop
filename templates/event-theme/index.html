@@ -314,7 +314,9 @@
                 <div class="tab-content">
                     <!-- Featured -->
                     {% for categoria in cat %}
-                        <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active fade in {% else %} fade {% endif %} " id="cat{{ categoria.id }}">
+                        <div role="tabpanel"
+                             class="tab-pane{% if forloop.counter == 1 %} active fade in {% else %} fade {% endif %} "
+                             id="cat{{ categoria.id }}">
                             <!-- Items Slider -->
                             <div class="item-slide-5 with-nav">
                                 <!-- Product -->
@@ -325,7 +327,7 @@
                                                 {% for fotosProducto in fotosProductos %}
                                                     {% if fotosProducto.producto == producto %}
                                                         <img class="img-responsive"
-                                                             src="/media/{{ fotosProducto.imagen }}" alt="">
+                                                             src="/media/{{ fotosProducto.imagen }}" style="height: 120px; width: 120px" alt="">
                                                     {% endif %}
                                                 {% endfor %}
                                                 {% if producto.adds.estado %}
@@ -377,39 +379,40 @@
                     <!-- Product -->
                     {% for producto in productos %}
                         <div class="product">
-                                            <article style="text-align: center">
-                                                {% for fotosProducto in fotosProductos %}
-                                                    {% if fotosProducto.producto == producto %}
-                                                        <img class="img-responsive"
-                                                             src="/media/{{ fotosProducto.imagen }}" style="height: 120px; width: 120px" alt="">
-                                                    {% endif %}
-                                                {% endfor %}
-                                                {% if producto.adds.estado %}
-                                                    <span class="sale-tag">-{{ producto.adds.descuento }}%</span>
-                                                {% endif %}
-                                                <!-- Content -->
-                                                <span class="tag">{{ categoria.nombre }}</span> <a
-                                                    href="/detail/{{ producto.slug }}/"
-                                                    class="tittle">{{ producto.nombre }}</a>
-                                                <!-- Reviews -->
-                                                <p class="rev">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <br>
-                                                    <span class="margin-left-10">{{ producto.puntuacion }} Calf.</span>
-                                                </p>
-                                                <br>
-                                                {% if producto.adds.estado %}
-                                                    <div class="price" style="text-align: center">${% descuento producto.id %}</div>
-                                                {% else %}
-                                                    <div class="price" style="text-align: center">${{ producto.precio }}</div>
-                                                {% endif %}
-                                                <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a>
-                                            </article>
-                                        </div>
+                            <article style="text-align: center">
+                                {% for fotosProducto in fotosProductos %}
+                                    {% if fotosProducto.producto == producto %}
+                                        <img class="img-responsive"
+                                             src="/media/{{ fotosProducto.imagen }}" style="height: 120px; width: 120px"
+                                             alt="">
+                                    {% endif %}
+                                {% endfor %}
+                                {% if producto.adds.estado %}
+                                    <span class="sale-tag">-{{ producto.adds.descuento }}%</span>
+                                {% endif %}
+                                <!-- Content -->
+                                <span class="tag">{{ categoria.nombre }}</span> <a
+                                    href="/detail/{{ producto.slug }}/"
+                                    class="tittle">{{ producto.nombre }}</a>
+                                <!-- Reviews -->
+                                <p class="rev">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <br>
+                                    <span class="margin-left-10">{{ producto.puntuacion }} Calf.</span>
+                                </p>
+                                <br>
+                                {% if producto.adds.estado %}
+                                    <div class="price" style="text-align: center">${% descuento producto.id %}</div>
+                                {% else %}
+                                    <div class="price" style="text-align: center">${{ producto.precio }}</div>
+                                {% endif %}
+                                <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a>
+                            </article>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
@@ -419,7 +422,7 @@
             <div class="container">
                 <ul>
                     {% for marca in marcas %}
-                    <li><img src="/media/{{ marca.imagen }}" style="width: 100px" alt=""></li>
+                        <li><img src="/media/{{ marca.imagen }}" style="width: 100px" alt=""></li>
                     {% endfor %}
                 </ul>
             </div>
