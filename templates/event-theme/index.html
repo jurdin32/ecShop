@@ -314,8 +314,10 @@
                 <div class="tab-content">
                     <!-- Featured -->
                     {% for categoria in cat %}
-                        {% if forloop.counter == 1 %}
-                        <div role="tabpanel" class="tab-pane active fade in" id="cat{{ categoria.id }}">
+
+
+
+                        <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active fade in {% else %} fade {% endif %} " id="cat{{ categoria.id }}">
                             <!-- Items Slider -->
                             <div class="item-slide-5 with-nav">
                                 <!-- Product -->
@@ -358,51 +360,6 @@
                                 {% endfor %}
                             </div>
                         </div>
-                            {% else %}
-                            <div role="tabpanel" class="tab-pane fade" id="cat{{ categoria.id }}">
-                            <!-- Items Slider -->
-                            <div class="item-slide-5 with-nav">
-                                <!-- Product -->
-                                {% for producto in productos %}
-                                    {% if producto.categoria == categoria %}
-                                        <div class="product">
-                                            <article>
-                                                {% for fotosProducto in fotosProductos %}
-                                                    {% if fotosProducto.producto == producto %}
-                                                        <img class="img-responsive"
-                                                             src="/media/{{ fotosProducto.imagen }}" alt="">
-                                                    {% endif %}
-                                                {% endfor %}
-                                                {% if producto.adds.estado %}
-                                                    <span class="sale-tag">-{{ producto.adds.descuento }}%</span>
-                                                {% endif %}
-                                                <!-- Content -->
-                                                <span class="tag">{{ categoria.nombre }}</span> <a
-                                                    href="/detail/{{ producto.slug }}/"
-                                                    class="tittle">{{ producto.nombre }}</a>
-                                                <!-- Reviews -->
-                                                <p class="rev">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <span class="margin-left-10">{{ producto.puntuacion }} Calf.</span>
-                                                </p>
-                                                {% if producto.adds.estado %}
-                                                    <div class="price">${% descuento producto.id %}</div>
-                                                {% else %}
-                                                    <div class="price">${{ producto.precio }}</div>
-                                                {% endif %}
-                                                <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a>
-                                            </article>
-                                        </div>
-                                    {% endif %}
-
-                                {% endfor %}
-                            </div>
-                        </div>
-                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
