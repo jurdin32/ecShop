@@ -314,9 +314,6 @@
                 <div class="tab-content">
                     <!-- Featured -->
                     {% for categoria in cat %}
-
-
-
                         <div role="tabpanel" class="tab-pane{% if forloop.counter == 1 %} active fade in {% else %} fade {% endif %} " id="cat{{ categoria.id }}">
                             <!-- Items Slider -->
                             <div class="item-slide-5 with-nav">
@@ -384,7 +381,7 @@
                                                 {% for fotosProducto in fotosProductos %}
                                                     {% if fotosProducto.producto == producto %}
                                                         <img class="img-responsive"
-                                                             src="/media/{{ fotosProducto.imagen }}" alt="">
+                                                             src="/media/{{ fotosProducto.imagen }}" style="height: 120px" alt="">
                                                     {% endif %}
                                                 {% endfor %}
                                                 {% if producto.adds.estado %}
