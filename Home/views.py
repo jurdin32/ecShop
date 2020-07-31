@@ -241,7 +241,7 @@ def carrito_usuario(request):
         }
         return render(request,"checkout.html",contexto)
     else:
-        return HttpResponse("/")
+        return HttpResponseRedirect("/")
 
 def eliminar_carrito(request,id):
     detalle=DetallesCarrito.objects.get(id=id)
