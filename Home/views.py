@@ -23,6 +23,7 @@ def index(request):
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     if carro>0:
         valor=carrito.aggregate(Sum("total"))
+        #valor=valor["total__sum"]
     contexto={
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
