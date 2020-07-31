@@ -225,12 +225,14 @@ def carrito_usuario(request):
     carro = 0
     deseos=0
     cc=0
+    suma=0
     car=Carrito()
     if request.user.is_authenticated:
         car = Carrito.objects.get(usuario=request.user, estado=False)
         carro = DetallesCarrito.objects.filter(carrito=car)
         cc=carro.count()
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
+        suma=carro.aggregate(Sum("total"))
     contexto={
         "tiendas": Tiendas.objects.all(),
         "cat": Categorias.objects.all().order_by("nombre"),
@@ -241,7 +243,7 @@ def carrito_usuario(request):
         "carrito": cc,
         "car":car,
         "detalles":carro,
-        "total_carro":carro.aggregate(Sum("total")),
+        "total_carro":suma,
         "deseos":deseos,
     }
     return render(request,"checkout.html",contexto)
