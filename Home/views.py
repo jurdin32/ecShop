@@ -225,8 +225,9 @@ def carrito_usuario(request):
     carro = 0
     deseos=0
     cc=0
-    car=Carrito.objects.get(usuario=request.user,estado=False)
+    car=Carrito()
     if request.user.is_authenticated:
+        car = Carrito.objects.get(usuario=request.user, estado=False)
         carro = DetallesCarrito.objects.filter(carrito=car)
         cc=carro.count()
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
