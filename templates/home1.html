@@ -41,9 +41,9 @@
     <link href="/static/max-shop-theme/css/themecss/so-super-category.css" rel="stylesheet">
     <link id="color_scheme" href="/static/max-shop-theme/css/home2.css" rel="stylesheet">
     <link href="/static/max-shop-theme/css/responsive.css" rel="stylesheet">
-{#    <link rel="stylesheet" href="/static/max-shop-theme/mi.css">#}
+    {#    <link rel="stylesheet" href="/static/max-shop-theme/mi.css">#}
     <script src="https://kit.fontawesome.com/b5e26b5da0.js" crossorigin="anonymous"></script>
-  </head>
+</head>
 
 
 </head>
@@ -51,326 +51,332 @@
 <body class="common-home res layout-home2">
 <div id="wrapper" class="wrapper-full banners-effect-8">
     <!-- Header Container  -->
-{% block header %}
-    <header id="header" class=" variantleft type_2">
-        <!-- Header Top -->
-        <div class="header-top compact-hidden">
-            <div class="container">
-                <div class="row">
-                    <div class="header-top-right collapsed-block col-lg-8 col-sm-12 col-md-7 col-xs-12 ">
-                        <h5 class="tabBlockTitle visible-xs">More<a class="expander " href="#TabBlock-1"><i
-                                class="fa fa-angle-down"></i></a></h5>
-                        <div class="tabBlock" id="TabBlock-1">
-                            <ul class="top-link list-inline">
-                                <li><a><i class="glyphicon glyphicon-envelope"></i> info@bit-ec.com</a></li>
-                                <li><a><i class="glyphicon glyphicon-phone"></i> (+57) 3024634847</a></li>
-                                <li class="account" id="my_account">
-                                    <a href="#" title="Mi cuenta" class="btn btn-xs dropdown-toggle"
-                                       data-toggle="dropdown"> <span>Mi Cuenta</span> <span
-                                            class="glyphicon glyphicon-arrow-down"></span></a>
-                                    <ul class="dropdown-menu ">
-                                        <li><a href="/registration/"><i class="glyphicon glyphicon-user"></i>
-                                            Registrarse</a></li>
-                                        <li><a href="administracion/log_in/"><i class="glyphicon glyphicon-pencil"></i>
-                                            Iniciar Sesión</a></li>
-                                    </ul>
-                                </li>
-                                <li class="wishlist "><a href="/this_list/" id="wishlist-total"
-                                                         class="top-link-wishlist" title="Lista de deseos">
-                                    <span>Lista de Deseos ({{ deseos }}) </span></a>
-                                </li>
-                            </ul>
+    {% block header %}
+        <header id="header" class=" variantleft type_2">
+            <!-- Header Top -->
+            <div class="header-top compact-hidden">
+                <div class="container">
+                    <div class="row">
+                        <div class="header-top-right collapsed-block col-lg-8 col-sm-12 col-md-7 col-xs-12 ">
+                            <h5 class="tabBlockTitle visible-xs">More<a class="expander " href="#TabBlock-1"><i
+                                    class="fa fa-angle-down"></i></a></h5>
+                            <div class="tabBlock" id="TabBlock-1">
+                                <ul class="top-link list-inline">
+                                    <li><a><i class="glyphicon glyphicon-envelope"></i> info@bit-ec.com</a></li>
+                                    <li><a><i class="glyphicon glyphicon-phone"></i> (+57) 3024634847</a></li>
+                                    <li class="account" id="my_account">
+                                        <a href="#" title="Mi cuenta" class="btn btn-xs dropdown-toggle"
+                                           data-toggle="dropdown"> <span>Mi Cuenta</span> <span
+                                                class="glyphicon glyphicon-arrow-down"></span></a>
+                                        <ul class="dropdown-menu ">
+                                            <li><a href="/registration/"><i class="glyphicon glyphicon-user"></i>
+                                                Registrarse</a></li>
+                                            <li><a href="administracion/log_in/"><i
+                                                    class="glyphicon glyphicon-pencil"></i>
+                                                Iniciar Sesión</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="wishlist "><a href="/this_list/" id="wishlist-total"
+                                                             class="top-link-wishlist" title="Lista de deseos">
+                                        <span>Lista de Deseos ({{ deseos }}) </span></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- //Header Top -->
-        <!-- Header center -->
-        <div class="header-center">
-            <div class="container">
-                <div class="row">
-                    <!-- Search -->
-                    <div class="col-sm-4 header_search">
-                        <div id="sosearchpro" class="search-pro">
-                            <form method="GET" action="index.html">
-                                <div id="search0" class="search input-group">
-                                    <div class="select_category filter_type">
-                                        <select class="no-border" name="category_id">
-                                            <option value="0">Categorías</option>
-                                            {% for categoria in cat %}
-                                                <option value="{{ categoria.id }}">{{ categoria.nombre|capfirst }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
+            <!-- //Header Top -->
+            <!-- Header center -->
+            <div class="header-center">
+                <div class="container">
+                    <div class="row">
+                        <!-- Search -->
+                        <div class="col-sm-4 header_search">
+                            <div id="sosearchpro" class="search-pro">
+                                <form method="GET" action="index.html">
+                                    <div id="search0" class="search input-group">
+                                        <div class="select_category filter_type">
+                                            <select class="no-border" name="category_id">
+                                                <option value="0">Categorías</option>
+                                                {% for categoria in cat %}
+                                                    <option value="{{ categoria.id }}">{{ categoria.nombre|capfirst }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
 
-                                    <input class="autosearch-input form-control" type="text" value="" size="50"
-                                           autocomplete="off" placeholder="Search" name="search">
-                                    <span class="input-group-btn">
+                                        <input class="autosearch-input form-control" type="text" value="" size="50"
+                                               autocomplete="off" placeholder="Search" name="search">
+                                        <span class="input-group-btn">
 										<button type="submit" class="button-search btn btn-primary"
                                                 name="submit_search"><i class="fa fa-search"></i></button>
 										</span>
-                                </div>
-                                <input type="hidden" name="route" value="product/search"/>
-                            </form>
+                                    </div>
+                                    <input type="hidden" name="route" value="product/search"/>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <!-- //end Search -->
-                    <!-- Logo -->
-                    <div class="navbar-logo col-sm-4 col-xs-12 text-center">
-                        <a href="/"><img class="lazyload" data-sizes="auto"
-                                         src="/static/img/ec-02.png" style="height: 50px"
-                                         data-src="/static/img/ec-02.png"
-                                         title="Your Store" alt="Your Store"/></a>
-                    </div>
-                    <!-- //End Logo -->
-                    <!-- Phone -->
-                    <div class="header-center-right col-sm-4">
-                        <div class="hidden-xs">
-                            <div class="phone-contact hidden-xs">
-                                <div class="inner-info">
-                                    <h2>Contactanos:</h2>
-                                    <p>(57) 3024634847</p>
+                        <!-- //end Search -->
+                        <!-- Logo -->
+                        <div class="navbar-logo col-sm-4 col-xs-12 text-center">
+                            <a href="/"><img class="lazyload" data-sizes="auto"
+                                             src="/static/img/ec-02.png" style="height: 50px"
+                                             data-src="/static/img/ec-02.png"
+                                             title="Your Store" alt="Your Store"/></a>
+                        </div>
+                        <!-- //End Logo -->
+                        <!-- Phone -->
+                        <div class="header-center-right col-sm-4">
+                            <div class="hidden-xs">
+                                <div class="phone-contact hidden-xs">
+                                    <div class="inner-info">
+                                        <h2>Contactanos:</h2>
+                                        <p>(57) 3024634847</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- //End Phone -->
                     </div>
-                    <!-- //End Phone -->
                 </div>
             </div>
-        </div>
-        <!-- //Header center -->
-        <div class="header-bottom compact-hidden">
-            <div class="container">
-                <div class="header-bottom-inner">
-                    <div class="row">
-                        <div class="header-bottom-menu col-md-10 col-sm-9 col-xs-4">
-                            <div class="responsive so-megamenu  megamenu-style-dev">
-                                <nav class="navbar-default">
-                                    <div class=" container-megamenu  horizontal">
-                                        <div class="navbar-header">
-                                            <button type="button" id="show-megamenu" data-toggle="collapse"
-                                                    class="navbar-toggle">
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                            </button>
-                                        </div>
+            <!-- //Header center -->
+            <div class="header-bottom compact-hidden">
+                <div class="container">
+                    <div class="header-bottom-inner">
+                        <div class="row">
+                            <div class="header-bottom-menu col-md-10 col-sm-9 col-xs-4">
+                                <div class="responsive so-megamenu  megamenu-style-dev">
+                                    <nav class="navbar-default">
+                                        <div class=" container-megamenu  horizontal">
+                                            <div class="navbar-header">
+                                                <button type="button" id="show-megamenu" data-toggle="collapse"
+                                                        class="navbar-toggle">
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                </button>
+                                            </div>
 
-                                        <div class="megamenu-wrapper ">
-                                            <span id="remove-megamenu" class="fa fa-times"></span>
-                                            <div class="megamenu-pattern">
-                                                <div class="container">
-                                                    <ul class="megamenu " data-transition="slide"
-                                                        data-animationtime="250">
-                                                        <li class="">
-                                                            <p class="close-menu"></p>
-                                                            <a href="/" class="clearfix">
-                                                                <strong>Inicio</strong>
-                                                                <span class="label"></span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="with-sub-menu hover">
-                                                            <p class="close-menu"></p>
-                                                            <a href="#" class="clearfix">
-                                                                <strong><img class="lazyload" data-sizes="auto"
-                                                                             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                                             data-src="/static/max-shop-theme/image/demo/menu/hot-icon.png"
-                                                                             alt="">Categorías</strong>
-                                                                <span class="label"></span>
-                                                                <b class="caret"></b>
-                                                            </a>
-                                                            <div class="sub-menu" style="width: 100%; display: none;">
-                                                                <div class="content">
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12">
-                                                                            <div class="row">
-                                                                                {% for categoria in cat %}
-                                                                                    <div class="col-md-2 img img1"
-                                                                                         style="text-align: center">
-                                                                                        <a href="/single-category/{{ categoria.id }}/"><img
-                                                                                                class="lazyload"
-                                                                                                data-sizes="auto"
-                                                                                                src="/media/{{ categoria.icono.icono }}"
-                                                                                                data-src="/media/{{ categoria.icono.icono }}"
-                                                                                                alt="banner1"></a>
-                                                                                        <a href="/single-category/{{ categoria.id }}/"
-                                                                                           class="title-submenu">{{ categoria.nombre }}</a>
-                                                                                    </div>
-                                                                                {% endfor %}
+                                            <div class="megamenu-wrapper ">
+                                                <span id="remove-megamenu" class="fa fa-times"></span>
+                                                <div class="megamenu-pattern">
+                                                    <div class="container">
+                                                        <ul class="megamenu " data-transition="slide"
+                                                            data-animationtime="250">
+                                                            <li class="">
+                                                                <p class="close-menu"></p>
+                                                                <a href="/" class="clearfix">
+                                                                    <strong>Inicio</strong>
+                                                                    <span class="label"></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="with-sub-menu hover">
+                                                                <p class="close-menu"></p>
+                                                                <a href="#" class="clearfix">
+                                                                    <strong><img class="lazyload" data-sizes="auto"
+                                                                                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                                                 data-src="/static/max-shop-theme/image/demo/menu/hot-icon.png"
+                                                                                 alt="">Categorías</strong>
+                                                                    <span class="label"></span>
+                                                                    <b class="caret"></b>
+                                                                </a>
+                                                                <div class="sub-menu"
+                                                                     style="width: 100%; display: none;">
+                                                                    <div class="content">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <div class="row">
+                                                                                    {% for categoria in cat %}
+                                                                                        <div class="col-md-2 img img1"
+                                                                                             style="text-align: center">
+                                                                                            <a href="/single-category/{{ categoria.id }}/"><img
+                                                                                                    class="lazyload"
+                                                                                                    data-sizes="auto"
+                                                                                                    src="/media/{{ categoria.icono.icono }}"
+                                                                                                    data-src="/media/{{ categoria.icono.icono }}"
+                                                                                                    alt="banner1"></a>
+                                                                                            <a href="/single-category/{{ categoria.id }}/"
+                                                                                               class="title-submenu">{{ categoria.nombre }}</a>
+                                                                                        </div>
+                                                                                    {% endfor %}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="with-sub-menu hover">
+                                                                <p class="close-menu"></p>
+                                                                <a href="#" class="clearfix">
+                                                                    <strong>Tiendas</strong>
+                                                                    <b class="caret"></b>
+                                                                </a>
+                                                                <div class="sub-menu" style="width: 40%; ">
+                                                                    <div class="content">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <ul class="row-list">
+                                                                                    {% for tienda in tiendas %}
+                                                                                        <li><a class="subcategory_item"
+                                                                                               href="/shop-brand/{{ tienda.hashes }}/">{{ tienda.nombre }}</a>
+                                                                                        </li>
+                                                                                    {% endfor %}
+                                                                                </ul>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="with-sub-menu hover">
-                                                            <p class="close-menu"></p>
-                                                            <a href="#" class="clearfix">
-                                                                <strong>Tiendas</strong>
-                                                                <b class="caret"></b>
-                                                            </a>
-                                                            <div class="sub-menu" style="width: 40%; ">
-                                                                <div class="content">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <ul class="row-list">
-                                                                                {% for tienda in tiendas %}
-                                                                                    <li><a class="subcategory_item"
-                                                                                           href="/shop-brand/{{ tienda.hashes }}/">{{ tienda.nombre }}</a>
-                                                                                    </li>
-                                                                                {% endfor %}
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="">
-                                                            <p class="close-menu"></p>
-                                                            <a href="/traking/" class="clearfix">
-                                                                <strong>Traking</strong>
-                                                                <span class="label"></span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="">
-                                                            <p class="close-menu"></p>
-                                                            <a href="/contact/" class="clearfix">
-                                                                <strong>Contacto</strong>
-                                                                <span class="label"></span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="">
-                                                            <p class="close-menu"></p>
-                                                            <a href="/politics/" class="clearfix">
-                                                                <strong>Politíca</strong>
-                                                                <span class="label"></span>
-                                                            </a>
-                                                        </li>
+                                                            </li>
+                                                            <li class="">
+                                                                <p class="close-menu"></p>
+                                                                <a href="/traking/" class="clearfix">
+                                                                    <strong>Traking</strong>
+                                                                    <span class="label"></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <p class="close-menu"></p>
+                                                                <a href="/contact/" class="clearfix">
+                                                                    <strong>Contacto</strong>
+                                                                    <span class="label"></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <p class="close-menu"></p>
+                                                                <a href="/politics/" class="clearfix">
+                                                                    <strong>Politíca</strong>
+                                                                    <span class="label"></span>
+                                                                </a>
+                                                            </li>
 
-                                                    </ul>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </nav>
+                                    </nav>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Cart Pro-->
-                        <div class="block-cart col-md-2 col-sm-3 col-xs-8">
-                            <div class="block-cart">
-                                <!--cart-->
-                                <div class="shopping_cart pull-right">
-                                    <div id="cart" class=" btn-group btn-shopping-cart">
-                                        <a data-loading-text="Loading..." class="btn-group top_cart dropdown-toggle"
-                                           data-toggle="dropdown">
-                                            <div class="shopcart">
-                                                <span class="handle pull-left"></span>
-                                                <span class="text-shopping-cart hidden-xs">	Mi carrito	</span>
-                                                <span class="total-shopping-cart cart-total-full">{{ carrito }}</span>
-                                            </div>
-                                        </a>
-                                        <!-- aqui va el detalle del carrito. -->
-                                        <ul class="tab-content content dropdown-menu pull-right shoppingcart-box"
-                                            role="menu">
-                                            <li>
-                                                <table class="table table-striped">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="text-center" style="width:70px">
-                                                            <a href="product.html"> <img class="lazyload preview"
-                                                                                         data-sizes="auto"
-                                                                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                                                         data-src="/static/max-shop-theme/image/demo/shop/product/35.jpg"
-                                                                                         style="width:70px"
-                                                                                         alt="Filet Mign"
-                                                                                         title="Filet Mign"> </a>
-                                                        </td>
-                                                        <td class="text-left"><a class="cart_product_name"
-                                                                                 href="product.html">Filet Mign</a></td>
-                                                        <td class="text-center"> x1</td>
-                                                        <td class="text-center"> $1,202.00</td>
-                                                        <td class="text-right">
-                                                            <a href="product.html" class="fa fa-edit"></a>
-                                                        </td>
-                                                        <td class="text-right">
-                                                            <a onclick="cart.remove('2');"
-                                                               class="fa fa-times fa-delete"></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center" style="width:70px">
-                                                            <a href="product.html"> <img class="lazyload preview"
-                                                                                         data-sizes="auto"
-                                                                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                                                         data-src="/static/max-shop-theme/image/demo/shop/product/141.jpg"
-                                                                                         style="width:70px"
-                                                                                         alt="Canon EOS 5D"
-                                                                                         title="Canon EOS 5D"> </a>
-                                                        </td>
-                                                        <td class="text-left"><a class="cart_product_name"
-                                                                                 href="product.html">Canon EOS 5D</a>
-                                                        </td>
-                                                        <td class="text-center"> x1</td>
-                                                        <td class="text-center"> $60.00</td>
-                                                        <td class="text-right">
-                                                            <a href="product.html" class="fa fa-edit"></a>
-                                                        </td>
-                                                        <td class="text-right">
-                                                            <a onclick="cart.remove('1');"
-                                                               class="fa fa-times fa-delete"></a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <table class="table table-bordered">
+                            <!-- Cart Pro-->
+                            <div class="block-cart col-md-2 col-sm-3 col-xs-8">
+                                <div class="block-cart">
+                                    <!--cart-->
+                                    <div class="shopping_cart pull-right">
+                                        <div id="cart" class=" btn-group btn-shopping-cart">
+                                            <a data-loading-text="Loading..." class="btn-group top_cart dropdown-toggle"
+                                               data-toggle="dropdown">
+                                                <div class="shopcart">
+                                                    <span class="handle pull-left"></span>
+                                                    <span class="text-shopping-cart hidden-xs">	Mi carrito	</span>
+                                                    <span class="total-shopping-cart cart-total-full">{{ carrito }}</span>
+                                                </div>
+                                            </a>
+                                            <!-- aqui va el detalle del carrito. -->
+                                            <ul class="tab-content content dropdown-menu pull-right shoppingcart-box"
+                                                role="menu">
+                                                <li>
+                                                    <table class="table table-striped">
                                                         <tbody>
                                                         <tr>
-                                                            <td class="text-left"><strong>Sub-Total</strong>
+                                                            <td class="text-center" style="width:70px">
+                                                                <a href="product.html"> <img class="lazyload preview"
+                                                                                             data-sizes="auto"
+                                                                                             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                                                             data-src="/static/max-shop-theme/image/demo/shop/product/35.jpg"
+                                                                                             style="width:70px"
+                                                                                             alt="Filet Mign"
+                                                                                             title="Filet Mign"> </a>
                                                             </td>
-                                                            <td class="text-right">$1,060.00</td>
+                                                            <td class="text-left"><a class="cart_product_name"
+                                                                                     href="product.html">Filet Mign</a>
+                                                            </td>
+                                                            <td class="text-center"> x1</td>
+                                                            <td class="text-center"> $1,202.00</td>
+                                                            <td class="text-right">
+                                                                <a href="product.html" class="fa fa-edit"></a>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <a onclick="cart.remove('2');"
+                                                                   class="fa fa-times fa-delete"></a>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="text-left"><strong>Eco Tax (-2.00)</strong>
+                                                            <td class="text-center" style="width:70px">
+                                                                <a href="product.html"> <img class="lazyload preview"
+                                                                                             data-sizes="auto"
+                                                                                             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                                                             data-src="/static/max-shop-theme/image/demo/shop/product/141.jpg"
+                                                                                             style="width:70px"
+                                                                                             alt="Canon EOS 5D"
+                                                                                             title="Canon EOS 5D"> </a>
                                                             </td>
-                                                            <td class="text-right">$2.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-left"><strong>VAT (20%)</strong>
+                                                            <td class="text-left"><a class="cart_product_name"
+                                                                                     href="product.html">Canon EOS
+                                                                5D</a>
                                                             </td>
-                                                            <td class="text-right">$200.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-left"><strong>Total</strong>
+                                                            <td class="text-center"> x1</td>
+                                                            <td class="text-center"> $60.00</td>
+                                                            <td class="text-right">
+                                                                <a href="product.html" class="fa fa-edit"></a>
                                                             </td>
-                                                            <td class="text-right">$1,262.00</td>
+                                                            <td class="text-right">
+                                                                <a onclick="cart.remove('1');"
+                                                                   class="fa fa-times fa-delete"></a>
+                                                            </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
-                                                    <p class="text-center"><a class="btn view-cart" href="cart.html"><i
-                                                            class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp;
-                                                        <a class="btn btn-mega checkout-cart" href="checkout.html"><i
-                                                                class="fa fa-share"></i>Checkout</a></p>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="text-left"><strong>Sub-Total</strong>
+                                                                </td>
+                                                                <td class="text-right">$1,060.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-left"><strong>Eco Tax (-2.00)</strong>
+                                                                </td>
+                                                                <td class="text-right">$2.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-left"><strong>VAT (20%)</strong>
+                                                                </td>
+                                                                <td class="text-right">$200.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-left"><strong>Total</strong>
+                                                                </td>
+                                                                <td class="text-right">$1,262.00</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <p class="text-center"><a class="btn view-cart"
+                                                                                  href="cart.html"><i
+                                                                class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp;
+                                                            <a class="btn btn-mega checkout-cart"
+                                                               href="checkout.html"><i
+                                                                    class="fa fa-share"></i>Checkout</a></p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                    <!--//cart-->
                                 </div>
-                                <!--//cart-->
                             </div>
+                            <!-- //End Cart Pro -->
                         </div>
-                        <!-- //End Cart Pro -->
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
-{% endblock %}
+        </header>
+    {% endblock %}
     <!-- Main Container  -->
     <main id="content" class="page-main">
         <!-- Block Spotlight1  -->
@@ -382,53 +388,29 @@
                             <div id="so-slideshow" class="">
                                 <div class="module slideshow no-margin">
                                     {% for slid in slider %}
-                                    <div class="item">
-                                        <a href="#"><img class="lazyload img-responsive"
-                                                         src="/media/{{ slid.imagen }}"
-                                                         alt="slider1"></a>
-                                        <div class="sohomeslider-description">
-                                            <img class="image image-sl11 pos-left img-active"
-                                                 src="/media/{{ slid.imagen2 }}"
-                                                 alt="slideshow">
-                                            <div class="text pos-left text-sl11">
-                                                <h3 class="tilte modtitle-sl11  title-active" >{{ titulo }}</h3>
-                                                <p class="des des-sl11 des-active" style="padding-bottom: 20px">{{ slid.descripcion|safe|linebreaksbr }}</p>
-                                                <a href="{{ slid.enlace }}" class="btn btn-danger des des-sl11 des-active">{{ slid.mensajeBoton }}</a>
+                                        <div class="item">
+                                            <a href="#"><img class="lazyload img-responsive"
+                                                             src="/media/{{ slid.imagen }}"
+                                                             alt="slider1"></a>
+                                            <div class="sohomeslider-description">
+                                                <img class="image image-sl11 pos-left img-active"
+                                                     src="/media/{{ slid.imagen2 }}"
+                                                     alt="slideshow">
+                                                <div class="text pos-left text-sl11">
+                                                    <h3 class="tilte modtitle-sl11  title-active">{{ titulo }}</h3>
+                                                    <p class="des des-sl11 des-active"
+                                                       style="padding-bottom: 20px">{{ slid.descripcion|safe|linebreaksbr }}</p>
+                                                    <a href="{{ slid.enlace }}"
+                                                       class="btn btn-danger des des-sl11 des-active">{{ slid.mensajeBoton }}</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     {% endfor %}
                                 </div>
                                 <div class="loadeding"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="static-home-2 banners">
-                    <div class="col-s col-s-1"><a title="Static Image" href="#"><img class="lazyload img-responsive"
-                                                                                     data-sizes="auto"
-                                                                                     src="1"
-                                                                                     data-src="/static/max-shop-theme/image/demo/cms/st-img-1-home-2.png"
-                                                                                     alt="Static Image"></a>
-                        <a title="Static Image" href="#"><img class="lazyload img-responsive" data-sizes="auto"
-                                                              src="/static/max-shop-theme/image/demo/cms/st-img-1-home-2.png"
-                                                              data-src="/static/max-shop-theme/image/demo/cms/st-img-1-home-2.png"
-                                                              alt="Static Image"></a></div>
-                    <div class="col-s col-s-2"><a title="Static Image" href="#"><img class="lazyload img-responsive"
-                                                                                     data-sizes="auto"
-                                                                                     src="/static/max-shop-theme/image/demo/cms/st-img-1-home-2.png"
-                                                                                     data-src="/static/max-shop-theme/image/demo/cms/st-img-3-home-2.png"
-                                                                                     alt="Static Image"></a></div>
-                    <div class="col-s col-s-3"><a title="Static Image" href="#"><img class="lazyload img-responsive"
-                                                                                     data-sizes="auto"
-                                                                                     src="/static/max-shop-theme/image/demo/cms/st-img-1-home-2.png"
-                                                                                     data-src="/static/max-shop-theme/image/demo/cms/st-img-4-home-2.png"
-                                                                                     alt="Static Image"></a></div>
-                    <div class="col-s col-s-4"><a title="Static Image" href="#"><img class="lazyload img-responsive"
-                                                                                     data-sizes="auto"
-                                                                                     src="/static/max-shop-theme/image/demo/cms/st-img-1-home-2.png"
-                                                                                     data-src="/static/max-shop-theme/image/demo/cms/st-img-5-home-2.png"
-                                                                                     alt="Static Image"></a></div>
                 </div>
             </div>
         </div>
