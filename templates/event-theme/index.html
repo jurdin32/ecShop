@@ -80,8 +80,15 @@
                         {% for dato in datosCarrito %}
                             <li>
                                 <div class="media-left"><a href="/detail/{{ dato.producto.slug }}/" class="thumb">
-                                    <img src="/static/event-theme/images/item-img-1-1.jpg" class="img-responsive"
+                                    {% for fotosProducto in fotosProductos %}
+                                        {% if fotosProducto.producto == dato.producto %}
+ <img src="/media/{{ fotosProducto.imagen }}" class="img-responsive"
                                          alt=""> </a>
+                                        {% endif %}
+
+                                    {% endfor %}
+
+
                                 </div>
                                 <div class="media-body"><a href="/detail/{{ dato.producto.slug }}/"
                                                            class="tittle">{{ dato.producto.nombre }}</a>
