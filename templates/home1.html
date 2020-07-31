@@ -51,6 +51,7 @@
 <body class="common-home res layout-home2">
 <div id="wrapper" class="wrapper-full banners-effect-8">
     <!-- Header Container  -->
+{% block header %}
     <header id="header" class=" variantleft type_2">
         <!-- Header Top -->
         <div class="header-top compact-hidden">
@@ -68,11 +69,14 @@
                                        data-toggle="dropdown"> <span>Mi Cuenta</span> <span
                                             class="glyphicon glyphicon-arrow-down"></span></a>
                                     <ul class="dropdown-menu ">
-                                        <li><a href="/registration/"><i class="glyphicon glyphicon-user"></i> Registrarse</a></li>
-                                        <li><a href="administracion/log_in/"><i class="glyphicon glyphicon-pencil"></i> Iniciar Sesión</a></li>
+                                        <li><a href="/registration/"><i class="glyphicon glyphicon-user"></i>
+                                            Registrarse</a></li>
+                                        <li><a href="administracion/log_in/"><i class="glyphicon glyphicon-pencil"></i>
+                                            Iniciar Sesión</a></li>
                                     </ul>
                                 </li>
-                                <li class="wishlist "><a href="/this_list/" id="wishlist-total" class="top-link-wishlist" title="Lista de deseos">
+                                <li class="wishlist "><a href="/this_list/" id="wishlist-total"
+                                                         class="top-link-wishlist" title="Lista de deseos">
                                     <span>Lista de Deseos ({{ deseos }}) </span></a>
                                 </li>
                             </ul>
@@ -95,7 +99,7 @@
                                         <select class="no-border" name="category_id">
                                             <option value="0">Categorías</option>
                                             {% for categoria in cat %}
-                                             <option value="{{ categoria.id }}">{{ categoria.nombre|capfirst }}</option>
+                                                <option value="{{ categoria.id }}">{{ categoria.nombre|capfirst }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -115,9 +119,9 @@
                     <!-- Logo -->
                     <div class="navbar-logo col-sm-4 col-xs-12 text-center">
                         <a href="/"><img class="lazyload" data-sizes="auto"
-                                                  src="/static/img/ec-02.png" style="height: 50px"
-                                                  data-src="/static/img/ec-02.png"
-                                                  title="Your Store" alt="Your Store"/></a>
+                                         src="/static/img/ec-02.png" style="height: 50px"
+                                         data-src="/static/img/ec-02.png"
+                                         title="Your Store" alt="Your Store"/></a>
                     </div>
                     <!-- //End Logo -->
                     <!-- Phone -->
@@ -136,7 +140,6 @@
             </div>
         </div>
         <!-- //Header center -->
-        <!-- Header Bottom -->
         <div class="header-bottom compact-hidden">
             <div class="container">
                 <div class="header-bottom-inner">
@@ -183,14 +186,17 @@
                                                                         <div class="col-sm-12">
                                                                             <div class="row">
                                                                                 {% for categoria in cat %}
-                                                                                <div class="col-md-2 img img1" style="text-align: center">
-                                                                                    <a href="/single-category/{{ categoria.id }}/"><img class="lazyload"
-                                                                                                     data-sizes="auto"
-                                                                                                     src="/media/{{ categoria.icono.icono }}"
-                                                                                                     data-src="/media/{{ categoria.icono.icono }}"
-                                                                                                     alt="banner1"></a>
-                                                                                <a href="/single-category/{{ categoria.id }}/" class="title-submenu">{{ categoria.nombre }}</a>
-                                                                                </div>
+                                                                                    <div class="col-md-2 img img1"
+                                                                                         style="text-align: center">
+                                                                                        <a href="/single-category/{{ categoria.id }}/"><img
+                                                                                                class="lazyload"
+                                                                                                data-sizes="auto"
+                                                                                                src="/media/{{ categoria.icono.icono }}"
+                                                                                                data-src="/media/{{ categoria.icono.icono }}"
+                                                                                                alt="banner1"></a>
+                                                                                        <a href="/single-category/{{ categoria.id }}/"
+                                                                                           class="title-submenu">{{ categoria.nombre }}</a>
+                                                                                    </div>
                                                                                 {% endfor %}
                                                                             </div>
                                                                         </div>
@@ -199,7 +205,7 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                         <li class="with-sub-menu hover">
+                                                        <li class="with-sub-menu hover">
                                                             <p class="close-menu"></p>
                                                             <a href="#" class="clearfix">
                                                                 <strong>Tiendas</strong>
@@ -211,8 +217,9 @@
                                                                         <div class="col-md-12">
                                                                             <ul class="row-list">
                                                                                 {% for tienda in tiendas %}
-                                                                                <li><a class="subcategory_item"
-                                                                                       href="/shop-brand/{{ tienda.hashes }}/">{{ tienda.nombre }}</a></li>
+                                                                                    <li><a class="subcategory_item"
+                                                                                           href="/shop-brand/{{ tienda.hashes }}/">{{ tienda.nombre }}</a>
+                                                                                    </li>
                                                                                 {% endfor %}
                                                                             </ul>
                                                                         </div>
@@ -227,16 +234,16 @@
                                                                 <span class="label"></span>
                                                             </a>
                                                         </li>
-                                                    <li class="">
+                                                        <li class="">
                                                             <p class="close-menu"></p>
                                                             <a href="/contact/" class="clearfix">
                                                                 <strong>Contacto</strong>
                                                                 <span class="label"></span>
                                                             </a>
                                                         </li>
-                                                    <li class="">
+                                                        <li class="">
                                                             <p class="close-menu"></p>
-                                                            <a href="/polit/" class="clearfix">
+                                                            <a href="/politics/" class="clearfix">
                                                                 <strong>Politíca</strong>
                                                                 <span class="label"></span>
                                                             </a>
@@ -265,6 +272,7 @@
                                                 <span class="total-shopping-cart cart-total-full">{{ carrito }}</span>
                                             </div>
                                         </a>
+                                        <!-- aqui va el detalle del carrito. -->
                                         <ul class="tab-content content dropdown-menu pull-right shoppingcart-box"
                                             role="menu">
                                             <li>
@@ -362,7 +370,7 @@
             </div>
         </div>
     </header>
-    <!-- //Header Container  -->
+{% endblock %}
     <!-- Main Container  -->
     <main id="content" class="page-main">
         <!-- Block Spotlight1  -->
@@ -373,9 +381,10 @@
                         <div class="slider-container ">
                             <div id="so-slideshow" class="">
                                 <div class="module slideshow no-margin">
+                                    {% for slid in slider %}
                                     <div class="item">
                                         <a href="#"><img class="lazyload img-responsive"
-                                                         src="/static/max-shop-theme/image/demo/slider/sl21/1.jpg"
+                                                         src="/media/{{ slid.imagen }}"
                                                          alt="slider1"></a>
                                         <div class="sohomeslider-description">
                                             <img class="image image-sl11 pos-right img-active"
@@ -388,35 +397,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <a href="#"><img class="lazyload img-responsive"
-                                                         src="/static/max-shop-theme/image/demo/slider/sl22/1.jpg"
-                                                         alt="slider1"></a>
-                                        <div class="sohomeslider-description">
-                                            <img class="image image-sl12 pos-left img-active"
-                                                 src="/static/max-shop-theme/image/demo/slider/sl22/2.png"
-                                                 alt="slideshow">
-                                            <div class="text pos-right text-sl12">
-                                                <h3 class="tilte modtitle-sl12 title-active">OUR NEW RANGE OF</h3>
-                                                <h4 class="titleh4 h4-active">TABLET</h4>
-                                                <p class="des des-sl11 des-active">FOR LESS THAN $99.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <a href="#"><img class="lazyload img-responsive"
-                                                         src="/static/max-shop-theme/image/demo/slider/sl23/1.jpg"
-                                                         alt="slider1"></a>
-                                        <div class="sohomeslider-description">
-                                            <img class="image image-sl13 pos-right img-active"
-                                                 src="/static/max-shop-theme/image/demo/slider/sl23/2.png"
-                                                 alt="slideshow">
-                                            <div class="text pos-left text-sl13">
-                                                <h3 class="tilte modtitle-sl13 title-active">OUR NEW RANGE OF</h3>
-                                                <h4 class="titleh4 h4-active">IMACS</h4>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                                 <div class="loadeding"></div>
 
