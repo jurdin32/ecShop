@@ -224,9 +224,11 @@ def ver_todas_categorias(request):
 def carrito_usuario(request):
     carro = 0
     deseos=0
+    cc=0
     car=Carrito.objects.get(usuario=request.user,estado=False)
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito=car)
+        cc=carro.count()
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     contexto={
         "tiendas": Tiendas.objects.all(),
@@ -235,7 +237,7 @@ def carrito_usuario(request):
         "fotosProductos": ProductoFotos.objects.filter(principal=True),
         "slider": Slider.objects.all().order_by("fecha"),
         "colores": ColorInterfaz.objects.last(),
-        "carrito": carro.count(),
+        "carrito": cc,
         "car":car,
         "detalles":carro,
         "total_carro":carro.aggregate(Sum("total")),
