@@ -75,7 +75,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false"><span class="itm-cont">{{ carrito }}</span> <i
                             class="flaticon-shopping-bag"></i> <strong>Mi Carrito</strong> <br>
-                        <span>{{ carrito }} item(s) - USD ${{ valor }}</span></a>
+                        <span>{{ carrito }} item(s) - USD ${{ valor.total_sum }}</span></a>
                     <ul class="dropdown-menu">
                         {% for dato in datosCarrito %}
                             <li>
