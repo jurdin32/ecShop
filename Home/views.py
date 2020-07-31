@@ -37,7 +37,7 @@ def index(request):
         "valor":valor,
         "marcas":list(Marcas.objects.all().order_by("nombre"))
     }
-    return render(request, "event-theme/index.html", contexto)
+    return render(request, "home1.html", contexto)
 
 def cargar_mas_productos(request,inicio,fin,categoria=0):
     productos=Productos.objects.all()
