@@ -222,7 +222,7 @@ def ver_todas_categorias(request):
     return render(request, "category.html", contexto)
 
 def carrito_usuario(request):
-    carro = 0
+    carro = DetallesCarrito()
     deseos=0
     cc=0
     suma=0
