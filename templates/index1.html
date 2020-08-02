@@ -683,8 +683,13 @@
                                                         {% if fotosProducto.producto == producto %}
                                                             <button class="addToCart btn btn-default " data-toggle="tooltip"
                                                             title=""
-                                                            onclick="cart.add('{{ producto.id }}', '1',{% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{{ producto.precio }}{% endif %},'/media/{{ fotosProducto.imagen }}','{{ producto.slug }}','{{ producto.nombre }}');"
-                                                            data-original-title="Add to Cart"><span
+                                                            onclick="cart.add('{{ producto.id }}',
+                                                                    '1',
+                                                                    {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{{ producto.precio }}{% endif %},
+                                                                    '/media/{{ fotosProducto.imagen }}',
+                                                                    '{{ producto.slug }}',
+                                                                    '{{ producto.nombre }}')"
+                                                            data-original-title="Al Carrito"><span
                                                             class="">Al Carrito</span>
                                                             </button>
                                                         {% endif %}
@@ -881,9 +886,7 @@
 
                 },
                 success: function (data) {
-                    addProductNotice('Se agregó al Carrito',
-                            '<img src=' + uri + ' alt="">',
-                            '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>','success');
+                    addProductNotice('Se agregó al Carrito','<img src="' + uri +'">','<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>','success');
                    $(".xn").text(data)
                 }
             });
