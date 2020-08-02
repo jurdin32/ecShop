@@ -336,28 +336,12 @@
                                                              style="width: 40%; right: auto; display: none;">
                                                             <div class="content" style="height: 160px; display: none;">
                                                                 <div class="row">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-12">
                                                                         <ul class="row-list">
                                                                             {% for tienda in tiendas %}
                                                                             <li><a class="subcategory_item"
                                                                                    href="/shop-brand/{{ tienda.hashes }}">{{ tienda.nombre }}</a></li>
                                                                             {% endfor %}
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <ul class="row-list">
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="about-us.html">About Us 1</a>
-                                                                            </li>
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="about-us-2.html">About Us 2</a>
-                                                                            </li>
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="about-us-3.html">About Us 3</a>
-                                                                            </li>
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="about-us-4.html">About Us 4</a>
-                                                                            </li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -530,46 +514,29 @@
 
                     <div class="owl-carousel owl-dead-week" data-dots="yes" data-nav="yes" data-loop="yes"
                          data-items_xs="1" data-items_sm="2" data-items_md="2" data-margin="15">
-                        <div class="product-layout ">
+                        {% for producto in productos %}
+                         <div class="product-layout ">
                             <div class="product-item-container">
                                 <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
                                     <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="/static/tienda/img/demo/shop/product/product-1.jpg" alt=""></a>
+                                        <a href="/detail/{{ producto.slug }}/" class="product-img">
+                                            <img src="/static/tienda/img/demo/shop/product/product-1.jpg" alt="">
+                                        </a>
                                         <!--Sale Label-->
-                                        <span class="sale">-20%</span>
+                                        {% if producto.adds %}
+                                        <span class="sale">-{{ producto.adds.descuento|floatformat:0 }}%</span>
+                                        {% endif %}
 
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="time-offer-end">
-                                        <div class="title">Hurry Up! Offer ends in:</div>
-
-                                        <div class="time-box">
-
-                                        </div>
+                                        <div class="title">{{ producto.nombre }}:</div>
                                     </div>
                                     <div class="caption">
-                                        <h4><a href="product.html">Dummy product #1</a></h4>
+                                        <h4><a href="product.html">Detalles Generales</a></h4>
                                         <div class="description item-desc">
-                                            <p>Lorem ipsum dolor sit amet, sed diam nonumy eirmod tempor invidunt ut
-                                                labore et dolore magna aliquyam erat. </p>
+                                            <p>{{ producto.descripcion|truncatechars:200 }}</p>
                                         </div>
                                         <div class="ratings">
                                             <div class="rating-box">
@@ -596,155 +563,7 @@
                                 </div><!-- right block -->
                             </div>
                         </div>
-
-                        <div class="product-layout ">
-                            <div class="product-item-container ">
-                                <div class=" left-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-2.jpg" alt=""></a>
-                                        <!--Sale Label-->
-                                        <span class="sale">-15%</span>
-
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="time-offer-end">
-                                        <div class="title">Hurry Up! Offer ends in:</div>
-
-                                        <div class="time-box time-box-2">
-
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #2</a></h4>
-                                        <div class="description item-desc">
-                                            <p>Lorem ipsum dolor sit amet, sed diam nonumy eirmod tempor invidunt ut
-                                                labore et dolore magna aliquyam erat . </p>
-                                        </div>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="price">
-                                            <span class="price-new">$87.00</span>
-                                            <span class="price-old">$122.00</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
-                            </div>
-                        </div>
-
-                        <div class="product-layout ">
-                            <div class="product-item-container ">
-                                <div class=" left-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-3.jpg" alt=""></a>
-                                        <!--Sale Label-->
-                                        <span class="sale">-25%</span>
-
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="time-offer-end">
-                                        <div class="title">Hurry Up! Offer ends in:</div>
-
-                                        <div class="time-box">
-                                            <div class="day-time time">
-                                                <div class="num-day num-time">356</div>
-                                                <div class="name-day name-time">Days</div>
-                                            </div>
-                                            <div class="hour-time time">
-                                                <div class="num-hour num-time">23</div>
-                                                <div class="name-hour name-time">Hours</div>
-                                            </div>
-                                            <div class="min-time time">
-                                                <div class="num-min num-time">56</div>
-                                                <div class="name-min name-time">Mins</div>
-                                            </div>
-                                            <div class="sec-time time">
-                                                <div class="num-sec num-time">33</div>
-                                                <div class="name-sec name-time">Secs</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #01</a></h4>
-                                        <div class="description item-desc">
-                                            <p>Lorem ipsum dolor sit amet, sed diam nonumy eirmod tempor invidunt ut
-                                                labore et dolore magna aliquyam erat. </p>
-                                        </div>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="price">
-                                            <span class="price-new">$68.00</span>
-                                            <span class="price-old">$122.00</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
 
                 </div>
