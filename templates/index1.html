@@ -623,7 +623,7 @@
                                     </div>
                                     <div class="right-block">
                                         <div class="caption">
-                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <h4><a href="product.html">{{ producto.nombre }}</a></h4>
                                             <div class="ratings">
                                                 <div class="rating-box">
                                                     <span class=""><i class="fa fa-star "></i></span>
@@ -635,17 +635,13 @@
                                             </div>
 
                                             <div class="price">
-                                                <span class="price-new">$74.00</span>
-                                                <span class="price-old">$122.00</span>
+                                                {% if producto.adds.estado %}
+                                                <span class="price-new">$ {%  descuento producto.id %}</span>
+                                                {% endif %}
+                                                <span class="price-old">$ {{ producto.precio }}</span>
                                             </div>
                                             <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                                    nonumy
-                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                                                    diam
-                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                                                    Stet
-                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
+                                                {{producto.descripcion|safe|truncatechars:300}}
                                             </div>
                                         </div>
 
