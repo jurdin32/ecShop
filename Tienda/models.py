@@ -108,6 +108,7 @@ def strip_accents(s):
 
 
 class Productos(models.Model):
+    fecha = models.DateField(auto_now_add=True)
     tienda=models.ForeignKey(Tiendas,on_delete=models.CASCADE,null=True,blank=True)
     codigo_interno=models.CharField(max_length=20,null=True,blank=True,default="0000000")
     categoria=models.ForeignKey(Categorias,on_delete=models.CASCADE)
@@ -123,7 +124,7 @@ class Productos(models.Model):
     slug=models.CharField(max_length=200,null=True,blank=True)
     estado=models.BooleanField(default=True)
     nombre_comun=models.CharField(max_length=300,null=True,blank=True)
-    fecha=models.DateField(auto_now_add=True,null=True,blank=True)
+
 
     def save(self, *args, **kwargs):
         self.nombre_comun =str(strip_accents(self.nombre)).replace(" ","_")
