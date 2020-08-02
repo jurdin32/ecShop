@@ -121,10 +121,10 @@
                                          itemtype="http://data-vocabulary.org/Offer">
                                         {% if producto.adds.estado %}
                                             <span class="price-new" itemprop="price">$ {% descuento producto.id %}</span>
+                                            <span class="price-old">$ {{ producto.precio }}</span>
+                                            {% else %}
+                                            <span class="price-new" itemprop="price">$ {% descuento producto.id %}</span>
                                         {% endif %}
-
-
-                                        <span class="price-old">$ {{ producto.precio }}</span>
                                     </div>
 
                                 </div>
