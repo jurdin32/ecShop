@@ -73,7 +73,7 @@
                                     {% if foto.principal %}
                                         <div class="large-image">
                                             <img itemprop="image" class="product-image-zoom"
-                                                 src="/media/{{ foto.imagen }}"
+                                                 src="/media/{{ foto.imagen }}" style="display:block; margin:auto"
                                                  data-zoom-image="/media/{{ foto.imagen }}"/>
                                         </div>
                                     {% endif %}
@@ -84,7 +84,7 @@
                                         <div class="item">
                                             <a data-index="0" class="img thumbnail"
                                                data-image="/media/{{ foto.imagen }}">
-                                                <img src="/media/{{ foto.imagen }}"/>
+                                                <img src="/media/{{ foto.imagen }}" style="display:block; margin:auto"/>
                                             </a>
                                         </div>
                                     {% endfor %}
