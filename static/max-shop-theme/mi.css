@@ -1,8 +1,0 @@
-.type_2 #sosearchpro.search-pro .select_category:after {
-    content:url("/static/iconos/flecha-hacia-abajo.svg")!important;
-    margin-top: 5px;
-}
-fa-search{
-    content:url("/static/iconos/buscar.svg")!important;
-    margin-top: 5px;
-}
