@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% load productostags %}
+    {% load productostags %}
     <!-- Basic page needs
     ============================================ -->
     <title>Destino - Advanced & High Customizable eCommerce HTML5/CSS3 Theme</title>
@@ -339,8 +339,9 @@
                                                                     <div class="col-md-12">
                                                                         <ul class="row-list">
                                                                             {% for tienda in tiendas %}
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="/shop-brand/{{ tienda.hashes }}">{{ tienda.nombre }}</a></li>
+                                                                                <li><a class="subcategory_item"
+                                                                                       href="/shop-brand/{{ tienda.hashes }}">{{ tienda.nombre }}</a>
+                                                                                </li>
                                                                             {% endfor %}
                                                                         </ul>
                                                                     </div>
@@ -424,12 +425,13 @@
                                             <div class="container">
                                                 <ul class="megamenu">
                                                     {% for categoria in cat %}
-                                                    <li class="item-vertical">
-                                                        <p class="close-menu"></p>
-                                                        <a href="/single-category/{{ categoria.id }}/" class="clearfix">
-                                                            <span>{{ categoria.nombre|capfirst }}</span>
-                                                        </a>
-                                                    </li>
+                                                        <li class="item-vertical">
+                                                            <p class="close-menu"></p>
+                                                            <a href="/single-category/{{ categoria.id }}/"
+                                                               class="clearfix">
+                                                                <span>{{ categoria.nombre|capfirst }}</span>
+                                                            </a>
+                                                        </li>
                                                     {% endfor %}
 
                                                     <li class="loadmore">
@@ -488,7 +490,8 @@
                                     <a href="#">
                                         <span class="ico-policy"></span>
                                         <div class="service-info">
-                                            <span class="title">Soporte Online</span> <br><span>Para todas las tiendas.</span>
+                                            <span class="title">Soporte Online</span>
+                                            <br><span>Para todas las tiendas.</span>
                                         </div>
                                     </a></div>
                             </div>
@@ -515,1910 +518,840 @@
                     <div class="owl-carousel owl-dead-week" data-dots="yes" data-nav="yes" data-loop="yes"
                          data-items_xs="1" data-items_sm="2" data-items_md="2" data-margin="15">
                         {% for producto in productos %}
-                         <div class="product-layout ">
-                            <div class="product-item-container">
-                                <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="/detail/{{ producto.slug }}/" class="product-img">
-                                            {% for fotosProducto in fotosProductos %}
-                                            {% if fotosProducto.producto == producto %}
-                                                <img src="/media/{{ fotosProducto.imagen }}" alt="">
-                                            {% endif %}
-                                            {% endfor %}
+                            <div class="product-layout ">
+                                <div class="product-item-container">
+                                    <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="/detail/{{ producto.slug }}/" class="product-img">
+                                                {% for fotosProducto in fotosProductos %}
+                                                    {% if fotosProducto.producto == producto %}
+                                                        <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                                    {% endif %}
+                                                {% endfor %}
 
 
-                                        </a>
-                                        <!--Sale Label-->
-                                        {% if producto.adds.estado %}
-                                        <span class="sale">-{{ producto.adds.descuento|floatformat:0 }}%</span>
-                                        {% endif %}
-
-                                    </div>
-                                </div>
-                                <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="caption">
-                                        <h4><a href="/detail/{{ producto.slug }}">{{ producto.nombre }}</a></h4>
-                                        <div class="description item-desc">
-                                            <p>{{ producto.descripcion|safe|truncatechars:100 }}</p>
-                                        </div>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="price">
+                                            </a>
+                                            <!--Sale Label-->
                                             {% if producto.adds.estado %}
-                                            <span class="price-new">$ {% descuento producto.id %}</span>
-                                            <span class="price-old">$ {{ producto.precio }}</span>
-                                            {% else %}
+                                                <span class="sale">-{{ producto.adds.descuento|floatformat:0 }}%</span>
                                             {% endif %}
+
+                                        </div>
+                                    </div>
+                                    <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="caption">
+                                            <h4><a href="/detail/{{ producto.slug }}">{{ producto.nombre }}</a></h4>
+                                            <div class="description item-desc">
+                                                <p>{{ producto.descripcion|safe|truncatechars:100 }}</p>
+                                            </div>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                {% if producto.adds.estado %}
+                                                    <span class="price-new">$ {% descuento producto.id %}</span>
+                                                    <span class="price-old">$ {{ producto.precio }}</span>
+                                                {% else %}
+                                                {% endif %}
+                                            </div>
+
                                         </div>
 
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Al carrito</span></button>
-                                    </div>
-                                </div><!-- right block -->
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Al carrito</span></button>
+                                        </div>
+                                    </div><!-- right block -->
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
                     </div>
 
                 </div>
             </div>
-            <div class="module col-sm-12 hidden-xs">
-                <div class="modcontent clearfix">
-                    <div class="banner-wraps ">
-                        <div class="m-banner ">
-                            <div class="banners htmlconten1 row">
-                                <div class="banners banner1-1 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div>
-                                        <a href="#"><img src="img/demo/banner/banner1-1.jpg" alt="banner1"></a>
-                                    </div>
-                                </div>
-                                <div class=" banners banner1-2 col-sm-6 col-xs-12">
-                                    <div>
-                                        <a href="#"><img src="img/demo/banner/banner1-2.jpg" alt="banner1"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="htmlconten2 row">
-                                <div class="banners banner2-1 col-sm-3 col-xs-12">
-                                    <div>
-                                        <a href="#"><img src="img/demo/banner/banner2-1.jpg" alt="banner1"></a>
-                                    </div>
-                                </div>
-                                <div class="banners banner2-2 col-sm-6 col-xs-12">
-                                    <div>
-                                        <a href="#"><img src="img/demo/banner/banner2-2.jpg" alt="banner1"></a>
-                                    </div>
-                                </div>
-                                <div class="banners banner2-3 col-sm-3 col-xs-12">
-                                    <div>
-                                        <a href="#"><img src="img/demo/banner/banner2-3.jpg" alt="banner1"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="smartphone-tablet col-sm-12">
-                <h3 class="modtitle">Smartphone & Tablet </h3>
+                <h3 class="modtitle">Artículos destacados </h3>
                 <hr>
                 <hr>
                 <hr>
                 <div class="smartphone-tablet-owl">
-                    <div class=" owl-carousel related-owl " data-dots="yes" data-nav="yes" data-loop="yes"
-                         data-items_xs="1" data-items_sm="3" data-items_md="5" data-margin="10">
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-1.jpg" alt=""></a>
-                                        <!--Sale Label-->
-                                        <span class="new">New</span>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="product.html" class="product-img"><img
+                                                    src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                            <!--Sale Label-->
+                                            <span class="new">New</span>
 
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
+                                                                              title="" onclick="wishlist.add('42');"
+                                                                              data-original-title="Add to Wish List"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                                    <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
+                                                                                 title="" onclick="compare.add('42');"
+                                                                                 data-original-title="Compare this Product"><i
+                                                            class="fa fa-exchange"></i></a></li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="quickview.html"> <i
+                                                            class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #02</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
+                                    </div><!-- right block -->
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="product.html" class="product-img"><img
+                                                    src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                            <!--Sale Label-->
+                                            <span class="new">New</span>
 
-
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-3.jpg" alt=""></a>
-                                        <!--Sale Label-->
-                                        <span class="new">New</span>
-
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
+                                                                              title="" onclick="wishlist.add('42');"
+                                                                              data-original-title="Add to Wish List"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                                    <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
+                                                                                 title="" onclick="compare.add('42');"
+                                                                                 data-original-title="Compare this Product"><i
+                                                            class="fa fa-exchange"></i></a></li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="quickview.html"> <i
+                                                            class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #03</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
+                                    </div><!-- right block -->
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="product.html" class="product-img"><img
+                                                    src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                            <!--Sale Label-->
+                                            <span class="new">New</span>
 
-
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-2.jpg" alt=""></a>
-                                        <!--Sale Label-->
-                                        <span class="new">New</span>
-
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
+                                                                              title="" onclick="wishlist.add('42');"
+                                                                              data-original-title="Add to Wish List"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                                    <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
+                                                                                 title="" onclick="compare.add('42');"
+                                                                                 data-original-title="Compare this Product"><i
+                                                            class="fa fa-exchange"></i></a></li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="quickview.html"> <i
+                                                            class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #04</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
+                                    </div><!-- right block -->
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="product.html" class="product-img"><img
+                                                    src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                            <!--Sale Label-->
+                                            <span class="new">New</span>
 
-
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-5.jpg" alt=""></a>
-                                        <!--Sale Label-->
-
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
+                                                                              title="" onclick="wishlist.add('42');"
+                                                                              data-original-title="Add to Wish List"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                                    <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
+                                                                                 title="" onclick="compare.add('42');"
+                                                                                 data-original-title="Compare this Product"><i
+                                                            class="fa fa-exchange"></i></a></li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="quickview.html"> <i
+                                                            class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #05</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
+                                    </div><!-- right block -->
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="product.html" class="product-img"><img
+                                                    src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                            <!--Sale Label-->
+                                            <span class="new">New</span>
 
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-4.jpg" alt=""></a>
-                                        <!--Sale Label-->
-
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
+                                                                              title="" onclick="wishlist.add('42');"
+                                                                              data-original-title="Add to Wish List"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                                    <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
+                                                                                 title="" onclick="compare.add('42');"
+                                                                                 data-original-title="Compare this Product"><i
+                                                            class="fa fa-exchange"></i></a></li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="quickview.html"> <i
+                                                            class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #06</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
+                                    </div><!-- right block -->
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="product.html" class="product-img"><img
+                                                    src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                            <!--Sale Label-->
+                                            <span class="new">New</span>
 
-
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-7.jpg" alt=""></a>
-                                        <!--Sale Label-->
-
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
+                                                                              title="" onclick="wishlist.add('42');"
+                                                                              data-original-title="Add to Wish List"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                                    <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
+                                                                                 title="" onclick="compare.add('42');"
+                                                                                 data-original-title="Compare this Product"><i
+                                                            class="fa fa-exchange"></i></a></li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="quickview.html"> <i
+                                                            class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #07</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
+                                    </div><!-- right block -->
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="product.html" class="product-img"><img
+                                                    src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                            <!--Sale Label-->
+                                            <span class="new">New</span>
 
-
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-6.jpg" alt=""></a>
-                                        <!--Sale Label-->
-
-                                        <span class="sale">-25%</span>
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
+                                                                              title="" onclick="wishlist.add('42');"
+                                                                              data-original-title="Add to Wish List"><i
+                                                            class="fa fa-heart"></i></a></li>
+                                                    <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
+                                                                                 title="" onclick="compare.add('42');"
+                                                                                 data-original-title="Compare this Product"><i
+                                                            class="fa fa-exchange"></i></a></li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="quickview.html"> <i
+                                                            class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #08</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class=""><i class="fa fa-star "></i></span>
+                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
+                                        <div class="button-group">
+                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
+                                                    onclick="cart.add('42', '1');"
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
-                            </div>
-                        </div>
-
-
-                        <div class="product-layout">
-                            <div class="product-item-container">
-                                <div class="left-block">
-                                    <div class="product-image-container  second_img ">
-                                        <a href="product.html" class="product-img"><img
-                                                src="img/demo/shop/product/product-6.jpg" alt=""></a>
-                                        <!--Sale Label-->
-
-                                        <span class="sale">-25%</span>
-                                        <div class="hover">
-                                            <ul>
-                                                <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                          title="" onclick="wishlist.add('42');"
-                                                                          data-original-title="Add to Wish List"><i
-                                                        class="fa fa-heart"></i></a></li>
-                                                <li class="icon-exchange"><a class="compare" data-toggle="tooltip"
-                                                                             title="" onclick="compare.add('42');"
-                                                                             data-original-title="Compare this Product"><i
-                                                        class="fa fa-exchange"></i></a></li>
-                                                <li class="icon-search"><a class="quickview iframe-link "
-                                                                           data-fancybox-type="iframe"
-                                                                           href="quickview.html"> <i
-                                                        class="fa fa-search" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="right-block">
-                                    <div class="caption">
-                                        <h4><a href="product.html">Dummy product #09</a></h4>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class=""><i class="fa fa-star "></i></span>
-                                                <span class="gray"><i class="fa fa-star "></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="price">
-                                            <span class="price-new">$74.00</span>
-                                            <span class="price-old">$122.00</span>
-                                        </div>
-                                        <div class="description item-desc hidden">
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                                clita kasd gubergren, no sea takimata sanctus est . </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-                                        <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                onclick="cart.add('42', '1');" data-original-title="Add to Cart"><span
-                                                class="">Add to Cart</span></button>
-                                    </div>
-                                </div><!-- right block -->
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="module no-margin titleLine col-sm-12 latest-blog">
-                <h3 class="modtitle">Latest Blog</h3>
-                <hr>
-                <hr>
-                <hr>
-                <div class="latest-blog-owl">
-                    <div class="owl-carousel latest-owl" data-dots="yes" data-nav="yes" data-loop="yes"
-                         data-items_xs="1" data-items_sm="3" data-items_md="4" data-margin="10">
-                        <div class="itemBlogImg">
-                            <div class="article-image ">
-                                <div>
-                                    <div class="day">
-                                        <p>24</p>
-                                        <p>Dec</p>
-                                    </div>
-
-                                    <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-1.jpg"
-                                                                                          alt="Kire tuma demonstraverunt lector">
-                                        <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="itemBlogImg">
-                            <div class="article-image ">
-                                <div>
-                                    <div class="day">
-                                        <p>24</p>
-                                        <p>Dec</p>
-                                    </div>
-
-                                    <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-2.jpg"
-                                                                                          alt="Kire tuma demonstraverunt lector">
-                                        <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="itemBlogImg">
-                            <div class="article-image ">
-                                <div>
-                                    <div class="day">
-                                        <p>24</p>
-                                        <p>Dec</p>
-                                    </div>
-
-                                    <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-3.jpg"
-                                                                                          alt="Kire tuma demonstraverunt lector">
-                                        <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="itemBlogImg">
-                            <div class="article-image ">
-                                <div>
-                                    <div class="day">
-                                        <p>24</p>
-                                        <p>Dec</p>
-                                    </div>
-
-                                    <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-4.jpg"
-                                                                                          alt="Kire tuma demonstraverunt lector">
-                                        <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="itemBlogImg">
-                            <div class="article-image ">
-                                <div>
-                                    <div class="day">
-                                        <p>24</p>
-                                        <p>Dec</p>
-                                    </div>
-
-                                    <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-5.jpg"
-                                                                                          alt="Kire tuma demonstraverunt lector">
-                                        <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="itemBlogImg">
-                            <div class="article-image ">
-                                <div>
-                                    <div class="day">
-                                        <p>24</p>
-                                        <p>Dec</p>
-                                    </div>
-
-                                    <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-6.jpg"
-                                                                                          alt="Kire tuma demonstraverunt lector">
-                                        <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
+                                    </div><!-- right block -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
-<!-- //Main Container -->
-<!-- Block Spotlight3  -->
-<section class="so-spotlight3">
-    <div class="container">
-        <div class="row">
-            <div id="so_categories_173761471880018"
-                 class="so-categories module titleLine preset01-4 preset02-3 preset03-3 preset04-1 preset05-1">
-                <div class="wrap-categories">
-                    <div class="col-xs-12 col-sm-6  col-md-3 col-lg-3 new-arrivals ">
-                        <div class="module latest-product titleLine">
-                            <h3 class="modtitle">New Arrivals</h3>
-                            <hr>
-                            <hr>
-                            <hr>
-                            <div class="modcontent owl-carousel owl-new-arrivals " data-dots="yes" data-nav="yes"
-                                 data-loop="yes" data-items_xs="1" data-items_sm="1" data-items_md="1" data-margin="10">
-                                <div class="product-latest-item">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-2.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Sunt Molup</a></h4>
+    <!-- //Main Container -->
+    <script type="text/javascript"><!--
+    var $typeheader = 'header-home1';
+    //-->
+    </script>
 
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$100.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-3.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star "></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$36.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-4.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$71.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-latest-item">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-5.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$126.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-6.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star "></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$65.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-7.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$68.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-latest-item">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-8.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$130.00</span>
-                                                    <span class="price-old">$165.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-1.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star "></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$69.00</span>
-                                                    <span class="price-old">$89.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-2.jpg"
-                                                                        alt="Cisi Chicken" title="Cisi Chicken"
-                                                                        class="img-responsive"
-                                                                        style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="price-new">$96.00</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 bestsellers">
-                        <div class="module latest-product titleLine">
-                            <h3 class="modtitle">Bestsellers</h3>
-                            <hr>
-                            <hr>
-                            <hr>
+    <!-- Footer Container -->
+    <footer class="footer-container type_footer1">
+        <!-- Footer Top Container -->
+        <section class="footer-top">
+            <div class="container content">
+                <div class="">
+                    <div class=" collapsed-block ">
+                        <div class="module clearfix">
+                            <h3 class="modtitle">Contact Us </h3>
                             <div class="modcontent">
-                                <div class="owl-carousel owl-bestsellers" data-nav="yes" data-loop="yes" data-margin="0"
-                                     data-items_xs="1" data-items_sm="1" data-items_md="1">
-                                    <div class="product-latest-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-3.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$98.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-1.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$165.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-2.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$59.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-latest-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-3.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$98.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-1.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$165.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-2.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$59.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <ul class="contact-address">
+                                    <li><p><span class="fa fa-map-marker"></span><span>Address : </span> My Company, 42
+                                        avenue des Champs Elysées</p></li>
+                                    <li><span class="fa fa-envelope-o"></span><span>Email : </span> <a href="#">
+                                        sales@yourcompany.com</a></li>
+                                    <li><p><span class="fa fa-phone"> </span><span>Phone :</span> 0123456789</p></li>
+                                </ul>
+                            </div>
+                            <div class="share-icon">
+                                <ul>
+                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"
+                                                                        aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="twitter"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="google"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="skype"><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 featured">
-                        <div class="module latest-product titleLine">
-                            <h3 class="modtitle">Featured</h3>
-                            <hr>
-                            <hr>
-                            <hr>
+                    <div class=" box-information">
+                        <div class="module clearfix">
+                            <h3 class="modtitle">Information</h3>
                             <div class="modcontent">
-                                <div class="owl-carousel owl-featured" data-nav="yes" data-loop="yes" data-margin="0"
-                                     data-items_xs="1" data-items_sm="1" data-items_md="1">
-                                    <div class="product-latest-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-3.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$78.00</span>
-                                                        <span class="price-old">$105.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-4.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$145.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-5.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$72.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-latest-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-3.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$78.00</span>
-                                                        <span class="price-old">$105.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-4.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$145.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-5.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$72.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <ul class="menu">
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="order-history.html">Order history</a></li>
+                                    <li><a href="order-information.html">Order information</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hot-sale">
-                        <div class="module latest-product titleLine">
-                            <h3 class="modtitle">Hot Sale</h3>
-                            <hr>
-                            <hr>
-                            <hr>
+
+                    <div class=" box-extras">
+                        <div class="module clearfix">
+                            <h3 class="modtitle">Extras</h3>
                             <div class="modcontent">
-                                <div class="owl-carousel owl-hot-sale" data-nav="yes" data-loop="yes" data-margin="0"
-                                     data-items_xs="1" data-items_sm="1" data-items_md="1">
-                                    <div class="product-latest-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-6.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$132.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-7.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$87.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-8.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$63.00</span>
-                                                        <span class="price-old">$84.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-latest-item">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-6.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Sunt Molup</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$132.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-7.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Et Spare</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star "></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$87.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="product.html"><img src="img/demo/shop/product/product-8.jpg"
-                                                                            alt="Cisi Chicken" title="Cisi Chicken"
-                                                                            class="img-responsive"
-                                                                            style="width: 78px; height: 104px;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="caption">
-                                                    <h4><a href="product.html">Cisi Chicken</a></h4>
-
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <span class="price-new">$63.00</span>
-                                                        <span class="price-old">$84.00</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <ul class="menu">
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="return.html">Returns</a></li>
+                                    <li><a href="sitemap.html">Site Map</a></li>
+                                    <li><a href="my-account.html">My Account</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div id="container-module-newletter" class="hidden-md hidden-sm hidden-xs">
-                    <div class="so_newletter_custom_popup_bg popup_bg"></div>
-                    <div class="module main-newsleter-popup so_newletter_custom_popup so_newletter_oca_popup"
-                         id="so_newletter_custom_popup">
-                        <div class="so-custom-popup so-custom-oca-popup"
-                             style="width: 850px; background: url('img/demo/cms/newletter-bg.jpg') no-repeat white;  ">
+                    <div class="box-account">
+                        <div class="module clearfix">
+                            <h3 class="modtitle">My Account</h3>
                             <div class="modcontent">
-                                <div class="oca_popup" id="test-popup">
-                                    <div class="popup-content"><p class="newsletter_promo">Daily Promotion</p>
-                                        <div class="popup-title">SIGN UP FOR NEWSLETTER</div>
-                                        <form method="post" name="signup" class="form-group signup">
-                                            <div class="input-control">
-                                                <div class="email"><input type="email"
-                                                                          placeholder="Your email address..." value=""
-                                                                          class="form-control" id="txtemail"
-                                                                          name="txtemail"></div>
-                                                <button class="btn btn-default" type="submit"
-                                                        onclick="return subscribe_newsletter();" name="submit">Subscribe
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <label class="hidden-popup"> <input type="checkbox" value="1"
-                                                                            name="hidden-popup"> <span class="inline">&nbsp;&nbsp;Don't show this popup again</span>
-                                        </label></div>
-                                </div>
-                            </div> <!--/.modcontent-->
-                            <button title="Close" class="popup-close">×</button>
+                                <ul class="menu">
+                                    <li><a href="#">Brands</a></li>
+                                    <li><a href="gift-voucher.html">Gift Vouchers</a></li>
+                                    <li><a href="#">Affiliates</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                    <li><a href="#" target="_blank">Our Blog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <!-- /Footer Top Container -->
+        <div class="footer-mid">
+            <div class=" help">
+                <div class=" container">
+                    <div class=" row">
+                        <div class="footer-mid-left col-sm-6 col-xs-12">
+                            <h3>NEED HELP? </h3>
+                            <p>SUPPORT TEAM 24/7 AT (844) 555-8386</p>
+                        </div>
+                        <div class="footer-mid-right col-sm-6 col-xs-12">
+                            <div class="btn-sub">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <input class="autosearch-input form-control" type="text" value="" size="50"
+                                       autocomplete="off" placeholder="Your Email Address..." name="subscribe">
+                                <button type="submit" class="button-search btn btn-primary" name="submit_subscribe">
+                                    Subscribe
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="brands">
-                    <h3>Fetured brands</h3>
-                    <hr>
-                    <hr>
-                    <hr>
-                    <div class="owl-carousel owl-fetured-brand" data-dots="yes" data-nav="yes" data-loop="yes"
-                         data-items_xs="2" data-items_sm="4" data-items_md="6" data-margin="10">
-                        <div class="img-brand">
-                            <a href="#"><img src="img/demo/brands/brand-1.jpg" alt=""></a>
-                        </div>
-                        <div class="img-brand">
-                            <a href="#"><img src="img/demo/brands/brand-2.jpg" alt=""></a>
-                        </div>
-                        <div class="img-brand">
-                            <a href="#"><img src="img/demo/brands/brand-3.jpg" alt=""></a>
-                        </div>
-                        <div class="img-brand">
-                            <a href="#"><img src="img/demo/brands/brand-4.jpg" alt=""></a>
-                        </div>
-                        <div class="img-brand">
-                            <a href="#"><img src="img/demo/brands/brand-5.jpg" alt=""></a>
-                        </div>
-                        <div class="img-brand">
-                            <a href="#"><img src="img/demo/brands/brand-6.jpg" alt=""></a>
-                        </div>
-                        <div class="img-brand">
-                            <a href="#"><img src="img/demo/brands/brand-1.jpg" alt=""></a>
-                        </div>
+    </footer>
+    <!-- //end Footer Container -->
+
+
+    <!-- Social widgets -->
+    <div class="footer-bottom-block ">
+        <div class=" container">
+            <div class="row">
+                <div class="footer-bottom-header">
+                    <div class="col-xs-12 col-sm-12 col-md-5 download">
+                        <h3>Download Our App</h3>
+                        <a href="#"><img src="img/demo/download/app.jpg" alt=""></a>
+                        <a href="#"><img src="img/demo/download/ggplay.jpg" alt=""></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-7 pay">
+                        <ul>
+                            <li><img src="img/demo/payment/visa.jpg" alt=""></li>
+                            <li><img src="img/demo/payment/meastro.jpg" alt=""></li>
+                            <li><img src="img/demo/payment/paypal.jpg" alt=""></li>
+                            <li><img src="img/demo/payment/union.jpg" alt=""></li>
+                            <li><img src="img/demo/payment/cirrus.jpg" alt=""></li>
+                            <li><img src="img/demo/payment/ebay.jpg" alt=""></li>
+                        </ul>
                     </div>
                 </div>
+                <div class="text-footer-bot">
+                    <p>Destino - Premium Multipurpose HTML5/CSS3 Theme - Designed by <a href="#">SmartAddons.Com</a></p>
+                </div>
+                <div class="back-to-top"><i class="fa fa-angle-up"></i><span> Top </span></div>
             </div>
         </div>
-    </div>
-</section>
-<!-- //Block Spotlight3  -->
-<script type="text/javascript"><!--
-var $typeheader = 'header-home1';
-//-->
-</script>
-
-<!-- Footer Container -->
-<footer class="footer-container type_footer1">
-    <!-- Footer Top Container -->
-    <section class="footer-top">
-        <div class="container content">
-            <div class="">
-                <div class=" collapsed-block ">
-                    <div class="module clearfix">
-                        <h3 class="modtitle">Contact Us </h3>
-                        <div class="modcontent">
-                            <ul class="contact-address">
-                                <li><p><span class="fa fa-map-marker"></span><span>Address : </span> My Company, 42
-                                    avenue des Champs Elysées</p></li>
-                                <li><span class="fa fa-envelope-o"></span><span>Email : </span> <a href="#">
-                                    sales@yourcompany.com</a></li>
-                                <li><p><span class="fa fa-phone"> </span><span>Phone :</span> 0123456789</p></li>
-                            </ul>
-                        </div>
-                        <div class="share-icon">
-                            <ul>
-                                <li class="facebook"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                </li>
-                                <li class="twitter"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                </li>
-                                <li class="google"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                </li>
-                                <li class="skype"><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class=" box-information">
-                    <div class="module clearfix">
-                        <h3 class="modtitle">Information</h3>
-                        <div class="modcontent">
-                            <ul class="menu">
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="order-history.html">Order history</a></li>
-                                <li><a href="order-information.html">Order information</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class=" box-extras">
-                    <div class="module clearfix">
-                        <h3 class="modtitle">Extras</h3>
-                        <div class="modcontent">
-                            <ul class="menu">
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="return.html">Returns</a></li>
-                                <li><a href="sitemap.html">Site Map</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-account">
-                    <div class="module clearfix">
-                        <h3 class="modtitle">My Account</h3>
-                        <div class="modcontent">
-                            <ul class="menu">
-                                <li><a href="#">Brands</a></li>
-                                <li><a href="gift-voucher.html">Gift Vouchers</a></li>
-                                <li><a href="#">Affiliates</a></li>
-                                <li><a href="#">Specials</a></li>
-                                <li><a href="#" target="_blank">Our Blog</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    </div>    <!-- End Social widgets -->
 
 
-            </div>
-        </div>
-    </section>
-    <!-- /Footer Top Container -->
-    <div class="footer-mid">
-        <div class=" help">
-            <div class=" container">
-                <div class=" row">
-                    <div class="footer-mid-left col-sm-6 col-xs-12">
-                        <h3>NEED HELP? </h3>
-                        <p>SUPPORT TEAM 24/7 AT (844) 555-8386</p>
-                    </div>
-                    <div class="footer-mid-right col-sm-6 col-xs-12">
-                        <div class="btn-sub">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <input class="autosearch-input form-control" type="text" value="" size="50"
-                                   autocomplete="off" placeholder="Your Email Address..." name="subscribe">
-                            <button type="submit" class="button-search btn btn-primary" name="submit_subscribe">
-                                Subscribe
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- //end Footer Container -->
-
-
-<!-- Social widgets -->
-<div class="footer-bottom-block ">
-    <div class=" container">
-        <div class="row">
-            <div class="footer-bottom-header">
-                <div class="col-xs-12 col-sm-12 col-md-5 download">
-                    <h3>Download Our App</h3>
-                    <a href="#"><img src="img/demo/download/app.jpg" alt=""></a>
-                    <a href="#"><img src="img/demo/download/ggplay.jpg" alt=""></a>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 pay">
-                    <ul>
-                        <li><img src="img/demo/payment/visa.jpg" alt=""></li>
-                        <li><img src="img/demo/payment/meastro.jpg" alt=""></li>
-                        <li><img src="img/demo/payment/paypal.jpg" alt=""></li>
-                        <li><img src="img/demo/payment/union.jpg" alt=""></li>
-                        <li><img src="img/demo/payment/cirrus.jpg" alt=""></li>
-                        <li><img src="img/demo/payment/ebay.jpg" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="text-footer-bot">
-                <p>Destino - Premium Multipurpose HTML5/CSS3 Theme - Designed by <a href="#">SmartAddons.Com</a></p>
-            </div>
-            <div class="back-to-top"><i class="fa fa-angle-up"></i><span> Top </span></div>
-        </div>
-    </div>
-</div>    <!-- End Social widgets -->
-
-
-<!-- Cpanel Block -->
-<div id="sp-cpanel_btn" class="isDown visible-lg">
-    <i class="fa fa-cog"></i>
-</div>
-
-<div id="sp-cpanel" class="sp-delay">
-    <h2 class="sp-cpanel-title"> Demo Options <span class="sp-cpanel-close"> <i class="fa fa-times"> </i></span></h2>
-    <div id="sp-cpanel_settings">
-        <form action="" method="post" class="myform">
-
-            <div class="panel-group">
-                <label>Color Scheme</label>
-
-                <div class="group-schemes">
-                    <input name="cplthemesColors" class="minicolors minicolors-input form-control" type="text"
-                           value="#0083c1" size="7">
-
-                </div>
-            </div>
-
-
-            <div class="panel-group ">
-                <label>Layout Box</label>
-                <div class="group-boxed">
-                    <select id="cp-layoutbox" name="cplayoutbox" class="form-control"
-                            onchange="changeLayoutBox(this.value);">
-                        <option value="full">Wide</option>
-                        <option value="boxed">Boxed</option>
-                        <option value="iframed">Iframed</option>
-                        <option value="rounded">Rounded</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="panel-group">
-                <label>Body Image</label>
-
-                <div class="group-pattern">
-                    <div data-pattern="28" class="img-pattern"><img src="img/theme/patterns/28.png" alt="pattern 28">
-                    </div>
-                    <div data-pattern="29" class="img-pattern"><img src="img/theme/patterns/29.png" alt="pattern 29">
-                    </div>
-                    <div data-pattern="30" class="img-pattern"><img src="img/theme/patterns/30.png" alt="pattern 30">
-                    </div>
-                    <div data-pattern="31" class="img-pattern"><img src="img/theme/patterns/31.png" alt="pattern 31">
-                    </div>
-                    <div data-pattern="32" class="img-pattern"><img src="img/theme/patterns/32.png" alt="pattern 32">
-                    </div>
-                    <div data-pattern="33" class="img-pattern"><img src="img/theme/patterns/33.png" alt="pattern 33">
-                    </div>
-                    <div data-pattern="34" class="img-pattern"><img src="img/theme/patterns/34.png" alt="pattern 34">
-                    </div>
-                    <div data-pattern="35" class="img-pattern"><img src="img/theme/patterns/35.png" alt="pattern 35">
-                    </div>
-                    <div data-pattern="36" class="img-pattern"><img src="img/theme/patterns/36.png" alt="pattern 36">
-                    </div>
-                    <div data-pattern="37" class="img-pattern"><img src="img/theme/patterns/37.png" alt="pattern 37">
-                    </div>
-                    <div data-pattern="38" class="img-pattern"><img src="img/theme/patterns/38.png" alt="pattern 38">
-                    </div>
-                    <div data-pattern="39" class="img-pattern"><img src="img/theme/patterns/39.png" alt="pattern 39">
-                    </div>
-                    <div data-pattern="40" class="img-pattern"><img src="img/theme/patterns/40.png" alt="pattern 40">
-                    </div>
-                    <div data-pattern="41" class="img-pattern"><img src="img/theme/patterns/41.png" alt="pattern 41">
-                    </div>
-                    <div data-pattern="42" class="img-pattern"><img src="img/theme/patterns/42.png" alt="pattern 42">
-                    </div>
-                    <div data-pattern="43" class="img-pattern"><img src="img/theme/patterns/43.png" alt="pattern 43">
-                    </div>
-                    <div data-pattern="44" class="img-pattern"><img src="img/theme/patterns/44.png" alt="pattern 44">
-                    </div>
-                    <div data-pattern="45" class="img-pattern"><img src="img/theme/patterns/45.png" alt="pattern 45">
-                    </div>
-                </div>
-                <p class="label-sm">Background only applies for Boxed,Framed, Rounded Layout</p>
-                <button type="button" style="width:100%" class="btn btn-primary" data-toggle="modal"
-                        data-target=".bs-example-modal-lg"><i class="fa fa-file-text"></i> Get Skin CSS
-                </button>
-
-            </div>
-
-            <div class="reset-group">
-                <input type="submit" name="submit-reset" class="btn btn-success " value="Reset" onClick="ResetAll();">
-                <input type="submit" name="submitbtn" class="btn" value="Apply">
-            </div>
-        </form>
+    <!-- Cpanel Block -->
+    <div id="sp-cpanel_btn" class="isDown visible-lg">
+        <i class="fa fa-cog"></i>
     </div>
 
-</div>
+    <div id="sp-cpanel" class="sp-delay">
+        <h2 class="sp-cpanel-title"> Demo Options <span class="sp-cpanel-close"> <i class="fa fa-times"> </i></span>
+        </h2>
+        <div id="sp-cpanel_settings">
+            <form action="" method="post" class="myform">
 
-<!-- Begin Color Scheme
-============================================ -->
-<link rel='stylesheet' property='stylesheet' href='/static/tienda/css/themecss/cpanel.css' type='text/css' media='all'/>
-<link rel='stylesheet' property='stylesheet' href='/static/tienda/css/' type='text/css' media='all'/>
+                <div class="panel-group">
+                    <label>Color Scheme</label>
 
-<!-- End Color Scheme
-============================================ -->
+                    <div class="group-schemes">
+                        <input name="cplthemesColors" class="minicolors minicolors-input form-control" type="text"
+                               value="#0083c1" size="7">
+
+                    </div>
+                </div>
 
 
-<!-- Include Libs & Plugins
-	============================================ -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/libs.js"></script>
-<script type="text/javascript" src="/static/tienda/js/unveil/jquery.unveil.js"></script>
-<script type="text/javascript" src="/static/tienda/js/countdown/jquery.countdown.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/datetimepicker/moment.js"></script>
-<script type="text/javascript" src="/static/tienda/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/modernizr/modernizr-2.6.2.min.js"></script>
+                <div class="panel-group ">
+                    <label>Layout Box</label>
+                    <div class="group-boxed">
+                        <select id="cp-layoutbox" name="cplayoutbox" class="form-control"
+                                onchange="changeLayoutBox(this.value);">
+                            <option value="full">Wide</option>
+                            <option value="boxed">Boxed</option>
+                            <option value="iframed">Iframed</option>
+                            <option value="rounded">Rounded</option>
+                        </select>
+                    </div>
+                </div>
 
-<!-- Theme files
-	============================================ -->
-<script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/homepage.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/cpanel.js"></script>
-<link href="/static/tienda/js/minicolors/miniColors.css" rel="stylesheet">
-<script type="text/javascript" src="/static/tienda/js/minicolors/jquery.miniColors.min.js"></script>
-<script>
-    var cart = {
-		'add': function(product_id, quantity) {
-			addProductNotice('Se agregó al Carrito',
-                '<img src="img/demo/shop/product/e11.jpg" alt="">',
-                '<h3><a href="product.html">Apple Cinema 30"</a> added to <a href="cart.html">shopping cart</a>!</h3>',
-                'success');
-		}
-	}
-</script>
+                <div class="panel-group">
+                    <label>Body Image</label>
+
+                    <div class="group-pattern">
+                        <div data-pattern="28" class="img-pattern"><img src="img/theme/patterns/28.png"
+                                                                        alt="pattern 28">
+                        </div>
+                        <div data-pattern="29" class="img-pattern"><img src="img/theme/patterns/29.png"
+                                                                        alt="pattern 29">
+                        </div>
+                        <div data-pattern="30" class="img-pattern"><img src="img/theme/patterns/30.png"
+                                                                        alt="pattern 30">
+                        </div>
+                        <div data-pattern="31" class="img-pattern"><img src="img/theme/patterns/31.png"
+                                                                        alt="pattern 31">
+                        </div>
+                        <div data-pattern="32" class="img-pattern"><img src="img/theme/patterns/32.png"
+                                                                        alt="pattern 32">
+                        </div>
+                        <div data-pattern="33" class="img-pattern"><img src="img/theme/patterns/33.png"
+                                                                        alt="pattern 33">
+                        </div>
+                        <div data-pattern="34" class="img-pattern"><img src="img/theme/patterns/34.png"
+                                                                        alt="pattern 34">
+                        </div>
+                        <div data-pattern="35" class="img-pattern"><img src="img/theme/patterns/35.png"
+                                                                        alt="pattern 35">
+                        </div>
+                        <div data-pattern="36" class="img-pattern"><img src="img/theme/patterns/36.png"
+                                                                        alt="pattern 36">
+                        </div>
+                        <div data-pattern="37" class="img-pattern"><img src="img/theme/patterns/37.png"
+                                                                        alt="pattern 37">
+                        </div>
+                        <div data-pattern="38" class="img-pattern"><img src="img/theme/patterns/38.png"
+                                                                        alt="pattern 38">
+                        </div>
+                        <div data-pattern="39" class="img-pattern"><img src="img/theme/patterns/39.png"
+                                                                        alt="pattern 39">
+                        </div>
+                        <div data-pattern="40" class="img-pattern"><img src="img/theme/patterns/40.png"
+                                                                        alt="pattern 40">
+                        </div>
+                        <div data-pattern="41" class="img-pattern"><img src="img/theme/patterns/41.png"
+                                                                        alt="pattern 41">
+                        </div>
+                        <div data-pattern="42" class="img-pattern"><img src="img/theme/patterns/42.png"
+                                                                        alt="pattern 42">
+                        </div>
+                        <div data-pattern="43" class="img-pattern"><img src="img/theme/patterns/43.png"
+                                                                        alt="pattern 43">
+                        </div>
+                        <div data-pattern="44" class="img-pattern"><img src="img/theme/patterns/44.png"
+                                                                        alt="pattern 44">
+                        </div>
+                        <div data-pattern="45" class="img-pattern"><img src="img/theme/patterns/45.png"
+                                                                        alt="pattern 45">
+                        </div>
+                    </div>
+                    <p class="label-sm">Background only applies for Boxed,Framed, Rounded Layout</p>
+                    <button type="button" style="width:100%" class="btn btn-primary" data-toggle="modal"
+                            data-target=".bs-example-modal-lg"><i class="fa fa-file-text"></i> Get Skin CSS
+                    </button>
+
+                </div>
+
+                <div class="reset-group">
+                    <input type="submit" name="submit-reset" class="btn btn-success " value="Reset"
+                           onClick="ResetAll();">
+                    <input type="submit" name="submitbtn" class="btn" value="Apply">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Begin Color Scheme
+    ============================================ -->
+    <link rel='stylesheet' property='stylesheet' href='/static/tienda/css/themecss/cpanel.css' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' property='stylesheet' href='/static/tienda/css/' type='text/css' media='all'/>
+
+    <!-- End Color Scheme
+    ============================================ -->
+
+
+    <!-- Include Libs & Plugins
+        ============================================ -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/libs.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/unveil/jquery.unveil.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/datetimepicker/moment.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/modernizr/modernizr-2.6.2.min.js"></script>
+
+    <!-- Theme files
+        ============================================ -->
+    <script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/homepage.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/cpanel.js"></script>
+    <link href="/static/tienda/js/minicolors/miniColors.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/tienda/js/minicolors/jquery.miniColors.min.js"></script>
+    <script>
+        var cart = {
+            'add': function (product_id, quantity) {
+                addProductNotice('Se agregó al Carrito',
+                    '<img src="img/demo/shop/product/e11.jpg" alt="">',
+                    '<h3><a href="product.html">Apple Cinema 30"</a> added to <a href="cart.html">shopping cart</a>!</h3>',
+                    'success');
+            }
+        }
+    </script>
 </body>
 </html>
