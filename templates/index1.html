@@ -672,7 +672,7 @@
                                             <div class="button-group">
                                                 <button class="addToCart btn btn-default " data-toggle="tooltip"
                                                         title=""
-                                                        onclick="cart.add('42', '1');"
+                                                        onclick="cart.add('{{ producto.id }}', '1','','{{ producto.slug }}','{{ producto.nombre }}');"
                                                         data-original-title="Add to Cart"><span
                                                         class="">Add to Cart</span></button>
                                             </div>
@@ -853,10 +853,10 @@
     <script type="text/javascript" src="/static/tienda/js/minicolors/jquery.miniColors.min.js"></script>
     <script>
         var cart = {
-            'add': function (product_id, quantity) {
+            'add': function (product_id, cantidad,uri,slug,nombre) {
                 addProductNotice('Se agregó al Carrito',
-                    '<img src="/static/tienda/img/demo/shop/product/e11.jpg" alt="">',
-                    '<h3><a href="product.html">Apple Cinema 30"</a> added to <a href="cart.html">shopping cart</a>!</h3>',
+                    '<img src='+uri+' alt="">',
+                    '<h3><a href="/detail/'+slug+'"/>'+nombre+'</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>',
                     'success');
             }
         }
