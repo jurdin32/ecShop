@@ -685,7 +685,7 @@
                                                             title=""
                                                             onclick="cart.add('{{ producto.id }}',
                                                                     '1',
-                                                                    {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{{ producto.precio }}{% endif %},
+                                                                    {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
                                                                     '/media/{{ fotosProducto.imagen }}',
                                                                     '{{ producto.slug }}',
                                                                     '{{ producto.nombre }}')"
