@@ -149,7 +149,7 @@ class Productos(models.Model):
 
 class ProductoFotos(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
-    imagen=models.ImageField(upload_to="Tienda/Productos")
+    imagen=models.ImageField(upload_to="Tienda/Productos", help_text="Imagen de 600 * 600")
     principal=models.BooleanField(default=False)
 
     class Meta:
