@@ -338,17 +338,10 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <ul class="row-list">
+                                                                            {% for tienda in tiendas %}
                                                                             <li><a class="subcategory_item"
-                                                                                   href="faq.html">FAQ</a></li>
-
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="sitemap.html">Site Map</a></li>
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="contact.html">Contact us</a>
-                                                                            </li>
-                                                                            <li><a class="subcategory_item"
-                                                                                   href="banner-effect.html">Banner
-                                                                                Effect</a></li>
+                                                                                   href="/shop-brand/{{ tienda.hashes }}">{{ tienda.nombre }}</a></li>
+                                                                            {% endfor %}
                                                                         </ul>
                                                                     </div>
                                                                     <div class="col-md-6">
