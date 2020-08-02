@@ -115,7 +115,7 @@
                                 <div class="product-label form-group">
                                     <div class="stock">
                                         <span>Disponibilidad:</span> <span class="instock">En Stock</span>
-                                        <p>SKU: {{ producto.slug }}</p>
+                                        <p>SKU: {{ producto.categoria.nombre|upper|truncatechars:3 }}-{{ producto.id }}</p>
                                     </div>
                                     <div class="product_page_price price" itemprop="offerDetails" itemscope=""
                                          itemtype="http://data-vocabulary.org/Offer">
