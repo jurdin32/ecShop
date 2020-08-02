@@ -931,7 +931,7 @@
 
                     },
                     success: function (data) {
-                        addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
+                        addProductNotice('Se agregó a la lista de deseos', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  a la lista de<a href="/this_list/">Deseos</a>!</h3>', 'success');
                         $(".xn").text(data)
                     }
                 });
