@@ -909,7 +909,7 @@
                 $.ajax({
                     url: "/to_list/",
                     data: {
-                        producto: product_id,
+                        producto_id: product_id,
                         csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
                     },
                     type: 'post',
