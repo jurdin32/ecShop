@@ -520,7 +520,13 @@
                                 <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
                                     <div class="product-image-container  second_img ">
                                         <a href="/detail/{{ producto.slug }}/" class="product-img">
-                                            <img src="/static/tienda/img/demo/shop/product/product-1.jpg" alt="">
+                                            {% for fotosProducto in fotosProductos %}
+                                            {% if fotosProducto.producto == producto %}
+                                                <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                            {% endif %}
+                                            {% endfor %}
+
+
                                         </a>
                                         <!--Sale Label-->
                                         {% if producto.adds %}
