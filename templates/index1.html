@@ -209,9 +209,9 @@
                                    data-toggle="dropdown">
                                     <div class="shopcart">
                                         <span class="handle pull-left"></span>
-                                        <span class="number-shopping-cart">{{ carrito }}</span>
+                                        <span class="number-shopping-cart xn">{{ carrito }}</span>
                                         <span class="title">Mi Carrito</span>
-                                        <p class="text-shopping-cart cart-total-full"> $0.00 </p>
+                                        <p class="text-shopping-cart cart-total-full"> {{ valor.total__sum }} </p>
                                     </div>
                                 </a>
 
@@ -683,7 +683,7 @@
                                                         {% if fotosProducto.producto == producto %}
                                                             <button class="addToCart btn btn-default " data-toggle="tooltip"
                                                             title=""
-                                                            onclick="cart.add('{{ producto.id }}', '1','/media/{{ fotosProducto.imagen }}','{{ producto.slug }}','{{ producto.nombre }}');"
+                                                            onclick="cart.add('{{ producto.id }}', '1',{% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{{ producto.precio }}{% endif %},'/media/{{ fotosProducto.imagen }}','{{ producto.slug }}','{{ producto.nombre }}');"
                                                             data-original-title="Add to Cart"><span
                                                             class="">Al Carrito</span>
                                                             </button>
@@ -839,6 +839,7 @@
         </div>
     </div>
 </div>
+{% csrf_token %}
 <script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
@@ -857,13 +858,37 @@
 <script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
 <script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
 <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
+<script src="/static/sweetalert.min.js"></script>
 <script>
     var cart = {
-        'add': function (product_id, cantidad, uri, slug, nombre) {
-            addProductNotice('Se agregó al Carrito',
-                '<img src=' + uri + ' alt="">',
-                '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>',
-                'success');
+        'add': function (product_id, cantidad,precio, uri, slug, nombre) {
+            $.ajax({
+                url: "/to_car/",
+                data: {
+                    producto: product_id,
+                    cantidad:1,
+                    precio:precio,
+                    csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                },
+                type: 'post',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    swal({
+                        title: "Cuanto lo siento!",
+                        text: "Para usar esta acción debe estar registrado",
+                        icon: "error",
+                        button: "No hay mas por hacer",
+                    });
+
+                },
+                success: function (data) {
+                    addProductNotice('Se agregó al Carrito',
+                            '<img src=' + uri + ' alt="">',
+                            '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>','success');
+                   $(".xn").text(data)
+                }
+            });
+
+
         }
     }
 </script>
@@ -879,5 +904,6 @@
         });
     {% endfor %}
 </script>
+
 </body>
 </html>
