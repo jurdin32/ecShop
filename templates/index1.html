@@ -507,8 +507,8 @@
     <div class="main-container container">
 
         <div class="row">
-            <div id="content" class="col-xs-12 col-sm-12">
-
+        {% if productosLista %}
+        <div id="content" class="col-xs-12 col-sm-12">
                 <div class="module tab-slider titleLine">
                     <h3 class="modtitle">Ingresados recientemente..</h3>
                     <hr>
@@ -598,6 +598,8 @@
 
                 </div>
             </div>
+        {% endif %}
+
 
             <div class="smartphone-tablet col-sm-12">
                 <h3 class="modtitle">Artículos destacados </h3>
