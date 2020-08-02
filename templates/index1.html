@@ -536,7 +536,7 @@
                                     <div class="caption">
                                         <h4><a href="product.html">Detalles Generales</a></h4>
                                         <div class="description item-desc">
-                                            <p>{{ producto.descripcion|safe }}</p>
+                                            <p>{{ producto.descripcion|safe|truncatechars:100 }}</p>
                                         </div>
                                         <div class="ratings">
                                             <div class="rating-box">
