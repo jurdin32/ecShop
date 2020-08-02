@@ -862,7 +862,7 @@
     <script>
         {% for prod in productos %}
             $(".my-rating{{ prod.id }}").starRating({
-                initialRating: parseFloat({% coma_punto t.puntuacion %}),
+                initialRating: parseFloat({% coma_punto prod.puntuacion %}),
                 starSize: 10,
                 readOnly: true,
                 disableAfterRate: false,
