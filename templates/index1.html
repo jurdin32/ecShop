@@ -633,14 +633,6 @@
                                                     <div class="hover">
                                                         <ul>
                                                             <li class="icon-heart">
-                                                                <a class="wishlist"
-                                                                   data-toggle="tooltip"
-                                                                   title=""
-                                                                   onclick="wishlist.add('42');"
-                                                                   data-original-title="Add to Wish List"><i
-                                                                        class="fa fa-heart"></i>
-                                                                </a>
-
                                                                 {% for fotosProducto in fotosProductos %}
                                                                     {% if fotosProducto.producto == producto %}
                                                                         <a class="wishlist"
@@ -932,7 +924,7 @@
                     },
                     success: function (data) {
                         addProductNotice('Se agregó a la lista de deseos', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  a la lista de<a href="/this_list/">Deseos</a>!</h3>', 'success');
-                        $(".xn").text(data)
+                        $(".xnd").text(data)
                     }
                 });
             }
