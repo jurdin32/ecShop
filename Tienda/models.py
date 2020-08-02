@@ -122,6 +122,7 @@ class Productos(models.Model):
     slug=models.CharField(max_length=200,null=True,blank=True)
     estado=models.BooleanField(default=True)
     nombre_comun=models.CharField(max_length=300,null=True,blank=True)
+    fecha=models.DateField(auto_created=True,null=True,blank=True)
 
     def save(self, *args, **kwargs):
         self.nombre_comun =str(strip_accents(self.nombre)).replace(" ","_")
