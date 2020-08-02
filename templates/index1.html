@@ -536,11 +536,8 @@
                                     </div>
                                 </div>
                                 <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="time-offer-end">
-                                        <div class="title">{{ producto.nombre }}:</div>
-                                    </div>
                                     <div class="caption">
-                                        <h4><a href="product.html">Detalles Generales</a></h4>
+                                        <h4><a href="/detail/{{ producto.slug }}">{{ producto.nombre }}</a></h4>
                                         <div class="description item-desc">
                                             <p>{{ producto.descripcion|safe|truncatechars:100 }}</p>
                                         </div>
