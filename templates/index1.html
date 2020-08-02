@@ -46,6 +46,11 @@
     <link id="color_scheme" href="/static/tienda/css/theme.css" rel="stylesheet">
     <!-- <link href="css/responsive.css" rel="stylesheet"> -->
 
+    <link rel="stylesheet" type="text/css" href="/static/rata/src/css/star-rating-svg.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/rata/demo/css/demo.css">
+
+
 </head>
 
 <body class="common-home res layout-home1">
@@ -496,8 +501,6 @@
             </div>
         </section>
     {% endblock %}
-
-
     <div class="main-container container">
         {% block contenido %}
             <div class="row">
@@ -658,11 +661,7 @@
                                                     </h4>
                                                     <div class="ratings">
                                                         <div class="rating-box">
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class=""><i class="fa fa-star "></i></span>
-                                                            <span class="gray"><i class="fa fa-star "></i></span>
+                                                            <div class="my-rating{{ producto.id }}"></div>
                                                         </div>
                                                     </div>
 
@@ -830,7 +829,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
@@ -848,7 +847,7 @@
     <script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
     <script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
     <script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/themejs/cpanel.js"></script>
+    <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
     <script>
         var cart = {
             'add': function (product_id, cantidad, uri, slug, nombre) {
@@ -858,6 +857,18 @@
                     'success');
             }
         }
+    </script>
+
+    <script>
+        {% for prod in productos %}
+            $(".my-rating{{ prod.id }}").starRating({
+                initialRating: parseFloat({% coma_punto t.puntuacion %}),
+                starSize: 10,
+                readOnly: true,
+                disableAfterRate: false,
+                totalStars: 5,
+            });
+        {% endfor %}
     </script>
 </body>
 </html>
