@@ -93,7 +93,7 @@
 
                             <div class="content-product-right col-sm-6 col-xs-12">
                                 <div class="title-product">
-                                    <h1>Bint Beef</h1>
+                                    <h1>{{ producto.nombre }}</h1>
                                 </div>
                                 <!-- Review -->
                                 <div class="box-review form-group">
@@ -109,12 +109,7 @@
 
                                 </div>
                                 <div class="product-box-desc">
-                                    <ul>
-                                        <li>45 inch HD Touch Screen (1280 x 720)</li>
-                                        <li>Android 4.4 KitKat OS</li>
-                                        <li>1.4 GHz Quad Core™ Processor</li>
-                                        <li>20 MP front and 28 megapixel CMOS rear camera</li>
-                                    </ul>
+                                    {{ producto.descripcion|safe }}
                                 </div>
                                 <div class="product-label form-group">
                                     <div class="stock">
