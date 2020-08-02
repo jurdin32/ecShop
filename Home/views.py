@@ -29,7 +29,7 @@ def index(request):
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
         "productosLista":Productos.objects.filter(fecha__lt=fecha_fin,fecha__gt=fecha_inicio,estado=True)[0:30],
-        "productos":list(Productos.objects.filter(estado=True).order_by("puntuacion")),
+        "productos":list(Productos.objects.filter(estado=True).order_by("-puntuacion")),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "slider":Slider.objects.all().order_by("fecha"),
         "colores":ColorInterfaz.objects.last(),
