@@ -587,7 +587,7 @@
                 <div class="smartphone-tablet-owl">
                     <div class="row">
                         {% for producto in productos %}
-                        <div class="col-md-3">
+                        <div class="col-md-3" style="padding-bottom: 30px">
                             <div class="product-layout">
                                 <div class="product-item-container">
                                     <div class="left-block">
@@ -598,8 +598,6 @@
                                                         <img src="/media/{{ fotosProducto.imagen }}" style="width: 100%; height: 200px" alt=""></a>
                                                     {% endif %}
                                                 {% endfor %}
-
-
                                             <!--Sale Label-->
                                             <span class="new">New</span>
 
@@ -648,8 +646,7 @@
                                         <div class="button-group">
                                             <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
                                                     onclick="cart.add('42', '1');"
-                                                    data-original-title="Add to Cart"><span
-                                                    class="">Add to Cart</span></button>
+                                                    data-original-title="Add to Cart"><span class="">Al Carrito</span></button>
                                         </div>
                                     </div><!-- right block -->
                                 </div>
