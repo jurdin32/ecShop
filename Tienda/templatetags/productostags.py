@@ -17,6 +17,10 @@ def descuento(id):
 
 
 @register.simple_tag
+def truncar3(cadena):
+    return cadena[0:3]
+
+@register.simple_tag
 def pais(id):
     try:
         pais = Pais.objects.get(id=id).nombre
