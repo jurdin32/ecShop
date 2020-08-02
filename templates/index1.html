@@ -521,15 +521,14 @@
                             <div class="product-layout ">
                                 <div class="product-item-container">
                                     <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
-                                        <div class="product-image-container  second_img ">
+                                        <div class="product-image-container  second_img" style="text-align: center">
                                             <a href="/detail/{{ producto.slug }}/" class="product-img">
                                                 {% for fotosProducto in fotosProductos %}
                                                     {% if fotosProducto.producto == producto %}
-                                                        <img src="/media/{{ fotosProducto.imagen }}" style="width: 200px; height: 200px" alt="">
+                                                        <img src="/media/{{ fotosProducto.imagen }}"
+                                                             style="width: 200px; height: 200px" alt="">
                                                     {% endif %}
                                                 {% endfor %}
-
-
                                             </a>
                                             <!--Sale Label-->
                                             {% if producto.adds.estado %}
@@ -587,19 +586,17 @@
                 <div class="smartphone-tablet-owl">
                     <div class="row">
                         {% for producto in productos %}
-                        <div class="col-md-3" style="padding-bottom: 30px">
+                        <div class="col-md-3">
                             <div class="product-layout">
                                 <div class="product-item-container">
                                     <div class="left-block">
                                         <div class="product-image-container  second_img ">
                                             <a href="/detail/{{ producto.slug }}/" class="product-img">
-                                                {% for fotosProducto in fotosProductos %}
-                                                    {% if fotosProducto.producto == producto %}
-                                                        <img src="/media/{{ fotosProducto.imagen }}" style="width: 100%; height: 200px" alt=""></a>
-                                                    {% endif %}
-                                                {% endfor %}
+                                                <img src="/media/{{ fotosProducto.imagen }}/"
+                                                     style="width: 200px; height: 200px" alt=""></a>
                                             <!--Sale Label-->
                                             <span class="new">New</span>
+
                                             <div class="hover">
                                                 <ul>
                                                     <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
@@ -612,7 +609,7 @@
                                                             class="fa fa-exchange"></i></a></li>
                                                     <li class="icon-search"><a class="quickview iframe-link "
                                                                                data-fancybox-type="iframe"
-                                                                               href="/detail/{{ producto.slug }}/"> <i
+                                                                               href="quickview.html"> <i
                                                             class="fa fa-search" aria-hidden="true"></i></a></li>
                                                 </ul>
                                             </div>
@@ -620,7 +617,7 @@
                                     </div>
                                     <div class="right-block">
                                         <div class="caption">
-                                            <h4><a href="product.html">{{ producto.nombre }}</a></h4>
+                                            <h4><a href="product.html">Dummy product #02</a></h4>
                                             <div class="ratings">
                                                 <div class="rating-box">
                                                     <span class=""><i class="fa fa-star "></i></span>
@@ -632,20 +629,25 @@
                                             </div>
 
                                             <div class="price">
-                                                {% if producto.adds.estado %}
-                                                <span class="price-new">$ {%  descuento producto.id %}</span>
-                                                {% endif %}
-                                                <span class="price-old">$ {{ producto.precio }}</span>
+                                                <span class="price-new">$74.00</span>
+                                                <span class="price-old">$122.00</span>
                                             </div>
                                             <div class="description item-desc hidden">
-                                                {{producto.descripcion|safe|truncatechars:300}}
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy
+                                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                                                    diam
+                                                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                                                    Stet
+                                                    clita kasd gubergren, no sea takimata sanctus est . </p>
                                             </div>
                                         </div>
 
                                         <div class="button-group">
                                             <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
                                                     onclick="cart.add('42', '1');"
-                                                    data-original-title="Add to Cart"><span class="">Al Carrito</span></button>
+                                                    data-original-title="Add to Cart"><span
+                                                    class="">Add to Cart</span></button>
                                         </div>
                                     </div><!-- right block -->
                                 </div>
