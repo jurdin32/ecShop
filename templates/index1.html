@@ -450,9 +450,7 @@
                                                     <li class="item-vertical">
                                                         <p class="close-menu"></p>
                                                         <a href="/single-category/{{ categoria.id }}/" class="clearfix">
-
-                                                            <span>{{ categoria.nombre }}</span>
-
+                                                            <span>{{ categoria.nombre|capfirst }}</span>
                                                         </a>
                                                     </li>
                                                     {% endfor %}
