@@ -121,7 +121,7 @@
                                    data-toggle="dropdown">
                                     <div class="shopcart">
                                         <span class="handle pull-left"></span>
-                                        <span class="number-shopping-cart">2</span>
+                                        <span class="number-shopping-cart xnd">{{ deseos }}</span>
                                         <span class="title">Deseos</span>
                                     </div>
                                 </a>
@@ -632,18 +632,38 @@
 
                                                     <div class="hover">
                                                         <ul>
-                                                            <li class="icon-heart"><a class="wishlist"
-                                                                                      data-toggle="tooltip"
-                                                                                      title=""
-                                                                                      onclick="wishlist.add('42');"
-                                                                                      data-original-title="Add to Wish List"><i
-                                                                    class="fa fa-heart"></i></a></li>
-                                                            <li class="icon-exchange"><a class="compare"
-                                                                                         data-toggle="tooltip"
-                                                                                         title=""
-                                                                                         onclick="compare.add('42');"
-                                                                                         data-original-title="Compare this Product"><i
-                                                                    class="fa fa-exchange"></i></a></li>
+                                                            <li class="icon-heart">
+                                                                <a class="wishlist"
+                                                                   data-toggle="tooltip"
+                                                                   title=""
+                                                                   onclick="wishlist.add('42');"
+                                                                   data-original-title="Add to Wish List"><i
+                                                                        class="fa fa-heart"></i>
+                                                                </a>
+
+                                                                {% for fotosProducto in fotosProductos %}
+                                                                    {% if fotosProducto.producto == producto %}
+                                                                        <a class="wishlist"
+                                                                           title="tolltip"
+                                                                           onclick="cart.add('{{ producto.id }}',
+                                                                                   '1',
+                                                                                   {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
+                                                                                   '/media/{{ fotosProducto.imagen }}',
+                                                                                   '{{ producto.slug }}',
+                                                                                   '{{ producto.nombre }}',2)"
+                                                                           data-original-title="A la lista de deos">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </a>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </li>
+                                                            <li class="icon-exchange">
+                                                                <a class="compare"
+                                                                   data-toggle="tooltip"
+                                                                   title=""
+                                                                   onclick="compare.add('42');"
+                                                                   data-original-title="Compare this Product"><i
+                                                                        class="fa fa-exchange"></i></a></li>
                                                             <li class="icon-search"><a class="quickview iframe-link "
                                                                                        data-fancybox-type="iframe"
                                                                                        href="/detail/quickview/{{ producto.id }}/">
@@ -681,16 +701,17 @@
                                                 <div class="button-group">
                                                     {% for fotosProducto in fotosProductos %}
                                                         {% if fotosProducto.producto == producto %}
-                                                            <button class="addToCart btn btn-default " data-toggle="tooltip"
-                                                            title=""
-                                                            onclick="cart.add('{{ producto.id }}',
-                                                                    '1',
-                                                                    {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
-                                                                    '/media/{{ fotosProducto.imagen }}',
-                                                                    '{{ producto.slug }}',
-                                                                    '{{ producto.nombre }}')"
-                                                            data-original-title="Al Carrito"><span
-                                                            class="">Al Carrito</span>
+                                                            <button class="addToCart btn btn-default "
+                                                                    data-toggle="tooltip"
+                                                                    title=""
+                                                                    onclick="cart.add('{{ producto.id }}',
+                                                                            '1',
+                                                                            {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
+                                                                            '/media/{{ fotosProducto.imagen }}',
+                                                                            '{{ producto.slug }}',
+                                                                            '{{ producto.nombre }}',1)"
+                                                                    data-original-title="Al Carrito"><span
+                                                                    class="">Al Carrito</span>
                                                             </button>
                                                         {% endif %}
                                                     {% endfor %}
@@ -866,32 +887,55 @@
 <script src="/static/sweetalert.min.js"></script>
 <script>
     var cart = {
-        'add': function (product_id, cantidad,precio, uri, slug, nombre) {
-            $.ajax({
-                url: "/to_car/",
-                data: {
-                    producto: product_id,
-                    cantidad:1,
-                    precio:precio,
-                    csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
-                },
-                type: 'post',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    swal({
-                        title: "Cuanto lo siento!",
-                        text: "Para usar esta acción debe estar registrado",
-                        icon: "error",
-                        button: "No hay mas por hacer",
-                    });
+        'add': function (product_id, cantidad, precio, uri, slug, nombre, opt) {
+            if (opt == 1) {
+                $.ajax({
+                    url: "/to_car/",
+                    data: {
+                        producto: product_id,
+                        cantidad: 1,
+                        precio: precio,
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        swal({
+                            title: "Cuanto lo siento!",
+                            text: "Para usar esta acción debe estar registrado",
+                            icon: "error",
+                            button: "No hay mas por hacer",
+                        });
 
-                },
-                success: function (data) {
-                    addProductNotice('Se agregó al Carrito','<img src="' + uri +'">','<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>','success');
-                   $(".xn").text(data)
-                }
-            });
+                    },
+                    success: function (data) {
+                        addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
+                        $(".xn").text(data)
+                    }
+                });
 
+            } else {
+                $.ajax({
+                    url: "/to_list/",
+                    data: {
+                        producto: product_id,
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        swal({
+                            title: "Cuanto lo siento!",
+                            text: "Para usar esta acción debe estar registrado",
+                            icon: "error",
+                            button: "No hay mas por hacer",
+                        });
 
+                    },
+                    success: function (data) {
+                        addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
+                        $(".xn").text(data)
+                    }
+                });
+            }
         }
     }
 </script>
