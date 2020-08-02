@@ -4,11 +4,10 @@
     {% load productostags %}
     <!-- Basic page needs
     ============================================ -->
-    <title>Destino - Advanced & High Customizable eCommerce HTML5/CSS3 Theme</title>
+    <title>EcShop - Tienda Virtual</title>
     <meta charset="utf-8">
-    <meta name="keywords"
-          content="boostrap, responsive, html5, css3, jquery, theme, multicolor, parallax, retina, business"/>
-    <meta name="author" content="Magentech">
+    <meta name="keywords" content="La tienda virtual mas popular en Ecuador "/>
+    <meta name="author" content="BITEC">
     <meta name="robots" content="index, follow"/>
 
     <!-- Mobile specific metas
@@ -50,650 +49,656 @@
 </head>
 
 <body class="common-home res layout-home1">
-
-
 <div id="wrapper" class="wrapper-full banners-effect-7">
 
-
-    <!-- Header Container  -->
     <header id="header" class=" variantleft type_1">
-        <!-- Header Top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="header-top-left form-inline col-sm-6 col-xs-6 compact-hidden">
-                        <div class="tabBlock1" id="TabBlock-1">
-                            <ul class="top-link list-inline">
-                                <li class="wishlist hidden-xs">
-                                    <a id="signin" class="top-link-wishlist" title="Welcome Customer!"><span>Bienvenidos a EcShop</span></a>
-                                </li>
-                            </ul>
+        {% block header %}
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="header-top-left form-inline col-sm-6 col-xs-6 compact-hidden">
+                            <div class="tabBlock1" id="TabBlock-1">
+                                <ul class="top-link list-inline">
+                                    <li class="wishlist hidden-xs">
+                                        <a id="signin" class="top-link-wishlist" title="Welcome Customer!"><span>Bienvenidos a EcShop</span></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="header-top-right collapsed-block text-right  col-sm-6 col-xs-6 compact-hidden">
-                        <div class="tabBlock1" id="TabBlock-1">
-                            <ul class="top-link list-inline">
-                                <li class="wishlist hidden-xs"><a href="#" id="wishlist-total" class="top-link-wishlist"
-                                                                  title="Welcome Customer!"><span>:)</span></a></li>
-                                <li class="signin"><a href="/administracion/" class="top-link-checkout" title="Sign In"><span>Iniciar Sesión</span></a>
-                                </li>
-                                <li class="register"><a href="/registration/"
-                                                        title="Register"><span>Registrate Gratis</span></a></li>
-                            </ul>
+                        <div class="header-top-right collapsed-block text-right  col-sm-6 col-xs-6 compact-hidden">
+                            <div class="tabBlock1" id="TabBlock-1">
+                                <ul class="top-link list-inline">
+                                    <li class="wishlist hidden-xs"><a href="#" id="wishlist-total"
+                                                                      class="top-link-wishlist"
+                                                                      title="Welcome Customer!"><span>:)</span></a></li>
+                                    <li class="signin"><a href="/administracion/" class="top-link-checkout"
+                                                          title="Sign In"><span>Iniciar Sesión</span></a>
+                                    </li>
+                                    <li class="register"><a href="/registration/"
+                                                            title="Register"><span>Registrate Gratis</span></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- //Header Top -->
+            <div class="header-center left">
+                <div class="container">
+                    <div class="row">
+                        <!-- Logo -->
+                        <div class="navbar-logo col-md-3 col-sm-12 col-xs-7">
+                            <a href="/"><img src="/static/img/ec-02.png" style="height: 80px" title="Your Store"
+                                             alt="Your Store"></a>
+                        </div>
+                        <!-- //end Logo -->
 
-        <!-- Header center -->
-        <div class="header-center left">
-            <div class="container">
-                <div class="row">
-                    <!-- Logo -->
-                    <div class="navbar-logo col-md-3 col-sm-12 col-xs-7">
-                        <a href="/"><img src="/static/img/ec-02.png" style="height: 80px" title="Your Store"
-                                         alt="Your Store"></a>
-                    </div>
-                    <!-- //end Logo -->
-
-                    <!-- Search -->
-                    <div id="sosearchpro" class="col-xs-12 col-sm-8 col-md-5 search-pro">
-                        <form method="GET" action="">
-                            <div id="search0" class="search input-group">
-                                <input class="autosearch-input form-control" type="text" value="" size="50"
-                                       autocomplete="off" placeholder="Search product..." name="search">
-                                <span class="input-group-btn">
+                        <!-- Search -->
+                        <div id="sosearchpro" class="col-xs-12 col-sm-8 col-md-5 search-pro">
+                            <form method="GET" action="">
+                                <div id="search0" class="search input-group">
+                                    <input class="autosearch-input form-control" type="text" value="" size="50"
+                                           autocomplete="off" placeholder="Search product..." name="search">
+                                    <span class="input-group-btn">
 										<button type="submit" class="button-search btn btn-primary"
                                                 name="submit_search"><i class="fa fa-search"></i></button>
 									</span>
+                                </div>
+
+                            </form>
+
+                        </div>
+                        <!-- //end Search -->
+
+                        <!-- Secondary menu -->
+                        <div class="col-md-4 col-sm-4 col-xs-5 shopping_cart pull-right">
+                            <div id="cart" class=" btn-group btn-shopping-cart">
+                                <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <div class="shopcart">
+                                        <span class="handle pull-left"></span>
+                                        <span class="number-shopping-cart">2</span>
+                                        <span class="title">Deseos</span>
+                                    </div>
+                                </a>
+                                <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
+
+                                    <li>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            <tr>
+                                                <td class="text-center" style="width:70px">
+                                                    <a href="product.html"> <img
+                                                            src="/static/tienda/img/demo/shop/product/35.jpg"
+                                                            style="width:70px" alt="Filet Mign"
+                                                            title="Filet Mign" class="preview"> </a>
+                                                </td>
+                                                <td class="text-left"><a class="cart_product_name" href="product.html">Filet
+                                                    Mign</a></td>
+                                                <td class="text-center"> x1</td>
+                                                <td class="text-center"> $1,202.00</td>
+                                                <td class="text-right">
+                                                    <a href="product.html" class="fa fa-edit"></a>
+                                                </td>
+                                                <td class="text-right">
+                                                    <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="width:70px">
+                                                    <a href="product.html"> <img
+                                                            src="/static/tienda/img/demo/shop/product/141.jpg"
+                                                            style="width:70px" alt="Canon EOS 5D"
+                                                            title="Canon EOS 5D" class="preview"> </a>
+                                                </td>
+                                                <td class="text-left"><a class="cart_product_name" href="product.html">Canon
+                                                    EOS 5D</a></td>
+                                                <td class="text-center"> x1</td>
+                                                <td class="text-center"> $60.00</td>
+                                                <td class="text-right">
+                                                    <a href="product.html" class="fa fa-edit"></a>
+                                                </td>
+                                                <td class="text-right">
+                                                    <a onclick="cart.remove('1');" class="fa fa-times fa-delete"></a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="text-left"><strong>Sub-Total</strong>
+                                                    </td>
+                                                    <td class="text-right">$1,060.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>Eco Tax (-2.00)</strong>
+                                                    </td>
+                                                    <td class="text-right">$2.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>VAT (20%)</strong>
+                                                    </td>
+                                                    <td class="text-right">$200.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>Total</strong>
+                                                    </td>
+                                                    <td class="text-right">$1,262.00</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <p class="text-right"><a class="btn view-cart" href="cart.html"><i
+                                                    class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a
+                                                    class="btn btn-mega checkout-cart" href="checkout.html"><i
+                                                    class="fa fa-share"></i>Checkout</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
+                            <!--cart-->
+                            <div id="cart" class=" btn-group btn-shopping-cart">
+                                <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <div class="shopcart">
+                                        <span class="handle pull-left"></span>
+                                        <span class="number-shopping-cart">2</span>
+                                        <span class="title">Mi Carrito</span>
+                                        <p class="text-shopping-cart cart-total-full"> $0.00 </p>
+                                    </div>
+                                </a>
 
-                        </form>
+                                <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
 
-                    </div>
-                    <!-- //end Search -->
-
-                    <!-- Secondary menu -->
-                    <div class="col-md-4 col-sm-4 col-xs-5 shopping_cart pull-right">
-                        <div id="cart" class=" btn-group btn-shopping-cart">
-                            <a data-loading-text="Loading..." class="top_cart dropdown-toggle" data-toggle="dropdown">
-                                <div class="shopcart">
-                                    <span class="handle pull-left"></span>
-                                    <span class="number-shopping-cart">2</span>
-                                    <span class="title">Deseos</span>
-                                </div>
-                            </a>
-                            <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
-
-                                <li>
-                                    <table class="table table-striped">
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-center" style="width:70px">
-                                                <a href="product.html"> <img src="/static/tienda/img/demo/shop/product/35.jpg"
-                                                                             style="width:70px" alt="Filet Mign"
-                                                                             title="Filet Mign" class="preview"> </a>
-                                            </td>
-                                            <td class="text-left"><a class="cart_product_name" href="product.html">Filet
-                                                Mign</a></td>
-                                            <td class="text-center"> x1</td>
-                                            <td class="text-center"> $1,202.00</td>
-                                            <td class="text-right">
-                                                <a href="product.html" class="fa fa-edit"></a>
-                                            </td>
-                                            <td class="text-right">
-                                                <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" style="width:70px">
-                                                <a href="product.html"> <img src="/static/tienda/img/demo/shop/product/141.jpg"
-                                                                             style="width:70px" alt="Canon EOS 5D"
-                                                                             title="Canon EOS 5D" class="preview"> </a>
-                                            </td>
-                                            <td class="text-left"><a class="cart_product_name" href="product.html">Canon
-                                                EOS 5D</a></td>
-                                            <td class="text-center"> x1</td>
-                                            <td class="text-center"> $60.00</td>
-                                            <td class="text-right">
-                                                <a href="product.html" class="fa fa-edit"></a>
-                                            </td>
-                                            <td class="text-right">
-                                                <a onclick="cart.remove('1');" class="fa fa-times fa-delete"></a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </li>
-                                <li>
-                                    <div>
-                                        <table class="table table-bordered">
+                                    <li>
+                                        <table class="table table-striped">
                                             <tbody>
                                             <tr>
-                                                <td class="text-left"><strong>Sub-Total</strong>
+                                                <td class="text-center" style="width:70px">
+                                                    <a href="product.html"> <img
+                                                            src="/static/tienda/img/demo/shop/product/35.jpg"
+                                                            style="width:70px" alt="Filet Mign"
+                                                            title="Filet Mign" class="preview"> </a>
                                                 </td>
-                                                <td class="text-right">$1,060.00</td>
+                                                <td class="text-left"><a class="cart_product_name" href="product.html">Filet
+                                                    Mign</a></td>
+                                                <td class="text-center"> x1</td>
+                                                <td class="text-center"> $1,202.00</td>
+                                                <td class="text-right">
+                                                    <a href="product.html" class="fa fa-edit"></a>
+                                                </td>
+                                                <td class="text-right">
+                                                    <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td class="text-left"><strong>Eco Tax (-2.00)</strong>
+                                                <td class="text-center" style="width:70px">
+                                                    <a href="product.html"> <img
+                                                            src="/static/tienda/img/demo/shop/product/141.jpg"
+                                                            style="width:70px" alt="Canon EOS 5D"
+                                                            title="Canon EOS 5D" class="preview"> </a>
                                                 </td>
-                                                <td class="text-right">$2.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-left"><strong>VAT (20%)</strong>
+                                                <td class="text-left"><a class="cart_product_name" href="product.html">Canon
+                                                    EOS 5D</a></td>
+                                                <td class="text-center"> x1</td>
+                                                <td class="text-center"> $60.00</td>
+                                                <td class="text-right">
+                                                    <a href="product.html" class="fa fa-edit"></a>
                                                 </td>
-                                                <td class="text-right">$200.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-left"><strong>Total</strong>
+                                                <td class="text-right">
+                                                    <a onclick="cart.remove('1');" class="fa fa-times fa-delete"></a>
                                                 </td>
-                                                <td class="text-right">$1,262.00</td>
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <p class="text-right"><a class="btn view-cart" href="cart.html"><i
-                                                class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a
-                                                class="btn btn-mega checkout-cart" href="checkout.html"><i
-                                                class="fa fa-share"></i>Checkout</a></p>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="text-left"><strong>Sub-Total</strong>
+                                                    </td>
+                                                    <td class="text-right">$1,060.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>Eco Tax (-2.00)</strong>
+                                                    </td>
+                                                    <td class="text-right">$2.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>VAT (20%)</strong>
+                                                    </td>
+                                                    <td class="text-right">$200.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>Total</strong>
+                                                    </td>
+                                                    <td class="text-right">$1,262.00</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <p class="text-right"><a class="btn view-cart" href="cart.html"><i
+                                                    class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a
+                                                    class="btn btn-mega checkout-cart" href="checkout.html"><i
+                                                    class="fa fa-share"></i>Checkout</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--//cart-->
                         </div>
-                        <!--cart-->
-                        <div id="cart" class=" btn-group btn-shopping-cart">
-                            <a data-loading-text="Loading..." class="top_cart dropdown-toggle" data-toggle="dropdown">
-                                <div class="shopcart">
-                                    <span class="handle pull-left"></span>
-                                    <span class="number-shopping-cart">2</span>
-                                    <span class="title">Mi Carrito</span>
-                                    <p class="text-shopping-cart cart-total-full"> $0.00 </p>
-                                </div>
-                            </a>
-
-                            <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
-
-                                <li>
-                                    <table class="table table-striped">
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-center" style="width:70px">
-                                                <a href="product.html"> <img src="/static/tienda/img/demo/shop/product/35.jpg"
-                                                                             style="width:70px" alt="Filet Mign"
-                                                                             title="Filet Mign" class="preview"> </a>
-                                            </td>
-                                            <td class="text-left"><a class="cart_product_name" href="product.html">Filet
-                                                Mign</a></td>
-                                            <td class="text-center"> x1</td>
-                                            <td class="text-center"> $1,202.00</td>
-                                            <td class="text-right">
-                                                <a href="product.html" class="fa fa-edit"></a>
-                                            </td>
-                                            <td class="text-right">
-                                                <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" style="width:70px">
-                                                <a href="product.html"> <img src="/static/tienda/img/demo/shop/product/141.jpg"
-                                                                             style="width:70px" alt="Canon EOS 5D"
-                                                                             title="Canon EOS 5D" class="preview"> </a>
-                                            </td>
-                                            <td class="text-left"><a class="cart_product_name" href="product.html">Canon
-                                                EOS 5D</a></td>
-                                            <td class="text-center"> x1</td>
-                                            <td class="text-center"> $60.00</td>
-                                            <td class="text-right">
-                                                <a href="product.html" class="fa fa-edit"></a>
-                                            </td>
-                                            <td class="text-right">
-                                                <a onclick="cart.remove('1');" class="fa fa-times fa-delete"></a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </li>
-                                <li>
-                                    <div>
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-left"><strong>Sub-Total</strong>
-                                                </td>
-                                                <td class="text-right">$1,060.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-left"><strong>Eco Tax (-2.00)</strong>
-                                                </td>
-                                                <td class="text-right">$2.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-left"><strong>VAT (20%)</strong>
-                                                </td>
-                                                <td class="text-right">$200.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-left"><strong>Total</strong>
-                                                </td>
-                                                <td class="text-right">$1,262.00</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <p class="text-right"><a class="btn view-cart" href="cart.html"><i
-                                                class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a
-                                                class="btn btn-mega checkout-cart" href="checkout.html"><i
-                                                class="fa fa-share"></i>Checkout</a></p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--//cart-->
                     </div>
+
                 </div>
-
             </div>
-        </div>
-        <!-- //Header center -->
+            <div class="header-bottom">
+                <div class="container">
+                    <div class="row">
+                        <!-- Main menu -->
+                        <div class="megamenu-hori header-bottom-right  col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="responsive so-megamenu ">
+                                <nav class="navbar-default">
+                                    <div class=" container-megamenu  horizontal">
 
-        <!-- Header Bottom -->
-        <div class="header-bottom">
-            <div class="container">
-                <div class="row">
-                    <!-- Main menu -->
-                    <div class="megamenu-hori header-bottom-right  col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="responsive so-megamenu ">
-                            <nav class="navbar-default">
-                                <div class=" container-megamenu  horizontal">
+                                        <div class="navbar-header">
+                                            <button id="show-megamenu" data-toggle="collapse" class="navbar-toggle">
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+                                        </div>
 
-                                    <div class="navbar-header">
-                                        <button id="show-megamenu" data-toggle="collapse" class="navbar-toggle">
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-                                    </div>
-
-                                    <div class="megamenu-wrapper">
-                                        <span id="remove-megamenu" class="fa fa-times"></span>
-                                        <div class="megamenu-pattern">
-                                            <div class="container">
-                                                <ul class="megamenu " data-transition="slide" data-animationtime="250">
-                                                    <li class="">
-                                                        <p class="close-menu"></p>
-                                                        <a href="/" class="clearfix menu1">
-                                                            <strong>Inicio</strong>
-                                                            <span class="label"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="with-sub-menu hover">
-                                                        <p class="close-menu"></p>
-                                                        <a href="#" class="clearfix menu1">
-                                                            <strong>Tiendas</strong>
-                                                        </a>
-                                                        <div class="sub-menu"
-                                                             style="width: 40%; right: auto; display: none;">
-                                                            <div class="content" style="height: 160px; display: none;">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <ul class="row-list">
-                                                                            {% for tienda in tiendas %}
-                                                                                <li><a class="subcategory_item"
-                                                                                       href="/shop-brand/{{ tienda.hashes }}">{{ tienda.nombre }}</a>
-                                                                                </li>
-                                                                            {% endfor %}
-                                                                        </ul>
+                                        <div class="megamenu-wrapper">
+                                            <span id="remove-megamenu" class="fa fa-times"></span>
+                                            <div class="megamenu-pattern">
+                                                <div class="container">
+                                                    <ul class="megamenu " data-transition="slide"
+                                                        data-animationtime="250">
+                                                        <li class="">
+                                                            <p class="close-menu"></p>
+                                                            <a href="/" class="clearfix menu1">
+                                                                <strong>Inicio</strong>
+                                                                <span class="label"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="with-sub-menu hover">
+                                                            <p class="close-menu"></p>
+                                                            <a href="#" class="clearfix menu1">
+                                                                <strong>Tiendas</strong>
+                                                            </a>
+                                                            <div class="sub-menu"
+                                                                 style="width: 40%; right: auto; display: none;">
+                                                                <div class="content"
+                                                                     style="height: 160px; display: none;">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ul class="row-list">
+                                                                                {% for tienda in tiendas %}
+                                                                                    <li><a class="subcategory_item"
+                                                                                           href="/shop-brand/{{ tienda.hashes }}">{{ tienda.nombre }}</a>
+                                                                                    </li>
+                                                                                {% endfor %}
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="">
-                                                        <p class="close-menu"></p>
-                                                        <a href="/traking/" class="clearfix menu1">
-                                                            <strong>Traking</strong>
-                                                            <span class="label"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <p class="close-menu"></p>
-                                                        <a href="/contact/" class="clearfix menu1">
-                                                            <strong>Contacto</strong>
-                                                            <span class="label"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <p class="close-menu"></p>
-                                                        <a href="/policies/" class="clearfix menu1">
-                                                            <strong>politicas</strong>
-                                                            <span class="label"></span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                    <!-- //end Main menu -->
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Navbar switcher -->
-        <!-- //end Navbar switcher -->
-
-    </header>
-    <!-- //Header Container  -->
-
-    <!-- Block Spotlight1  -->
-    <section class="so-spotlight1 ">
-        <div class="container">
-            <div class="row">
-                <div class="sidebar-menu col-md-3 col-sm-12 hidden-xs ">
-                    <div class="responsive so-megamenu ">
-                        <div class="so-vertical-menu no-gutter compact-hidden">
-                            <nav class="navbar-default">
-                                <div class="container-megamenu vertical open">
-                                    <div id="menuHeading-1">
-                                        <div class="megamenuToogle-wrapper">
-                                            <div class="megamenuToogle-pattern">
-                                                <div class="container">
-                                                    <div>
-                                                        <span></span>
-                                                        <span></span>
-                                                        <span></span>
-                                                    </div>
-                                                    Todas las Categorías
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="navbar-header">
-                                        <button id="show-verticalmenu" data-toggle="collapse"
-                                                class="navbar-toggle fa fa-list-alt"></button>
-                                    </div>
-                                    <div class="vertical-wrapper " style="display: block;">
-                                        <span id="remove-verticalmenu" class="fa fa-times"></span>
-                                        <div class="megamenu-pattern">
-                                            <div class="container">
-                                                <ul class="megamenu">
-                                                    {% for categoria in cat %}
-                                                        <li class="item-vertical">
+                                                        </li>
+                                                        <li class="">
                                                             <p class="close-menu"></p>
-                                                            <a href="/single-category/{{ categoria.id }}/"
-                                                               class="clearfix">
-                                                                <span>{{ categoria.nombre|capfirst }}</span>
+                                                            <a href="/traking/" class="clearfix menu1">
+                                                                <strong>Traking</strong>
+                                                                <span class="label"></span>
                                                             </a>
                                                         </li>
-                                                    {% endfor %}
+                                                        <li class="">
+                                                            <p class="close-menu"></p>
+                                                            <a href="/contact/" class="clearfix menu1">
+                                                                <strong>Contacto</strong>
+                                                                <span class="label"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="">
+                                                            <p class="close-menu"></p>
+                                                            <a href="/policies/" class="clearfix menu1">
+                                                                <strong>politicas</strong>
+                                                                <span class="label"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
 
-                                                    <li class="loadmore">
-                                                        <i class="fa fa-plus-square-o"></i>
-                                                        <span class="more-view">Más Categorías</span>
-                                                    </li>
-                                                </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </nav>
+                                </nav>
+                            </div>
                         </div>
-                    </div>
-
-                </div>
-                <div id="yt_header_right" class="col-sm-12 col-md-9 col-lg-9 ">
-                    <div class="slider-container ">
-                        <div class="owl-carousel owl-slider-1 owl" data-dots="yes" data-nav="yes" data-loop="yes"
-                             data-items_xs="1" data-items_sm="1" data-items_md="1" data-margin="0">
-                            {% for sli in slider %}
-                                <div class="img-slider">
-                                    <a href="{{ sli.enlace }}"><img src="/media/{{ sli.imagen }}" alt=""></a>
-                                </div>
-                            {% endfor %}
-
-
-                        </div>
-
+                        <!-- //end Main menu -->
 
                     </div>
                 </div>
+
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 four-block">
-                    <div class="modcontent clearfix">
-                        <div class="policy-detail">
-                            <div class="banner-policy">
-                                <div class="policy policy1">
-                                    <a href="#">
-                                        <span class="ico-policy"></span>
-                                        <div class="service-info">
-                                            <span class="title">Envío Gratis</span> <br> <span>Por tus compras a partir de 100 USD</span>
+        {% endblock %}
+
+    </header>
+    {% block menu %}
+        <section class="so-spotlight1 ">
+            <div class="container">
+                <div class="row">
+                    <div class="sidebar-menu col-md-3 col-sm-12 hidden-xs ">
+                        <div class="responsive so-megamenu ">
+                            <div class="so-vertical-menu no-gutter compact-hidden">
+                                <nav class="navbar-default">
+                                    <div class="container-megamenu vertical open">
+                                        <div id="menuHeading-1">
+                                            <div class="megamenuToogle-wrapper">
+                                                <div class="megamenuToogle-pattern">
+                                                    <div class="container">
+                                                        <div>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                        </div>
+                                                        Todas las Categorías
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </a>
+                                        <div class="navbar-header">
+                                            <button id="show-verticalmenu" data-toggle="collapse"
+                                                    class="navbar-toggle fa fa-list-alt"></button>
+                                        </div>
+                                        <div class="vertical-wrapper " style="display: block;">
+                                            <span id="remove-verticalmenu" class="fa fa-times"></span>
+                                            <div class="megamenu-pattern">
+                                                <div class="container">
+                                                    <ul class="megamenu">
+                                                        {% for categoria in cat %}
+                                                            <li class="item-vertical">
+                                                                <p class="close-menu"></p>
+                                                                <a href="/single-category/{{ categoria.id }}/"
+                                                                   class="clearfix">
+                                                                    <span>{{ categoria.nombre|capfirst }}</span>
+                                                                </a>
+                                                            </li>
+                                                        {% endfor %}
+
+                                                        <li class="loadmore">
+                                                            <i class="fa fa-plus-square-o"></i>
+                                                            <span class="more-view">Más Categorías</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="yt_header_right" class="col-sm-12 col-md-9 col-lg-9 ">
+                        <div class="slider-container ">
+                            <div class="owl-carousel owl-slider-1 owl" data-dots="yes" data-nav="yes" data-loop="yes"
+                                 data-items_xs="1" data-items_sm="1" data-items_md="1" data-margin="0">
+                                {% for sli in slider %}
+                                    <div class="img-slider">
+                                        <a href="{{ sli.enlace }}"><img src="/media/{{ sli.imagen }}" alt=""></a>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 four-block">
+                        <div class="modcontent clearfix">
+                            <div class="policy-detail">
+                                <div class="banner-policy">
+                                    <div class="policy policy1">
+                                        <a href="#">
+                                            <span class="ico-policy"></span>
+                                            <div class="service-info">
+                                                <span class="title">Envío Gratis</span> <br> <span>Por tus compras a partir de 100 USD</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="policy policy2">
+                                        <a href="#">
+                                            <span class="ico-policy"></span>
+                                            <div class="service-info">
+                                                <span class="title">Garantía de Devolución de Dinero</span> <br><span>Como máximo 30 días depués de haber ingresado la solicitud.</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="policy policy3">
+                                        <a href="#">
+                                            <span class="ico-policy"></span>
+                                            <div class="service-info">
+                                                <span class="title">Soporte Online</span>
+                                                <br><span>Para todas las tiendas.</span>
+                                            </div>
+                                        </a></div>
                                 </div>
-                                <div class="policy policy2">
-                                    <a href="#">
-                                        <span class="ico-policy"></span>
-                                        <div class="service-info">
-                                            <span class="title">Garantía de Devolución de Dinero</span> <br><span>Como máximo 30 días depués de haber ingresado la solicitud.</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="policy policy3">
-                                    <a href="#">
-                                        <span class="ico-policy"></span>
-                                        <div class="service-info">
-                                            <span class="title">Soporte Online</span>
-                                            <br><span>Para todas las tiendas.</span>
-                                        </div>
-                                    </a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- //Block Spotlight1  -->
+        </section>
+    {% endblock %}
 
-    <!-- Main Container  -->
+
     <div class="main-container container">
+        {% block contenido %}
+            <div class="row">
+                {% if productosLista %}
+                    <div id="content" class="col-xs-12 col-sm-12">
+                        <div class="module tab-slider titleLine">
+                            <h3 class="modtitle">Ingresados recientemente..</h3>
+                            <hr>
+                            <hr>
+                            <hr>
 
-        <div class="row">
-        {% if productosLista %}
-        <div id="content" class="col-xs-12 col-sm-12">
-                <div class="module tab-slider titleLine">
-                    <h3 class="modtitle">Ingresados recientemente..</h3>
-                    <hr>
-                    <hr>
-                    <hr>
+                            <div class="owl-carousel owl-dead-week" data-dots="yes" data-nav="yes" data-loop="yes"
+                                 data-items_xs="1" data-items_sm="2" data-items_md="2" data-margin="15">
+                                {% for producto in productosLista %}
+                                    <div class="product-layout ">
+                                        <div class="product-item-container">
+                                            <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
+                                                <div class="product-image-container  second_img">
+                                                    <a href="/detail/{{ producto.slug }}/" class="product-img">
+                                                        {% for fotosProducto in fotosProductos %}
+                                                            {% if fotosProducto.producto == producto %}
+                                                                <img src="/media/{{ fotosProducto.imagen }}"
+                                                                     style="width: 200px; height: 200px;display:block; margin:auto;"
+                                                                     alt="">
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </a>
+                                                    <!--Sale Label-->
+                                                    <span class="new">New</span>
 
-                    <div class="owl-carousel owl-dead-week" data-dots="yes" data-nav="yes" data-loop="yes"
-                         data-items_xs="1" data-items_sm="2" data-items_md="2" data-margin="15">
-                        {% for producto in productosLista %}
-                            <div class="product-layout ">
-                                <div class="product-item-container">
-                                    <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
-                                        <div class="product-image-container  second_img">
-                                            <a href="/detail/{{ producto.slug }}/" class="product-img">
-                                                {% for fotosProducto in fotosProductos %}
-                                                    {% if fotosProducto.producto == producto %}
-                                                        <img src="/media/{{ fotosProducto.imagen }}"
-                                                             style="width: 200px; height: 200px;display:block; margin:auto;" alt="">
+                                                    <div class="hover">
+                                                        <ul>
+                                                            <li class="icon-heart"><a class="wishlist"
+                                                                                      data-toggle="tooltip"
+                                                                                      title=""
+                                                                                      onclick="wishlist.add('42');"
+                                                                                      data-original-title="Add to Wish List"><i
+                                                                    class="fa fa-heart"></i></a></li>
+                                                            <li class="icon-exchange"><a class="compare"
+                                                                                         data-toggle="tooltip"
+                                                                                         title=""
+                                                                                         onclick="compare.add('42');"
+                                                                                         data-original-title="Compare this Product"><i
+                                                                    class="fa fa-exchange"></i></a></li>
+                                                            <li class="icon-search"><a class="quickview iframe-link "
+                                                                                       data-fancybox-type="iframe"
+                                                                                       href="/detail/quickview/{{ producto.id }}/">
+                                                                <i
+                                                                        class="fa fa-search" aria-hidden="true"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    {% if producto.adds.estado %}
+                                                        <span class="sale">-{{ producto.adds.descuento|floatformat:0 }}%</span>
                                                     {% endif %}
-                                                {% endfor %}
-                                            </a>
-                                            <!--Sale Label-->
-                                            <span class="new">New</span>
 
-                                                <div class="hover">
-                                                    <ul>
-                                                        <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                                  title="" onclick="wishlist.add('42');"
-                                                                                  data-original-title="Add to Wish List"><i
-                                                                class="fa fa-heart"></i></a></li>
-                                                        <li class="icon-exchange"><a class="compare"
-                                                                                     data-toggle="tooltip"
-                                                                                     title=""
-                                                                                     onclick="compare.add('42');"
-                                                                                     data-original-title="Compare this Product"><i
-                                                                class="fa fa-exchange"></i></a></li>
-                                                        <li class="icon-search"><a class="quickview iframe-link "
-                                                                                   data-fancybox-type="iframe"
-                                                                                   href="/detail/quickview/{{ producto.id }}/"> <i
-                                                                class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="caption">
+                                                    <h4><a href="/detail/{{ producto.slug }}">{{ producto.nombre }}</a>
+                                                    </h4>
+                                                    <div class="description item-desc">
+                                                        <p>{{ producto.descripcion|safe|truncatechars:100 }}</p>
+                                                    </div>
+                                                    <div class="ratings">
+                                                        <div class="rating-box">
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class="gray"><i class="fa fa-star "></i></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="price">
+                                                        {% if producto.adds.estado %}
+                                                            <span class="price-new">$ {% descuento producto.id %}</span>
+                                                            <span class="price-old">$ {{ producto.precio }}</span>
+                                                        {% else %}
+                                                        {% endif %}
+                                                    </div>
+
                                                 </div>
 
-                                            {% if producto.adds.estado %}
-                                                <span class="sale">-{{ producto.adds.descuento|floatformat:0 }}%</span>
-                                            {% endif %}
-
+                                                <div class="button-group">
+                                                    <button class="addToCart btn btn-default " data-toggle="tooltip"
+                                                            title=""
+                                                            onclick="cart.add('42', '1');"
+                                                            data-original-title="Add to Cart"><span
+                                                            class="">Al carrito</span></button>
+                                                </div>
+                                            </div><!-- right block -->
                                         </div>
                                     </div>
-                                    <div class="right-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="caption">
-                                            <h4><a href="/detail/{{ producto.slug }}">{{ producto.nombre }}</a></h4>
-                                            <div class="description item-desc">
-                                                <p>{{ producto.descripcion|safe|truncatechars:100 }}</p>
-                                            </div>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                {% if producto.adds.estado %}
-                                                    <span class="price-new">$ {% descuento producto.id %}</span>
-                                                    <span class="price-old">$ {{ producto.precio }}</span>
-                                                {% else %}
-                                                {% endif %}
-                                            </div>
-
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " data-toggle="tooltip" title=""
-                                                    onclick="cart.add('42', '1');"
-                                                    data-original-title="Add to Cart"><span
-                                                    class="">Al carrito</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+
+                        </div>
                     </div>
-
-                </div>
-            </div>
-        {% endif %}
+                {% endif %}
 
 
-            <div class="smartphone-tablet col-sm-12">
-                <h3 class="modtitle">Artículos destacados </h3>
-                <hr>
-                <hr>
-                <hr>
-                <div class="smartphone-tablet-owl">
-                    <div class="row">
-                        {% for producto in productos %}
-                            <div class="col-md-3" style="padding-bottom: 30px">
-                                <div class="product-layout">
-                                    <div class="product-item-container">
-                                        <div class="left-block">
-                                            <div class="product-image-container  second_img ">
-                                                <a href="/detail/{{ producto.slug }}/" class="product-img">
-                                                    {% for fotosProducto in fotosProductos %}
-                                                        {% if fotosProducto.producto == producto %}
-                                                            <img src="/media/{{ fotosProducto.imagen }}" style="width: 200px; height: 200px;display:block; margin:auto;" alt="">
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </a>
-                                                <!--Sale Label-->
-                                                <span class="new">New</span>
+                <div class="smartphone-tablet col-sm-12">
+                    <h3 class="modtitle">Artículos destacados </h3>
+                    <hr>
+                    <hr>
+                    <hr>
+                    <div class="smartphone-tablet-owl">
+                        <div class="row">
+                            {% for producto in productos %}
+                                <div class="col-md-3" style="padding-bottom: 30px">
+                                    <div class="product-layout">
+                                        <div class="product-item-container">
+                                            <div class="left-block">
+                                                <div class="product-image-container  second_img ">
+                                                    <a href="/detail/{{ producto.slug }}/" class="product-img">
+                                                        {% for fotosProducto in fotosProductos %}
+                                                            {% if fotosProducto.producto == producto %}
+                                                                <img src="/media/{{ fotosProducto.imagen }}"
+                                                                     style="width: 200px; height: 200px;display:block; margin:auto;"
+                                                                     alt="">
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </a>
+                                                    <!--Sale Label-->
+                                                    <span class="new">New</span>
 
-                                                <div class="hover">
-                                                    <ul>
-                                                        <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
-                                                                                  title="" onclick="wishlist.add('42');"
-                                                                                  data-original-title="Add to Wish List"><i
-                                                                class="fa fa-heart"></i></a></li>
-                                                        <li class="icon-exchange"><a class="compare"
-                                                                                     data-toggle="tooltip"
-                                                                                     title=""
-                                                                                     onclick="compare.add('42');"
-                                                                                     data-original-title="Compare this Product"><i
-                                                                class="fa fa-exchange"></i></a></li>
-                                                        <li class="icon-search"><a class="quickview iframe-link "
-                                                                                   data-fancybox-type="iframe"
-                                                                                   href="/detail/quickview/{{ producto.id }}/"> <i
-                                                                class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                    </ul>
+                                                    <div class="hover">
+                                                        <ul>
+                                                            <li class="icon-heart"><a class="wishlist"
+                                                                                      data-toggle="tooltip"
+                                                                                      title=""
+                                                                                      onclick="wishlist.add('42');"
+                                                                                      data-original-title="Add to Wish List"><i
+                                                                    class="fa fa-heart"></i></a></li>
+                                                            <li class="icon-exchange"><a class="compare"
+                                                                                         data-toggle="tooltip"
+                                                                                         title=""
+                                                                                         onclick="compare.add('42');"
+                                                                                         data-original-title="Compare this Product"><i
+                                                                    class="fa fa-exchange"></i></a></li>
+                                                            <li class="icon-search"><a class="quickview iframe-link "
+                                                                                       data-fancybox-type="iframe"
+                                                                                       href="/detail/quickview/{{ producto.id }}/">
+                                                                <i
+                                                                        class="fa fa-search" aria-hidden="true"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="right-block">
-                                            <div class="caption">
-                                                <h4><a href="/detail/{{ producto.slug }}/">{{ producto.nombre|truncatechars:30|capfirst }}</a></h4>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star "></i></span>
+                                            <div class="right-block">
+                                                <div class="caption">
+                                                    <h4>
+                                                        <a href="/detail/{{ producto.slug }}/">{{ producto.nombre|truncatechars:30|capfirst }}</a>
+                                                    </h4>
+                                                    <div class="ratings">
+                                                        <div class="rating-box">
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class="gray"><i class="fa fa-star "></i></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="price">
+                                                        {% if producto.adds.estado %}
+                                                            <span class="price-new">$ {% descuento producto.precio %}</span>
+                                                            <span class="price-old">$ {{ producto.precio }}</span>
+                                                        {% else %}
+                                                            <span class="price-new">$ {{ producto.precio }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="description item-desc hidden">
+                                                        {{ producto.descripcion|safe }}
                                                     </div>
                                                 </div>
 
-                                                <div class="price">
-                                                    {% if producto.adds.estado %}
-                                                        <span class="price-new">$ {% descuento producto.precio %}</span>
-                                                        <span class="price-old">$ {{ producto.precio }}</span>
-                                                    {% else %}
-                                                        <span class="price-new">$ {{ producto.precio }}</span>
-                                                    {% endif %}
+                                                <div class="button-group">
+                                                    <button class="addToCart btn btn-default " data-toggle="tooltip"
+                                                            title=""
+                                                            onclick="cart.add('{{ producto.id }}', '1','','{{ producto.slug }}','{{ producto.nombre }}');"
+                                                            data-original-title="Add to Cart"><span
+                                                            class="">Add to Cart</span></button>
                                                 </div>
-                                                <div class="description item-desc hidden">
-                                                    {{producto.descripcion|safe}}
-                                                </div>
-                                            </div>
-
-                                            <div class="button-group">
-                                                <button class="addToCart btn btn-default " data-toggle="tooltip"
-                                                        title=""
-                                                        onclick="cart.add('{{ producto.id }}', '1','','{{ producto.slug }}','{{ producto.nombre }}');"
-                                                        data-original-title="Add to Cart"><span
-                                                        class="">Add to Cart</span></button>
-                                            </div>
-                                        </div><!-- right block -->
+                                            </div><!-- right block -->
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endblock %}
     </div>
-    <!-- //Main Container -->
-    <script type="text/javascript"><!--
-    var $typeheader = 'header-home1';
-    //-->
-    </script>
-
-    <!-- Footer Container -->
-    <footer class="footer-container type_footer1">
+{% block footer %}
+ <footer class="footer-container type_footer1">
         <!-- Footer Top Container -->
         <section class="footer-top">
             <div class="container content">
@@ -767,8 +772,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </section>
@@ -797,10 +800,9 @@
             </div>
         </div>
     </footer>
-    <!-- //end Footer Container -->
+{% endblock %}
 
 
-    <!-- Social widgets -->
     <div class="footer-bottom-block ">
         <div class=" container">
             <div class="row">
@@ -827,7 +829,7 @@
                 <div class="back-to-top"><i class="fa fa-angle-up"></i><span> Top </span></div>
             </div>
         </div>
-    </div>    <!-- End Social widgets -->
+    </div>
 
     <script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
@@ -841,22 +843,18 @@
     <script type="text/javascript" src="/static/tienda/js/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/static/tienda/js/modernizr/modernizr-2.6.2.min.js"></script>
 
-    <!-- Theme files
-        ============================================ -->
     <script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
     <script type="text/javascript" src="/static/tienda/js/themejs/homepage.js"></script>
     <script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
     <script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
     <script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
     <script type="text/javascript" src="/static/tienda/js/themejs/cpanel.js"></script>
-    <link href="/static/tienda/js/minicolors/miniColors.css" rel="stylesheet">
-    <script type="text/javascript" src="/static/tienda/js/minicolors/jquery.miniColors.min.js"></script>
     <script>
         var cart = {
-            'add': function (product_id, cantidad,uri,slug,nombre) {
+            'add': function (product_id, cantidad, uri, slug, nombre) {
                 addProductNotice('Se agregó al Carrito',
-                    '<img src='+uri+' alt="">',
-                    '<h3><a href="/detail/'+slug+'"/>'+nombre+'</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>',
+                    '<img src=' + uri + ' alt="">',
+                    '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>',
                     'success');
             }
         }
