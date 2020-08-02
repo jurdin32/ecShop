@@ -5,6 +5,7 @@ from django.db import models
 import hashlib
 # Create your models here.
 from django.utils.safestring import mark_safe
+from stdimage import StdImageField
 
 from Administracion.models import Iconos
 
@@ -122,7 +123,7 @@ class Productos(models.Model):
     slug=models.CharField(max_length=200,null=True,blank=True)
     estado=models.BooleanField(default=True)
     nombre_comun=models.CharField(max_length=300,null=True,blank=True)
-    fecha=models.DateField(auto_created=True,null=True,blank=True)
+    fecha=models.DateField(auto_now_add=True,null=True,blank=True)
 
     def save(self, *args, **kwargs):
         self.nombre_comun =str(strip_accents(self.nombre)).replace(" ","_")
@@ -149,7 +150,7 @@ class Productos(models.Model):
 
 class ProductoFotos(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
-    imagen=models.ImageField(upload_to="Tienda/Productos", help_text="Imagen de 600 * 600")
+    imagen=StdImageField(upload_to="Tienda/Productos",variations={'thumbnail': {"width": 600, "height": 600, "crop": True}}, help_text="Imagen de 600 * 600")
     principal=models.BooleanField(default=False)
 
     class Meta:
