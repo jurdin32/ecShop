@@ -1,6 +1,4 @@
-import datetime
-
-from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from datetime import datetime,timedelta
 from django.db.models import Sum
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -17,6 +15,9 @@ def index(request):
     deseos=0
     carrito=None
     valor=0
+    fecha_fin=datetime.now().date()
+    fecha_inicio=fecha_fin- timedelta(days=7)
+    print(fecha_fin,fecha_inicio)
     if request.user.is_authenticated:
         carrito=DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False)
         carro=carrito.count()
@@ -27,6 +28,7 @@ def index(request):
     contexto={
         "tiendas":Tiendas.objects.all(),
         "cat":Categorias.objects.all().order_by("nombre"),
+        "productosLista":Productos.objects.filter(fecha__lt=fecha_fin,fecha__gt=fecha_inicio),
         "productos":list(Productos.objects.filter(estado=True).order_by("puntuacion")),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "slider":Slider.objects.all().order_by("fecha"),
