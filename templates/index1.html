@@ -645,7 +645,7 @@
                                         </div>
                                         <div class="right-block">
                                             <div class="caption">
-                                                <h4><a href="/detail/{{ producto.slug }}/">{{ producto.nombre|capfirst }}</a></h4>
+                                                <h4><a href="/detail/{{ producto.slug }}/">{{ producto.nombre|truncatechars:30|capfirst }}</a></h4>
                                                 <div class="ratings">
                                                     <div class="rating-box">
                                                         <span class=""><i class="fa fa-star "></i></span>
