@@ -525,7 +525,7 @@
                                             <a href="/detail/{{ producto.slug }}/" class="product-img">
                                                 {% for fotosProducto in fotosProductos %}
                                                     {% if fotosProducto.producto == producto %}
-                                                        <img src="/media/{{ fotosProducto.imagen }}" alt="">
+                                                        <img src="/media/{{ fotosProducto.imagen }}" style="width: 200px; height: 200px" alt="">
                                                     {% endif %}
                                                 {% endfor %}
 
@@ -600,7 +600,6 @@
                                                 {% endfor %}
                                             <!--Sale Label-->
                                             <span class="new">New</span>
-
                                             <div class="hover">
                                                 <ul>
                                                     <li class="icon-heart"><a class="wishlist" data-toggle="tooltip"
