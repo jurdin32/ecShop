@@ -10,6 +10,7 @@ Home = [
     path('detail/<slug:slug>/', detalles_producto),
     path('single-category/<int:id>/', ver_porCategoria),
     path('category/', ver_todas_categorias),
+    path('detail/quickview/<int:id>/', quickview),
 
 
     path('to_car/', enviar_carrito),

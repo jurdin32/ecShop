@@ -39,6 +39,13 @@ def index(request):
     }
     return render(request, "index1.html", contexto)
 
+def quickview(request, id):
+    contexto={
+        "producto":Productos.objects.get(id=id),
+        "fotos":ProductoFotos.objects.filter(producto_id=id),
+    }
+    return render(request,"quickview.html",contexto)
+
 def cargar_mas_productos(request,inicio,fin,categoria=0):
     productos=Productos.objects.all()
     if categoria>0:
