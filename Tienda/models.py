@@ -160,6 +160,10 @@ class ProductoFotos(models.Model):
             img.thumbnail(tamanio)
             img.save(self.imagen.path)
 
+        if img.height <600 or img.weight<600:
+            tamanio=(600,600)
+            img.thumbnail(tamanio)
+            img.save(self.imagen.path)
 
     class Meta:
         verbose_name="Fotos de Producto"
