@@ -1,12 +1,9 @@
-import re
-
+from PIL import Image
 from django.contrib.auth.models import User
 from django.db import models
 import hashlib
 # Create your models here.
 from django.utils.safestring import mark_safe
-from stdimage import StdImageField
-
 from Administracion.models import Iconos
 
 
@@ -151,8 +148,18 @@ class Productos(models.Model):
 
 class ProductoFotos(models.Model):
     producto=models.ForeignKey(Productos,on_delete=models.CASCADE)
-    imagen=StdImageField(upload_to="Tienda/Productos",variations={'thumbnail': {"width": 600, "height": 600, "crop": True}}, help_text="Imagen de 600 * 600")
+    imagen=models.ImageField(upload_to="Tienda/Productos", help_text="Imagen de 600 * 600")
     principal=models.BooleanField(default=False)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        super(ProductoFotos, self).save()
+        img=Image.open(self.imagen.path)
+        if img.height >600 or img.weight>600:
+            tamanio=(600,600)
+            img.thumbnail(tamanio)
+            img.save(self.imagen.path)
+
 
     class Meta:
         verbose_name="Fotos de Producto"
