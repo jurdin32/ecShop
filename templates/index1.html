@@ -59,10 +59,11 @@
 {% if popup %}
 <div id="container-module-newletter" class="hidden-md hidden-sm hidden-xs">
         <div class="so_newletter_custom_popup_bg popup_bg"></div>
-        <div class="module main-newsleter-popup so_newletter_custom_popup so_newletter_oca_popup" id="so_newletter_custom_popup"> <div class="so-custom-popup so-custom-oca-popup" style="width: 850px; background: url('/static/tienda/img/demo/cms/newletter-bg.jpg') no-repeat white;  ">
+        <div class="module main-newsleter-popup so_newletter_custom_popup so_newletter_oca_popup" id="so_newletter_custom_popup">
+            <div class="so-custom-popup so-custom-oca-popup" style="width: 850px; background: url('/media/{{ popup.imagen }}') no-repeat white;  ">
             <div class="modcontent">
-                <div class="oca_popup" id="test-popup"> <div class="popup-content"> <p class="newsletter_promo">{{ popup.titulo }}</p>
-                    <div class="popup-title">{{ popup.detalle|upper }}</div>
+                <div class="oca_popup" id="test-popup"> <div class="popup-content"> <p class="newsletter_promo">{{ popup.titulo|upper }}</p>
+                    <div class="popup-title">{{ popup.detalle|capfirst }}</div>
                     <form method="post" name="signup" class="form-group signup">
                         <div class="input-control"> <div class="email">
                             <input type="email" placeholder="Your email address..." value="" class="form-control" id="txtemail" name="txtemail">
