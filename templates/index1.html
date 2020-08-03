@@ -120,7 +120,7 @@
                                 <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
                                    data-toggle="dropdown">
                                     <div class="shopcart">
-                                        <span class="handle pull-left"></span>
+                                        <span class="handle-l pull-left"></span>
                                         <span class="number-shopping-cart xnd">{{ deseos }}</span>
                                         <span class="title">Deseos</span>
                                     </div>
@@ -943,6 +943,14 @@
         });
     {% endfor %}
 </script>
-
+<style>
+    .header-center .shopping_cart .btn-shopping-cart .handle-l {
+        position: relative;
+        background: url(/static/tienda/img/corazon.png) no-repeat;
+        width: 31px;
+        height: 40px;
+        margin: 5px 10px;
+    }
+</style>
 </body>
 </html>
