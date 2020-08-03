@@ -1,4 +1,5 @@
 from PIL import Image
+from colorfield.fields import ColorField
 from django.contrib.auth.models import User
 from django.db import models
 import hashlib
@@ -116,6 +117,8 @@ class Productos(models.Model):
     detalles_generales=models.TextField(null=True,blank=True)
     detalles_tecnicos=models.TextField(null=True,blank=True)
     garantia_y_mas=models.TextField(null=True,blank=True)
+    color=models.CharField(default="Negro",max_length=50)
+    codigo_color=ColorField(default="#269300",max_length=30)
     adds=models.ForeignKey(Adds,on_delete=models.CASCADE,null=True,blank=True)
     puntuacion=models.DecimalField(max_digits=9,decimal_places=2,default=0)
     slug=models.CharField(max_length=200,null=True,blank=True)

@@ -63,61 +63,18 @@
 
                                             <legend>Color</legend>
 
+
                                             <div class="row">
-
-                                                <div class="col-sm-6">
-
+                                                {% for color in coloresProductos %}
+                                            <div class="col-sm-6">
                                                     <ul class="simple_vertical_list">
-
                                                         <li>
-
-                                                            <input type="checkbox" name="verde" id="color_btn_1">
-                                                            <label for="color_btn_1"
-                                                                   class="color_btn green">Verde</label>
-
+                                                            <input type="checkbox" value="{{ color.nombre }}" name="colores" id="color_btn_{{ color.nombre }}">
+                                                            <label for="color_btn_{{ color.nombre }}" class="color_btn {{ color.nombre }}">{{ color.nombre }}</label>
                                                         </li>
-
-                                                        <li>
-
-                                                            <input type="checkbox" name="amarillo" id="color_btn_2">
-                                                            <label for="color_btn_2"
-                                                                   class="color_btn yellow">Amarillo</label>
-
-                                                        </li>
-
-                                                        <li>
-                                                            <input type="checkbox" name="rojo" id="color_btn_3">
-                                                            <label for="color_btn_3" class="color_btn red">Rojo</label>
-
-                                                        </li>
-
                                                     </ul>
-
                                                 </div>
-
-                                                <div class="col-sm-6">
-
-                                                    <ul class="simple_vertical_list">
-
-                                                        <li>
-                                                            <input type="checkbox" name="azul" id="color_btn_4">
-                                                            <label for="color_btn_4" class="color_btn blue">Azull</label>
-                                                        </li>
-
-                                                        <li>
-                                                            <input type="checkbox" name="gris" id="color_btn_5">
-                                                            <label for="color_btn_5" class="color_btn grey">Gris</label>
-                                                        </li>
-
-                                                        <li>
-                                                            <input type="checkbox" name="naranja" id="color_btn_6">
-                                                            <label for="color_btn_6"
-                                                                   class="color_btn orange">Naranja</label>
-                                                        </li>
-
-                                                    </ul>
-
-                                                </div>
+                                            {% endfor %}
 
                                             </div>
 
@@ -345,5 +302,12 @@
               $(".max_value").val($( "#slider_" ).slider( "values", 1 ))
 
          }
+
+    $("#colores")
     </script>
+    <style>
+        {% for color in coloresProductos %}
+            .filter-shopby .color_btn.{{ color.nombre }}::before, .filter-row .color_btn.{{ color.nombre }}::before {background: {{ color.color }}; }
+        {% endfor %}
+    </style>
 {% endblock %}

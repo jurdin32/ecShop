@@ -64,17 +64,36 @@ def cargar_mas_productos(request,inicio,fin,categoria=0):
     }
     return render(request, "trozo/mas_productos.html",contexto)
 
+def obtenerColores(productos):
+    print(productos)
+    colores=[]
+    datos=[]
+    for i in productos:
+        if not i.color in colores:
+            colores.append(i.color)
+            datos.append({"nombre":i.color ,"color":i.codigo_color })
+    print(colores)
+    return datos
+
 
 def ver_porCategoria(request,id):
     carro = 0
     deseos=0
-    productos=Productos.objects.filter(categoria_id=id,estado=True)
+    filtrado=None
+
+    productos = Productos.objects.filter(categoria_id=id, estado=True)
+    filtrado=productos
+    if "search" in request.GET:
+        productos = productos.filter(nombre__icontains=request.GET["search"])
+        print(request)
+
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
         deseos=ListaDeseos.objects.filter(usuario=request.user).count()
     contexto={
         "cat":Categorias.objects.all().order_by("nombre"),
         "totalProductos":productos.count(),
+        "coloresProductos":obtenerColores(filtrado),
         "productos":list(productos.order_by("-puntuacion")),
         "categoria":Categorias.objects.get(id=id),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
