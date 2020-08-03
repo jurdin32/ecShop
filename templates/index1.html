@@ -56,26 +56,35 @@
 <body class="common-home res layout-home1">
 <div id="wrapper" class="wrapper-full banners-effect-7">
     <!-- este es el popup -->
-{% if popup %}
-<div id="container-module-newletter" class="hidden-md hidden-sm hidden-xs">
+    {% if popup %}
+        <div id="container-module-newletter" class="hidden-md hidden-sm hidden-xs">
         <div class="so_newletter_custom_popup_bg popup_bg"></div>
-        <div class="module main-newsleter-popup so_newletter_custom_popup so_newletter_oca_popup" id="so_newletter_custom_popup">
-            <div class="so-custom-popup so-custom-oca-popup" style="width: 850px; background: url('/media/{{ popup.imagen }}') no-repeat white;  ">
-            <div class="modcontent">
-                <div class="oca_popup" id="test-popup"> <div class="popup-content"> <p class="newsletter_promo">{{ popup.titulo|upper }}</p>
-                    <div class="popup-title">{{ popup.detalle|capfirst }}</div>
-                    <form method="post" name="signup" class="form-group signup">
-                        <div class="input-control"> <div class="email">
-                            <input type="email" placeholder="Your email address..." value="" class="form-control" id="txtemail" name="txtemail">
+        <div class="module main-newsleter-popup so_newletter_custom_popup so_newletter_oca_popup"
+             id="so_newletter_custom_popup">
+            <div class="so-custom-popup so-custom-oca-popup"
+                 style="width: 850px; background: url('/media/{{ popup.imagen }}') no-repeat white;  ">
+                <div class="modcontent">
+                    <div class="oca_popup" id="test-popup">
+                        <div class="popup-content"><p class="newsletter_promo">{{ popup.titulo|upper }}</p>
+                            <div class="popup-title">{{ popup.detalle|capfirst }}</div>
+                            <form method="post" name="signup" class="form-group signup">
+                                <div class="input-control">
+                                    <div class="email">
+                                        <input type="email" placeholder="Escriba su email.." value=""
+                                               class="form-control" id="txtemail" name="txtemail">
+                                    </div>
+                                    <button class="btn btn-default" type="submit"
+                                            onclick="return subscribe_newsletter();" name="submit">Suscribirse
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                            <button class="btn btn-default" type="submit" onclick="return subscribe_newsletter();" name="submit">Suscribirse</button></div>
-                    </form>
+                    </div> <!--/.modcontent-->
+                    <button title="Close" class="popup-close">×</button>
                 </div>
-            </div> <!--/.modcontent-->
-            <button title="Close" class="popup-close">×</button> </div>
+            </div>
         </div>
-    </div>
-{% endif %}
+    {% endif %}
 
     <!-- fin es el popup -->
     <header id="header" class=" variantleft type_1">
@@ -153,20 +162,22 @@
                                         <table class="table table-striped">
                                             <tbody>
                                             {% for lista in datosLista %}
-                                            <tr>
-                                                <td class="text-center" style="width:70px">
-                                                    <a href="/detail/{{ lista.producto.slug }}/">
-                                                        {% for foto in fotosProductos %}
-                                                            {% if foto.producto == lista.producto %}
-                                                            <img src="/media/{{ foto.imagen }}"
-                                                            style="width:70px" alt="Filet Mign"
-                                                            title="Filet Mign" class="preview">
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                    </a>
-                                                </td>
-                                                <td class="text-left"><a class="cart_product_name" href="/detail/{{ lista.producto.slug }}/">{{ lista.producto.nombre }}</a></td>
-                                            </tr>
+                                                <tr>
+                                                    <td class="text-center" style="width:70px">
+                                                        <a href="/detail/{{ lista.producto.slug }}/">
+                                                            {% for foto in fotosProductos %}
+                                                                {% if foto.producto == lista.producto %}
+                                                                    <img src="/media/{{ foto.imagen }}"
+                                                                         style="width:70px" alt="Filet Mign"
+                                                                         title="Filet Mign" class="preview">
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-left"><a class="cart_product_name"
+                                                                             href="/detail/{{ lista.producto.slug }}/">{{ lista.producto.nombre }}</a>
+                                                    </td>
+                                                </tr>
                                             {% endfor %}
                                             </tbody>
                                         </table>
@@ -198,25 +209,27 @@
                                         <table class="table table-striped">
                                             <tbody>
                                             {% for dato in datosCarrito %}
-                                            <tr>
-                                                <td class="text-center" style="width:70px">
-                                                    <a href="/detail/{{ dato.producto.slug }}/">
-                                                        {% for foto in fotosProductos %}
-                                                            {% if foto.producto == dato.producto %}
-                                                            <img src="/media/{{ foto.imagen }}"
-                                                            style="width:70px" alt="Filet Mign"
-                                                            title="Filet Mign" class="preview">
-                                                            {% endif %}
+                                                <tr>
+                                                    <td class="text-center" style="width:70px">
+                                                        <a href="/detail/{{ dato.producto.slug }}/">
+                                                            {% for foto in fotosProductos %}
+                                                                {% if foto.producto == dato.producto %}
+                                                                    <img src="/media/{{ foto.imagen }}"
+                                                                         style="width:70px" alt="Filet Mign"
+                                                                         title="Filet Mign" class="preview">
+                                                                {% endif %}
 
-                                                        {% endfor %}
+                                                            {% endfor %}
 
 
-                                                    </a>
-                                                </td>
-                                                <td class="text-left"><a class="cart_product_name" href="/detail/{{ dato.producto.slug }}/">{{ dato.producto.nombre }}</a></td>
-                                                <td class="text-center"> x {{ dato.cantidad }}</td>
-                                                <td class="text-center"> $ {{ dato.total }}</td>
-                                            </tr>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-left"><a class="cart_product_name"
+                                                                             href="/detail/{{ dato.producto.slug }}/">{{ dato.producto.nombre }}</a>
+                                                    </td>
+                                                    <td class="text-center"> x {{ dato.cantidad }}</td>
+                                                    <td class="text-center"> $ {{ dato.total }}</td>
+                                                </tr>
                                             {% endfor %}
                                             </tbody>
                                         </table>
@@ -228,7 +241,7 @@
                                                 <tr>
                                                     <td class="text-left"><strong>Total</strong>
                                                     </td>
-                                                    <td class="text-right">${{  valor.total__sum }}</td>
+                                                    <td class="text-right">${{ valor.total__sum }}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -707,104 +720,104 @@
             </div>
         </div>
     </div>
-</div>
-{% csrf_token %}
-<script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/libs.js"></script>
-<script type="text/javascript" src="/static/tienda/js/unveil/jquery.unveil.js"></script>
-<script type="text/javascript" src="/static/tienda/js/countdown/jquery.countdown.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/datetimepicker/moment.js"></script>
-<script type="text/javascript" src="/static/tienda/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/static/tienda/js/modernizr/modernizr-2.6.2.min.js"></script>
+    </div>
+    {% csrf_token %}
+    <script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/libs.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/unveil/jquery.unveil.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/datetimepicker/moment.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/modernizr/modernizr-2.6.2.min.js"></script>
 
-<script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/homepage.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
-<script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
-<script src="/static/rata/src/jquery.star-rating-svg.js"></script>
-<script src="/static/sweetalert.min.js"></script>
-<script>
-    var cart = {
-        'add': function (product_id, cantidad, precio, uri, slug, nombre, opt) {
-            if (opt == 1) {
-                $.ajax({
-                    url: "/to_car/",
-                    data: {
-                        producto: product_id,
-                        cantidad: 1,
-                        precio: precio,
-                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
-                    },
-                    type: 'post',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        swal({
-                            title: "Cuanto lo siento!",
-                            text: "Para usar esta acción debe estar registrado",
-                            icon: "error",
-                            button: "No hay mas por hacer",
-                        });
+    <script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/homepage.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
+    <script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
+    <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
+    <script src="/static/sweetalert.min.js"></script>
+    <script>
+        var cart = {
+            'add': function (product_id, cantidad, precio, uri, slug, nombre, opt) {
+                if (opt == 1) {
+                    $.ajax({
+                        url: "/to_car/",
+                        data: {
+                            producto: product_id,
+                            cantidad: 1,
+                            precio: precio,
+                            csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                        },
+                        type: 'post',
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            swal({
+                                title: "Cuanto lo siento!",
+                                text: "Para usar esta acción debe estar registrado",
+                                icon: "error",
+                                button: "No hay mas por hacer",
+                            });
 
-                    },
-                    success: function (data) {
-                        addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
-                        $(".xn").text(data)
-                    }
-                });
+                        },
+                        success: function (data) {
+                            addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
+                            $(".xn").text(data)
+                        }
+                    });
 
-            } else {
-                $.ajax({
-                    url: "/to_list/",
-                    data: {
-                        producto_id: product_id,
-                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
-                    },
-                    type: 'post',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        swal({
-                            title: "Cuanto lo siento!",
-                            text: "Para usar esta acción debe estar registrado",
-                            icon: "error",
-                            button: "No hay mas por hacer",
-                        });
+                } else {
+                    $.ajax({
+                        url: "/to_list/",
+                        data: {
+                            producto_id: product_id,
+                            csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                        },
+                        type: 'post',
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            swal({
+                                title: "Cuanto lo siento!",
+                                text: "Para usar esta acción debe estar registrado",
+                                icon: "error",
+                                button: "No hay mas por hacer",
+                            });
 
-                    },
-                    success: function (data) {
-                        addProductNotice('Se agregó a la lista de deseos', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  a la lista de<a href="/this_list/">Deseos</a>!</h3>', 'success');
-                        $(".xnd").text(data)
-                    }
-                });
+                        },
+                        success: function (data) {
+                            addProductNotice('Se agregó a la lista de deseos', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  a la lista de<a href="/this_list/">Deseos</a>!</h3>', 'success');
+                            $(".xnd").text(data)
+                        }
+                    });
+                }
             }
         }
-    }
-</script>
+    </script>
 
-<script>
-    {% for prod in productos %}
-        $(".my-rating{{ prod.id }}").starRating({
-            initialRating: parseFloat({% coma_punto prod.puntuacion %}),
-            starSize: 10,
-            readOnly: true,
-            disableAfterRate: false,
-            totalStars: 5,
-        });
-    {% endfor %}
-</script>
-<style>
-    .header-center .shopping_cart .btn-shopping-cart .handle-l {
-        position: relative;
-        background: url(/static/tienda/img/corazon.png) no-repeat;
-        width: 31px;
-        height: 40px;
-        margin: 5px 10px;
-    }
-</style>
-{% block script %}
+    <script>
+        {% for prod in productos %}
+            $(".my-rating{{ prod.id }}").starRating({
+                initialRating: parseFloat({% coma_punto prod.puntuacion %}),
+                starSize: 10,
+                readOnly: true,
+                disableAfterRate: false,
+                totalStars: 5,
+            });
+        {% endfor %}
+    </script>
+    <style>
+        .header-center .shopping_cart .btn-shopping-cart .handle-l {
+            position: relative;
+            background: url(/static/tienda/img/corazon.png) no-repeat;
+            width: 31px;
+            height: 40px;
+            margin: 5px 10px;
+        }
+    </style>
+    {% block script %}
 
-{% endblock %}
+    {% endblock %}
 </body>
 </html>
