@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from Home.models import Slider, ColorInterfaz, CalificarProductos
+from Home.models import Slider, ColorInterfaz, CalificarProductos, Popup
 from Tienda.models import *
 from Users.models import Carrito, DetallesCarrito, ListaDeseos
 from ecShop.snippers import send_email
@@ -40,7 +40,8 @@ def index(request):
         "datosCarrito":carrito,
         "datosLista":dtlista,
         "valor":valor,
-        "marcas":list(Marcas.objects.all().order_by("nombre"))
+        "marcas":list(Marcas.objects.all().order_by("nombre")),
+        "popup":Popup.objects.filter(estad0=True),
     }
     return render(request, "index1.html", contexto)
 

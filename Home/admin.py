@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from Home.models import Slider, ColorInterfaz, CalificarProductos
+from Home.models import Slider, ColorInterfaz, CalificarProductos, Popup
 from ecShop.snippers import Attr
 
 
@@ -20,3 +20,9 @@ class AdminCalificacionProductos(admin.ModelAdmin):
     list_display = Attr(CalificarProductos)
     list_display_links = Attr(CalificarProductos)
 admin.site.register(CalificarProductos,AdminCalificacionProductos)
+
+
+class AdminPopup(admin.ModelAdmin):
+    list_display = Attr(Popup)
+    list_display_links = Attr(Popup)
+admin.site.register(Popup,AdminPopup)

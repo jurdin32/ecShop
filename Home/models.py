@@ -36,3 +36,10 @@ class CalificarProductos(models.Model):
     usuario=models.ForeignKey(User,on_delete=models.CASCADE)
     calificacion=models.DecimalField(default=0,max_digits=9,decimal_places=2)
     comentario=models.TextField(null=True,blank=True)
+
+
+class Popup(models.Model):
+    titulo=models.CharField(max_length=60)
+    detalle=models.CharField(max_length=120)
+    imagen=models.ImageField(upload_to="popup")
+    estad0=models.BooleanField(default=True)
