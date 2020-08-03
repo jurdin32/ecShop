@@ -15,13 +15,15 @@ def index(request):
     deseos=0
     carrito=None
     valor=0
+    dtlista=None
     fecha_fin=datetime.now().date()
     fecha_inicio=fecha_fin- timedelta(days=7)
     print(fecha_fin,fecha_inicio)
     if request.user.is_authenticated:
         carrito=DetallesCarrito.objects.filter(carrito__usuario=request.user,carrito__estado=False)
         carro=carrito.count()
-        deseos=ListaDeseos.objects.filter(usuario=request.user).count()
+        dtlista=ListaDeseos.objects.filter(usuario=request.user)
+        deseos=dtlista.count()
     if carro>0:
         valor=carrito.aggregate(Sum("total"))
         #valor=valor["total__sum"]
@@ -36,6 +38,7 @@ def index(request):
         "carrito":carro,
         "deseos":deseos,
         "datosCarrito":carrito,
+        "datosLista":dtlista,
         "valor":valor,
         "marcas":list(Marcas.objects.all().order_by("nombre"))
     }
