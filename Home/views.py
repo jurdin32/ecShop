@@ -41,7 +41,7 @@ def index(request):
         "datosLista":dtlista,
         "valor":valor,
         "marcas":list(Marcas.objects.all().order_by("nombre")),
-        "popup":Popup.objects.filter(estad0=True),
+        "popup":Popup.objects.filter(estad0=True).last(),
     }
     return render(request, "index1.html", contexto)
 
