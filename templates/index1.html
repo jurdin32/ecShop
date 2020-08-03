@@ -719,103 +719,105 @@
         </div>
     </div>
     </div>
-    {% csrf_token %}
-    <script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/themejs/libs.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/unveil/jquery.unveil.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/countdown/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/datetimepicker/moment.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/modernizr/modernizr-2.6.2.min.js"></script>
+</div>
 
-    <script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/themejs/homepage.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
-    <script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
-    <script src="/static/rata/src/jquery.star-rating-svg.js"></script>
-    <script src="/static/sweetalert.min.js"></script>
-    <script>
-        var cart = {
-            'add': function (product_id, cantidad, precio, uri, slug, nombre, opt) {
-                if (opt == 1) {
-                    $.ajax({
-                        url: "/to_car/",
-                        data: {
-                            producto: product_id,
-                            cantidad: 1,
-                            precio: precio,
-                            csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
-                        },
-                        type: 'post',
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            swal({
-                                title: "Cuanto lo siento!",
-                                text: "Para usar esta acción debe estar registrado",
-                                icon: "error",
-                                button: "No hay mas por hacer",
-                            });
+{% csrf_token %}
+<script type="text/javascript" src="/static/tienda/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="/static/tienda/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/tienda/js/owl-carousel/owl.carousel.js"></script>
+<script type="text/javascript" src="/static/tienda/js/themejs/libs.js"></script>
+<script type="text/javascript" src="/static/tienda/js/unveil/jquery.unveil.js"></script>
+<script type="text/javascript" src="/static/tienda/js/countdown/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="/static/tienda/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
+<script type="text/javascript" src="/static/tienda/js/datetimepicker/moment.js"></script>
+<script type="text/javascript" src="/static/tienda/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/static/tienda/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/tienda/js/modernizr/modernizr-2.6.2.min.js"></script>
 
-                        },
-                        success: function (data) {
-                            addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
-                            $(".xn").text(data)
-                        }
-                    });
+<script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
+<script type="text/javascript" src="/static/tienda/js/themejs/homepage.js"></script>
+<script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
+<script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
+<script type="text/javascript" src="/static/tienda/js/themejs/pathLoader.js"></script>
+<script src="/static/rata/src/jquery.star-rating-svg.js"></script>
+<script src="/static/sweetalert.min.js"></script>
+<script>
+    var cart = {
+        'add': function (product_id, cantidad, precio, uri, slug, nombre, opt) {
+            if (opt == 1) {
+                $.ajax({
+                    url: "/to_car/",
+                    data: {
+                        producto: product_id,
+                        cantidad: 1,
+                        precio: precio,
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        swal({
+                            title: "Cuanto lo siento!",
+                            text: "Para usar esta acción debe estar registrado",
+                            icon: "error",
+                            button: "No hay mas por hacer",
+                        });
 
-                } else {
-                    $.ajax({
-                        url: "/to_list/",
-                        data: {
-                            producto_id: product_id,
-                            csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
-                        },
-                        type: 'post',
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            swal({
-                                title: "Cuanto lo siento!",
-                                text: "Para usar esta acción debe estar registrado",
-                                icon: "error",
-                                button: "No hay mas por hacer",
-                            });
+                    },
+                    success: function (data) {
+                        addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
+                        $(".xn").text(data)
+                    }
+                });
 
-                        },
-                        success: function (data) {
-                            addProductNotice('Se agregó a la lista de deseos', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  a la lista de<a href="/this_list/">Deseos</a>!</h3>', 'success');
-                            $(".xnd").text(data)
-                        }
-                    });
-                }
+            } else {
+                $.ajax({
+                    url: "/to_list/",
+                    data: {
+                        producto_id: product_id,
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        swal({
+                            title: "Cuanto lo siento!",
+                            text: "Para usar esta acción debe estar registrado",
+                            icon: "error",
+                            button: "No hay mas por hacer",
+                        });
+
+                    },
+                    success: function (data) {
+                        addProductNotice('Se agregó a la lista de deseos', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  a la lista de<a href="/this_list/">Deseos</a>!</h3>', 'success');
+                        $(".xnd").text(data)
+                    }
+                });
             }
         }
-    </script>
+    }
+</script>
 
-    <script>
-        {% for prod in productos %}
-            $(".my-rating{{ prod.id }}").starRating({
-                initialRating: parseFloat({% coma_punto prod.puntuacion %}),
-                starSize: 10,
-                readOnly: true,
-                disableAfterRate: false,
-                totalStars: 5,
-            });
-        {% endfor %}
-    </script>
-    <style>
-        .header-center .shopping_cart .btn-shopping-cart .handle-l {
-            position: relative;
-            background: url(/static/tienda/img/corazon.png) no-repeat;
-            width: 31px;
-            height: 40px;
-            margin: 5px 10px;
-        }
-    </style>
-    {% block script %}
+<script>
+    {% for prod in productos %}
+        $(".my-rating{{ prod.id }}").starRating({
+            initialRating: parseFloat({% coma_punto prod.puntuacion %}),
+            starSize: 10,
+            readOnly: true,
+            disableAfterRate: false,
+            totalStars: 5,
+        });
+    {% endfor %}
+</script>
+<style>
+    .header-center .shopping_cart .btn-shopping-cart .handle-l {
+        position: relative;
+        background: url(/static/tienda/img/corazon.png) no-repeat;
+        width: 31px;
+        height: 40px;
+        margin: 5px 10px;
+    }
+</style>
+{% block script %}
 
-    {% endblock %}
+{% endblock %}
 </body>
 </html>
