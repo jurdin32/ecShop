@@ -42,4 +42,4 @@ class Popup(models.Model):
     titulo=models.CharField(max_length=60)
     detalle=models.CharField(max_length=120)
     imagen=models.ImageField(upload_to="popup")
-    estad0=models.BooleanField(default=True)
+    estad0=models.BooleanField(default=True, help_text="Imagen de 641 x 393")
