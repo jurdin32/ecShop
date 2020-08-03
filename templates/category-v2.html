@@ -30,7 +30,7 @@
                                             <ul class="checkboxes_list">
                                                 {% for marca in marcas %}
                                                 <li>
-                                                    <input type="checkbox"  name="marca" id="marca_{{ marca.id }}">
+                                                    <input type="checkbox"  name="mark-{{ marca.id }}" id="marca_{{ marca.id }}">
                                                     <label for="marca_{{ marca.id }}">{{ marca.nombre}}</label>
                                                 </li>
                                                 {% endfor %}
@@ -44,21 +44,12 @@
                                             <legend>Price</legend>
                                             <div class="range">
                                                 Range :
-                                                <span class="min_val">$28.00</span> -
-                                                <span class="max_val">$562.00</span>
-                                                <input type="hidden" name="" class="min_value" value="28.00">
-                                                <input type="hidden" name="" class="max_value" value="562.00">
+                                                <span class="min_val"></span> -
+                                                <span class="max_val"></span>
+                                                <input type="hidden" name="min" class="min_value">
+                                                <input type="hidden" name="max" class="max_value">
                                             </div>
-                                            <div id="slider"
-                                                 class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                                                <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                      style="left: 3.15795%;"></span>
-                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                                      style="left: 96.8438%;"></span>
-                                                <div class="ui-slider-range ui-widget-header ui-corner-all"
-                                                     style="left: 3.15795%; width: 93.6859%;"></div>
-                                            </div>
+                                            <div id="slider_"></div>
                                         </fieldset>
                                     </div><!--/ .table_cell -->
 
@@ -501,4 +492,26 @@
         <!--Middle Part End-->
     </div>
 {% endblock %}
+{% block script %}
+    <script>
+    if ( $('#slider_').length ){
+             $( "#slider_" ).slider({
+                  range: true,
+                  min: 0,
+                  max: 10000,
+                  values: [ 5, 20 ],
+                  slide: function( event, ui ) {
+                      $(".min_val").text("$"+ui.values[0])
+                      $(".max_val").text("$"+ui.values[1])
+                      $(".min_value").val(ui.values[0])
+                      $(".max_value").val(ui.values[1])
+                }
+            });
+             $(".min_val").text("$" + $( "#slider_" ).slider( "values", 0 ))
+              $(".max_val").text("$" + $( "#slider_" ).slider( "values", 1 ))
+              $(".min_value").val($( "#slider_" ).slider( "values", 0 ))
+              $(".max_value").val($( "#slider_" ).slider( "values", 1 ))
 
+         }
+    </script>
+{% endblock %}
