@@ -189,12 +189,7 @@ def calificacion_global(producto):
     tres=(calificacion.filter(calificacion__gte=3, calificacion__lt=3.9).count())
     cuatro=(calificacion.filter(calificacion__gte=4, calificacion__lt=4.9).count())
     cinco=(calificacion.filter(calificacion__gte=5, calificacion__lt=5.9).count())
-    seis=(calificacion.filter(calificacion__gte=6, calificacion__lt=6.9).count())
-    siete=(calificacion.filter(calificacion__gte=7, calificacion__lt=7.9).count())
-    ocho=(calificacion.filter(calificacion__gte=8, calificacion__lt=8.9).count())
-    nueve=(calificacion.filter(calificacion__gte=9, calificacion__lt=9.9).count())
-    diez=(calificacion.filter(calificacion__gte=10).count())
-    sumasimple = uno + dos + tres + cuatro + cinco + seis + siete + ocho + nueve + diez
+    sumasimple = uno + dos + tres + cuatro + cinco
     print("total de votos",sumasimple)
     calificacion = CalificarProductos.objects.filter(producto=producto)
     uno = (calificacion.filter(calificacion__gt=0, calificacion__lt=1.9).count())*1
@@ -202,12 +197,7 @@ def calificacion_global(producto):
     tres = (calificacion.filter(calificacion__gte=3, calificacion__lt=3.9).count())*3
     cuatro = (calificacion.filter(calificacion__gte=4, calificacion__lt=4.9).count())*4
     cinco = (calificacion.filter(calificacion__gte=5, calificacion__lt=5.9).count())*5
-    seis = (calificacion.filter(calificacion__gte=6, calificacion__lt=6.9).count())*6
-    siete = (calificacion.filter(calificacion__gte=7, calificacion__lt=7.9).count())*7
-    ocho = (calificacion.filter(calificacion__gte=8, calificacion__lt=8.9).count())*8
-    nueve = (calificacion.filter(calificacion__gte=9, calificacion__lt=9.9).count())*9
-    diez = (calificacion.filter(calificacion__gte=10).count())*10
-    sumaproducto = uno + dos + tres + cuatro + cinco + seis + siete + ocho + nueve + diez
+    sumaproducto = uno + dos + tres + cuatro + cinco
     print("producto",sumaproducto)
     try:
         promedio=round(sumaproducto/sumasimple,1)
