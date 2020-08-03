@@ -123,7 +123,7 @@
                                             <span class="price-new" itemprop="price">$ {% descuento producto.id %}</span>
                                             <span class="price-old">$ {{ producto.precio }}</span>
                                             {% else %}
-                                            <span class="price-new" itemprop="price">$ {% descuento producto.id %}</span>
+                                            <span class="price-new" itemprop="price">$ {{producto.precio }}</span>
                                         {% endif %}
                                     </div>
 
@@ -147,7 +147,10 @@
                                             <div class="cart">
                                                 <input type="button" data-toggle="tooltip" title="" value="Add to Cart"
                                                        data-loading-text="Loading..." id="button-cart"
-                                                       class="btn btn-mega btn-lg" onclick="cart.add('42', '1');"
+                                                       class="btn btn-mega btn-lg" onclick="cart.add({{ producto.id }},1,
+                                                        '{% if producto.adds.estado %}{% descuento producto.id %}{% else %}{% coma_punto producto.id %}{% endif %}','{{ producto.slug }}',
+                                                        '{{ producto.slug }}',
+                                                        '{{ producto.nombre }}',1)"
                                                        data-original-title="Add to Cart">
                                             </div>
                                             <div class="add-to-links wish_comp">
@@ -204,7 +207,7 @@
         <!--Middle Part End-->
     </div>
     <!-- //Main Container -->
-
+{% csrf_token %}
 </div>
 
 <!-- Include Libs & Plugins
@@ -229,7 +232,61 @@
 <script type="text/javascript" src="/static/tienda/js/themejs/so_megamenu.js"></script>
 <script type="text/javascript" src="/static/tienda/js/themejs/addtocart.js"></script>
 <script type="text/javascript" src="/static/tienda/js/themejs/application.js"></script>
+<script src="/static/sweetalert.min.js"></script>
+<script>
+    var cart = {
+        'add': function (product_id, cantidad, precio, uri, slug, nombre, opt) {
+            if (opt == 1) {
+                $.ajax({
+                    url: "/to_car/",
+                    data: {
+                        producto: product_id,
+                        cantidad: 1,
+                        precio: precio,
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        swal({
+                            title: "Cuanto lo siento!",
+                            text: "Para usar esta acción debe estar registrado",
+                            icon: "error",
+                            button: "No hay mas por hacer",
+                        });
 
+                    },
+                    success: function (data) {
+                        addProductNotice('Se agregó al Carrito', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  al <a href="/this_car/">Carrito</a>!</h3>', 'success');
+                        $(".xn").text(data)
+                    }
+                });
+
+            } else {
+                $.ajax({
+                    url: "/to_list/",
+                    data: {
+                        producto_id: product_id,
+                        csrfmiddlewaretoken: $('input:hidden[name="csrfmiddlewaretoken"]').val()
+                    },
+                    type: 'post',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        swal({
+                            title: "Cuanto lo siento!",
+                            text: "Para usar esta acción debe estar registrado",
+                            icon: "error",
+                            button: "No hay mas por hacer",
+                        });
+
+                    },
+                    success: function (data) {
+                        addProductNotice('Se agregó a la lista de deseos', '<img src="' + uri + '">', '<h3><a href="/detail/' + slug + '"/>' + nombre + '</a> se agrego  a la lista de<a href="/this_list/">Deseos</a>!</h3>', 'success');
+                        $(".xnd").text(data)
+                    }
+                });
+            }
+        }
+    }
+</script>
 
 </body>
 

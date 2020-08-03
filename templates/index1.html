@@ -55,7 +55,21 @@
 
 <body class="common-home res layout-home1">
 <div id="wrapper" class="wrapper-full banners-effect-7">
-
+    <div id="container-module-newletter" class="hidden-md hidden-sm hidden-xs">
+        <div class="so_newletter_custom_popup_bg popup_bg"></div>
+        <div class="module main-newsleter-popup so_newletter_custom_popup so_newletter_oca_popup" id="so_newletter_custom_popup"> <div class="so-custom-popup so-custom-oca-popup" style="width: 850px; background: url('img/demo/cms/newletter-bg.jpg') no-repeat white;  ">
+            <div class="modcontent">
+                <div class="oca_popup" id="test-popup"> <div class="popup-content"> <p class="newsletter_promo">Daily Promotion</p>
+                    <div class="popup-title">SIGN UP FOR NEWSLETTER					</div>
+                    <form method="post" name="signup" class="form-group signup">
+                        <div class="input-control"> <div class="email"> <input type="email" placeholder="Your email address..." value="" class="form-control" id="txtemail" name="txtemail"> </div> <button class="btn btn-default" type="submit" onclick="return subscribe_newsletter();" name="submit">Subscribe	</button> </div>
+                    </form>
+                    <label class="hidden-popup"> <input type="checkbox" value="1" name="hidden-popup"> <span class="inline">&nbsp;&nbsp;Don't show this popup again</span> </label> </div>
+                </div>
+            </div> <!--/.modcontent-->
+            <button title="Close" class="popup-close">×</button> </div>
+        </div>
+    </div>
     <header id="header" class=" variantleft type_1">
         {% block header %}
             <div class="header-top">
@@ -151,7 +165,7 @@
                                     </li>
                                     <li>
                                         <div>
-                                            <p class="text-right"><a class="btn view-cart" href="/this_car/"><i
+                                            <p class="text-right"><a class="btn view-cart" href="/this_list/"><i
                                                     class="fa fa-heart-o"></i>Ir a la Lista</a>&nbsp;
                                             </p>
                                         </div>
@@ -463,12 +477,6 @@
                                                                                       onclick="wishlist.add('42');"
                                                                                       data-original-title="Add to Wish List"><i
                                                                     class="fa fa-heart"></i></a></li>
-                                                            <li class="icon-exchange"><a class="compare"
-                                                                                         data-toggle="tooltip"
-                                                                                         title=""
-                                                                                         onclick="compare.add('42');"
-                                                                                         data-original-title="Compare this Product"><i
-                                                                    class="fa fa-exchange"></i></a></li>
                                                             <li class="icon-search"><a class="quickview iframe-link "
                                                                                        data-fancybox-type="iframe"
                                                                                        href="/detail/quickview/{{ producto.id }}/">
@@ -567,19 +575,12 @@
                                                                                    '/media/{{ fotosProducto.imagen }}',
                                                                                    '{{ producto.slug }}',
                                                                                    '{{ producto.nombre }}',2)"
-                                                                           data-original-title="A la lista de deos">
+                                                                           data-original-title="A la lista de deseos">
                                                                             <i class="fa fa-heart"></i>
                                                                         </a>
                                                                     {% endif %}
                                                                 {% endfor %}
                                                             </li>
-                                                            <li class="icon-exchange">
-                                                                <a class="compare"
-                                                                   data-toggle="tooltip"
-                                                                   title=""
-                                                                   onclick="compare.add('42');"
-                                                                   data-original-title="Compare this Product"><i
-                                                                        class="fa fa-exchange"></i></a></li>
                                                             <li class="icon-search"><a class="quickview iframe-link "
                                                                                        data-fancybox-type="iframe"
                                                                                        href="/detail/quickview/{{ producto.id }}/">
