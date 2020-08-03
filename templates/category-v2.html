@@ -1,0 +1,559 @@
+{% extends "index1.html" %}
+{% block contenido %}
+    {% load productostags %}
+    <div class="main-container container">
+        <ul class="header-main ">
+            <li class="home"><a href="/">Home </a><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+            <li> {{ categoria.nombre|upper}}</li>
+        </ul>
+
+        <div class="row">
+            <!--Left Part Start -->
+            <aside class="col-sm-4 col-md-3 type-2" id="column-left">
+
+                <div class="module latest-product titleLine">
+                    <h3 class="modtitle">Filter </h3>
+                    <div class="modcontent ">
+                        <form class="type_2">
+
+                            <div class="table_layout filter-shopby">
+                                <div class="table_row">
+                                    <!-- - - - - - - - - - - - - - Category filter - - - - - - - - - - - - - - - - -->
+                                    <div class="table_cell" style="z-index: 103;">
+                                        <legend>Search</legend>
+                                        <input class="form-control" type="text" value="" size="50" autocomplete="off"
+                                               placeholder="Search" name="search">
+                                    </div><!--/ .table_cell -->
+                                    <!-- - - - - - - - - - - - - - End of category filter - - - - - - - - - - - - - - - - -->
+                                    <!-- - - - - - - - - - - - - - SUB CATEGORY - - - - - - - - - - - - - - - - -->
+                                    <div class="table_cell">
+                                        <fieldset>
+                                            <legend>Sub Category</legend>
+                                            <ul class="checkboxes_list">
+                                                <li>
+                                                    <input type="checkbox" checked="" name="category" id="category_1">
+                                                    <label for="category_1">Smartphone &amp; Tablets</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" name="category" id="category_2">
+                                                    <label for="category_2">Electronics</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" name="category" id="category_3">
+                                                    <label for="category_3">Shoes</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" name="category" id="category_4">
+                                                    <label for="category_4">Watches</label>
+                                                </li>
+
+                                            </ul>
+
+                                        </fieldset>
+
+                                    </div><!--/ .table_cell -->
+                                    <!-- - - - - - - - - - - - - - End SUB CATEGORY - - - - - - - - - - - - - - - - -->
+                                    <!-- - - - - - - - - - - - - - Manufacturer - - - - - - - - - - - - - - - - -->
+                                    <div class="table_cell">
+                                        <fieldset>
+                                            <legend>Manufacturer</legend>
+                                            <ul class="checkboxes_list">
+                                                <li>
+                                                    <input type="checkbox" checked="" name="manufacturer"
+                                                           id="manufacturer_1">
+                                                    <label for="manufacturer_1">Manufacturer 1</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" name="manufacturer" id="manufacturer_2">
+                                                    <label for="manufacturer_2">Manufacturer 2</label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" name="manufacturer" id="manufacturer_3">
+                                                    <label for="manufacturer_3">Manufacturer 3</label>
+                                                </li>
+
+                                            </ul>
+
+                                        </fieldset>
+
+                                    </div><!--/ .table_cell -->
+                                    <!-- - - - - - - - - - - - - - End manufacturer - - - - - - - - - - - - - - - - -->
+
+                                    <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
+                                    <div class="table_cell">
+                                        <fieldset>
+                                            <legend>Price</legend>
+                                            <div class="range">
+                                                Range :
+                                                <span class="min_val">$28.00</span> -
+                                                <span class="max_val">$562.00</span>
+                                                <input type="hidden" name="" class="min_value" value="28.00">
+                                                <input type="hidden" name="" class="max_value" value="562.00">
+                                            </div>
+                                            <div id="slider"
+                                                 class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                                <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                                      style="left: 3.15795%;"></span>
+                                                <span class="ui-slider-handle ui-state-default ui-corner-all"
+                                                      style="left: 96.8438%;"></span>
+                                                <div class="ui-slider-range ui-widget-header ui-corner-all"
+                                                     style="left: 3.15795%; width: 93.6859%;"></div>
+                                            </div>
+                                        </fieldset>
+                                    </div><!--/ .table_cell -->
+
+                                    <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
+
+                                    <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
+
+                                    <div class="table_cell">
+
+                                        <fieldset>
+
+                                            <legend>Color</legend>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-6">
+
+                                                    <ul class="simple_vertical_list">
+
+                                                        <li>
+
+                                                            <input type="checkbox" name="" id="color_btn_1">
+                                                            <label for="color_btn_1"
+                                                                   class="color_btn green">Green</label>
+
+                                                        </li>
+
+                                                        <li>
+
+                                                            <input type="checkbox" name="" id="color_btn_2">
+                                                            <label for="color_btn_2"
+                                                                   class="color_btn yellow">Yellow</label>
+
+                                                        </li>
+
+                                                        <li>
+                                                            <input type="checkbox" name="" id="color_btn_3">
+                                                            <label for="color_btn_3" class="color_btn red">Red</label>
+
+                                                        </li>
+
+                                                    </ul>
+
+                                                </div>
+
+                                                <div class="col-sm-6">
+
+                                                    <ul class="simple_vertical_list">
+
+                                                        <li>
+                                                            <input type="checkbox" name="" id="color_btn_4">
+                                                            <label for="color_btn_4" class="color_btn blue">Blue</label>
+                                                        </li>
+
+                                                        <li>
+                                                            <input type="checkbox" name="" id="color_btn_5">
+                                                            <label for="color_btn_5" class="color_btn grey">Grey</label>
+                                                        </li>
+
+                                                        <li>
+                                                            <input type="checkbox" name="" id="color_btn_6">
+                                                            <label for="color_btn_6"
+                                                                   class="color_btn orange">Orange</label>
+                                                        </li>
+
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+
+                                        </fieldset>
+
+                                    </div><!--/ .table_cell -->
+
+                                    <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
+
+                                </div><!--/ .table_row -->
+                                <footer class="bottom_box">
+                                    <div class="buttons_row">
+                                        <button type="submit" class="button_grey button_submit">Search</button>
+                                        <button type="reset" class="button_grey filter_reset">Reset</button>
+                                    </div>
+                                </footer>
+                            </div><!--/ .table_layout -->
+
+
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="module latest-product titleLine">
+                    <h3 class="modtitle">Latest Product</h3>
+                    <div class="modcontent ">
+                        <div class="product-latest-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="product.html"><img src="img/demo/shop/product/m1.jpg" alt="Cisi Chicken"
+                                                                title="Cisi Chicken" class="img-responsive"
+                                                                style="width: 100px; height: 82px;"></a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="caption">
+                                        <h4><a href="product.html">Sunt Molup</a></h4>
+
+                                        <div class="price">
+                                            <span class="price-new">$100.00</span>
+                                        </div>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-latest-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="product.html"><img src="img/demo/shop/product/m2.jpg" alt="Cisi Chicken"
+                                                                title="Cisi Chicken" class="img-responsive"
+                                                                style="width: 100px; height: 82px;"></a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="caption">
+                                        <h4><a href="product.html">Et Spare</a></h4>
+
+                                        <div class="price">
+                                            <span class="price-new">$99.00</span>
+                                        </div>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-latest-item">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="product.html"><img src="img/demo/shop/product/18.jpg" alt="Cisi Chicken"
+                                                                title="Cisi Chicken" class="img-responsive"
+                                                                style="width: 100px; height: 82px;"></a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="caption">
+                                        <h4><a href="product.html">Cisi Chicken</a></h4>
+
+                                        <div class="price">
+                                            <span class="price-new">$59.00</span>
+                                        </div>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-latest-item transition">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="product.html"><img src="img/demo/shop/product/9.jpg" alt="Cisi Chicken"
+                                                                title="Cisi Chicken" class="img-responsive"
+                                                                style="width: 100px; height:82px;"></a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="caption">
+                                        <h4><a href="product.html">Kevin Labor</a></h4>
+                                        <div class="price">
+                                            <span class="price-new">$245.00</span>
+                                        </div>
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i
+                                                        class="fa fa-star-o fa-stack-1x"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="module tags-product titleLine">
+                    <h3 class="modtitle">Tags</h3>
+                    <div class="modcontent ">
+                        <ul class="tags_cloud">
+                            <li><a href="#" class="button_grey">allergy</a></li>
+                            <li><a href="#" class="button_grey">baby</a></li>
+                            <li><a href="#" class="button_grey">beauty</a></li>
+                            <li><a href="#" class="button_grey">ear care</a></li>
+                            <li><a href="#" class="button_grey">for her</a></li>
+                            <li><a href="#" class="button_grey">for him</a></li>
+                            <li><a href="#" class="button_grey">first aid</a></li>
+                            <li><a href="#" class="button_grey">gift sets</a></li>
+                            <li><a href="#" class="button_grey">spa</a></li>
+                            <li><a href="#" class="button_grey">hair care</a></li>
+                            <li><a href="#" class="button_grey">herbs</a></li>
+                            <li><a href="#" class="button_grey">medicine</a></li>
+                            <li><a href="#" class="button_grey">natural</a></li>
+                            <li><a href="#" class="button_grey">oral care</a></li>
+                            <li><a href="#" class="button_grey">pain</a></li>
+                            <li><a href="#" class="button_grey">pedicure</a></li>
+                            <li><a href="#" class="button_grey">personal care</a></li>
+                            <li><a href="#" class="button_grey">probiotics</a></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </aside>
+            <!--Left Part End -->
+
+            <!--Middle Part Start-->
+            <div id="content" class="col-md-9 col-sm-8 type-2">
+                <div class="products-category">
+                    <!-- Filters -->
+                    <div>
+                        <h3>Productos en esta Categoría</h3>
+                    </div>
+                    <div class="category-derc form-group">
+                        <div class="row">
+                            <div class="col-sm-4" style="text-align: center"><img src="/media/{{ categoria.icono.icono }}" style="width: 100px"></div>
+                            <div class="col-sm-8">
+                                <p>. </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="product-filter filters-panel">
+                        <div class="row">
+                            <div class="col-md-5 visible-lg">
+                                <div class="view-mode">
+                                    <div class="list-view">
+                                        <button class="btn btn-default grid active" data-view="grid"
+                                                data-toggle="tooltip" data-original-title="Grid"><i
+                                                class="fa fa-th-large" aria-hidden="true"></i></button>
+                                        <button class="btn btn-default list" data-view="list" data-toggle="tooltip"
+                                                data-original-title="List"><i class="fa fa-th-list"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="short-by-show form-inline text-right col-lg-7 col-sm-12 col-xs-12">
+                                <div class="text">
+                                    <p>item 01 - 16 of 47 total</p>
+                                </div>
+                                <div class="form-group short-by">
+                                    <label class="control-label" for="input-sort">Sort By:</label>
+                                    <select id="input-sort" class="form-control" onchange="location = this.value;">
+
+                                        <option value="" selected="selected">Default</option>
+                                        <option value="">Name (A - Z)</option>
+                                        <option value="">Name (Z - A)</option>
+                                        <option value="">Price (Low &gt; High)</option>
+                                        <option value="">Price (High &gt; Low)</option>
+                                        <option value="">Rating (Highest)</option>
+                                        <option value="">Rating (Lowest)</option>
+                                        <option value="">Model (A - Z)</option>
+                                        <option value="">Model (Z - A)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select id="input-limit" class="form-control" onchange="location = this.value;">
+                                        <option value="" selected="selected">16</option>
+                                        <option value="">25</option>
+                                        <option value="">50</option>
+                                        <option value="">75</option>
+                                        <option value="">100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //end Filters -->
+                    <!--changed listings-->
+                    <div class="products-list grid">
+                      {% for producto in productos %}
+                            <div class="product-layout">
+                                    <div class="product-item-container">
+                                        <div class="left-block">
+                                            <div class="product-image-container  second_img ">
+                                                <a href="/detail/{{ producto.slug }}/" class="product-img">
+                                                    {% for fotosProducto in fotosProductos %}
+                                                        {% if fotosProducto.producto == producto %}
+                                                            <img src="/media/{{ fotosProducto.imagen }}" style="height: 200px;display:block; margin:auto;">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </a>
+                                                <div class="hover">
+                                                    <ul>
+                                                        <li class="icon-heart">
+                                                            {% for fotosProducto in fotosProductos %}
+                                                                {% if fotosProducto.producto == producto %}
+                                                                    <a class="wishlist"
+                                                                       title="tolltip"
+                                                                       onclick="cart.add('{{ producto.id }}',
+                                                                               '1',
+                                                                               {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
+                                                                               '/media/{{ fotosProducto.imagen }}',
+                                                                               '{{ producto.slug }}',
+                                                                               '{{ producto.nombre }}',2)"
+                                                                       data-original-title="A la lista de deseos">
+                                                                        <i class="fa fa-heart"></i>
+                                                                    </a>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </li>
+                                                        <li class="icon-search"><a class="quickview iframe-link "
+                                                                                   data-fancybox-type="iframe"
+                                                                                   href="/detail/quickview/{{ producto.id }}/">
+                                                            <i
+                                                                    class="fa fa-search" aria-hidden="true"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right-block">
+                                            <div class="caption">
+                                                <h4>
+                                                    <a href="/detail/{{ producto.slug }}/">{{ producto.nombre|truncatechars:30|capfirst }}</a>
+                                                </h4>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        <div class="my-rating{{ producto.id }}"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="price">
+                                                    {% if producto.adds.estado %}
+                                                        <span class="price-new">$ {% descuento producto.precio %}</span>
+                                                        <span class="price-old">$ {{ producto.precio }}</span>
+                                                    {% else %}
+                                                        <span class="price-new">$ {{ producto.precio }}</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="description item-desc hidden">
+                                                    {{ producto.descripcion|safe }}
+                                                </div>
+                                            </div>
+
+                                            <div class="button-group">
+                                                {% for fotosProducto in fotosProductos %}
+                                                    {% if fotosProducto.producto == producto %}
+                                                        <button class="addToCart btn btn-default "
+                                                                data-toggle="tooltip"
+                                                                title=""
+                                                                onclick="cart.add('{{ producto.id }}',
+                                                                        '1',
+                                                                        {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
+                                                                        '/media/{{ fotosProducto.imagen }}',
+                                                                        '{{ producto.slug }}',
+                                                                        '{{ producto.nombre }}',1)"
+                                                                data-original-title="Al Carrito"><span
+                                                                class="">Al Carrito</span>
+                                                        </button>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+                                        </div><!-- right block -->
+                                    </div>
+                            </div>
+                        {% endfor %}
+                    </div>                <!--// End Changed listings-->
+                    <!-- Filters -->
+                    <div class="product-filter filters-panel">
+                        <div class="row">
+                            <div class="col-md-5 visible-lg">
+                                <div class="view-mode">
+                                    <div class="list-view">
+                                        <button class="btn btn-default grid active" data-view="grid"
+                                                data-toggle="tooltip" data-original-title="Grid"><i
+                                                class="fa fa-th-large" aria-hidden="true"></i></button>
+                                        <button class="btn btn-default list" data-view="list" data-toggle="tooltip"
+                                                data-original-title="List"><i class="fa fa-th-list"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="short-by-show form-inline text-right col-lg-7 col-sm-12 col-xs-12">
+                                <div class="text">
+                                    <p>item 01 - 16 of 47 total</p>
+                                </div>
+                                <div class="box-pagination text-right">
+                                    <ul class="pagination">
+                                        <li class="active"><span>1</span></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //end Filters -->
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!--Middle Part End-->
+    </div>
+{% endblock %}
+

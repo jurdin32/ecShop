@@ -84,7 +84,7 @@ def ver_porCategoria(request,id):
         "top10":list(productos.order_by("-puntuacion")[0:10]),
         "deseos":deseos,
     }
-    return render(request,"single-category.html",contexto)
+    return render(request,"category-v2.html",contexto)
 
 
 def tiendas(request,slug):

@@ -87,8 +87,8 @@
     {% endif %}
 
     <!-- fin es el popup -->
-    <header id="header" class=" variantleft type_1">
-        {% block header %}
+    {% block header %}
+        <header id="header" class=" variantleft type_1">
             <div class="header-top">
                 <div class="container">
                     <div class="row">
@@ -347,10 +347,10 @@
                 </div>
 
             </div>
-        {% endblock %}
+        </header>
+    {% endblock %}
 
-    </header>
-    {% block menu %}
+    {% block contenido %}
         <section class="so-spotlight1 ">
             <div class="container">
                 <div class="row">
@@ -459,9 +459,7 @@
                 </div>
             </div>
         </section>
-    {% endblock %}
-    <div class="main-container container">
-        {% block contenido %}
+        <div class="main-container container">
             <div class="row">
                 {% if productosLista %}
                     <div id="content" class="col-xs-12 col-sm-12">
@@ -664,8 +662,8 @@
                     </div>
                 </div>
             </div>
-        {% endblock %}
-    </div>
+        </div>
+    {% endblock %}
     {% block footer %}
         <footer class="footer-container type_footer1">
             <div class="footer-mid">
