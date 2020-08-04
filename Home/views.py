@@ -87,8 +87,8 @@ def ver_porCategoria(request,id):
         productos = productos.filter(nombre__icontains=request.GET.get("search"),precio__gt=request.GET.get("min"), precio__lte=request.GET.get("max"))
     if request.GET.getlist("colores"):
         productos=productos.filter(color__in=request.GET.getlist("colores"))
-
-
+    if request.GET.get("marcas"):
+        productos = productos.filter(marca_id__in=request.GET.get("marcas"))
 
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()
