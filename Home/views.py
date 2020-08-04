@@ -84,7 +84,7 @@ def ver_porCategoria(request,id):
     filtrado=productos
     print(request.GET)
     if "search" in request.GET:
-        productos = productos.filter(nombre__icontains=request.GET["search"],precio__gt=request.GET["min"], precio__lt=request.GET["max"])
+        productos = productos.filter(nombre__icontains=request.GET["search"],precio__gt=request.GET["min"], precio__lte=request.GET["max"])
     if "colores" in request.GET:
         pass
 
