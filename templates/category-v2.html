@@ -30,7 +30,7 @@
                                             <ul class="checkboxes_list">
                                                 {% for marca in marcas %}
                                                 <li>
-                                                    <input type="checkbox"  name="mark-{{ marca.id }}" id="marca_{{ marca.id }}">
+                                                    <input type="checkbox"  name="marca" value="{{ marca.id }}" id="marca_{{ marca.id }}">
                                                     <label for="marca_{{ marca.id }}">{{ marca.nombre}}</label>
                                                 </li>
                                                 {% endfor %}

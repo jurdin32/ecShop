@@ -1,5 +1,5 @@
 from datetime import datetime,timedelta
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -82,11 +82,11 @@ def ver_porCategoria(request,id):
 
     productos = Productos.objects.filter(categoria_id=id, estado=True)
     filtrado=productos
-    print(request.GET)
-    if "search" in request.GET:
-        productos = productos.filter(nombre__icontains=request.GET["search"],precio__gt=request.GET["min"], precio__lte=request.GET["max"])
-    if "colores" in request.GET:
-        pass
+
+    if request.GET.get("search"):
+        productos = productos.filter(nombre__icontains=request.GET.get("search"),precio__gt=request.GET.get("min"), precio__lte=request.GET.get("max"))
+    if request.GET.getlist("colores"):
+        productos=productos.filter(color__in=request.GET.getlist("colores"))
 
 
 
