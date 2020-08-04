@@ -242,7 +242,6 @@
                         <div class="row">
                             <div class="short-by-show form-inline text-center col-lg-12 col-sm-12 col-xs-12">
                                 <div class="box-pagination text-right">
-                                    {% if productos.has_other_pages %}
                                         <ul class="pagination">
                                             {% if productos.has_previous %}
                                                 <li><a href="?page={{ productos.previous_page_number }}">&laquo;</a>
@@ -264,7 +263,6 @@
                                                 <li class="disabled"><span>&raquo;</span></li>
                                             {% endif %}
                                         </ul>
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>
