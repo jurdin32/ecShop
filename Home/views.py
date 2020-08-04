@@ -72,7 +72,6 @@ def obtenerColores(productos):
         if not i.color in colores:
             colores.append(i.color)
             datos.append({"nombre":i.color ,"color":i.codigo_color })
-    print(colores)
     return datos
 
 
@@ -83,9 +82,13 @@ def ver_porCategoria(request,id):
 
     productos = Productos.objects.filter(categoria_id=id, estado=True)
     filtrado=productos
+    print(request.GET)
     if "search" in request.GET:
-        productos = productos.filter(nombre__icontains=request.GET["search"])
-        print(request)
+        productos = productos.filter(nombre__icontains=request.GET["search"],precio__gt=request.GET["min"], precio__lt=request.GET["max"])
+    if "colores" in request.GET:
+        pass
+
+
 
     if request.user.is_authenticated:
         carro = DetallesCarrito.objects.filter(carrito__usuario=request.user, carrito__estado=False).count()

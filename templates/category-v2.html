@@ -67,13 +67,12 @@
                                             <div class="col-sm-6">
                                                     <ul class="simple_vertical_list">
                                                         <li>
-                                                            <input type="checkbox" value="{{ color.nombre }}" name="colores" id="color_btn_{{ color.nombre }}">
+                                                            <input type="checkbox" value="{{ color.nombre }}" class="color" name="colores" id="color_btn_{{ color.nombre }}">
                                                             <label for="color_btn_{{ color.nombre }}" class="color_btn {{ color.nombre }}">{{ color.nombre }}</label>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             {% endfor %}
-
                                             </div>
 
                                         </fieldset>
@@ -300,8 +299,6 @@
               $(".max_value").val($( "#slider_" ).slider( "values", 1 ))
 
          }
-
-    $("#colores")
     </script>
     <style>
         {% for color in coloresProductos %}
