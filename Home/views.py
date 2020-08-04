@@ -1,4 +1,7 @@
 from datetime import datetime,timedelta
+
+from django.core import paginator
+from django.core.paginator import Page, Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Sum, Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -82,6 +85,20 @@ def marcas_categoria(productos):
             datos.append({"id":i.marca_id,"nombre":i.marca.nombre})
     return datos
 
+
+def paginacion(request,listado):
+    page = request.GET.get('page', 1)
+    paginator = Paginator(listado, 1)
+    try:
+        listado = paginator.page(page)
+    except PageNotAnInteger:
+        listado = paginator.page(1)
+    except EmptyPage:
+        listado = paginator.page(paginator.num_pages)
+    print(listado)
+    return listado
+
+
 def ver_porCategoria(request,id):
     carro = 0
     deseos=0
@@ -104,7 +121,7 @@ def ver_porCategoria(request,id):
         "cat":Categorias.objects.all().order_by("nombre"),
         "totalProductos":productos.count(),
         "coloresProductos":obtenerColores(filtrado),
-        "productos":list(productos.order_by("-puntuacion")),
+        "productos":paginacion(request,productos.order_by("-puntuacion")),
         "categoria":Categorias.objects.get(id=id),
         "fotosProductos":ProductoFotos.objects.filter(principal=True),
         "tiendas":Tiendas.objects.all(),

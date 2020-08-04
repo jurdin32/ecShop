@@ -4,7 +4,7 @@
     <div class="main-container container">
         <ul class="header-main ">
             <li class="home"><a href="/">Home </a><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-            <li> {{ categoria.nombre|upper}}</li>
+            <li> {{ categoria.nombre|upper }}</li>
         </ul>
 
         <div class="row">
@@ -29,10 +29,11 @@
                                             <legend>Marcas</legend>
                                             <ul class="checkboxes_list">
                                                 {% for marca in marcas %}
-                                                <li>
-                                                    <input type="checkbox" name="marcas" value="{{ marca.id }}" id="marca_{{ marca.id }}">
-                                                    <label for="marca_{{ marca.id }}">{{ marca.nombre}}</label>
-                                                </li>
+                                                    <li>
+                                                        <input type="checkbox" name="marcas" value="{{ marca.id }}"
+                                                               id="marca_{{ marca.id }}">
+                                                        <label for="marca_{{ marca.id }}">{{ marca.nombre }}</label>
+                                                    </li>
                                                 {% endfor %}
                                             </ul>
 
@@ -64,15 +65,18 @@
                                             <legend>Color</legend>
                                             <div class="row">
                                                 {% for color in coloresProductos %}
-                                            <div class="col-sm-6">
-                                                    <ul class="simple_vertical_list">
-                                                        <li>
-                                                            <input type="checkbox" value="{{ color.nombre }}" class="color" name="colores" id="color_btn_{{ color.nombre }}">
-                                                            <label for="color_btn_{{ color.nombre }}" class="color_btn {{ color.nombre }}">{{ color.nombre }}</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            {% endfor %}
+                                                    <div class="col-sm-6">
+                                                        <ul class="simple_vertical_list">
+                                                            <li>
+                                                                <input type="checkbox" value="{{ color.nombre }}"
+                                                                       class="color" name="colores"
+                                                                       id="color_btn_{{ color.nombre }}">
+                                                                <label for="color_btn_{{ color.nombre }}"
+                                                                       class="color_btn {{ color.nombre }}">{{ color.nombre }}</label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                {% endfor %}
                                             </div>
 
                                         </fieldset>
@@ -84,7 +88,7 @@
                                 </div><!--/ .table_row -->
                                 <footer class="bottom_box">
                                     <div class="buttons_row">
-                                        <button type="submit" class="button_grey button_submit">Search</button>
+                                        <button type="submit" class="button_grey button_submit">Buscar</button>
                                     </div>
                                 </footer>
                             </div><!--/ .table_layout -->
@@ -106,7 +110,8 @@
                     </div>
                     <div class="category-derc form-group">
                         <div class="row">
-                            <div class="col-sm-4" style="text-align: center"><img src="/media/{{ categoria.icono.icono }}" style="width: 100px"></div>
+                            <div class="col-sm-4" style="text-align: center"><img
+                                    src="/media/{{ categoria.icono.icono }}" style="width: 100px"></div>
                             <div class="col-sm-8">
                                 <p>. </p>
 
@@ -130,8 +135,8 @@
                             <div class="short-by-show form-inline text-right col-lg-7 col-sm-12 col-xs-12">
                                 <div class="text">
                                     {% if totalProductos > 0 %}
-                                    <p>Mostrando items del  1 - {{ totalProductos }}</p>
-                                        {% else %}
+                                        <p>Mostrando items del 1 - {{ totalProductos }}</p>
+                                    {% else %}
                                         <p>No hay productos en esta categoría</p>
                                     {% endif %}
 
@@ -143,129 +148,130 @@
                     <!-- //end Filters -->
                     <!--changed listings-->
                     <div class="products-list grid">
-                      {% for producto in productos %}
+                        {% for producto in productos %}
                             <div class="product-layout">
-                                    <div class="product-item-container">
-                                        <div class="left-block">
-                                            <div class="product-image-container  second_img ">
-                                                <a href="/detail/{{ producto.slug }}/" class="product-img">
-                                                    {% for fotosProducto in fotosProductos %}
-                                                        {% if fotosProducto.producto == producto %}
-                                                            <img src="/media/{{ fotosProducto.imagen }}" style="height: 200px;display:block; margin:auto;">
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </a>
-                                                <div class="hover">
-                                                    <ul>
-                                                        <li class="icon-heart">
-                                                            {% for fotosProducto in fotosProductos %}
-                                                                {% if fotosProducto.producto == producto %}
-                                                                    <a class="wishlist"
-                                                                       title="tolltip"
-                                                                       onclick="cart.add('{{ producto.id }}',
-                                                                               '1',
-                                                                               {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
-                                                                               '/media/{{ fotosProducto.imagen }}',
-                                                                               '{{ producto.slug }}',
-                                                                               '{{ producto.nombre }}',2)"
-                                                                       data-original-title="A la lista de deseos">
-                                                                        <i class="fa fa-heart"></i>
-                                                                    </a>
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        </li>
-                                                        <li class="icon-search"><a class="quickview iframe-link "
-                                                                                   data-fancybox-type="iframe"
-                                                                                   href="/detail/quickview/{{ producto.id }}/">
-                                                            <i
-                                                                    class="fa fa-search" aria-hidden="true"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right-block">
-                                            <div class="caption">
-                                                <h4>
-                                                    <a href="/detail/{{ producto.slug }}/">{{ producto.nombre|truncatechars:30|capfirst }}</a>
-                                                </h4>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <div class="my-rating{{ producto.id }}"></div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="price">
-                                                    {% if producto.adds.estado %}
-                                                        <span class="price-new">$ {% descuento producto.precio %}</span>
-                                                        <span class="price-old">$ {{ producto.precio }}</span>
-                                                    {% else %}
-                                                        <span class="price-new">$ {{ producto.precio }}</span>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="description item-desc hidden">
-                                                    {{ producto.descripcion|safe }}
-                                                </div>
-                                            </div>
-
-                                            <div class="button-group">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container  second_img ">
+                                            <a href="/detail/{{ producto.slug }}/" class="product-img">
                                                 {% for fotosProducto in fotosProductos %}
                                                     {% if fotosProducto.producto == producto %}
-                                                        <button class="addToCart btn btn-default "
-                                                                data-toggle="tooltip"
-                                                                title=""
-                                                                onclick="cart.add('{{ producto.id }}',
-                                                                        '1',
-                                                                        {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
-                                                                        '/media/{{ fotosProducto.imagen }}',
-                                                                        '{{ producto.slug }}',
-                                                                        '{{ producto.nombre }}',1)"
-                                                                data-original-title="Al Carrito"><span
-                                                                class="">Al Carrito</span>
-                                                        </button>
+                                                        <img src="/media/{{ fotosProducto.imagen }}"
+                                                             style="height: 200px;display:block; margin:auto;">
                                                     {% endif %}
                                                 {% endfor %}
-
+                                            </a>
+                                            <div class="hover">
+                                                <ul>
+                                                    <li class="icon-heart">
+                                                        {% for fotosProducto in fotosProductos %}
+                                                            {% if fotosProducto.producto == producto %}
+                                                                <a class="wishlist"
+                                                                   title="tolltip"
+                                                                   onclick="cart.add('{{ producto.id }}',
+                                                                           '1',
+                                                                           {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
+                                                                           '/media/{{ fotosProducto.imagen }}',
+                                                                           '{{ producto.slug }}',
+                                                                           '{{ producto.nombre }}',2)"
+                                                                   data-original-title="A la lista de deseos">
+                                                                    <i class="fa fa-heart"></i>
+                                                                </a>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </li>
+                                                    <li class="icon-search"><a class="quickview iframe-link "
+                                                                               data-fancybox-type="iframe"
+                                                                               href="/detail/quickview/{{ producto.id }}/">
+                                                        <i
+                                                                class="fa fa-search" aria-hidden="true"></i></a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </div><!-- right block -->
+                                        </div>
                                     </div>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4>
+                                                <a href="/detail/{{ producto.slug }}/">{{ producto.nombre|truncatechars:30|capfirst }}</a>
+                                            </h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div class="my-rating{{ producto.id }}"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="price">
+                                                {% if producto.adds.estado %}
+                                                    <span class="price-new">$ {% descuento producto.precio %}</span>
+                                                    <span class="price-old">$ {{ producto.precio }}</span>
+                                                {% else %}
+                                                    <span class="price-new">$ {{ producto.precio }}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="description item-desc hidden">
+                                                {{ producto.descripcion|safe }}
+                                            </div>
+                                        </div>
+
+                                        <div class="button-group">
+                                            {% for fotosProducto in fotosProductos %}
+                                                {% if fotosProducto.producto == producto %}
+                                                    <button class="addToCart btn btn-default "
+                                                            data-toggle="tooltip"
+                                                            title=""
+                                                            onclick="cart.add('{{ producto.id }}',
+                                                                    '1',
+                                                                    {% if producto.adds.estado %}{% descuento producto.precio %}{% else %}{% coma_punto producto.precio %}{% endif %},
+                                                                    '/media/{{ fotosProducto.imagen }}',
+                                                                    '{{ producto.slug }}',
+                                                                    '{{ producto.nombre }}',1)"
+                                                            data-original-title="Al Carrito"><span
+                                                            class="">Al Carrito</span>
+                                                    </button>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </div>
+                                    </div><!-- right block -->
+                                </div>
                             </div>
                         {% endfor %}
                     </div>                <!--// End Changed listings-->
                     <!-- Filters -->
                     <div class="product-filter filters-panel">
                         <div class="row">
-                            <div class="col-md-5 visible-lg">
-                                <div class="view-mode">
-                                    <div class="list-view">
-                                        <button class="btn btn-default grid active" data-view="grid"
-                                                data-toggle="tooltip" data-original-title="Grid"><i
-                                                class="fa fa-th-large" aria-hidden="true"></i></button>
-                                        <button class="btn btn-default list" data-view="list" data-toggle="tooltip"
-                                                data-original-title="List"><i class="fa fa-th-list"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="short-by-show form-inline text-right col-lg-7 col-sm-12 col-xs-12">
-                                <div class="text">
-                                    {% if totalProductos > 0 %}
-                                    <p>Mostrando items del  1 - {{ totalProductos }}</p>
-                                        {% else %}
-                                        <p>No hay productos en esta categoría</p>
-                                    {% endif %}
-                                </div>
+                            <div class="short-by-show form-inline text-center col-lg-12 col-sm-12 col-xs-12">
                                 <div class="box-pagination text-right">
-                                    <ul class="pagination">
-                                        <li class="active"><span>1</span></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    </ul>
+                                    {% if productos.has_other_pages %}
+                                        <ul class="pagination">
+                                            {% if productos.has_previous %}
+                                                <li><a href="?page={{ productos.previous_page_number }}">&laquo;</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="disabled"><span>&laquo;</span></li>
+                                            {% endif %}
+                                            {% for i in productos.paginator.page_range %}
+                                                {% if productos.number == i %}
+                                                    <li class="active"><span>{{ i }} <span
+                                                            class="sr-only">(current)</span></span></li>
+                                                {% else %}
+                                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if productos.has_next %}
+                                                <li><a href="?page={{ productos.next_page_number }}">&raquo;</a></li>
+                                            {% else %}
+                                                <li class="disabled"><span>&raquo;</span></li>
+                                            {% endif %}
+                                        </ul>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <!-- //end Filters -->
 
                 </div>
@@ -279,30 +285,32 @@
 {% endblock %}
 {% block script %}
     <script>
-    if ( $('#slider_').length ){
-             $( "#slider_" ).slider({
-                  range: true,
-                  min: 0,
-                  max: 10000,
-                  values: [ 5, 20 ],
-                  slide: function( event, ui ) {
-                      $(".min_val").text("$"+ui.values[0])
-                      $(".max_val").text("$"+ui.values[1])
-                      $(".min_value").val(ui.values[0])
-                      $(".max_value").val(ui.values[1])
+        if ($('#slider_').length) {
+            $("#slider_").slider({
+                range: true,
+                min: 0,
+                max: 10000,
+                values: [5, 20],
+                slide: function (event, ui) {
+                    $(".min_val").text("$" + ui.values[0])
+                    $(".max_val").text("$" + ui.values[1])
+                    $(".min_value").val(ui.values[0])
+                    $(".max_value").val(ui.values[1])
 
                 }
             });
-             $(".min_val").text("$" + $( "#slider_" ).slider( "values", 0 ))
-              $(".max_val").text("$" + $( "#slider_" ).slider( "values", 1 ))
-              $(".min_value").val($( "#slider_" ).slider( "values", 0 ))
-              $(".max_value").val($( "#slider_" ).slider( "values", 1 ))
+            $(".min_val").text("$" + $("#slider_").slider("values", 0))
+            $(".max_val").text("$" + $("#slider_").slider("values", 1))
+            $(".min_value").val($("#slider_").slider("values", 0))
+            $(".max_value").val($("#slider_").slider("values", 1))
 
-         }
+        }
     </script>
     <style>
         {% for color in coloresProductos %}
-            .filter-shopby .color_btn.{{ color.nombre }}::before, .filter-row .color_btn.{{ color.nombre }}::before {background: {{ color.color }}; }
+            .filter-shopby .color_btn.{{ color.nombre }}::before, .filter-row .color_btn.{{ color.nombre }}::before {
+                background: {{ color.color }};
+            }
         {% endfor %}
     </style>
 {% endblock %}
