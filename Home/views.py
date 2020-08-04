@@ -88,7 +88,7 @@ def marcas_categoria(productos):
 
 def paginacion(request,listado):
     page = request.GET.get('page', 1)
-    paginator = Paginator(listado, 1)
+    paginator = Paginator(listado, 90)
     try:
         listado = paginator.page(page)
     except PageNotAnInteger:
